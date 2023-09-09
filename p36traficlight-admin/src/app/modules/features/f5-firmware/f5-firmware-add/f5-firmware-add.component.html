@@ -1,0 +1,202 @@
+<div id="kt_account_profile_details" class="collapse show">
+  <form [formGroup]="form" novalidate="" class="form">
+    <div class="row">
+      <div
+        class="col tab-pane fade show active"
+        id="kt_ecommerce_add_product_general"
+        role="tab-panel"
+      >
+        <div class="d-flex flex-column gap-7 gap-lg-10">
+          <div class="card card-flush py-4">
+            <div class="card-header px-2">
+              <div class="card-title">
+                <span
+                  [inlineSVG]="
+                    './assets/media/icons/duotune/general/gen068.svg'
+                  "
+                  class="svg-icon svg-icon-1 float-right mr-2"
+                ></span>
+                <h2 class="cl-text-title">Thêm firmware</h2>
+              </div>
+            </div>
+            <!-- NameModel-->
+            <div class="row">
+              <!-- Name-->
+              <div class="col-md-4 card-body pt-0">
+                <div class="mb-2 fv-row">
+                  <label class="required form-label">Tên Model</label>
+                  <input
+                    formControlName="nameModel"
+                    [(ngModel)]="input.nameModel"
+                    class="form-control form-control-lg form-control-solid mrb-5 cl-text-title"
+                    name="nameModel"
+                    placeholder="Nhập tên model"
+                  />
+                  <ng-container
+                    [ngTemplateOutlet]="formError"
+                    [ngTemplateOutletContext]="{
+                      validation: 'required',
+                      message: 'Tên model không được để trống',
+                      control: form.controls['nameModel']
+                    }"
+                  ></ng-container>
+                </div>
+              </div>
+            </div>
+
+            <!-- Version   && Date Release-->
+            <div class="row">
+              <!-- Version-->
+              <div class="col-md-6 card-body pt-0">
+                <div class="mb-2 fv-row">
+                  <label class="required form-label">Phiên bản</label>
+                  <input
+                    formControlName="version"
+                    class="form-control form-control-lg form-control-solid mrb-5 cl-text-title"
+                    name="version"
+                    [(ngModel)]="input.version"
+                  />
+                  <ng-container
+                    [ngTemplateOutlet]="formError"
+                    [ngTemplateOutletContext]="{
+                      validation: 'required',
+                      message: 'Phiên bản không được để trống.',
+                      control: form.controls['version']
+                    }"
+                  ></ng-container>
+                </div>
+              </div>
+              <!--End Version-->
+
+              <div class="col-md-6 card-body pt-0">
+                <div class="mb-2 fv-row">
+                  <label class="required form-label">Ngày phát hành</label>
+                  <input
+                    formControlName="dateRelease"
+                    class="form-control form-control-lg form-control-solid mrb-5 cl-text-title"
+                    name="dateRelease"
+                    id="dateRelease_datePicker"
+                    [(ngModel)]="input.dateRelease"
+                  />
+                  <span class="btn btn-sm btn-icon position-absolute translate-middle end-0 me-n2">
+                      <img class="img-color avatar-input-wrapper w-20px h-26px rounded" src="assets/group.svg"
+                            style="margin-bottom: 45px; margin-right: 40px;"/>
+                  </span>
+                  <ng-container
+                    [ngTemplateOutlet]="formError"
+                    [ngTemplateOutletContext]="{
+                      validation: 'required',
+                      message: 'Ngày phát hành không được để trống.',
+                      control: form.controls['dateRelease']
+                    }"
+                  ></ng-container>
+                </div>
+              </div>
+            </div>
+
+            <!-- Description-->
+            <div class="p-6 mb-2 fv-row">
+              <label class="form-label">Mô tả</label>
+              <ckeditor
+                [(ngModel)]="input.description"
+                formControlName="description"
+                name="description"
+              ></ckeditor>
+            </div>
+
+            <!-- File-->
+            <div class="p-6 mb-2 fv-row">
+              <div class="mb-2">
+                <label class="required form-label">Tên file</label>
+                <div *ngIf="input.file.name !== ''" class="file">
+                  <div class="icon-name-file">
+                  <span
+                    [inlineSVG]="
+                    './assets/media/icons/duotune/files/fil026.svg'
+                    "
+                    class="svg-icon svg-icon-3 mx-5">
+                  </span>
+                    <a href="{{input.file.url}}" download class="file-name fw-bold">
+                      {{input.file.name}}
+                    </a>
+                  </div>
+                  <span class="cl-text-title fw-bold mx-5">
+                  {{ input.file.lastModified | date : 'hh:mm, dd/MM/yyyy' }}
+                  </span>
+                </div>
+                <ng-container
+                  [ngTemplateOutlet]="formError"
+                  [ngTemplateOutletContext]="{
+                      validation: 'extNotValid',
+                      message: 'File phải có định dạng là .bin.',
+                      control: form.controls['file']
+                    }"
+                ></ng-container>
+
+                <ng-container
+                  [ngTemplateOutlet]="formError"
+                  [ngTemplateOutletContext]="{
+                      validation: 'required',
+                      message: 'File không được để trống',
+                      control: form.controls['file']
+                    }"
+                ></ng-container>
+              </div>
+
+              <div class="mt-30px">
+                <label for="file" class="btn-choose-file fw-bold">Chọn tệp</label>
+                <input id="file" style="visibility:hidden;" type="file"
+                       (change)="onFileSelected($event)" #inputFile formControlName="file">
+              </div>
+            </div>
+
+            <!-- save and cancel -->
+            <div class="d-flex justify-content-end py-6 px-8 mr-5">
+              <a
+                type="button"
+                class="btn btn-light mr-3 min-w-100px"
+                routerLink="/features/firmwares"
+              >Hủy</a
+              >
+              <button
+                type="button"
+                class="btn btn-primary min-w-100px"
+                data-dismiss="modal"
+                [disabled]="isLoading"
+                (click)="onAddNewBtnClick()"
+              >
+                <ng-container *ngIf="!isLoading">Thêm</ng-container>
+                <ng-container *ngIf="isLoading">
+                  <span clas="indicator-progress" [style.display]="'block'">
+                    Đang đợi...{{ " " }}
+                    <span
+                      class="spinner-border spinner-border-sm align-middle ms-2"
+                    ></span>
+                  </span>
+                </ng-container>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- check error -->
+<ng-template
+  #formError
+  let-control="control"
+  let-message="message"
+  let-validation="validation"
+>
+  <ng-container
+    *ngIf="control?.hasError(validation) && (control.dirty || control.touched)"
+  >
+    <div class="fv-plugins-message-container">
+      <span role="alert " class="text-danger fs-14px">
+        {{ message }}
+      </span>
+    </div>
+  </ng-container>
+</ng-template>

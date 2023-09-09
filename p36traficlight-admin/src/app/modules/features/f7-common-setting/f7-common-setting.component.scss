@@ -1,0 +1,28 @@
+.mr-lr-20 {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.table td {
+  vertical-align: middle !important;
+  border: none;
+}
+
+.form-check.form-check-solid .form-check-input:checked {
+  background-color: rgba(0, 81, 215, 0.5);
+}
+
+.btn {
+  padding: 8px 10px !important;
+  &-icon {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+.status {
+  min-width: 65px;
+  border-radius: 10px;
+  padding: 2px 0;
+  font-size: 12px;
+}

@@ -1,0 +1,44 @@
+<div class="px-3">
+  <div class="px-7 py-5">
+    <div class="fs-5 text-dark fw-bolder">Filter</div>
+  </div>
+  <div class="separator border-gray-200"></div>
+  <div class="px-7 py-5">
+    <!-- begin::select type device -->
+    <div class="mb-10">
+      <label class="form-label fw-bold cl-text-title fs-14px">Loại cảnh báo:</label>
+      <div>
+        <select [(ngModel)]="typeWarningSelect" class="form-select form-select-solid" data-kt-select2="true"
+                data-placeholder="Tên loại thiết bị" data-allow-clear="true">
+          <option value="0">Tất cả</option>
+          <option *ngFor="let item of typeWarnings" value="{{item}}">{{item}}</option>
+        </select>
+      </div>
+    </div>
+    <!-- end::select type device -->
+
+    <!-- begin::select province -->
+    <div class="mb-10">
+      <label class="form-label fw-bold cl-text-title fs-14px">Địa bàn:</label>
+      <div>
+        <select [(ngModel)]="provinceSelect" class="form-select form-select-solid" data-kt-select2="true"
+                data-placeholder="All" data-allow-clear="true">
+          <option value="0">Tất cả</option>
+          <option *ngFor="let item of provinces" value="{{item._id}}">{{item.name}}</option>
+        </select>
+      </div>
+    </div>
+    <!-- end::select type device -->
+
+    <!-- Button -->
+    <div class="d-flex justify-content-end">
+      <button (click)="onResetFilter()" type="reset" class="btn btn-sm btn-reset btn-active-light-primary me-2" data-kt-menu-dismiss="true">
+        Reset
+      </button>
+      <button (click)="onApplyBtnClick()" type="submit" class="btn btn-sm btn-primary btn-confirm" data-kt-menu-dismiss="true">
+        Confirm
+      </button>
+    </div>
+  </div>
+
+</div>

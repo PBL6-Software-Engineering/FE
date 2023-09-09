@@ -1,0 +1,22 @@
+.mr-lr-20{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.btn {
+  padding: 8px 10px !important;
+  &-icon {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+.card-toolbar > button {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+
+
+.form-check.form-check-solid .form-check-input:checked {
+  background-color: rgba(0, 81, 215, 0.5);
+}

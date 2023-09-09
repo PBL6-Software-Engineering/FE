@@ -1,0 +1,16 @@
+<div class="show filter-date position-relative btn-group dropleft">
+  <input
+    class="btn date-now text-center" href="#" role="button" id="dropdownMenuLink"
+    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" [(ngModel)]="dateDisplay">
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item text-hover-primary fs-14px" (click)="onCurrentDateClick()">Hôm nay</a>
+    <a class="dropdown-item text-hover-primary fs-14px" (click)="onPreviousDateClick()">Hôm qua</a>
+    <a class="dropdown-item text-hover-primary fs-14px" (click)="onPreviousWeekClick()">Tuần trước</a>
+    <a class="dropdown-item text-hover-primary fs-14px" (click)="onPreviousMonthClick()">Tháng trước</a>
+    <a class="dropdown-item text-hover-primary fs-14px" id="dateRange" (click)="onFromDateClick()">Khoảng thời gian</a>
+  </div>
+  <span
+    [inlineSVG]="'./assets/media/icons/duotune/general/gen112.svg'"
+    class="svg-icon svg-icon-3 position-absolute icon-calendar"
+  ></span>
+</div>

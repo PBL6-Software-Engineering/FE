@@ -1,0 +1,118 @@
+<!--begin::General options-->
+<div class="card card-flush py-4 min-h-450px">
+  <div class="card-header">
+    <div class="card-title flex-column">
+      <h2>Đọc cấu hình</h2>
+      <span class="cl-text-normal fs-6 fw-normal">Cấu hình có sẵn của thiết bị</span>
+    </div>
+    <div class="d-flex align-items-center">
+<!--      <button type="button" (click)="storeDatabase()"-->
+<!--              class="btn bg-green-3 flex-between-center min-w-125px">-->
+<!--        <span-->
+<!--          [inlineSVG]="'./assets/media/icons/duotune/general/gen142.svg'"-->
+<!--          class="me-0"-->
+<!--        ></span>-->
+<!--        <span class="ml-1">Lưu vào database</span>-->
+<!--      </button>-->
+
+
+      <button type="button" class="btn bg-green-3 flex-between-center min-w-125px" [disabled]="isLoadingStore"
+              *ngIf="!isLoading"
+              (click)="storeDatabase()">
+        <span
+          [inlineSVG]="'./assets/media/icons/duotune/general/gen142.svg'"
+          class="me-0"
+        ></span>
+
+        <ng-container *ngIf="!isLoadingStore"><span class="ml-1">Lưu vào database</span></ng-container>
+        <ng-container *ngIf="isLoadingStore">
+            <span class="indicator-progress ml-1" [style.display]="'block'">
+              Đang xử lý {{ " " }}
+              <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+            </span>
+        </ng-container>
+      </button>
+
+      <button type="button" routerLink="/features/configurations/{{idDevice}}"
+              class="btn btn-back flex-between-center ml-2">
+        <span
+          [inlineSVG]="'./assets/media/icons/duotune/general/gen075.svg'"
+          class="me-0"
+        ></span>
+        Trở về
+      </button>
+    </div>
+  </div>
+
+  <!--  begin::Card body  -->
+  <div class="card-body pt-0">
+    <!--  begin::isLoading  -->
+    <ng-container *ngIf="isLoading">
+      <span class="indicator-progress text-center mt-4" [style.display]="'block'">
+        <h2>Đang xử lý...{{ " " }}</h2>
+        <br>
+        <span class="spinner-border spinner-border-sm align-middle ms-2 w-30px h-30px"></span>
+      </span>
+    </ng-container>
+    <!--  end::isLoading  -->
+
+    <!--  begin::show error  -->
+    <h2 *ngIf="!isLoading && isError" class="text-center text-danger mt-4">{{messageError}}</h2>
+    <!--  end::show error  -->
+
+    <!-- begin::Table container -->
+    <div class="table-responsive" *ngIf="!isLoading && !isError">
+      <!-- begin::Table -->
+      <table class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3">
+        <!-- begin::Table head -->
+        <thead class="fs-14px cl-text-normal fw-bold">
+        <tr>
+          <th class="min-w-50px">STT</th>
+          <th class="min-w-75px text-center">Tham số</th>
+          <th class="min-w-150px text-center">Chiều dài (byte)</th>
+          <th class="min-w-100px text-center">Giá trị</th>
+        </tr>
+        </thead>
+        <!-- end::Table head -->
+        <!-- begin::Table body -->
+        <tbody>
+        <tr *ngFor="let data of dataSources">
+          <!-- begin::STT -->
+          <td>
+            <p class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">
+              {{ data?.position }}
+            </p>
+          </td>
+          <!-- end::STT -->
+
+          <!-- begin::parameter -->
+          <td>
+            {{ data?.parameter }}
+          </td>
+          <!-- end::parameter -->
+
+          <!-- begin::byte -->
+          <td>
+            <p class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6 text-center">
+              {{ data?.byte }}
+            </p>
+          </td>
+          <!-- end::byte -->
+
+          <!-- begin::value -->
+          <td>
+            <p class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6 text-center">
+              {{ data?.value }}
+            </p>
+          </td>
+          <!-- end::value -->
+        </tr>
+        </tbody>
+        <!-- end::Table body -->
+      </table>
+      <!-- end::Table -->
+    </div>
+    <!-- end::Table container -->
+  </div>
+  <!--  end::Card body  -->
+</div>

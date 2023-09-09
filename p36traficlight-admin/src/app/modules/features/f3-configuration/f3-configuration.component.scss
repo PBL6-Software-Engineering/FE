@@ -1,0 +1,27 @@
+.mrb-5 {
+    margin-bottom: 5px;
+}
+
+.left-column {
+  width: 275px !important;
+}
+
+.name-device {
+  width: 150px;
+}
+
+@media (max-width: 1236px) {
+  .name-device {
+    width: 100%;
+  }
+  .text-info-device {
+    text-align: center;
+  }
+  .left-column {
+    width: 100% !important;
+  }
+  .content-wrapper {
+    flex-direction: column !important;
+  }
+}
+

@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "p36traficlights",
+  "private_key_id": "a228cf49c4543a3faa986f215af160d6c8a10ad9",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDcfkIZa+isk99l\nnQ28vpjQngMAj900scv0KZBjcjmbxE024rCzJmfd6oa6xJDrX2LLwrJ8HAaVQ0ey\n1U14DA6JCLBeklvwYz7ytneriVEZLQBaaEzagwWKWXbSC2KoCJ+781CbRGGJVDYr\nMUPX2e20acoldu8KJ5CkCpmID0EcZT2SUbvPHjbGMqKYay50PEArCQGmFcB3JvMG\nkxdWWcuV3O4IpoLkbaUOK3blFNW+vgWMW3U+FvvS1oqOrPL5sR8Fx54nBZIpZSIp\npDzfJgkzgzdIGhjyVAgbvsG9qTmDXu4onl5GO8GKGX5yLe8oBR10P9EroAfzg0vx\naiI7nXnZAgMBAAECggEAAx+0zwhk2QEVUqq5dZmbr6T1dO4U27jDI3ftSENnhonu\n8B6hE0CxiwbWFtJPHU6SJ0HgZnq9KyMzYli8Sr2c/RsG6KgZLlwxmZ21L1R4NiuZ\njC5bHGNr0ix3Tv2DTc8leDO3yiNbYGc1h0Ig7G91ey9egk5fj5zE41YVG8Tfjsfn\nrayXPk+v1oID7FgfZNFt+Gweu9M+YTuT3Thxp+28MAhRhvjGH3lT3CqH6LO/ivFI\npLP4nqyNlUrnz9wnmaJ+UgN8lpwV14pccV9KUMXiPrnJVmhvAio6mhZKv1rTHGsU\nqveLH22N/HeZeTPp1+o17tnViofs0meLZ2vbY2932wKBgQD1DBoyebLnvwiBFvtC\nhaVcjqjLku0xTcNo0JjGo7lHpoC/P3Q9Z341ChBkAs6rmsXbR0/xsyE74e9i9ogF\najzvtKw93pVQ5wcdFptEtA8iCIsf/nXTJIxO91hcaGVOZGmE4QRacv6opH0N+fDD\nkCZe4k1wJ4Slq1AMt0ilJdtNhwKBgQDmWTOPs7uADSIELkwDYkzHzfq0pHc4Cu8p\nfbdZ1Nh0AfgVEIXso9MVuLpqW9IFjk4GtNCypliFq5Bp99N3MxBjkAXXo+1xMt8O\n74qkDulnwg0qZWn7eMuCdrrPTfBi/UTLAcmwSrYovpLxjuDubqLRk82Z2agJ0zJV\ntQbvSaHVnwKBgHpBnHxcXVbj52FITvlEZlkET9CpMC+uBXUwxVgtbQ4DUy6XgO31\nyXC64ayT/fp90ILzVD5ZSZZvxZhROVHCTD6nnFuNxl9DtDfeBH9FeltXednvgWdj\nT6FCJFKOPyTaUg7amOprfwQydLXZYjafn5UtQMdY4AQrsVd2xganGX/XAoGAIEMg\nGKFown+UYxeE5/htnpJ36bMbS4skgiAsfPV1t5HLCFA/Iay0VNeBrIHdwY9z2Dad\nAFiSD26/FEh0or5RLlCusMwx5mfkm/fq6B16jWC9bVG07Va20jgE5CIbaBHm/7Pp\nZrqgFsbSV+jWEi8GuOnFoyW8BlxBMYXgScV7WCsCgYByhS0tcmBv7Ot9+KwYe+Es\n4qTY8aYTmvExuDGxVkbVOyaIPFqmdrsM0P2BRJmizJ2vgVh4WX/f9ayFaUK76QPG\nQfipMHtyOGIkljLkbKM0J0SEOe9S5biD9f2+6JxW2ncIO2phY/2CNiWYshikkVfN\nKzjAJGRzBlcYyH+mmYPCUA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-oilu0@p36traficlights.iam.gserviceaccount.com",
+  "client_id": "108339013157252944160",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-oilu0%40p36traficlights.iam.gserviceaccount.com"
+}

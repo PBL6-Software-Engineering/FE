@@ -1,0 +1,45 @@
+.t {
+  &-120px {
+    top: 120px !important;
+  }
+}
+
+.component {
+  background-color: white;
+  position: relative;
+  padding: 16px 12px;
+  min-width: 370px !important;
+  margin-right: 6px;
+  &-container {
+    color: #464647;
+  }
+  & .text-title {
+    max-width: 310px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+
+.bd-bottom {
+  border-bottom: solid #c9c4c4 1px;
+}
+
+/* Style the scrollbar */
+::-webkit-scrollbar {
+  width: 5px; /* Width of the scrollbar */
+  height: 5px;
+}
+
+.mode {
+  border: 1px dashed rgba(164, 162, 162, 0.8);
+}
+
+.fs-16px {
+  font-size: 16px !important;
+}
+
+.color-text {
+  color: rgba(70, 70, 71, 1);
+}
+

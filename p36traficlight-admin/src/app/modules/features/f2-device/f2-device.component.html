@@ -1,0 +1,609 @@
+<div class="fw-bolder fs-2 mb-8 cl-text-title">Hiển thị</div>
+<div class="card mb-5 mb-xl-8 fw-bold">
+  <!-- begin::Header -->
+  <div class="card-header border-0 pt-5 align-items-center">
+    <app-f2-device-search (searchChange)="onSearchChange($event)">
+    </app-f2-device-search>
+    <div class="card-toolbar">
+      <!-- upgrade firmware -->
+      <div class="card-toolbar" *ngIf="idUpgrade !== ''">
+        <button
+          class="btn btn-sm bg-green-2 btn-upgrade mr-1 min-w-100px fs-14px"
+          data-toggle="modal"
+          data-target="#upgradeFirmware"
+        >
+          <span
+            [inlineSVG]="'./assets/media/icons/duotune/general/gen114.svg'"
+            class="svg-icon svg-icon-2"
+          ></span>
+          Nâng cấp
+        </button>
+      </div>
+
+      <!-- delete -->
+      <div class="card-toolbar ml-3">
+        <button
+          *ngIf="getListIdSelect().length > 1"
+          routerLink="/features/devices"
+          data-toggle="modal"
+          data-target="#deleteManyModal"
+          class="btn btn-sm btn-icon-delete-many mr-1 min-w-100px fs-14px"
+        >
+          <span
+            [inlineSVG]="'./assets/media/icons/duotune/general/gen027.svg'"
+            class="svg-icon svg-icon-3"
+          ></span>
+          Xoá
+        </button>
+      </div>
+
+      <!-- view map -->
+      <div class="card-toolbar ml-3">
+        <button
+          routerLink="/features/devices/map"
+          class="btn btn-sm bg-blue-10 min-w-100px fs-14px"
+        >
+          <span
+            [inlineSVG]="'./assets/media/icons/duotune/general/gen102.svg'"
+            class="svg-icon svg-icon-3"
+          >
+                </span>
+          Bản đồ
+        </button>
+      </div>
+
+      <!-- add data -->
+      <div class="card-toolbar ml-3">
+        <button
+          class="btn btn-sm bg-blue-10 min-w-100px fs-14px"
+          routerLink="/features/devices/add/group"
+        >
+          Thêm nhóm
+        </button>
+      </div>
+
+      <!-- begin::Filter -->
+      <button
+        type="button"
+        class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary ml-3"
+        data-kt-menu-trigger="click"
+        data-kt-menu-placement="bottom-end"
+        data-kt-menu-flip="top-end"
+      >
+          <span
+            [inlineSVG]="'./assets/media/icons/duotune/general/gen024.svg'"
+            class="svg-icon svg-icon-2"
+          ></span>
+      </button>
+      <f2-device-filter
+        [typeDevices]="dataSourcesTypeDevice"
+        [provinces]="dataSourcesProvince"
+        (applyBtnClick)="onApplyBtnClick($event)"
+        (resetFilter)="onResetFilter()"
+      >
+      </f2-device-filter>
+      <!-- end::Filter -->
+    </div>
+  </div>
+  <!-- end::Header -->
+
+  <!-- begin::Body -->
+  <div class="card-body py-3">
+    <!-- begin::Table container -->
+    <div class="table-responsive">
+      <!-- begin::Table -->
+      <table class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3">
+        <!-- begin::Table head -->
+        <thead class="fs-13px fw-bold cl-text-normal">
+        <tr>
+          <th class="min-w-25px">
+            <div
+              class="form-check form-check-sm form-check-custom form-check-solid">
+              <input
+                [(ngModel)]="isSelectAll"
+                (click)="onCheckAllSelected()"
+                class="form-check-input"
+                type="checkbox"
+                data-kt-check="true"
+                data-kt-check-target=".widget-13-check"
+              />
+            </div>
+          </th>
+          <th class="min-w-270px">Tên</th>
+          <th class="min-w-130px">Địa bàn</th>
+          <th class="min-w-160px text-center">Toạ độ</th>
+          <th class="min-w-80px text-center">Trạng thái</th>
+          <th class="min-w-75px text-center">Thời gian</th>
+          <th class="min-w-130px text-center px-0">Số lần mất kết nối</th>
+          <th class="min-w-200px w-200px text-center">Actions</th>
+        </tr>
+        </thead>
+        <!-- end::Table head -->
+        <!-- begin::Table body -->
+        <tbody class="fs-12px">
+        <!-- begin::Display group device -->
+        <ng-container *ngFor="let group of dataSources">
+          <tr>
+            <!-- Select -->
+            <td>
+              <div class="form-check form-check-sm form-check-custom form-check-solid">
+                <input
+                  [(ngModel)]="group.checked"
+                  (click)="onItemSelected(group._id)"
+                  class="form-check-input widget-13-check"
+                  type="checkbox"
+                  value="1"
+                />
+              </div>
+            </td>
+            <td>
+              <img src="{{ group.idTypeDevice.thumbnail }}" alt="" class="w-25px h-25px">
+              <a routerLink="/features/devices/detail/{{group._id}}" *ngIf="!group.isLock"
+                 class="fw-bold text-primary ml-3 text-decoration-underline cursor-pointer fs-13px">
+                {{ group?.name }}
+              </a>
+
+              <a *ngIf="group.isLock" class="fw-bold ml-3 text-hover-primary fs-13px">
+                {{ group?.name }}
+              </a>
+            </td>
+            <td>
+                <span class="text-dark fw-bold text-hover-primary">
+                  {{ group?.idProvince?.name }}
+                </span>
+            </td>
+            <td class="text-center p-0">
+                <span class="text-dark fw-bold text-hover-primary">
+                  {{ group?.coordinate | coordinate }}
+                </span>
+            </td>
+            <td></td>
+            <td></td>
+            <td class="text-center fs-12px">
+              <span class="time-lost-connect br-10 d-inline-block text-center bg-blue-3 cursor-pointer"
+                    (click)="updateIdSelected(group._id)"
+                    data-toggle="modal"
+                    data-target="#lostConnectModal"
+                    *ngIf="!group.isLock"
+              >
+                {{group.numberLostConnect}}
+              </span>
+            </td>
+            <!-- Action -->
+            <td class="btn-action d-flex justify-content-between">
+              <!-- unlock -->
+              <button class="btn btn-icon bg-green-3 btn-sm" *ngIf="group.isLock"
+                      (click)="updateStatusLock(group._id, false)"
+                      data-toggle="modal"
+                      data-target="#lockDeviceModal"
+              >
+                  <span
+                    [inlineSVG]="'./assets/media/icons/duotune/general/gen125.svg'"
+                    class="svg-icon svg-icon-3"
+                  >
+                  </span>
+              </button>
+
+              <!-- lock -->
+              <button class="btn btn-icon bg-red-3 btn-sm" *ngIf="!group.isLock"
+                      (click)="updateStatusLock(group._id, true)"
+                      data-toggle="modal"
+                      data-target="#lockDeviceModal"
+              >
+                  <span
+                    [inlineSVG]="'./assets/media/icons/duotune/general/gen124.svg'"
+                    class="svg-icon svg-icon-3"
+                  >
+                  </span>
+              </button>
+
+              <!--  cmd   -->
+              <button [disabled]="group.isLock"
+                      class="btn btn-icon btn-icon-cmd btn-sm"
+                      (click)="updateIdSelected(group._id)"
+                      data-toggle="modal"
+                      data-target="#cmdModal"
+              >
+                <span
+                  [inlineSVG]="'./assets/media/icons/duotune/general/gen115.svg'"
+                  class="svg-icon svg-icon-3"
+                >
+                </span>
+              </button>
+
+              <!-- configuration -->
+              <button [disabled]="group.isLock"
+                      (click)="forwardConfiguration(group._id)"
+                      class="btn btn-icon btn-icon-configuration btn-sm position-relative"
+                      [ngClass]="group.isConfiguration ? 'ml-1' : ''"
+              >
+                    <span
+                      [inlineSVG]="'./assets/media/icons/duotune/general/gen100.svg'"
+                      class="svg-icon svg-icon-3"
+                    >
+                    </span>
+                <span *ngIf="group.isConfiguration"
+                      [inlineSVG]="'./assets/media/icons/duotune/general/gen119.svg'"
+                      class="svg-icon svg-icon-3 icon-check-config"
+                >
+                    </span>
+              </button>
+
+              <!-- view -->
+              <button  [disabled]="group.isLock"
+                       class="btn btn-icon bg-green-2 btn-sm"
+                       (click)="updateIdSelected(group._id)"
+                       data-toggle="modal"
+                       data-target="#historyDataModal"
+              >
+                    <span
+                      [inlineSVG]="'./assets/media/icons/duotune/general/gen116.svg'"
+                      class="svg-icon svg-icon-3 svg-view"
+                    >
+                    </span>
+              </button>
+
+              <!-- update -->
+              <button routerLink="/features/devices/update/group/{{ group._id }}"
+                      class="btn btn-icon btn-icon-update btn-sm" [disabled]="group.isLock"
+              >
+                    <span
+                      [inlineSVG]="'./assets/media/icons/duotune/general/gen120.svg'"
+                      class="svg-icon svg-icon-3 zoom-9"
+                    >
+                    </span>
+              </button>
+
+              <!-- delete -->
+              <button
+                (click)="updateDeleteId(group._id)"
+                data-toggle="modal"
+                data-target="#deleteOneModal"
+                routerLink="/features/devices"
+                class="btn btn-icon btn-icon-delete-one btn-sm"
+                [disabled]="group.isLock"
+              >
+                    <span
+                      [inlineSVG]="
+                        './assets/media/icons/duotune/general/gen117.svg'
+                      "
+                      class="svg-icon svg-icon-3"
+                    >
+                    </span>
+              </button>
+            </td>
+          </tr>
+          <!-- begin::Display device belonging to group -->
+          <tr *ngFor="let device of group.childs">
+            <!-- Select -->
+            <td>
+              <div class="form-check form-check-sm form-check-custom form-check-solid">
+                <input
+                  [(ngModel)]="device.checked"
+                  (click)="onItemSelected(device._id)"
+                  class="form-check-input widget-13-check"
+                  type="checkbox"
+                  value="1"
+                />
+              </div>
+            </td>
+            <td>
+              <img src="{{ device.idTypeDevice.thumbnail }}" alt="" class="w-25px h-25px ml-30px">
+              <a routerLink="/features/devices/detail/{{group._id}}/{{device._id}}" *ngIf="!group.isLock"
+                 class="fw-bold text-primary ml-3 text-decoration-underline cursor-pointer fs-13px">
+                {{ device?.name }}
+              </a>
+
+              <a *ngIf="group.isLock" class="fw-bold ml-3 text-hover-primary fs-13px">
+                {{ device?.name }}
+              </a>
+            </td>
+            <td>
+                 <span class="text-dark fw-bold text-hover-primary">
+                  {{ group?.idProvince?.name }}
+                </span>
+            </td>
+            <td class="text-center p-0">
+                <span class="text-dark fw-bold text-hover-primary">
+                  {{ device.coordinate | coordinate }}
+                </span>
+            </td>
+            <td class="text-center">
+              <span *ngIf="!group.isLock && device?.status">
+                  <span *ngIf="device?.status === 1"
+                        [inlineSVG]="'./assets/media/icons/duotune/general/gen106.svg'"
+                  ></span>
+                  <span *ngIf="device?.status === 2"
+                        [inlineSVG]="'./assets/media/icons/duotune/general/gen108.svg'"
+                  ></span>
+                  <span *ngIf="device?.status === 3"
+                        [inlineSVG]="'./assets/media/icons/duotune/general/gen107.svg'"
+                  ></span>
+              </span>
+            </td>
+            <td class="text-center">
+              <span class="time-status br-10 d-inline-block text-center"
+                    *ngIf="device?.time && !group.isLock"
+                    [ngClass]="device?.status === 1 ? 'bg-green-3' : device?.status === 2 ? 'bg-yellow-3' : 'bg-red-3'">
+                  {{device?.time}}
+              </span>
+            </td>
+            <td></td>
+            <!-- Action -->
+            <td class="btn-action d-flex justify-content-end">
+              <!-- update -->
+              <a
+                routerLink="/features/devices/update/device/{{ device._id }}/{{group._id}}"
+                class="btn btn-icon btn-icon-update btn-sm"
+                *ngIf="!group.isLock"
+              >
+                  <span
+                    [inlineSVG]="'./assets/media/icons/duotune/general/gen120.svg'"
+                    class="svg-icon svg-icon-3 zoom-9"
+                  >
+                  </span>
+              </a>
+
+              <!-- delete -->
+              <a
+                (click)="updateDeleteId(device._id)"
+                data-toggle="modal"
+                data-target="#deleteOneModal"
+                routerLink="/features/devices"
+                class="btn btn-icon btn-icon-delete-one btn-sm ml-5px"
+                *ngIf="!group.isLock"
+              >
+                  <span
+                    [inlineSVG]="'./assets/media/icons/duotune/general/gen117.svg'"
+                    class="svg-icon svg-icon-3">
+                  </span>
+              </a>
+            </td>
+            <!-- end::Display device belonging to group -->
+          </tr>
+        </ng-container>
+        <!-- end::Display group device-->
+        </tbody>
+        <!-- end::Table body -->
+      </table>
+      <!-- end::Table -->
+      <!-- test -->
+    </div>
+    <!-- end::Table container -->
+  </div>
+  <!-- begin::Body -->
+</div>
+
+<div
+  class="d-flex flex-stack flex-wrap pt-10 fw-bold"
+  style="float: right"
+  *ngIf="dataSources"
+>
+  <div class="text-gray-700">Items per page:</div>
+
+  <div>
+    <select
+      [(ngModel)]="pageSize"
+      (change)="onChangeSize()"
+      class="form-select form-select-solid form-select-md select-paginate"
+      name="currency"
+    >
+      <option value="5">5</option>
+      <option value="20">20</option>
+      <option value="50">50</option>
+      <option value="80">80</option>
+    </select>
+  </div>
+
+  <div class="text-gray-700 mr-lr-20">
+    {{ (pageIndex - 1) * pageSize + 1 }} -
+    {{ (pageIndex - 1) * pageSize + dataSources.length }}
+    of {{ pageLength }}
+  </div>
+
+  <ul class="pagination">
+    <!-- begin page -->
+    <li class="page-item previous" (click)="onBeginClick()" disabled="true">
+      <a class="page-link cursor-pointer">
+        <span
+          [inlineSVG]="'./assets/media/icons/duotune/arrows/arr079.svg'"
+          class="svg-icon svg-icon-3"
+        ></span>
+      </a>
+    </li>
+
+    <!-- previous page -->
+    <li class="page-item previous" (click)="onPreviousClick()">
+      <a class="page-link cursor-pointer">
+        <i class="previous"></i>
+      </a>
+    </li>
+
+    <!-- next page -->
+    <li class="page-item next" (click)="onNextClick()">
+      <a class="page-link cursor-pointer">
+        <i class="next"></i>
+      </a>
+    </li>
+
+    <!-- end page -->
+    <li class="page-item next" (click)="onEndClick()">
+      <a class="page-link cursor-pointer">
+        <span
+          [inlineSVG]="'./assets/media/icons/duotune/arrows/arr080.svg'"
+          class="svg-icon svg-icon-3"
+        ></span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!--Delete one modal -->
+<div class="modal fade" id="deleteOneModal" tabindex="-1" role="dialog"
+     aria-labelledby="deleteOneModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <h5 class="modal-title" id="deleteOneModalLabel">
+        <div class="d-flex justify-content-center flex-colum align-items-center">
+          <span [inlineSVG]="'./assets/media/icons/duotune/general/gen061.svg'" class="mt-10"></span>
+        </div>
+      </h5>
+      <h4 class="text-center">
+        Bạn có thực sự muốn xóa thiết bị này ?
+        <br />
+        Quá trình này không thể hoàn tác.
+      </h4>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary w-150px mr-10" data-dismiss="modal">
+          Hủy
+        </button>
+        <button type="button" class="btn btn-danger w-150px" data-dismiss="modal" (click)="onDeleteBtnClick()">
+          Xóa
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete many Modal -->
+<div class="modal fade" id="deleteManyModal" tabindex="-1" role="dialog" aria-labelledby="deleteManyModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <h5 class="modal-title" id="deleteManyModalLabel">
+        <div class="d-flex justify-content-center flex-colum align-items-center">
+          <span [inlineSVG]="'./assets/media/icons/duotune/general/gen061.svg'" class="mt-10"></span>
+        </div>
+      </h5>
+      <h4 class="text-center">
+        Bạn có thực sự muốn xóa {{ getListIdSelect().length }} thiết bị được chọn?
+        <br />
+        Quá trình này không thể hoàn tác.
+      </h4>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary w-150px mr-10" data-dismiss="modal">
+          Hủy
+        </button>
+        <button type="button" class="btn btn-danger w-150px" data-dismiss="modal" (click)="onDeleteManyBtnClick()">
+          Xóa
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  confirm lock modal -->
+<div
+  class="modal fade"
+  id="lockDeviceModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="lockDeviceLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body d-flex flex-column align-items-center px-0">
+        <div>
+          <span
+            [inlineSVG]="'./assets/media/icons/duotune/general/gen124.svg'"
+            class="svg-icon svg-icon-3 zoom-30" *ngIf="changeStatus.isLock"
+          >
+          </span>
+          <span
+            [inlineSVG]="'./assets/media/icons/duotune/general/gen125.svg'"
+            class="svg-icon svg-icon-3 zoom-30" *ngIf="!changeStatus.isLock"
+          >
+          </span>
+        </div>
+        <div class="mt-3 mb-6" *ngIf="changeStatus.isLock">Bạn có muốn khoá thiết bị không?</div>
+        <div class="mt-3 mb-6" *ngIf="!changeStatus.isLock">Bạn có muốn mở khoá thiết bị không?</div>
+
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-sm btn-cancel-gray mr-4 min-w-100px fs-14px" data-dismiss="modal">
+            Huỷ
+          </button>
+          <button type="button" class="btn btn-sm min-w-100px fs-14px" data-dismiss="modal"
+                  [disabled]="isLoading" (click)="onChangeStatusLock()"
+                  [ngClass]="changeStatus.isLock ? 'bg-red-3' : 'bg-green-3'"
+          >
+            <ng-container *ngIf="!isLoading && changeStatus.isLock">Khoá</ng-container>
+            <ng-container *ngIf="!isLoading && !changeStatus.isLock">Mở khoá</ng-container>
+            <ng-container *ngIf="isLoading">
+              <span class="indicator-progress" [style.display]="'block'">
+                    Đang ...{{ " " }}
+                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+              </span>
+            </ng-container>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- begin::update firmware modal -->
+<div
+  class="modal fade pr-0"
+  id="upgradeFirmware"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="upgradeFirmwareLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-70" role="document">
+    <app-f2-device-modal-firmware [idUpgrade]="idUpgrade" class="position-relative"></app-f2-device-modal-firmware>
+  </div>
+</div>
+<!-- end::update firmware modal -->
+
+
+<!-- begin::cmd modal -->
+<div
+  class="modal fade pr-0"
+  id="cmdModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="cmdModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-70" role="document">
+    <app-f2-device-modal-command [device]="deviceSelected"></app-f2-device-modal-command>
+  </div>
+</div>
+<!-- end::cmd modal -->
+
+
+<!-- begin::history data -->
+<div
+  class="modal fade pr-0"
+  id="lostConnectModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="lostConnectModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-70" role="document">
+    <app-f2-device-modal-lost-connect [device]="deviceSelected"></app-f2-device-modal-lost-connect>
+  </div>
+</div>
+<!-- end::history data -->
+
+
+<!-- begin::history data -->
+<div
+  class="modal fade pr-0"
+  id="historyDataModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="historyDataModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-70" role="document">
+    <app-f2-device-modal-history-data [device]="deviceSelected"></app-f2-device-modal-history-data>
+  </div>
+</div>
+<!-- end::history data -->
+

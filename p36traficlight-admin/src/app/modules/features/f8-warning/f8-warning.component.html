@@ -1,0 +1,275 @@
+<div class="fw-bolder fs-2 mb-8 cl-black">Cảnh báo</div>
+<div class="card mb-5 mb-xl-8">
+  <!-- begin::Header -->
+  <div class="card-header border-0 pt-5 align-items-center">
+    <!-- begin::Search -->
+    <app-f8-warning-search (searchChange)="onSearchChange($event)">
+    </app-f8-warning-search>
+    <!-- end::Search -->
+
+    <!-- begin::Filter -->
+    <div>
+      <button
+        type="button"
+        class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary ml-3"
+        data-kt-menu-trigger="click"
+        data-kt-menu-placement="bottom-end"
+        data-kt-menu-flip="top-end"
+      >
+        <span [inlineSVG]="'./assets/media/icons/duotune/general/gen024.svg'" class="svg-icon svg-icon-2"></span>
+      </button>
+      <app-f8-warning-filter
+        [typeWarnings]="dataSourcesTypeWarning"
+        [provinces]="dataSourcesProvince"
+        (applyBtnClick)="onApplyBtnClick($event)"
+        (resetFilter)="onResetFilter()"
+      >
+      </app-f8-warning-filter>
+    </div>
+    <!-- end::Filter -->
+  </div>
+  <!-- end::Header -->
+
+  <!-- begin::Body -->
+  <div class="card-body py-3">
+    <!-- begin::Table container -->
+    <div class="table-responsive">
+      <!-- begin::Table -->
+      <table class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3">
+        <!-- begin::Table head -->
+        <thead class="fs-14px">
+        <tr class="fw-bold cl-gray">
+          <th class="min-w-200px cl-text-normal">Tên</th>
+          <th class="min-w-125px cl-text-normal">Địa bàn</th>
+          <th class="min-w-125px cl-text-normal">Loại cảnh báo</th>
+          <th class="min-w-125px cl-text-normal">Tên cảnh báo</th>
+          <th class="min-w-150px text-center cl-text-normal">Thời gian</th>
+          <th class="min-w-100px text-center cl-text-normal">Trạng thái</th>
+          <th class="min-w-100px text-center cl-text-normal">Actions</th>
+        </tr>
+        </thead>
+        <!-- end::Table head -->
+        <!-- begin::Table body -->
+        <tbody>
+        <tr *ngFor="let data of dataSources">
+          <!-- Tên -->
+          <td>
+            <img src="{{ data?.idDevice?.idTypeDevice?.thumbnail }}" alt="" class="w-25px h-25px">
+            <a routerLink="/features/devices/detail/{{data?.idDevice?._id}}"
+               class="fw-bold text-primary ml-3 text-decoration-underline cursor-pointer">
+              {{ data?.idDevice?.name }}
+            </a>
+          </td>
+
+          <!-- Địa bàn -->
+          <td>
+            <p class="fw-bold text-hover-primary d-block mb-1 fs-6">
+              {{ data?.idDevice?.idProvince?.name }}
+            </p>
+          </td>
+
+          <!-- Loại cảnh báo -->
+          <td>
+            <p class="fw-bold text-hover-primary d-block mb-1 fs-6">
+                <span *ngIf="data.typeWarning === 'DeviceError'">
+                  Lỗi
+                </span>
+              <span *ngIf="data.typeWarning === 'CommonSetting'">
+                  {{ data?.idSettingOrError?.type }}
+                </span>
+            </p>
+          </td>
+
+          <!-- Tên cảnh báo -->
+          <td>
+            <p class="fw-bold text-hover-primary d-block mb-1 fs-6">
+                <span *ngIf="data.typeWarning === 'DeviceError'">
+                  {{ data?.idSettingOrError?.code }} -
+                </span>
+              {{ data?.idSettingOrError?.name }}
+            </p>
+          </td>
+
+          <!-- Thời gian -->
+          <td>
+            <p class="fw-bold text-hover-primary d-block mb-1 fs-6 text-center">
+              {{ data.time | date: 'hh:mm dd/MM/yyyy' }}
+            </p>
+          </td>
+
+          <!-- Trạng thái -->
+          <td class="text-center" [ngSwitch]="data.status">
+              <span class="fw-bold fs-6 status bg-red-3 cl-text-red" *ngSwitchCase=0>
+                Cần xử lý
+              </span>
+
+            <span class="fw-bold fs-6 status status-warning" *ngSwitchCase=1>
+                Đang xử lý
+              </span>
+
+            <span class="fw-bold fs-6 status bg-green-3 cl-text-green" *ngSwitchCase=2>
+                Đã xử lý
+              </span>
+          </td>
+
+          <!-- Action -->
+          <td class="text-center">
+            <!-- update -->
+            <span
+              data-toggle="modal"
+              data-target="#updateStatusModal"
+              class="fw-bold fs-6 text-update btn-sm me-1"
+              (click)="onLoadDataToUpdate(data)"
+              routerLink="/features/warnings"
+            >
+                Update
+              </span>
+          </td>
+        </tr>
+        </tbody>
+        <!-- end::Table body -->
+      </table>
+      <!-- end::Table -->
+    </div>
+    <!-- end::Table container -->
+  </div>
+  <!-- begin::Body -->
+</div>
+
+<div
+  class="d-flex flex-stack flex-wrap pt-10"
+  style="float: right"
+  *ngIf="dataSources"
+>
+  <div class="fs-6 fw-bold text-gray-700">Items per page:</div>
+
+  <div>
+    <select
+      [(ngModel)]="pageSize"
+      (change)="onChangeSize()"
+      class="form-select form-select-solid form-select-md"
+      name="currency"
+    >
+      <option value="5">5</option>
+      <option value="20">20</option>
+      <option value="50">50</option>
+      <option value="80">80</option>
+    </select>
+  </div>
+
+  <div class="fs-6 fw-bold text-gray-700 mr-lr-20">
+    {{ (pageIndex - 1) * pageSize + 1 }} -
+    {{ (pageIndex - 1) * pageSize + dataSources.length }}
+    of {{ pageLength }}
+  </div>
+
+  <ul class="pagination">
+    <!-- begin page -->
+    <li class="page-item previous" (click)="onBeginClick()" disabled="true">
+      <a class="page-link cursor-pointer">
+        <span
+          [inlineSVG]="'./assets/media/icons/duotune/arrows/arr079.svg'"
+          class="svg-icon svg-icon-3"
+        ></span>
+      </a>
+    </li>
+
+    <!-- previous page -->
+    <li class="page-item previous" (click)="onPreviousClick()">
+      <a class="page-link cursor-pointer">
+        <i class="previous"></i>
+      </a>
+    </li>
+
+    <!-- next page -->
+    <li class="page-item next" (click)="onNextClick()">
+      <a class="page-link cursor-pointer">
+        <i class="next"></i>
+      </a>
+    </li>
+
+    <!-- end page -->
+    <li class="page-item next" (click)="onEndClick()">
+      <a class="page-link cursor-pointer">
+        <span
+          [inlineSVG]="'./assets/media/icons/duotune/arrows/arr080.svg'"
+          class="svg-icon svg-icon-3"
+        ></span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!-- update status modal -->
+<div
+  class="modal fade"
+  id="updateStatusModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="updateStatusLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header position-relative border-0">
+        <p class="fs-1 modal-title w-100 text-center m-0" id="updateStatusLabel">
+          Cập nhật trạng thái cảnh báo
+        </p>
+        <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" style="font-size: 30px">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body py-0 border-0">
+          <form [formGroup]="formWarningInfo" novalidate="" class="form">
+            <div class="d-flex flex-column flex-lg-row status-container">
+            <!-- Change status  -->
+            <div class="min-w-lg-200px min-w-xl-250px my-lg-5 py-lg-5 mb-md-4 d-flex flex-sm-column
+                        flex-md-row flex-lg-column justify-content-between">
+              <div class="d-flex align-items-center status-wrapper border-0">
+                <input type="radio" id="radio1" name="status" class="radio-btn" formControlName="status"
+                       [checked]="inputWarningInfo.status === 0" (click)="onChangeSelectRadio(0)" [value]="0"/>
+                <label for="radio1" class="mb-0 w-100 fw-bold fs-3 label-radio">Cần xử lý</label>
+              </div>
+              <div class="d-flex align-items-center status-wrapper">
+                <input type="radio" id="radio2" name="status" class="radio-btn" formControlName="status"
+                       [checked]="inputWarningInfo.status === 1" (click)="onChangeSelectRadio(1)" [value]="1"/>
+                <label for="radio2" class="mb-0 w-100 fw-bold fs-3 label-radio">Đang xử lý</label>
+              </div>
+              <div class="d-flex align-items-center status-wrapper">
+                <input type="radio" id="radio3" name="status" class="radio-btn" formControlName="status"
+                       [checked]="inputWarningInfo.status === 2" (click)="onChangeSelectRadio(2)" [value]="2"/>
+                <label for="radio3" class="mb-0 w-100 fw-bold fs-3 label-radio">Đã xử lý</label>
+              </div>
+            </div>
+
+            <!-- Description  -->
+            <div class="w-100 ml-lg-4 mt-3">
+              <label class="form-label">Ghi chú</label>
+              <ckeditor name="description"
+                        [(ngModel)]="description" [readOnly]="isCompleted"
+                        formControlName="description">
+              </ckeditor>
+            </div>
+            </div>
+
+            <div class="modal-footer border-0 justify-content-center">
+              <button type="button" id="closeModal" class="btn bg-white cl-gray" data-dismiss="modal">
+                Huỷ
+              </button>
+              <button type="button" class="btn btn-send text-white ml-3"
+                      [disabled]="isCompleted || isLoading " (click)="onUpdateBtnClick()">
+                <ng-container *ngIf="!isLoading">Gửi</ng-container>
+                <ng-container *ngIf="isLoading">
+                        <span clas="indicator-progress" [style.display]="'block'">
+                          Vui lòng đợi...{{ " " }}
+                          <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                        </span>
+                </ng-container>
+              </button>
+            </div>
+          </form>
+        </div>
+    </div>
+  </div>
+</div>

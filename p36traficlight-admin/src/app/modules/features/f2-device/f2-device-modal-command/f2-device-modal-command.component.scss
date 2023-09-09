@@ -1,0 +1,45 @@
+.btn {
+  padding: 8px 10px !important;
+}
+
+.mr-lr-20{
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.my-30px {
+  margin: 30px 0;
+}
+
+.modal-body-mar-x {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+.min-w-80px {
+  min-width: 80px;
+}
+
+.wrapper-content {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.pr-30px {
+  padding-right: 30px;
+}
+
+@media (max-width: 768px) {
+  .wrapper-content {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .modal-body-mar-x {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+}
+
+#cke_1_contents {
+  height: 130px !important;
+}

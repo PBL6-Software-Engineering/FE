@@ -1,0 +1,77 @@
+.w-48 {
+  width: 48%;
+}
+
+.min-w-80px {
+  min-width: 80px;
+}
+
+.flex-between-center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.disable {
+  background-color: rgba(153, 161, 174, 0.3) !important;
+}
+
+.btn {
+  padding: 8px 10px !important;
+  &-icon {
+    width: 30px;
+    height: 30px;
+  }
+  &-wrapper {
+    justify-content: space-between;
+  }
+}
+
+.btn-wrapper > div > button {
+  min-width: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+@media (max-width: 1468px) {
+  .btn-wrapper > div > button {
+    min-width: 100px;
+  }
+}
+
+@media (max-width: 1268px) {
+  .btn-wrapper {
+    justify-content: left;
+  }
+}
+
+@media (max-width: 1236px) {
+  .btn-wrapper {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 1000px) {
+  .btn-wrapper {
+    justify-content: left;
+  }
+}
+
+@media (max-width: 992px) {
+  .btn-wrapper {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 692px) {
+  .btn-wrapper {
+    justify-content: left;
+  }
+}
+
+.form-check.form-check-solid .form-check-input:checked {
+  background-color: rgba(0, 81, 215, 0.5);
+}
+

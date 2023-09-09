@@ -1,0 +1,36 @@
+.mrb-5 {
+    margin-bottom: 5px;
+}
+
+.note-type-image {
+  color: #A4A2A2;
+  width: 60%;
+  margin: 0 auto;
+  position: relative;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 50%;
+    height: 1.6px;
+    border-radius: 1px;
+    position: absolute;
+    background-color: #848484;
+    top: -1.05px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+}
+
+.form-control {
+  background-color: rgba(153, 161, 174, 0.1);
+  height: auto !important;
+  border: none;
+  font-weight: 400;
+}
+
+.wrapper-btn-form > button {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}

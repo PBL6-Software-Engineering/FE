@@ -1,0 +1,102 @@
+<div id="map-container">
+  <!--  begin::component left  -->
+  <div class="component-left-wrapper position-relative"
+       [ngClass]="(isOpenComponentDetail || isOpenComponentUpdate || isOpenComponentAdd) && !isDisplayIconOpen ? 'open' : ''"
+  >
+    <app-f2-device-add class="component-left"
+                       (listenerAfterAddSuccess)="listenerAfterAddSuccess($event)"
+                       (openComponentDetail)="openComponentDetail()"
+                       [coordinate]="coordinate"
+                       [typeAdd]="typeAdd"
+                       [isReloadData]="isOpenComponentAdd"
+                       [idGroup]="idGroup"
+                       [position]="position"
+                       [idProvince]="idProvince"
+                       [ngClass]="isOpenComponentAdd ? 'open': ''"
+    >
+    </app-f2-device-add>
+    <app-f2-device-update class="component-left"
+                          (listenerAfterUpdateSuccess)="listenerAfterUpdateSuccess($event)"
+                          [typeUpdate]="typeUpdate"
+                          [id]="idUpdate"
+                          [idGroup]="idGroup"
+                          [coordinate]="coordinate"
+                          [isReloadData]="isOpenComponentUpdate"
+                          [backHref]="backHref"
+                          [ngClass]="isOpenComponentUpdate ? 'open': ''"
+                          (openComponentDetail)="openComponentDetail()"
+    >
+    </app-f2-device-update>
+    <app-f2-device-detail class="component-left" (closeComponent)="closeComponent()"
+                          (addToGroup)="onAddToGroup($event)"
+                          (removeMarker)="onRemoveMarker($event)"
+                          (clearAddToGroup)="onClearAddToGroup()"
+                          (selectedMarker)="onSelectedMarker($event)"
+                          (update)="onUpdate($event)"
+                          [isReloadData]="isReloadDataDetail"
+                          [idGroup]="idGroup"
+                          [idDevice]="idDevice"
+                          [ngClass]="isOpenComponentDetail ? 'open': ''"
+    >
+    </app-f2-device-detail>
+
+    <!--  begin::icon open    -->
+    <div class="position-absolute d-flex justify-content-center align-items-center wp-icon-cl"
+         (click)="onUpdateStatusDisplayIconOpen(true)">
+            <span
+              [inlineSVG]="'./assets/media/icons/duotune/general/gen122.svg'"
+              class="svg-icon svg-icon-2 svg-icon-lg-1 me-0"
+            ></span>
+    </div>
+    <!--  end::icon open    -->
+  </div>
+  <!--  end::component left  -->
+
+  <!--  begin::icon open component left  -->
+  <div class="position-absolute d-flex justify-content-center align-items-center wp-icon-cl l-negative-30px"
+       *ngIf="isDisplayIconOpen"
+       (click)="onUpdateStatusDisplayIconOpen(false)"
+  >
+    <span
+      [inlineSVG]="'./assets/media/icons/duotune/general/gen123.svg'"
+      class="svg-icon svg-icon-2 svg-icon-lg-1 me-0"
+    ></span>
+  </div>
+  <!--  end::icon open component left  -->
+
+  <!--  begin::map  -->
+  <div #mapContainer id="map"
+       [ngClass]="(isOpenComponentAdd || isOpenComponentDetail || isOpenComponentUpdate) && !isDisplayIconOpen ? 'l-35' : ''">
+  </div>
+  <!--  end::map  -->
+
+  <!--  begin::form search  -->
+  <form class="col-5 position-relative" id="pac-form">
+    <!--begin::Icon search-->
+    <span
+      [inlineSVG]="'./assets/media/icons/duotune/general/gen021.svg'"
+      style="z-index: 1;"
+      class="svg-icon svg-icon-3 svg-icon-sm-1 svg-icon-gray-500 position-absolute top-50 translate-middle-y ms-0 border-right px-3"
+    ></span>
+    <!--end::Icon search-->
+
+    <!--begin::Input-->
+    <input id="pac-input" class="controls form-control mt-3 fs-5 pl-55" type="text" placeholder="Tìm kiếm vị trí"
+           data-kt-search-element="input"
+           style="background-color: white"
+           (change)="displayIconClear()"/>
+    <!--end::Input-->
+
+    <!--begin::icon reset-->
+    <span style="top: 10px; right: 25px;" class="position-absolute cursor-pointer">
+      <span
+        [inlineSVG]="'./assets/media/icons/duotune/arrows/arr061.svg'"
+        id="icon-clear"
+        class="svg-icon svg-icon-2 svg-icon-lg-1 me-0" (click)="clearSearch()"
+        *ngIf="isSearch"
+      ></span>
+    </span>
+    <!--end::icon Reset-->
+  </form>
+  <!--  end::form search  -->
+</div>

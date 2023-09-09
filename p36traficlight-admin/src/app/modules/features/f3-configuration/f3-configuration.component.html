@@ -1,0 +1,46 @@
+<!--begin::Post-->
+<div class="post d-flex flex-column-fluid" id="kt_post">
+  <!--begin::Container-->
+  <div id="kt_content_container" class="container-xxl d-flex flex-column flex-lg-row px-0 content-wrapper">
+    <!--begin::Aside column-->
+    <div class="d-flex flex-column gap-7 gap-lg-10 left-column mb-7 me-lg-10">
+      <!--begin::Thumbnail settings-->
+      <div class="card card-flush py-4">
+        <div class="card-header">
+          <div class="card-title">
+            <h2 class="cl-text-title">Thông tin</h2>
+          </div>
+        </div>
+        <div class="card-body text-center p-0">
+          <img class="img-color avatar-input-wrapper w-100px object-fit-contain rounded"
+               src="https://p36traficlight.izisoft.io/static/upload/image/xs_1676479797247_a78547e2e27cc0a212c109dd1_c3d77cc928d1906d.png"
+               alt=""/>
+
+          <!--begin::Information device-->
+          <div class="py-6 px-7 text-start fs-6">
+            <div class="fw-bold fs-4 name-device m-auto text-center cl-text-title">{{device?.name}}</div>
+            <div class="d-flex flex-column text-info-device cl-text-normal">
+              <div class="mt-5 mb-2">
+                <span>Địa bàn: </span>
+                <span class="ml-3">{{device?.idProvince?.name}}</span>
+              </div>
+
+              <div>
+                <span>Toạ độ: </span>
+                <span *ngIf="device">{{device?.coordinate | coordinate}}</span>
+              </div>
+            </div>
+          </div>
+          <!--end::Information device-->
+        </div>
+      </div>
+      <!--end::Thumbnail settings-->
+    </div>
+    <!--end::Aside column-->
+
+    <!--begin::Main column-->
+    <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

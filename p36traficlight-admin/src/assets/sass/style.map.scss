@@ -1,0 +1,66 @@
+.gm-style-iw-c, .gm-style-iw {
+  padding: 0 !important;
+  background-color: transparent !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+.gm-style-iw-d {
+  overflow: auto !important;
+}
+
+.gm-ui-hover-effect {
+  color: white !important;
+  top: -2px;
+  right: -2px;
+  border: 0px;
+  display: none;
+}
+
+.gm-style-iw-tc {
+  display: none;
+}
+
+.gm-style-iw > button {
+  display: none !important;
+}
+
+.triangle {
+  clip-path: polygon(100% 0, 100% 100%, 0 50%);
+  &-orange {
+    background: #FA6900;
+    width: 16px;
+    height: 25px;
+  }
+  &-black {
+    background-color: #464647;
+    width: 14px;
+    height: 18px;
+    position: relative;
+    top: 8px;
+  }
+}
+.content-iw-wrapper {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin-right: 2px;
+  margin-bottom: 2px;
+  margin-left: -1px;
+}
+.title-iw {
+  background-color: #FFA000;
+  height: 25px;
+  padding: 4px 0;
+}
+
+.mw-text {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: auto;
+  &-180px {
+    max-width: 180px;
+  }
+  &-160px {
+    max-width: 160px;
+  }
+}

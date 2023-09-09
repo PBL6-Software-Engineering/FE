@@ -1,0 +1,45 @@
+.icon-calendar {
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.date-now {
+  color: #0095E9
+}
+
+.filter-date {
+  background-color: #F5F8FA;
+  border-color: #F5F8FA;
+}
+
+.dropleft {
+  padding-right: 12px;
+}
+
+.dropdown-item {
+  padding: 8px;
+}
+
+.dropdown-menu {
+  margin-right: 6px !important;
+  padding: 8px;
+}
+
+.flatpickr-calendar {
+  top: 218px !important;
+  right: 282px !important;
+  left: auto !important;
+}
+
+@media (max-width: 576px) {
+  .filter-date {
+    margin-top: 5px;
+    padding: 0 33px;
+  }
+
+  .flatpickr-calendar {
+    left: 43px !important;
+    top: 270px !important;
+  }
+}

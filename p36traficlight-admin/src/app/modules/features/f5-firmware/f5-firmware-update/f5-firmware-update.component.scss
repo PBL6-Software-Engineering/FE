@@ -1,0 +1,31 @@
+.form-label {
+  font-size: 14px;
+}
+
+.mt-30px {
+  margin-top: 30px;
+}
+
+div.file {
+  background-color: rgba(153, 161, 174, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 5px;
+  height: 34px;
+  font-size: 14px;
+}
+
+.file-name {
+  color: #1255B9;
+}
+
+.btn-choose-file {
+  background-color: rgba(217, 217, 217, 0.5);
+  cursor: pointer;
+  padding: 4px 20px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  color: #464647;
+  font-size: 14px;
+}

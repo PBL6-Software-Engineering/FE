@@ -1,0 +1,140 @@
+.pl-55 {
+  padding-left: 55px;
+}
+.bg-gray {
+  background-color: #A4A2A2;
+}
+
+#map-container {
+  width: 100%;
+  position: absolute;
+  height: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: -93px;
+}
+
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.info {
+  &-address {
+    display: block;
+    max-width: 288px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  &-coordinate {
+    color: #FFA000;
+    font-size: 14px;
+  }
+  &-close {
+    z-index: 2;
+    top: 6px;
+    right: 0px;
+    cursor: pointer;
+    color: #464647;
+  }
+  &-right-click {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    width: 400px;
+    margin: auto;
+    box-sizing: border-box;
+    z-index: 20;
+  }
+}
+
+.wrapper-icon {
+  display: inline-block;
+  width: 80px !important;
+  height: 80px !important;
+}
+
+.component-left {
+  position: absolute;
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: #f5f8fa;
+  z-index: 10;
+
+  &-wrapper {
+    display: none;
+    z-index: 1000;
+    width: 35%;
+    height: 100%;
+  }
+}
+
+.wp-icon-cl {
+  background: #F6F6F7;
+  border-right: 1px solid #464647;
+  border-radius: 0px 5px 5px 0px;
+  top: 50%;
+  right: 0;
+  transform: translateX(98%) translateY(-50%);
+  z-index: 5;
+  cursor: pointer;
+  width: 30px;
+  height: 50px;
+}
+
+.open {
+  display: block !important;
+}
+
+.w {
+  &-0 {
+    width: 0;
+  }
+  &-35 {
+    width: 35% !important;
+  }
+}
+
+.l {
+  &-0 {
+    left: 0;
+  }
+  &-35 {
+    left: 35% !important;
+  }
+  &-negative-30px {
+    left: -30px !important;
+  }
+}
+
+.t {
+  &-10px {
+    top: 10px;
+  }
+}
+
+.r {
+  &-25px {
+    right: 25px;
+  }
+}
+
+@media (min-width: 992px) {
+  #map-container {
+    top: -30px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  #map-container {
+    top: -15px;
+  }
+}
+

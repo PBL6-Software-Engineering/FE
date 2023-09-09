@@ -1,0 +1,313 @@
+<!--begin::Row-->
+<div class="row gy-5 g-xl-8 mx-40px">
+  <!--begin::Col-->
+  <div class="col-xl-12">
+    <!--begin::List Widget 4-->
+    <div class="card card-xl-stretch mb-5 mb-xl-8">
+      <!--begin::Body-->
+      <!-- begin::Header -->
+      <div class="card-header border-0 pt-5">
+        <h3 class="card-title align-items-start flex-column">
+          <span class="card-label fw-bolder fs-3 mb-1" style="margin-left: 26px"><span
+            [inlineSVG]="'./assets/media/icons/duotune/general/gen069.svg'"
+            class="svg-icon svg-icon-3 mr-2">
+          </span>Cập nhật tài khoản</span>
+        </h3>
+        <div class="card-toolbar">
+          <!-- Back -->
+          <a routerLink="/features/accounts" class="btn btn-sm btn-back">
+            <span [inlineSVG]="'./assets/media/icons/duotune/general/gen075.svg'"
+                  class="mr-2"></span>
+            Trở về
+          </a>
+        </div>
+      </div>
+      <!-- end::Header -->
+
+      <div class="collapse show">
+        <div class="card-body border-top p-9">
+          <div class="collapse show">
+            <form [formGroup]="formUserInfo" novalidate="" class="form">
+              <div class="card-body">
+                <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
+                  <!--begin::Avatar settings-->
+                  <div class="card card-flush py-4">
+                      <!--begin::Card title-->
+                      <div class="card-title">
+                        <h2>Avatar</h2>
+                      </div>
+                      <!--end::Card title-->
+                    <!--begin::Card body-->
+                    <div class="card-body text-center pt-0" style="margin-right: 7rem; padding-left: 0px !important;">
+                      <label for="fileAvatar">
+                        <img class="img-color avatar-input-wrapper w-150px h-150px rounded" [src]="
+                                inputUserInfo.avatar
+                                  ? inputUserInfo.avatar
+                                  : common.uploadImageDefault
+                              "/>
+                      </label>
+                      <input formControlName="avatar" class="d-none" id="fileAvatar"
+                             (change)="onAvatarUploadImageClick()" type="file" #inputImageAvatar
+                             accept=".png, .jpg, .jpeg"/>
+                      <!--end::Avatar input-->
+                    </div>
+                    <!--end::Card body-->
+                  </div>
+                  <!--end::Avatar settings-->
+                </div>
+
+                <!-- TypeUser -->
+                <div class="row mb-6">
+                  <div class="col-lg-2 py-3 px-3">
+                    <label class="col-form-label required fw-bold fs-6 p-0">Loại tài khoản</label>
+                  </div>
+                  <div class="col-lg-10 fv-row">
+                    <div class="d-flex justify-content-start flex-wrap py-3 px-0">
+                      <div class="form-check form-check-custom form-check-success form-check-solid mr-5 mb-3">
+                        <input [ngModelOptions]="{ standalone: true }" class="form-check-input" type="radio"
+                               name="role" id="ADMIN1X" value="{{roleEnum.admin1x}}"
+                               [(ngModel)]="inputUserInfo.role" id ="admin1x_radio"/>
+                        <label class="form-check-label fw-bold" style="margin-left: 30px; color: #1255B9"
+                               for="ADMIN1X">
+                          ADMIN 1.X
+                        </label>
+                      </div>
+
+                      <div class="form-check form-check-custom form-check-success form-check-solid mr-5 mb-3">
+                        <input [ngModelOptions]="{ standalone: true }" class="form-check-input" type="radio"
+                               name="role" id="ADMIN2" value="{{roleEnum.admin2}}"
+                               [(ngModel)]="inputUserInfo.role"/>
+                        <label style="margin-left: 30px; color: #30BB1A" class="form-check-label fw-bold"
+                               for="ADMIN2">
+                          ADMIN 2
+                        </label>
+                      </div>
+
+                      <div class="form-check form-check-custom form-check-success form-check-solid mr-5 mb-3">
+                        <input [ngModelOptions]="{ standalone: true }" class="form-check-input" type="radio"
+                               name="role" id="USER" value="{{roleEnum.user}}"
+                               [(ngModel)]="inputUserInfo.role"/>
+                        <label style="margin-left: 30px; color: #FA6900" class="form-check-label fw-bold"
+                               for="USER">
+                          USER
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Full Name and Date of birth-->
+                <div class="row mb-6">
+                  <!-- FullName -->
+                  <div class="col-6">
+                    <div class="fv-row w-100 flex-md-root mt-2">
+                      <label class="required form-label">Họ và tên</label>
+                      <input formControlName="fullName" [(ngModel)]="inputUserInfo.fullName" type="text"
+                             class="form-control form-control-lg form-control-solid mrb-5"
+                             placeholder="Nhập họ và tên" name="fullName"/>
+
+                      <span class="text-danger fs-14px" *ngIf="
+                              formUserInfo.controls['fullName']!.invalid &&
+                              (formUserInfo.controls['fullName'].dirty ||
+                                formUserInfo.controls['fullName'].touched)
+                            ">
+                            <span *ngIf="
+                                formUserInfo.controls['fullName'].errors!
+                                  .required
+                              ">
+                              Họ và tên không được để trống.
+                            </span>
+                          </span>
+                    </div>
+                  </div>
+
+                  <!-- Date of birth -->
+                  <div class="col-6">
+                    <div class="fv-row w-100 flex-md-root mt-2">
+                      <label class="required form-label">Ngày sinh</label>
+                      <input formControlName="dateOfBirth" [(ngModel)]="dateOfBirthInput" type="text"
+                             class="form-control form-control-lg form-control-solid mrb-5"
+                             name="dateOfBirth" id="dateOfBirthPicker"/>
+                      <span class="btn btn-sm btn-icon position-absolute translate-middle end-0 me-n2">
+                            <img class="img-color avatar-input-wrapper w-20px h-26px rounded" src="./assets/group.svg"
+                                 style="margin-bottom: 58px; margin-right: 40px;"/>
+                          </span>
+
+                      <span class="text-danger fs-14px" *ngIf="
+                              formUserInfo.controls['dateOfBirth']!.invalid &&
+                              (formUserInfo.controls['dateOfBirth'].dirty ||
+                                formUserInfo.controls['dateOfBirth'].touched)
+                            ">
+                            <span *ngIf="
+                                formUserInfo.controls['dateOfBirth'].errors!
+                                  .required
+                              ">
+                              Ngày sinh không được để trống.
+                            </span>
+                          </span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Gender -->
+                <div class="row mb-6">
+                  <div class="col-lg-2 py-3 px-3">
+                    <label class="col-form-label required fw-bold fs-6 p-0">Giới tính</label>
+                  </div>
+                  <div class="col-lg-8 fv-row">
+                    <div class="d-flex justify-content-start flex-wrap py-3 px-0">
+                      <div class="form-check form-check-custom form-check-success form-check-solid mr-5 mb-3">
+                        <input [ngModelOptions]="{ standalone: true }" class="form-check-input" type="radio"
+                               value="MALE" name="gender" id="MALE" [(ngModel)]="inputUserInfo.gender"/>
+                        <label style="margin-left: 30px" class="form-check-label" for="MALE">
+                          Nam
+                        </label>
+                      </div>
+
+                      <div class="form-check form-check-custom form-check-success form-check-solid mr-5 mb-3">
+                        <input [ngModelOptions]="{ standalone: true }" class="form-check-input" type="radio"
+                               name="gender" id="FEMALE" value="FEMALE" [(ngModel)]="inputUserInfo.gender"/>
+                        <label class="form-check-label" style="margin-left: 30px" for="FEMALE">
+                          Nữ
+                        </label>
+                      </div>
+
+                      <div class="form-check form-check-custom form-check-success form-check-solid mb-3">
+                        <input [ngModelOptions]="{ standalone: true }" class="form-check-input" type="radio"
+                               value="OTHER" name="gender" id="OTHER" [(ngModel)]="inputUserInfo.gender"/>
+                        <label style="margin-left: 30px" class="form-check-label" for="OTHER">
+                          Khác
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Email and Phone-->
+                <div class="row mb-6">
+
+                  <!-- FullName -->
+                  <div class="col-6">
+                    <div class="fv-row w-100 flex-md-root mt-2">
+                      <label class="required form-label">Email</label>
+                      <input formControlName="email" [(ngModel)]="inputUserInfo.email" type="email"
+                             class="form-control form-control-lg form-control-solid mrb-5"
+                             placeholder="Nhập email" name="email"/>
+
+                      <span class="text-danger fs-14px" *ngIf="
+                              formUserInfo.controls['email']!.invalid &&
+                              (formUserInfo.controls['email'].dirty ||
+                                formUserInfo.controls['email'].touched)
+                            ">
+
+                            <span *ngIf="
+                                formUserInfo.controls['email'].errors!
+                                  .required
+                              ">
+                              Email không được để trống.
+                            </span>
+
+                            <span *ngIf="
+                                formUserInfo.controls['email'].errors!
+                                  .emailExists
+                              ">
+                              Email đã tồn tại.
+                            </span>
+                          </span>
+                    </div>
+                  </div>
+
+                  <!-- Phone -->
+                  <div class="col-6">
+                    <div class="fv-row w-100 flex-md-root mt-2">
+                      <label class="required form-label">Số điện thoại</label>
+
+                      <input formControlName="phone" [(ngModel)]="inputUserInfo.phone" type="text"
+                             class="form-control form-control-lg form-control-solid mrb-5"
+                             placeholder="Nhập số điện thoại" name="phone"/>
+
+                      <span class="text-danger fs-14px" *ngIf="
+                              formUserInfo.controls['phone']!.invalid &&
+                              (formUserInfo.controls['phone'].dirty ||
+                                formUserInfo.controls['phone'].touched)
+                            ">
+                            <span *ngIf="
+                                formUserInfo.controls['phone'].errors!
+                                  .required
+                              ">
+                              Số điện thoại không được để trống.
+                            </span>
+
+                            <span *ngIf="
+                                formUserInfo.controls['phone'].errors?.pattern
+                              ">
+                              Số điện thoại không hợp lệ.
+                            </span>
+
+                            <span *ngIf="
+                                formUserInfo.controls['phone'].errors?.phoneExists
+                              ">
+                              Số điện thoại đã tồn tại.
+                            </span>
+                          </span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Province -->
+                <div class="row mb-6">
+                  <div class="col-6" *ngIf="inputUserInfo.role === roleEnum.admin2
+                                            || inputUserInfo.role === roleEnum.user">
+                    <div class="fv-row w-100 flex-md-root mt-2">
+                      <label class="required form-label">Địa bàn</label>
+                      <div class="position-relative mb-3">
+                        <select class="form-select form-select-lg form-select-solid mrb-5" data-kt-select2="true"
+                                data-placeholder="Select option" data-allow-clear="true"
+                                formControlName="idProvince"
+                                [(ngModel)]="inputUserInfo.idProvince"
+                                >
+                          <option *ngFor="let province of provinces" [value]="province._id">
+                            {{ province.name }}
+                          </option>
+                        </select>
+                      </div>
+
+                      <span class="text-danger fs-14px" *ngIf="
+                              formUserInfo.controls['idProvince']!.invalid &&
+                              (formUserInfo.controls['idProvince'].dirty ||
+                                formUserInfo.controls['idProvince'].touched)
+                            ">
+                            <span *ngIf="
+                                formUserInfo.controls['idProvince'].errors!
+                                  .required
+                              ">
+                              Địa bàn không được để trống.
+                            </span>
+                          </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card footer -->
+              <div class="card-footer d-flex justify-content-end py-6 px-9">
+                <a id="kt_ecommerce_add_product_cancel" class="btn btn-light me-5"
+                   routerLink="/features/accounts">Hủy</a>
+                <!-- Save -->
+                <button type="button" class="btn btn-primary" [disabled]="isLoading" (click)="onUpdateBtnClick()">
+                  <ng-container *ngIf="!isLoading">Sửa</ng-container>
+                  <ng-container *ngIf="isLoading">
+                        <span clas="indicator-progress" [style.display]="'block'">
+                          Vui lòng đợi...{{ " " }}
+                          <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                        </span>
+                  </ng-container>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

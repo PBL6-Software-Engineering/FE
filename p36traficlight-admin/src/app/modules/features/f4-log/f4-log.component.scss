@@ -1,0 +1,68 @@
+.mr-lr-20 {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.action {
+  text-align: center;
+  width: 70px;
+  padding: 8px 0;
+  display: inline-block;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 12px !important;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  margin-right: 8px;
+  border-radius:50%;
+  -moz-border-radius:50%;
+  -webkit-border-radius:50%;
+}
+
+.user {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  align-content: center;
+}
+
+td {
+  vertical-align: middle !important;
+}
+
+p,span {
+  display: inline-block;
+  line-height: 150%;
+}
+
+.overflow-text {
+  white-space: initial;
+}
+
+.desc {
+  max-width: 400px;
+}
+
+.ref {
+  max-width: 300px;
+  display: flex;
+}
+
+.th-text {
+  color: #A4A2A2;
+  font-size: 14px;
+}
+
+body > tr > td {
+  color: #000000;
+}
+
+@media (max-width: 576px) {
+  .filter {
+    display: block;
+    width: 100%;
+  }
+}

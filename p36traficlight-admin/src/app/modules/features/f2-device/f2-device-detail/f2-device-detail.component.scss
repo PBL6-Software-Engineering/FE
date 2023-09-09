@@ -1,0 +1,186 @@
+.t {
+  &-120px {
+    top: 120px !important;
+  }
+}
+
+.py-12px {
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+}
+
+.w-80px {
+  width: 80px;
+}
+
+.min-w-370px {
+  min-width: 370px;
+}
+
+.component {
+  background-color: white;
+  position: relative;
+  padding: 16px 12px;
+  min-width: 370px !important;
+  &-container {
+    color: #464647;
+  }
+  & .text-title {
+    max-width: 310px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+
+.btn {
+  padding: 6px 10px !important;
+  &-icon {
+    width: 26px !important;
+    height: 26px !important;
+  }
+  &-back {
+    width: 80px;
+  }
+
+  &-control {
+    color: #FFA000;
+    background: rgba(255, 160, 0, 0.2);
+  }
+
+  &-add {
+    width: 100px;
+    margin-bottom: 12px;
+  }
+
+  &-config {
+    background: rgba(0, 149, 233, 0.2);
+    color: #0095E9;
+  }
+
+  &-remove-device {
+    right: 12px;
+    bottom: 12px;
+  }
+
+
+  &-update-device {
+    right: 12px;
+    bottom: 44px;
+  }
+}
+
+.wrapper-btn-group {
+  min-width: 370px !important;
+  display: flex;
+  justify-content: space-between;
+  & > button {
+    min-width: 70px;
+    margin-left: 2px;
+    font-size: 13px;
+  }
+}
+
+.bg-active {
+  background-color: rgba(255, 160, 0, 0.1);
+}
+
+.bd-bottom {
+  border-bottom: solid #c9c4c4 1px;
+}
+
+.active {
+  background-color: rgb(225, 220, 30, 0.3);
+}
+
+table {
+  color: #464647;
+
+  & tr {
+    margin-bottom: 1px;
+  }
+
+  & td {
+    position: relative;
+    padding: 0 !important;
+  }
+}
+
+table tr td:first-child {
+  color: #A4A2A2;
+  border-right: 3px solid #FFA000;
+  width: 80px !important;
+}
+
+table tr td:last-child {
+  padding-left: 10px !important;
+}
+
+table tr:first-child td:last-child::before,
+table tr:last-child td:last-child::after {
+  background-color: #FFA000;
+  content: '';
+  display: inline-block;
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  box-shadow: 0 0 2px 2px #ffa700;
+  position: absolute;
+  left: -5px;
+}
+
+table tr:first-child td:last-child::before {
+  top: 0;
+}
+
+table tr:last-child td:last-child::after {
+  bottom: 0;
+}
+
+/* Style the scrollbar */
+::-webkit-scrollbar {
+  width: 5px; /* Width of the scrollbar */
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: transparent; /* Color of the scrollbar track */
+}
+::-webkit-scrollbar-thumb:horizontal{
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+@media (max-width: 991.98px) {
+  .component-container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-wrapper {
+    height: 80px !important;
+    padding: 12px 0 !important;
+  }
+}
+
+@media (max-width: 590px) {
+  .btn-back {
+    width: 70px;
+  }
+}
+
+.bg-blur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000;
+  opacity: 0.3;
+}

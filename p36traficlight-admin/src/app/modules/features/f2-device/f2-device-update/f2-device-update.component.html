@@ -1,0 +1,290 @@
+<div class="h-100 pl-5 pr-4 cl-text-title">
+  <div class="flex-between-center pt-6 pb-8 bd-bottom h-100px header-wrapper">
+    <span class="fw-bold fs-2 title-header">
+      <span *ngIf="typeUpdate === 'group'">Sửa nhóm</span>
+      <span *ngIf="typeUpdate === 'device'">Sửa thiết bị</span>
+    </span>
+    <button type="button" class="btn btn-back flex-between-center" (click)="back()">
+        <span
+          [inlineSVG]="'./assets/media/icons/duotune/general/gen075.svg'"
+          class="me-0"
+        ></span>
+      Trở về
+    </button>
+  </div>
+
+  <!--  begin::isLoading  -->
+  <ng-container *ngIf="isLoading">
+      <span class="indicator-progress text-center mt-4 cl-text-title d-block">
+        <h2>Đang tải...{{ " " }}</h2>
+        <br>
+        <span class="spinner-border spinner-border-sm align-middle ms-2 w-30px h-30px"></span>
+      </span>
+  </ng-container>
+  <!--  end::isLoading  -->
+
+  <!--  begin::component update group  -->
+  <div style="height: calc(99% - 100px);" *ngIf="typeUpdate === 'group' && !isError" [ngClass]="isLoading ? 'd-none' : 'd-block'">
+    <div style="height: 95%" class="overflow-auto scroll-overlay-y">
+      <!--  begin::form update group  -->
+      <form class="form pt-8 fs-14px mr-2" [formGroup]="formUpdateGroup">
+        <!--   begin::input name group   -->
+        <div class="form-group">
+          <label for="nameGroup">Tên nhóm</label>
+          <input type="text" class="form-control" id="nameGroup" [(ngModel)]="inputGroup.name"
+                 placeholder="Nhập tên nhóm" formControlName="name">
+          <ng-container [ngTemplateOutlet]="formError"
+                        *ngFor="let val of validationMessages.name"
+                        [ngTemplateOutletContext]="{
+                            validation: val.type,
+                            message: val.message,
+                            control: formUpdateGroup.controls['name']
+                          }">
+          </ng-container>
+        </div>
+        <!--   end::input name group   -->
+
+        <!--   begin::select type device   -->
+        <div class="form-group">
+          <label for="selectTypeDevice">Loại thiết bị</label>
+          <select class="form-select" id="selectTypeDevice"
+                  formControlName="idTypeDevice" [(ngModel)]="inputGroup.idTypeDevice"
+                  [ngClass]="inputGroup.idTypeDevice === '' ? '' : 'cl-text-title'"
+          >
+            <option value="">Chọn loại thiết bị</option>
+            <option [value]="t._id" *ngFor="let t of typeDevices">{{t?.name}}</option>
+          </select>
+          <ng-container [ngTemplateOutlet]="formError"
+                        *ngFor="let val of validationMessages.idTypeDevice"
+                        [ngTemplateOutletContext]="{
+                            validation: val.type,
+                            message: val.message,
+                            control: formUpdateGroup.controls['idTypeDevice']
+                          }">
+          </ng-container>
+        </div>
+        <!--   end::select type device   -->
+
+        <!--   begin::select province   -->
+        <div class="form-group">
+          <label class="required form-label" for="selectProvince">Địa bàn</label>
+          <!--Using ng-option and for loop-->
+          <ng-select [(ngModel)]="inputGroup.idProvince" formControlName="idProvince" id="selectProvince"
+                     (change)="changeColorSelected()">
+            <ng-option value="">Chọn địa bàn</ng-option>
+            <ng-option *ngFor="let province of provinces" [value]="province._id">{{province.name}}</ng-option>
+          </ng-select>
+
+          <ng-container [ngTemplateOutlet]="formError"
+                        *ngFor="let val of validationMessages.idProvince"
+                        [ngTemplateOutletContext]="{
+                            validation: val.type,
+                            message: val.message,
+                            control: formUpdateGroup.controls['idProvince']
+                          }">
+          </ng-container>
+        </div>
+        <!--   end::select province   -->
+
+        <!--   begin::device code   -->
+        <div class="form-group">
+          <label for="code">Mã thiết bị</label>
+          <input type="number" class="form-control" id="code" [(ngModel)]="inputGroup.deviceCode"
+                 placeholder="Nhập mã thiết bị" formControlName="deviceCode" (wheel)="disableWheel($event)">
+          <ng-container [ngTemplateOutlet]="formError"
+                        *ngFor="let val of validationMessages.deviceCode"
+                        [ngTemplateOutletContext]="{
+                            validation: val.type,
+                            message: val.message,
+                            control: formUpdateGroup.controls['deviceCode']
+                          }">
+          </ng-container>
+        </div>
+        <!--   end::device code   -->
+
+        <!--   begin::ip   -->
+        <div class="form-group">
+          <label for="ip">Địa chỉ IP</label>
+          <input type="text" class="form-control" id="ip" [(ngModel)]="inputGroup.ip"
+                 placeholder="Nhập địa chỉ IP" formControlName="ip">
+        </div>
+        <!--   end::ip   -->
+
+        <!--   begin::port   -->
+        <div class="form-group">
+          <label for="port">Nhập cổng thiết bị</label>
+          <input type="number" class="form-control" id="port" [(ngModel)]="port"
+                 placeholder="Nhập cổng thiết bị" formControlName="port" (wheel)="disableWheel($event)">
+          <ng-container [ngTemplateOutlet]="formError"
+                        *ngFor="let val of validationMessages.port"
+                        [ngTemplateOutletContext]="{
+                            validation: val.type,
+                            message: val.message,
+                            control: formUpdateGroup.controls['port']
+                          }">
+          </ng-container>
+        </div>
+        <!--   end::port   -->
+
+        <!--   begin::coordinate   -->
+        <div class="form-group">
+        <span
+          [inlineSVG]="'./assets/media/icons/duotune/maps/map011.svg'"
+          class="me-0 pr-2 w-25px h-25px d-inline-block"
+        ></span>
+          <span class="ml-3">
+          <span *ngIf="coordinate" class="fw-bold">{{ coordinate | coordinate }}</span>
+          <span *ngIf="!coordinate" class="cl-gray">Toạ độ</span>
+        </span>
+          <ng-container [ngTemplateOutlet]="formError"
+                        *ngFor="let val of validationMessages.coordinate"
+                        [ngTemplateOutletContext]="{
+                            validation: val.type,
+                            message: val.message,
+                            control: formUpdateGroup.controls['coordinate']
+                          }">
+          </ng-container>
+        </div>
+        <!--   end::coordinate   -->
+
+        <!--   begin::wrapper button form   -->
+        <div class="wrapper-btn-form d-flex justify-content-end">
+          <button type="button" class="btn btn-cancel-gray" (click)="back()">Huỷ</button>
+          <button type="submit" class="btn bg-blue-10 ml-3" (click)="onUpdateBtnClick()">
+            <ng-container *ngIf="!isLoadingUpdate">Sửa</ng-container>
+            <ng-container *ngIf="isLoadingUpdate">
+              <span class="indicator-progress d-flex align-items-center" [style.display]="'block'">
+                <span class="text-load">Đang sửa</span>
+                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+              </span>
+            </ng-container>
+          </button>
+        </div>
+        <!--   end::wrapper button form   -->
+      </form>
+      <!--  end::form update group  -->
+    </div>
+  </div>
+  <!--  end::component update group  -->
+
+  <!--  begin::component update device  -->
+  <div *ngIf="typeUpdate === 'device' && !isError"  [ngClass]="isLoading ? 'd-none' : 'd-block'">
+    <div class="overflow-auto scroll-overlay-y">
+      <!--  begin::form update device  -->
+      <form class="form pt-8 fs-14px mr-2" [formGroup]="formUpdateDevice">
+        <!--   begin::select type device   -->
+        <div class="form-group">
+          <label for="group">Loại thiết bị</label>
+          <select class="form-select" id="group" formControlName="idTypeDevice"
+                  [(ngModel)]="inputDevice.idTypeDevice"
+                  [ngClass]="inputDevice.idTypeDevice === '' ? '' : 'cl-text-title'"
+          >
+            <option value="">Chọn loại thiết bị</option>
+            <option [value]="t._id" *ngFor="let t of typeDevices">{{t.name}}</option>
+          </select>
+          <ng-container [ngTemplateOutlet]="formError"
+                        *ngFor="let val of validationMessages.idTypeDevice"
+                        [ngTemplateOutletContext]="{
+                            validation: val.type,
+                            message: val.message,
+                            control: formUpdateDevice.controls['idTypeDevice']
+                          }">
+          </ng-container>
+        </div>
+        <!--   end::select type device   -->
+
+        <!--   begin::name device   -->
+        <div class="form-group">
+          <label for="nameEquipment">Tên thiết bị</label>
+          <input type="text" class="form-control" id="nameEquipment" [(ngModel)]="inputDevice.name"
+                 placeholder="Nhập tên thiết bị" formControlName="name">
+          <ng-container [ngTemplateOutlet]="formError"
+                        *ngFor="let val of validationMessages.name"
+                        [ngTemplateOutletContext]="{
+                            validation: val.type,
+                            message: val.message,
+                            control: formUpdateDevice.controls['name']
+                          }">
+          </ng-container>
+        </div>
+        <!--   end::name device   -->
+
+        <!--   begin::position   -->
+        <div class="form-group">
+          <label for="position">Nhập vị trí:</label>
+          <input type="number" class="form-control" id="position" [(ngModel)]="inputDevice.position"
+                 placeholder="Nhập tên thiết bị" formControlName="position" (wheel)="disableWheel($event)">
+          <ng-container [ngTemplateOutlet]="formError"
+                        *ngFor="let val of validationMessages.position"
+                        [ngTemplateOutletContext]="{
+                            validation: val.type,
+                            message: val.message,
+                            control: formUpdateDevice.controls['position']
+                          }">
+          </ng-container>
+        </div>
+        <!--   end::name device   -->
+
+        <!--   begin::coordinate   -->
+        <div class="form-group">
+          <span
+            [inlineSVG]="'./assets/media/icons/duotune/maps/map011.svg'"
+            class="me-0 pr-2 w-25px h-25px d-inline-block"
+          ></span>
+          <span class="ml-3">
+            <span *ngIf="coordinate" class="fw-bold">{{ coordinate | coordinate }}</span>
+            <span *ngIf="!coordinate" class="cl-gray">Toạ độ</span>
+          </span>
+          <ng-container [ngTemplateOutlet]="formError"
+                        *ngFor="let val of validationMessages.coordinate"
+                        [ngTemplateOutletContext]="{
+                            validation: val.type,
+                            message: val.message,
+                            control: formUpdateDevice.controls['coordinate']
+                          }">
+          </ng-container>
+        </div>
+        <!--   end::coordinate   -->
+
+        <!--   begin::wrapper button form   -->
+        <div class="wrapper-btn-form d-flex d-flex-column d-flex-sm-row justify-content-end">
+          <button type="button" class="btn btn-cancel-gray" (click)="back()">Huỷ</button>
+          <button type="submit" class="btn bg-blue-10 ml-3" (click)="onUpdateBtnClick()">
+            <ng-container *ngIf="!isLoadingUpdate">Sửa</ng-container>
+            <ng-container *ngIf="isLoadingUpdate">
+              <span class="indicator-progress d-flex align-items-center" [style.display]="'block'">
+                <span class="text-load">Đang sửa</span>
+                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+              </span>
+            </ng-container>
+          </button>
+        </div>
+        <!--   end::wrapper button form   -->
+      </form>
+      <!--  end::form update device  -->
+    </div>
+  </div>
+  <!--  end::component update device  -->
+
+  <p *ngIf="isError && !isLoading" class="text-danger fs-3 mt-4">
+    Thiết bị đã bị khoá hoặc không tồn tại.
+  </p>
+</div>
+
+<ng-template
+  #formError
+  let-control="control"
+  let-message="message"
+  let-validation="validation"
+>
+  <ng-container
+    *ngIf="control.hasError(validation) && (control.dirty || control.touched)"
+  >
+    <div class="fv-plugins-message-container">
+      <span role="alert " class="text-danger">
+        {{ message }}
+      </span>
+    </div>
+  </ng-container>
+</ng-template>
+

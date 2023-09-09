@@ -1,0 +1,133 @@
+.mr-lr-20{
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.w-200px {
+  width: 200px !important;
+}
+
+.w-80 {
+  width: 80% !important;
+}
+
+.ml {
+  &-5px {
+    margin-left: 5px;
+  }
+  &-30px {
+    margin-left: 30px;
+  }
+}
+
+
+.btn {
+  padding: 8px 10px !important;
+  &-icon {
+    width: 28px !important;
+    height: 28px !important;
+    &-cmd {
+      background-color: rgba(255, 160, 0, 0.2);
+    }
+  }
+}
+
+.min-w {
+  &-80px {
+    min-width: 80px;
+  }
+  &-130px {
+    min-width: 130px;
+  }
+  &-160px {
+    min-width: 160px;
+  }
+  &-210px {
+    min-width: 210px;
+  }
+  &-270px {
+    min-width: 270px;
+  }
+}
+
+.svg-view:hover {
+  fill: red !important;
+  stroke: #fce57e;
+  pointer-events: all;
+}
+
+.table td {
+  vertical-align: middle !important;
+  border: none;
+  height: 55px;
+}
+
+.time-status {
+  width: 54px;
+  padding: 1px 0;
+}
+
+.time-lost-connect {
+  color:  #0095E9 !important;
+  width: 54px;
+  padding: 1px 0;
+  text-decoration: underline;
+}
+
+.form-check.form-check-solid .form-check-input:checked {
+  background-color: rgba(0, 81, 215, 0.5);
+}
+
+.select-paginate {
+  background-color: #F1F4F7;
+  cursor: pointer;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.icon-check-config {
+  top: -8px;
+  left: -8px;
+  position: absolute;
+}
+
+.modal {
+  &-dialog-70 {
+    width: 70% !important;
+    margin: 30px auto;
+  }
+  &-content {
+    background-color: #f5f8fa;
+  }
+
+  &-footer {
+    & button {
+      min-width: 80px;
+      padding: 6px 12px !important;
+    }
+  }
+  &-body-mar-x {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+}
+
+@media (min-width: 576px) {
+  .modal-dialog-70 {
+    width: 70% !important;
+    max-width: 70% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-dialog-70 {
+    width: 90% !important;
+    max-width: 90% !important;
+  }
+
+  .modal-body-mar-x {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+}
+

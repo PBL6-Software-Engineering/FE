@@ -1,0 +1,100 @@
+<!--begin::Post-->
+<div class="post d-flex flex-column-fluid" id="kt_post">
+  <!--begin::Container-->
+  <div id="kt_content_container" class="container-xxl">
+    <form [formGroup]="form" class="form d-flex flex-column flex-lg-row"
+          data-kt-redirect="../../demo1/dist/apps/ecommerce/catalog/categories.html">
+      <!--begin::Aside column-->
+      <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-250px mb-7 me-lg-10">
+        <!--begin::Thumbnail settings-->
+        <div class="card card-flush py-4">
+          <div class="card-header">
+            <div class="card-title">
+              <h2 class="cl-text-title">Image</h2>
+            </div>
+          </div>
+          <div class="card-body text-center p-0">
+            <label for="fileImage">
+              <img class="img-color avatar-input-wrapper w-150px rounded"
+                   [src]="input.image ? input.image : common.uploadImageDefault" alt="Error load image" />
+            </label>
+            <input formControlName="image" class="d-none" id="fileImage" (change)="onUploadImageClick()"
+                   type="file" #inputImage accept=".png, .jpg, .jpeg" />
+            <br>
+            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                            validation: 'required',
+                            message: 'Ảnh không được để trống',
+                            control: form.controls['image']
+                          }">
+            </ng-container>
+            <!--end::Avatar input-->
+            <!--begin::Description-->
+            <div class="text-muted fs-7 note-type-image border-top pt-2">
+              Set the store thumbnail image. Only *.png, *.jpg and *.jpeg avatar files are accepted
+            </div>
+            <!--end::Description-->
+          </div>
+        </div>
+        <!--end::Thumbnail settings-->
+      </div>
+      <!--end::Aside column-->
+
+      <!--begin::Main column-->
+      <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+        <!--begin::General options-->
+        <div class="card card-flush py-4 min-h-450px">
+          <div class="card-header">
+            <div class="card-title">
+              <span [inlineSVG]="'./assets/media/icons/duotune/general/gen069.svg'"
+                    class="svg-icon svg-icon-3 mr-2 zoom-13"></span>
+              <h2 class="cl-text-title">Sửa loại thiết bị</h2>
+            </div>
+          </div>
+          <!--begin::Card body-->
+          <div class="card-body pt-0">
+            <!--Name-->
+            <div class="mb-10 fv-row">
+              <label class="required form-label">Tên nhóm</label>
+              <input type="text" [(ngModel)]="input.name" formControlName="name"
+                     class="form-control form-control-solid mb-2" placeholder="Nhập tên nhóm" />
+              <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                            validation: 'required',
+                            message: 'Tên nhóm không được để trống.',
+                            control: form.controls['name']
+                          }">
+              </ng-container>
+            </div>
+
+            <!--  begin::btn wrapper-->
+            <div class="d-flex justify-content-end wrapper-btn-form">
+              <button routerLink="/features/type-devices" class="btn btn-cancel-gray mr-4 min-w-100px">
+                Huỷ
+              </button>
+              <button type="button" class="btn bg-blue-10 min-w-100px" [disabled]="isLoading"
+                      (click)="onUpdateBtnClick()">
+                <ng-container *ngIf="!isLoading">Sửa</ng-container>
+                <ng-container *ngIf="isLoading">
+                  <span clas="indicator-progress" [style.display]="'block'">
+                    Đang chờ...{{ " " }}
+                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                  </span>
+                </ng-container>
+              </button>
+            </div>
+            <!--  end::btn wrapper-->
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<ng-template #formError let-control="control" let-message="message" let-validation="validation">
+    <ng-container *ngIf="control.hasError(validation) && (control.dirty || control.touched)">
+      <div class="fv-plugins-message-container">
+              <span role="alert " class="text-danger fs-14px">
+                  {{ message }}
+              </span>
+      </div>
+    </ng-container>
+</ng-template>

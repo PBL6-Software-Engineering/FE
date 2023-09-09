@@ -1,0 +1,70 @@
+<div class="modal-content" style="background-color: #F6F6F7">
+  <div class="modal-header position-relative border-0">
+    <p class="fs-1 modal-title w-100 text-center m-0 fw-bold cl-text-title" id="commandLineLabel">
+      Giao tiếp lệnh command prompt
+    </p>
+    <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true" style="font-size: 30px">&times;</span>
+    </button>
+  </div>
+
+
+  <div class="modal-body p-0 border-0 bg-white mx-50px rounded modal-body-mar-x mb-10">
+    <!--  begin::Command Line Wrapper -->
+    <div class="command-line-wrapper p-5">
+      <!-- name device-->
+      <div class="row">
+        <!-- Name-->
+        <div class="col-md-4 card-body pt-0">
+          <div class="mb-2 fv-row cl-text-title">
+            <label class="fw-bold fs-14px">Tên</label>
+            <input readonly
+                   class="form-control form-control-lg form-control-solid mrb-5"
+                   value="{{device?.name}}"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- begin::deviceCode && ip  -->
+      <div class="row">
+        <!-- begin::deviceCode-->
+        <div class="col-md-6 card-body pt-0">
+          <div class="mb-2 fv-row cl-text-title">
+            <label class="fw-bold fs-14px cl-text-title">Mã thiết bị</label>
+            <input readonly
+                   class="form-control form-control-lg form-control-solid mrb-5"
+                   value="{{device?.deviceCode}}"
+            />
+          </div>
+        </div>
+        <!--  end::deviceCode -->
+
+        <!-- begin::ip-->
+        <div class="col-md-6 card-body pt-0">
+          <div class="mb-2 fv-row cl-text-title">
+            <label class="fw-bold fs-14px">Địa chỉ IP</label>
+            <input readonly
+                   class="form-control form-control-lg form-control-solid mrb-5"
+                   value="{{device?.ip}}"
+            />
+          </div>
+        </div>
+        <!-- end::ip-->
+      </div>
+      <!-- end::deviceCode && ip  -->
+
+      <!-- Command-->
+      <div class="mb-2 fv-row">
+        <label class="fw-bold fs-14px">Lệnh command</label>
+        <ckeditor style="height: 130px !important;"></ckeditor>
+      </div>
+
+      <div class="modal-footer border-0 justify-content-center pb-1">
+        <button type="button" class="btn btn-cancel-gray cl-gray min-w-100px" data-dismiss="modal">Huỷ</button>
+        <button type="button" class="btn bg-blue-10 text-white ml-3 min-w-100px" data-dismiss="modal">Gửi</button>
+      </div>
+    </div>
+    <!--  end::Command Line Wrapper -->
+  </div>
+</div>

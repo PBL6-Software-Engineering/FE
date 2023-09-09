@@ -1,0 +1,28 @@
+.overflow-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* text-overflow: clip; */
+  max-width: 292px;
+}
+
+.th-text {
+  color: #A4A2A2;
+  font-size: 14px;
+}
+
+body > tr > td {
+  color: #000000;
+}
+
+.btn-delete {
+  background-color: #F5E0E0;
+}
+
+.form-check.form-check-solid .form-check-input:checked {
+  background-color: rgba(0, 81, 215, 0.5);
+}
+
+.card-toolbar > button {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}

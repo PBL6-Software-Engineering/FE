@@ -1,0 +1,47 @@
+$color-text-title: #464647;
+
+.mrb-5 {
+  margin-bottom: 5px;
+}
+
+label {
+  color: $color-text-title;
+  font-size: 14px;
+}
+
+.btn {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+
+.form-select {
+  color: #a1a5b7 !important;
+}
+
+.form-select-selected {
+  color: $color-text-title !important;
+}
+
+.form-control {
+  color: $color-text-title;
+}
+
+.form-check.form-check-solid .form-check-input:checked {
+  background-color: rgba(59, 113, 202, 0.5);
+  background-position: right center;
+}
+
+.form-control, .form-select {
+  background-color: rgba(153, 161, 174, 0.1);
+  height: auto !important;
+  color: #464647;
+  border: none;
+  font-weight: 400;
+}
+
+
+@media (min-width: 768px) {
+  .w-md-48 {
+    width: 48% !important;
+  }
+}

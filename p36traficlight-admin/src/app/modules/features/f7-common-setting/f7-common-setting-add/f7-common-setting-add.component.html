@@ -1,0 +1,141 @@
+<!--begin::Post-->
+<div class="post d-flex flex-column-fluid" id="kt_post">
+  <!--begin::Container-->
+  <div id="kt_content_container" class="container-xxl">
+    <form [formGroup]="form" class="form d-flex flex-column flex-lg-row mx-5">
+      <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+        <!--begin::General options-->
+        <div class="card card-flush py-4 min-h-450px">
+          <div class="card-header">
+            <div class="card-title">
+              <span [inlineSVG]="'./assets/media/icons/duotune/general/gen062.svg'"
+                    class="svg-icon svg-icon-3 mr-2 zoom-13"></span>
+              <h2 class="cl-text-title">Thêm cài đặt</h2>
+            </div>
+          </div>
+          <!--begin::Card body-->
+          <div class="card-body pt-0">
+            <!--Name-->
+            <div class="mb-10 fv-row">
+              <label class="required form-label">Tên</label>
+              <input type="text" [(ngModel)]="input.name" formControlName="name"
+                     class="form-control form-control-solid mb-2" placeholder="Nhập tên cài đặt" />
+
+              <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                            validation: 'required',
+                            message: 'Tên cài đặt không được để trống.',
+                            control: form.controls['name']
+                          }">
+              </ng-container>
+            </div>
+
+            <div class="d-flex flex-column flex-md-row justify-content-between">
+              <div class="mb-10 fv-row w-100 w-md-48">
+                <label class="required form-label">Loại</label>
+                <input type="text" [(ngModel)]="input.type" formControlName="type"
+                       class="form-control form-control-solid mb-2" placeholder="Nhập loại cài đặt" />
+
+                <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                              validation: 'required',
+                              message: 'Loại cài đặt không được để trống.',
+                              control: form.controls['type']
+                            }">
+                </ng-container>
+              </div>
+
+              <div class="mb-10 fv-row w-100 w-md-48">
+                <label class="required form-label">Thời gian</label>
+                <div class="d-flex w-100">
+                  <input type="text" [(ngModel)]="input.numberTime" formControlName="numberTime"
+                       class="form-control form-control-solid mb-2" placeholder="Nhập thời gian"/>
+
+                  <select class="form-select form-control form-control-solid mb-2 h-100 w-150px ml-4"
+                        formControlName="unitTime" [(ngModel)]="input.unitTime"
+                          [ngClass]="input.unitTime === '' ? '' : 'form-select-selected'"
+                  >
+                    <option value="">Đơn vị</option>
+                    <option value="phút">Phút</option>
+                    <option value="giờ">Giờ</option>
+                    <option value="ngày">Ngày</option>
+                    <option value="tuần">Tuần</option>
+                    <option value="tháng">Tháng</option>
+                    <option value="năm">Năm</option>
+                  </select>
+                </div>
+                <div class="d-flex">
+                  <div class="w-100">
+                    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                              validation: 'required',
+                              message: 'Thời gian không được để trống.',
+                              control: form.controls['numberTime']
+                            }">
+                    </ng-container>
+
+                    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                              validation: 'pattern',
+                              message: 'Thời gian phải là số không âm.',
+                              control: form.controls['numberTime']
+                            }">
+                    </ng-container>
+                  </div>
+                  <div class="min-w-150px text-end">
+                    <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                              validation: 'required',
+                              message: 'Chọn đơn vị thời gian.',
+                              control: form.controls['unitTime']
+                            }">
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+             <!--Show-->
+             <div class="mb-10 fv-row d-flex align-items-center">
+              <label class="required form-label m-0">Show</label>
+
+              <label class="form-check form-switch form-check-custom form-check-solid ml-5">
+                <input formControlName="isShow" class="form-check-input w-75px" type="checkbox" value="true"
+                  [(ngModel)]="input.isShow" checked="checked">
+              </label>
+            </div>
+
+            <div class="d-flex justify-content-end">
+              <button routerLink="/features/common-settings" class="btn btn-cancel-gray mr-4 min-w-100px">
+                Huỷ
+              </button>
+              <button type="button" class="btn bg-blue-10 min-w-100px" [disabled]="isLoading"
+                      (click)="onAddNewBtnClick()">
+                <ng-container *ngIf="!isLoading">Thêm</ng-container>
+                <ng-container *ngIf="isLoading">
+                  <span class="indicator-progress" [style.display]="'block'">
+                    Đang chờ ...{{ " " }}
+                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                  </span>
+                </ng-container>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<ng-template
+  #formError
+  let-control="control"
+  let-message="message"
+  let-validation="validation"
+>
+  <ng-container
+    *ngIf="control.hasError(validation) && (control.dirty || control.touched)"
+  >
+    <div class="fv-plugins-message-container">
+      <span role="alert " class="text-danger">
+        {{ message }}
+      </span>
+    </div>
+  </ng-container>
+</ng-template>
+

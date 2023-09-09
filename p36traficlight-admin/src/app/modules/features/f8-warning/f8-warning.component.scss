@@ -1,0 +1,169 @@
+.mr-lr-20 {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.l {
+  &-16px {
+    left: 16px;
+  }
+}
+
+.cl {
+  &-gray {
+    color: #A4A2A2 !important;
+  }
+
+  &-black {
+    color: #464647;
+  }
+}
+
+.form-check.form-check-solid .form-check-input:checked {
+  background-color: rgba(0, 81, 215, 0.5);
+}
+
+.btn {
+  &-primary {
+    background-color: #0095E9;
+  }
+  &-send {
+    background-color: #0095E9;
+  }
+}
+
+.table td {
+  vertical-align: middle !important;
+  border: none;
+}
+
+.status {
+  display: inline-block;
+  min-width: 80px;
+  padding: 4px 0;
+  border-radius: 8px;
+
+  &-warning {
+    color: #FFA000;
+    background-color: rgba(255, 160, 0, 0.3);
+  }
+
+}
+
+.text-update {
+  display: inline-block;
+  min-width: 80px;
+  padding: 4px 0;
+  border-radius: 8px;
+  background-color: #0095E9;
+  color: white;
+  cursor: pointer;
+}
+
+.close-modal {
+  position: absolute;
+  top: 12px;
+  right: 24px;
+  font-weight: 500;
+}
+
+#cke_1_contents {
+  height: 150px !important;
+}
+
+.status-wrapper {
+  border-radius: 5px;
+  cursor: pointer;
+  color: #464647;
+  background-color: white;
+  position: relative;
+  border: 1px dashed rgba(164, 162, 162, 0.8);
+  & label {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 40%;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+}
+
+.radio-btn {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 16px;
+}
+
+input[type="radio"]:checked {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 50%;
+  background-color: white;
+  border: 5px solid rgba(48, 187, 26, 1);
+}
+
+input[type="radio"]:checked + label {
+  background: #0095E9;
+  color: white;
+}
+
+.modal-footer > button {
+  min-width: 100px;
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+
+.flex-sm-column {
+  flex-direction: column;
+}
+
+.modal {
+  &-dialog {
+    width: 70% !important;
+    margin: 30px auto;
+  }
+  &-content {
+    background-color: #f5f8fa;
+  }
+  &-title {
+    color: #464647;
+    font-weight: 500;
+  }
+}
+
+@media (min-width: 576px) {
+  .modal-dialog {
+    width: 70% !important;
+    max-width: 70% !important;
+  }
+}
+
+@media (max-width: 991.18px) {
+  .status-wrapper {
+    margin-top: 12px;
+    width: 30%;
+    & > label {
+      padding-top: 12px !important;
+      padding-bottom: 12px !important;
+      padding-left: 32% !important;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .status-wrapper {
+    margin-top: 12px;
+    width: 100%;
+
+    & > label {
+      padding-left: 40% !important;
+    }
+  }
+}
+
+@media (max-width: 1198px) {
+  .min-w-lg-200px {
+    min-width: 200px;
+  }
+}

@@ -1,0 +1,145 @@
+@use "sass:math";
+
+$text-title: #464647;
+$text-normal: #A4A2A2;
+$text-white: #ffffff;
+$text-red: #EB0F0F;
+$text-green: #30BB1A;
+$text-yellow: #b0b007;
+$text-orange: #FFA000;
+
+.br {
+  @for $i from 1 through 10 {
+    &-#{$i} {
+      border-radius: #{$i}px;
+    };
+  }
+}
+
+.bg {
+  @for $i from 1 through 10 {
+    &-green-#{$i} {
+      background-color: rgba(48, 187, 26, math.div($i, 10));
+      color: $text-green !important;
+    };
+  }
+
+  @for $i from 1 through 10 {
+    &-red-#{$i} {
+      background-color: rgba(235, 15, 15, math.div($i, 10));
+      color: $text-red !important;
+    };
+  }
+
+  @for $i from 1 through 10 {
+    &-blue-#{$i} {
+      background-color: rgba(0, 149, 233, math.div($i, 10));
+      color: $text-white !important;
+    };
+  }
+
+  @for $i from 1 through 10 {
+    &-yellow-#{$i} {
+      background-color: rgba(251, 255, 52, math.div($i, 10));
+      color: $text-yellow !important;
+    };
+  }
+
+  @for $i from 1 through 10 {
+    &-orange-#{$i} {
+      background-color: rgba(255, 160, 0, math.div($i, 10));
+    };
+  }
+}
+
+.btn {
+  &-back {
+    background-color: rgba(59, 113, 202, 0.2);
+    color: #3B71CA !important;
+  }
+
+  &-cancel {
+    &-gray {
+      background-color: rgba(153, 161, 174, 0.1);
+      color: $text-normal;
+      &:hover {
+        color: #009EF7;
+        background-color: #F1FAFF !important;
+      }
+    }
+    &-white {
+      background-color: #FFFFFF;
+      color: $text-normal;
+      &:hover {
+        color: #009EF7;
+        background-color: #F1FAFF !important;
+      }
+    }
+  }
+
+
+  &-icon {
+    &-update {
+      background-color: rgba(217, 217, 217, 0.6);
+    }
+
+    &-configuration {
+      background-color: rgba(59, 113, 202, 0.2) !important;
+    }
+
+    &-delete-one {
+      background-color: rgba(245, 224, 224, 1);
+      color: $text-red !important;
+    }
+    &-delete-many {
+      background-color: rgba(235, 15, 15, 0.2);
+      color: $text-red !important;
+      &:hover {
+        background-color: rgba(235, 15, 15, 0.4);
+      }
+    }
+  }
+}
+
+.cl {
+  &-text-normal {
+    color: $text-normal !important;
+  }
+  &-text-title {
+    color: $text-title !important;
+  }
+  &-text-red {
+    color: $text-red;
+  }
+  &-text-warning {
+    color: rgba(255, 160, 0, 1);
+  }
+  &-text-green {
+    color: $text-green;
+  }
+  &-text-orange {
+    color: $text-orange;
+  }
+}
+
+@for $i from 12 through 20 {
+  .fs-#{$i}px {
+    font-size: #{$i}px !important;
+  };
+}
+
+@for $i from 1 through 50 {
+  .zoom-#{$i} {
+    zoom: math.div($i, 10);
+  };
+}
+
+
+.ng-select-container {
+  background-color: rgba(153, 161, 174, 0.1) !important;
+  border: none !important;
+}
+
+.ng-select .ng-select-container {
+  color: #A1A5B7;
+}

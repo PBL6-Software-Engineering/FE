@@ -1,0 +1,212 @@
+<div class="h-100 px-4 component-container">
+  <!--      begin::header component     -->
+  <div class="d-flex justify-content-between align-items-center pt-6 pb-8 bd-bottom h-100px header-wrapper px-2">
+    <span class="fw-bold fs-2">Hiển thị</span>
+    <button type="button" class="btn btn-back flex-between-center" routerLink="/features/devices">
+        <span
+          [inlineSVG]="'./assets/media/icons/duotune/general/gen075.svg'"
+          class="me-0"
+        ></span>
+      Trở về
+    </button>
+  </div>
+  <!--      end::header component     -->
+
+  <div style="height: calc(94% - 100px);">
+    <!--  begin::isLoading  -->
+    <ng-container *ngIf="isLoading">
+      <span class="indicator-progress text-center mt-4" [style.display]="'block'">
+        <h2>Đang tải...{{ " " }}</h2>
+        <br>
+        <span class="spinner-border spinner-border-sm align-middle ms-2 w-30px h-30px"></span>
+      </span>
+    </ng-container>
+    <!--  end::isLoading  -->
+
+    <ng-container *ngIf="group">
+      <div style="height: 100%;" class="overflow-auto scroll-overlay-y px-2" *ngIf="!isLoading">
+        <p class="fw-bold fs-4 mt-4">Thông tin nhóm</p>
+
+        <!--    begin::button group    -->
+        <div class="wrapper-btn-group">
+          <!--  begin:: button control  -->
+          <button class="btn btn-sm btn-control" data-toggle="modal" data-target="#controlModal"
+                  (click)="updateGroupDevice(group)">
+            <span [inlineSVG]="'./assets/media/icons/duotune/general/gen132.svg'"></span>
+            <span class="ml-2">Điều khiển</span>
+          </button>
+          <!--  end:: button control  -->
+
+          <!--  begin:: button configuration  -->
+          <button class="btn btn-sm btn-config"
+                  (click)="forwardConfiguration()">
+            <span [inlineSVG]="'./assets/media/icons/duotune/general/gen109.svg'" class="zoom-12"></span>
+            <span class="ml-2">Cấu hình</span>
+          </button>
+          <!--  end:: button configuration  -->
+
+          <!--  begin:: button update  -->
+          <button class="btn btn-sm bg-blue-10" (click)="onUpdate(group._id, 'group')">
+            Sửa
+          </button>
+          <!--  end:: button update  -->
+
+          <!--  begin:: button delete group  -->
+          <button class="btn btn-sm bg-red-3"
+                  data-toggle="modal" data-target="#deleteOneModal"
+                  (click)="updateIdDeviceDeleted(group._id, true)"
+          >
+            <span class="w-20px" [inlineSVG]="'./assets/media/icons/duotune/general/gen110.svg'"></span>
+            <span class="ml-3">Xoá</span>
+          </button>
+          <!--  end:: button delete group  -->
+        </div>
+        <!--    end::button group    -->
+
+        <!--    begin::info group    -->
+        <div class="component rounded mt-4 fs-6 cl-text-normal cursor-pointer" (click)="onClickGroup()">
+          <div class="fw-bold cl-text-title fs-5 my-1">Tên nhóm: {{group?.name}}</div>
+          <div class="my-1">Loại thiết bị: {{group?.idTypeDevice.name}}</div>
+          <div class="my-1">Mã thiết bị: {{group?.deviceCode}}</div>
+          <div class="my-1">Địa bàn: {{group?.idProvince.name}}</div>
+          <div class="my-1">Ip: {{group?.ip}}</div>
+          <div class="my-1" *ngIf="group?.port > -1">Port: {{group?.port}}</div>
+          <div class="my-1" *ngIf="group?.port <= -1">Port:</div>
+          <div *ngIf="group.coordinate">Toạ độ: {{group?.coordinate | coordinate}}</div>
+        </div>
+        <!--    end::info group    -->
+
+        <!--    begin::list device    -->
+        <div class="d-flex justify-content-between my-3 min-w-370px align-items-center">
+          <span class="fw-bold fs-4 d-block">Danh sách thiết bị</span>
+          <button class="btn btn-sm bg-blue-10 w-80px fs-13px" (click)="onAddToGroup()">Thêm</button>
+        </div>
+        <!--      begin::group devices     -->
+        <div class="component rounded mt-4 py-12px cursor-pointer" *ngFor="let device of group?.childs"
+             [ngClass]="device._id === idDevice ? 'bg-active': ''"
+             (click)="onClickDevice(device._id)"
+        >
+          <div class="d-flex justify-content-between mb-1 align-items-center">
+            <!--  begin: status color-->
+            <span class="color-status zoom-9" *ngIf="!group.isLock && device?.status">
+              <span *ngIf="device?.status === 1" [inlineSVG]="'./assets/media/icons/duotune/general/gen106.svg'"></span>
+              <span *ngIf="device?.status === 2" [inlineSVG]="'./assets/media/icons/duotune/general/gen108.svg'"></span>
+              <span *ngIf="device?.status === 3" [inlineSVG]="'./assets/media/icons/duotune/general/gen107.svg'"></span>
+            </span>
+            <!--  end: status color-->
+
+            <!--  begin: time device  -->
+            <span class="d-inline-block text-center w-55px br-10 time-status" *ngIf="device?.time && !group.isLock"
+                  [ngClass]="device?.status === 1 ? 'bg-green-3' : device?.status === 2 ? 'bg-yellow-3' : 'bg-red-3'">
+              {{device?.time}}
+            </span>
+            <!--  end: time device  -->
+          </div>
+
+          <!--    begin::info device    -->
+          <table class="table align-middle gs-0 gy-3 fs-6 mb-0">
+            <tr>
+              <td>Tên thiết bị</td>
+              <td>{{device?.name}}</td>
+            </tr>
+            <tr>
+              <td>Loại thiết bị</td>
+              <td>{{device?.idTypeDevice.name}}</td>
+            </tr>
+            <tr>
+              <td>Vị trí</td>
+              <td>Đèn {{device?.position}}</td>
+            </tr>
+            <tr>
+              <td>Toạ độ</td>
+              <td *ngIf="group?.coordinate">{{device?.coordinate | coordinate}}</td>
+            </tr>
+          </table>
+          <!--    end::info device    -->
+
+          <!--  begin:: button update device  -->
+          <button class="btn btn-icon btn-icon-update btn-sm btn-update-device position-absolute"
+                  (click)="onUpdate(device._id, 'device')">
+            <span
+              [inlineSVG]="'./assets/media/icons/duotune/general/gen120.svg'"
+              class="svg-icon svg-icon-3 zoom-9"
+            >
+            </span>
+          </button>
+          <!--  end:: button update device  -->
+
+          <!--  begin:: button delete device  -->
+          <button class="btn btn-icon btn-icon-delete-one btn-sm btn-remove-device position-absolute"
+                  data-toggle="modal" data-target="#deleteOneModal"
+                  (click)="updateIdDeviceDeleted(device._id, false)"
+          >
+            <span
+              [inlineSVG]="'./assets/media/icons/duotune/general/gen117.svg'"
+              class="svg-icon svg-icon-3"
+            >
+            </span>
+          </button>
+          <!--  end:: button delete device  -->
+        </div>
+        <!--      end::group devices     -->
+      </div>
+    </ng-container>
+
+    <p *ngIf="!group && !isLoading" class="text-danger fs-3 mt-4">
+      Thiết bị đã bị khoá hoặc không tồn tại.
+    </p>
+  </div>
+</div>
+
+<!-- Delete one Modal -->
+<div
+  class="modal fade"
+  id="deleteOneModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="deleteOneModalLabel"
+  aria-hidden="true"
+  data-backdrop="false"
+  style="background-color: rgba(0, 0, 0, 0.5);"
+>
+  <div class="modal-dialog" role="document" style="top: 150px; left: 30px">
+    <div class="modal-content">
+      <h5 class="modal-title" id="deleteOneModalLabel">
+        <div class="d-flex justify-content-center flex-colum align-items-center">
+          <span [inlineSVG]="'./assets/media/icons/duotune/general/gen061.svg'" class="mt-10"></span>
+        </div>
+      </h5>
+      <h4 class="text-center">
+        <span *ngIf="isDeletedGroup">Bạn có thực sự muốn xóa nhóm thiết bị này? </span>
+        <span *ngIf="!isDeletedGroup">Bạn có thực sự muốn xóa thiết bị này? </span>
+
+        <br />
+        Quá trình này không thể hoàn tác.
+      </h4>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary w-150px mr-10" data-dismiss="modal">
+          Hủy
+        </button>
+        <button type="button" class="btn btn-danger w-150px" data-dismiss="modal" (click)="delete()">
+          Xóa
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- begin::controlModal data -->
+<div
+  class="modal fade"
+  id="controlModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="controlModalLabel"
+  aria-hidden="true"
+  data-backdrop="false"
+  style="background-color: rgba(0, 0, 0, 0.5);"
+>
+  <div class="modal-dialog" role="document" style="max-width: unset !important;">
+    <app-f2-control-modal [group]="group"></app-f2-control-modal>
+  </div>
+</div>

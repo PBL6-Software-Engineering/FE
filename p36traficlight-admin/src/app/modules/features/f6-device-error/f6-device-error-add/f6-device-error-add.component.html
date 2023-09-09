@@ -1,0 +1,160 @@
+<div id="kt_account_profile_details" class="collapse show">
+  <form [formGroup]="form" novalidate="" class="form">
+    <div class="row">
+      <div
+        class="col tab-pane fade show active"
+        id="kt_ecommerce_add_product_general"
+        role="tab-panel"
+      >
+        <div class="d-flex flex-column gap-7 gap-lg-10">
+          <div class="card card-flush py-4">
+            <div class="card-header px-2">
+              <div class="card-title">
+                <span
+                  [inlineSVG]="
+                    './assets/media/icons/duotune/general/gen068.svg'
+                  "
+                  class="svg-icon svg-icon-1 float-right mr-2"
+                ></span>
+                <h2>Thêm lỗi thiết bị</h2>
+              </div>
+            </div>
+            <!-- Name -->
+            <div class="row">
+              <!-- Name-->
+              <div class="col-md-4 card-body pt-0">
+                <div class="mb-2 fv-row">
+                  <label class="required form-label">Tên lỗi</label>
+                  <input
+                    formControlName="name"
+                    [(ngModel)]="input.name"
+                    class="form-control form-control-lg form-control-solid mrb-5"
+                    name="name"
+                    placeholder="Nhập tên lỗi"
+                  />
+                  <ng-container
+                    [ngTemplateOutlet]="formError"
+                    [ngTemplateOutletContext]="{
+                      validation: 'required',
+                      message: 'Tên lỗi thiết bị không được để trống.',
+                      control: form.controls['name']
+                    }"
+                  ></ng-container>
+                </div>
+              </div>
+            </div>
+
+            <!-- Error Code   && Reason-->
+            <div class="row">
+              <!-- Error Code-->
+              <div class="col-md-6 card-body pt-0">
+                <div class="mb-2 fv-row">
+                  <label class="required form-label">Mã lỗi</label>
+                  <input
+                    type="number"
+                    formControlName="code"
+                    class="form-control form-control-lg form-control-solid mrb-5"
+                    name="code"
+                    [(ngModel)]="input.code" (wheel)="disableWheel($event)"
+                  />
+                  <ng-container
+                    [ngTemplateOutlet]="formError"
+                    [ngTemplateOutletContext]="{
+                      validation: 'required',
+                      message: 'Mã lỗi không được để trống.',
+                      control: form.controls['code']
+                    }"
+                  ></ng-container>
+                  <ng-container
+                    [ngTemplateOutlet]="formError"
+                    [ngTemplateOutletContext]="{
+                      validation: 'exist',
+                      message: 'Mã lỗi đã tồn tại.',
+                      control: form.controls['code']
+                    }"
+                  ></ng-container>
+                </div>
+              </div>
+              <!--End Error code-->
+
+              <div class="col-md-6 card-body pt-0">
+                <div class="mb-2 fv-row">
+                  <label class="required form-label">Nguyên nhân</label>
+                  <input
+                    formControlName="reason"
+                    class="form-control form-control-lg form-control-solid mrb-5"
+                    name="reason"
+                    [(ngModel)]="input.reason"
+                  />
+                  <ng-container
+                    [ngTemplateOutlet]="formError"
+                    [ngTemplateOutletContext]="{
+                      validation: 'required',
+                      message: 'Nguyên nhân không được để trống.',
+                      control: form.controls['reason']
+                    }"
+                  ></ng-container>
+                </div>
+              </div>
+            </div>
+
+            <!-- Description-->
+            <div class="p-6 mb-2 fv-row">
+              <label class="form-label">Mô tả lỗi</label>
+              <ckeditor
+                [(ngModel)]="input.description"
+                formControlName="description"
+                name="description"
+              ></ckeditor>
+            </div>
+
+            <!-- save and cancel -->
+            <div class="d-flex justify-content-end py-16 px-8 mr-5">
+              <a
+                type="button"
+                class="btn btn-light mr-3 min-w-100px"
+                routerLink="/features/device-errors"
+              >Hủy</a
+              >
+              <button
+                type="button"
+                class="btn btn-primary min-w-100px"
+                data-dismiss="modal"
+                [disabled]="isLoading"
+                (click)="onAddNewBtnClick()"
+              >
+                <ng-container *ngIf="!isLoading">Thêm</ng-container>
+                <ng-container *ngIf="isLoading">
+                  <span clas="indicator-progress" [style.display]="'block'">
+                    Đang đợi...{{ " " }}
+                    <span
+                      class="spinner-border spinner-border-sm align-middle ms-2"
+                    ></span>
+                  </span>
+                </ng-container>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- check error -->
+<ng-template
+  #formError
+  let-control="control"
+  let-message="message"
+  let-validation="validation"
+>
+  <ng-container
+    *ngIf="control?.hasError(validation) && (control.dirty || control.touched)"
+  >
+    <div class="fv-plugins-message-container">
+      <span role="alert " class="text-danger">
+        {{ message }}
+      </span>
+    </div>
+  </ng-container>
+</ng-template>

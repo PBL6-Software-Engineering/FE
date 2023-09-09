@@ -1,0 +1,115 @@
+<!--begin::General options-->
+<div class="card card-flush py-4 min-h-450px">
+  <div class="card-header">
+    <div class="card-title">
+      <span [inlineSVG]="'./assets/media/icons/duotune/general/gen062.svg'"
+            class="svg-icon svg-icon-3 mr-2 zoom-13">
+
+      </span>
+      <h2 class="cl-text-title">Thêm cấu hình</h2>
+    </div>
+    <div class="d-flex align-items-center">
+      <button type="button" routerLink="/features/configurations/{{input.idDevice}}"
+              class="btn btn-back flex-between-center">
+        <span
+          [inlineSVG]="'./assets/media/icons/duotune/general/gen075.svg'"
+          class="mr-2"
+        ></span>
+        Trở về
+      </button>
+    </div>
+  </div>
+
+  <!--  begin::Card body  -->
+  <div class="card-body pt-0">
+    <form [formGroup]="form" class="form d-flex flex-column">
+      <!--  STT    -->
+      <div class="mb-10 fv-row">
+        <label class="form-label">STT</label>
+        <input type="text" [value]="currentPosition" class="form-control form-control-solid mb-2 disable" disabled />
+      </div>
+      <!--  parameter -->
+      <div class="mb-10 fv-row">
+        <label class="form-label">Tham số</label>
+        <input type="text" [(ngModel)]="input.parameter" formControlName="parameter"
+               class="form-control form-control-solid mb-2" placeholder="Nhập tên tham số" />
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <!--  byte  -->
+        <div class="mb-10 fv-row w-48">
+          <label class="required form-label">Chiều dài (byte)</label>
+          <input type="text" [(ngModel)]="input.byte" formControlName="byte"
+                 class="form-control form-control-solid mb-2" placeholder="Nhập chiều dài" />
+
+          <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                            validation: 'required',
+                            message: 'Chiều dài byte không được để trống.',
+                            control: form.controls['byte']
+                          }">
+          </ng-container>
+          <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                            validation: 'pattern',
+                            message: 'Chiều dài byte phải là một số không âm.',
+                            control: form.controls['byte']
+                          }">
+          </ng-container>
+        </div>
+
+        <!--  value  -->
+        <div class="mb-10 fv-row w-48">
+          <label class="required form-label">Giá trị</label>
+          <input type="text" [(ngModel)]="input.value" formControlName="value"
+                 class="form-control form-control-solid mb-2" placeholder="Nhập giá trị" />
+
+          <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                            validation: 'required',
+                            message: 'Giá trị không được để trống.',
+                            control: form.controls['value']
+                          }">
+          </ng-container>
+          <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                            validation: 'pattern',
+                            message: 'Giá trị phải là một số không âm.',
+                            control: form.controls['value']
+                          }">
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <button routerLink="/features/configurations/{{input.idDevice}}" class="btn btn-cancel-gray mr-4 min-w-100px">
+          Huỷ
+        </button>
+        <button type="button" class="btn bg-blue-10 min-w-100px" [disabled]="isLoading"
+                (click)="onAddNewBtnClick()">
+          <ng-container *ngIf="!isLoading">Thêm</ng-container>
+          <ng-container *ngIf="isLoading">
+            <span class="indicator-progress" [style.display]="'block'">
+                                        Đang chờ ...{{ " " }}
+              <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+            </span>
+          </ng-container>
+        </button>
+      </div>
+    </form>
+  </div>
+  <!--  end::Card body  -->
+</div>
+
+<ng-template
+  #formError
+  let-control="control"
+  let-message="message"
+  let-validation="validation"
+>
+  <ng-container
+    *ngIf="control.hasError(validation) && (control.dirty || control.touched)"
+  >
+    <div class="fv-plugins-message-container">
+      <span role="alert " class="text-danger fs-14px">
+        {{ message }}
+      </span>
+    </div>
+  </ng-container>
+</ng-template>

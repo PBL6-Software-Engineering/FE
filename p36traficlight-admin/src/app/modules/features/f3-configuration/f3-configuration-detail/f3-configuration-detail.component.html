@@ -1,0 +1,440 @@
+<!--begin::General options-->
+<div class="card card-flush py-4 min-h-450px">
+  <div class="card-header flex-column">
+    <div class="card-title d-flex justify-content-between">
+      <h2 class="cl-text-title">Cấu hình</h2>
+      <button type="button" class="btn btn-back flex-between-center min-w-80px"
+              routerLink="{{previousUrl}}">
+        <span
+          [inlineSVG]="'./assets/media/icons/duotune/general/gen075.svg'"
+          class="me-0"
+        ></span>
+        Trở về
+      </button>
+    </div>
+    <div class="card-toolbar d-flex btn-wrapper">
+      <!-- begin::delete -->
+      <div class="card-toolbar min-w-lg-100px mr-1">
+        <button
+          *ngIf="getSelection().length > 1"
+          data-toggle="modal"
+          data-target="#deleteManyModal"
+          class="btn btn-sm btn-icon-delete-many mr-1 fs-14px"
+        >
+          <span
+            [inlineSVG]="'./assets/media/icons/duotune/general/gen027.svg'"
+            class="svg-icon svg-icon-3"
+          ></span>
+          Xoá
+        </button>
+      </div>
+      <!-- end::delete -->
+
+      <!-- begin::export csv -->
+      <div class="card-toolbar mx-1" *ngIf="getSelection().length > 1">
+        <button
+          class="btn btn-sm bg-green-3 fs-14px"
+          (click)="onBtnExportCSV()"
+        >
+              <span
+                [inlineSVG]="'./assets/media/icons/duotune/general/gen126.svg'"
+                class="svg-icon svg-icon-3"
+              ></span>
+          Xuất file CSV
+        </button>
+      </div>
+      <!-- end::export csv -->
+
+      <!-- begin::open csv -->
+      <div class="card-toolbar mx-1">
+        <button class="btn btn-sm bg-blue-10 fs-14px"
+                data-toggle="modal"
+                data-target="#openCSVModal"
+        >
+          <span
+            [inlineSVG]="'./assets/media/icons/duotune/general/gen127.svg'"
+            class="svg-icon svg-icon-3"
+          ></span>
+          Mở file CSV
+        </button>
+        <input type="file" #fileInput hidden (change)="onFileSelected($event)" accept=".csv">
+      </div>
+      <!-- end::open csv -->
+
+      <!-- begin::read data -->
+      <div class="card-toolbar mx-1">
+        <button
+          class="btn btn-sm bg-blue-10 fs-14px"
+          routerLink="/features/configurations/{{idDevice}}/read"
+        >
+              <span
+                [inlineSVG]="'./assets/media/icons/duotune/general/gen128.svg'"
+                class="svg-icon svg-icon-3"
+              ></span>
+          Đọc
+        </button>
+      </div>
+      <!-- end::read data -->
+
+      <!-- begin::send data -->
+      <div class="card-toolbar mx-1">
+        <button
+          class="btn btn-sm bg-blue-10 fs-14px"
+          data-toggle="modal"
+          data-target="#confirmSendData"
+          [disabled]="dataSources.length < 1"
+        >
+          <span
+            [inlineSVG]="'./assets/media/icons/duotune/general/gen129.svg'"
+            class="svg-icon svg-icon-3"
+          ></span>
+          <ng-container *ngIf="!isLoadingSend">Gửi</ng-container>
+          <ng-container *ngIf="isLoadingSend">
+              <span class="indicator-progress" [style.display]="'block'">
+                    Đang gửi ...{{ " " }}
+                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+              </span>
+          </ng-container>
+        </button>
+      </div>
+      <!-- end::send data -->
+
+      <!-- begin::add data -->
+      <div class="card-toolbar ml-1">
+        <button
+          class="btn btn-sm bg-blue-10 fs-14px"
+          routerLink="/features/configurations/{{idDevice}}/add/{{lastPosition}}"
+        >
+          <span
+            [inlineSVG]="'./assets/media/icons/duotune/general/gen130.svg'"
+            class="svg-icon svg-icon-3"
+          ></span>
+          Thêm
+        </button>
+      </div>
+      <!-- end::add data -->
+    </div>
+  </div>
+
+  <!--  begin::Card body  -->
+  <div class="card-body pt-0">
+    <!-- begin::Table container -->
+    <div class="table-responsive">
+      <!-- begin::Table -->
+      <table class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3">
+        <!-- begin::Table head -->
+        <thead class="fs-14px cl-text-normal fw-bold">
+          <tr>
+            <th class="min-w-25px">
+              <div class="form-check form-check-sm form-check-custom form-check-solid">
+                <input
+                  [(ngModel)]="isSelectAll"
+                  (click)="onCheckAllSelected()"
+                  class="form-check-input"
+                  type="checkbox"
+                  data-kt-check="true"
+                  data-kt-check-target=".widget-13-check"
+                />
+              </div>
+            </th>
+            <th class="min-w-100px">STT</th>
+            <th class="min-w-150px text-center">Tham số</th>
+            <th class="min-w-150px text-center">Chiều dài (byte)</th>
+            <th class="min-w-100px text-center">Giá trị</th>
+            <th class="min-w-100px text-center">Actions</th>
+          </tr>
+        </thead>
+        <!-- end::Table head -->
+        <!-- begin::Table body -->
+        <tbody>
+        <tr *ngFor="let data of dataSources, index as i">
+          <!-- Select -->
+          <td>
+            <div
+              class="form-check form-check-sm form-check-custom form-check-solid"
+            >
+              <input
+                [(ngModel)]="data.checked"
+                (click)="onItemSelected(data._id)"
+                class="form-check-input widget-13-check"
+                type="checkbox"
+                value="1"
+              />
+            </div>
+          </td>
+
+          <!-- begin::STT -->
+          <td>
+            <p class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">
+              {{ data.position }}
+            </p>
+          </td>
+          <!-- end::STT -->
+
+          <!-- begin::parameter -->
+          <td>
+            <p class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">
+              {{ data.parameter }}
+            </p>
+          </td>
+          <!-- end::parameter -->
+
+          <!-- begin::byte -->
+          <td>
+            <p class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6 text-center">
+              {{ data.byte }}
+            </p>
+          </td>
+          <!-- end::byte -->
+
+          <!-- begin::value -->
+          <td>
+            <p class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6 text-center">
+              {{ data.value }}
+            </p>
+          </td>
+          <!-- end::value -->
+
+          <!-- begin::actions -->
+          <td class="text-center">
+            <!-- update -->
+            <button
+              routerLink="/features/configurations/{{idDevice}}/update/{{data._id}}"
+              class="btn btn-icon btn-icon-update me-2"
+            >
+                 <span
+                   [inlineSVG]="'./assets/media/icons/duotune/general/gen120.svg'"
+                   class="svg-icon svg-icon-3 zoom-9"
+                 >
+                </span>
+            </button>
+
+            <!-- delete -->
+            <button
+              (click)="updateDeleteId(data._id)"
+              data-toggle="modal"
+              data-target="#deleteOneModal"
+              class="btn btn-icon btn-icon-delete-one"
+            >
+                <span
+                  [inlineSVG]="'./assets/media/icons/duotune/general/gen117.svg'"
+                  class="svg-icon svg-icon-3">
+                </span>
+            </button>
+          </td>
+          <!-- end:actions -->
+        </tr>
+        </tbody>
+        <!-- end::Table body -->
+      </table>
+      <!-- end::Table -->
+    </div>
+    <!-- end::Table container -->
+  </div>
+  <!--  end::Card body  -->
+</div>
+
+<!-- Delete one Modal -->
+<div
+  class="modal fade"
+  id="deleteOneModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="deleteOneModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteOneModalLabel">
+          <b>XÁC NHẬN XOÁ DỮ LIỆU</b>
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Bạn có thực sự muốn xóa bản ghi này? Quá trình này không thể hoàn tác.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary min-w-75px" data-dismiss="modal">
+          Huỷ
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger min-w-75px"
+          data-dismiss="modal"
+          (click)="onDeleteBtnClick()"
+        >
+          Xoá
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete many Modal -->
+<div
+  class="modal fade"
+  id="deleteManyModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="deleteManyModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteManyModalLabel">
+          <b>XÁC NHẬN XOÁ DỮ LIỆU</b>
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Bạn có thực sự muốn xóa {{ getSelection().length }} bản ghi được chọn không?
+        Quá trình này không thể hoàn tác!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary min-w-75px" data-dismiss="modal">
+          Huỷ
+        </button>
+        <button
+          type="button" class="btn btn-danger min-w-75px" data-dismiss="modal"
+          (click)="onDeleteManyBtnClick()"
+        >
+          Xoá
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  confirm send data modal -->
+<div
+  class="modal fade"
+  id="confirmSendData"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="confirmSendDataLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body d-flex flex-column align-items-center px-0">
+        <div>
+          <span
+            [inlineSVG]="'./assets/media/icons/duotune/general/gen131.svg'"
+            class="d-inline-block w-50px h-50px"
+          ></span>
+        </div>
+        <div class="mt-3 mb-6 fs-5" *ngIf="messageError === ''">Bạn muốn gửi cấu hình đến thiết bị!</div>
+        <div class="mt-3 mb-6 fs-5 text-danger" *ngIf="messageError !== ''">{{messageError}}</div>
+
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-sm btn-cancel-gray mr-4 min-w-100px fs-14px" data-dismiss="modal">
+            Huỷ
+          </button>
+          <button type="button" class="btn btn-sm bg-blue-10 min-w-100px fs-14px" data-dismiss="modal"
+                  *ngIf="messageError === ''" (click)="sendData()">
+            Gửi
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--  confirm open file csv modal -->
+<div
+  class="modal fade"
+  id="openCSVModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="openCSVModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body d-flex flex-column align-items-center px-0">
+        <div class="my-3 fs-6">Mở file CSV sẽ ghi đè dữ liệu vào hệ thống!</div>
+        <div class="mb-6 fs-6">Bạn có muốn tiếp tục mở file CSV không?</div>
+
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-sm btn-cancel-gray mr-4 min-w-100px fs-14px" data-dismiss="modal">
+            Huỷ
+          </button>
+          <div class="card-toolbar mx-1">
+            <button
+              class="btn btn-sm bg-green-3 fs-14px d-flex align-items-center"
+              data-dismiss="modal"
+              (click)="fileInput.click()"
+            >
+              <span
+                [inlineSVG]="'./assets/media/icons/duotune/general/gen127.svg'"
+                class="svg-icon svg-icon-3"
+              ></span>
+              Mở file CSV
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button id="openNotifyErrorModal" [hidden]="true" data-toggle="modal" data-target="#notifyErrorFile">Open Modal</button>
+
+<!--  confirm open file csv modal -->
+<div
+  class="modal fade"
+  id="notifyErrorFile"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="notifyErrorFileLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title text-center" id="notifyErrorFileLabel">
+            <b>Dữ liệu File CSV không hợp lệ!</b>
+          </h3>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div *ngFor="let messageError of messageErrorsFile" class="my-1">
+            {{messageError}}
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-sm btn-cancel-gray mr-4 min-w-100px fs-14px" data-dismiss="modal">
+            Huỷ
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
