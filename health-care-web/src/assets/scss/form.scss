@@ -1,0 +1,6 @@
+@import "./font-color.scss";
+
+::placeholder {
+    color: $color-neutral700;
+    opacity: 1;
+}
