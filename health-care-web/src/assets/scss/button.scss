@@ -1,0 +1,27 @@
+@import './font-color.scss';
+
+.btn {
+    &-outline {
+        &-gray {
+            border: 1px solid rgb(210, 214, 220);
+            background: white;
+            font-weight: 600;
+
+            &:hover {
+                background-color: $color-neutral50;
+            }
+        }
+    }
+
+    &-blue {
+        border: 1px solid $color-primaryBase;
+        background: $color-primaryBase;
+        color: white;
+        font-weight: 600;
+
+        &:hover {
+            background-color: $color-blue700;
+            color: white;
+        }
+    }
+}
