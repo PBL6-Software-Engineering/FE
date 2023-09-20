@@ -1,0 +1,55 @@
+<div class="px-24 py-12 sub-header-mobile">
+  <h6 class="fw-700">Danh mục</h6>
+  <div class="column-center w-100 py-12 cursor-pointer border-bottom">
+    <img src="assets/media/icon/discover.svg" alt="" />
+    <span class="ml-8">Chuyên mục</span>
+    <div style="margin-left: auto">
+      <img src="assets/media/icon/chevronRight.svg" alt=">" />
+    </div>
+  </div>
+
+  <div class="column-center w-100 py-12 cursor-pointer border-bottom">
+    <img src="assets/media/icon/health-tools.svg" alt="" />
+    <span class="ml-8">Kiểm tra sức khỏe</span>
+    <div style="margin-left: auto">
+      <img src="assets/media/icon/chevronRight.svg" alt=">" />
+    </div>
+  </div>
+
+  <div class="column-center w-100 py-12 cursor-pointer border-bottom">
+    <img src="assets/media/icon/care.svg" alt="" />
+    <span class="ml-8">Đặt lịch với bác sĩ</span>
+    <div style="margin-left: auto">
+      <img src="assets/media/icon/chevronRight.svg" alt=">" />
+    </div>
+  </div>
+
+  <div class="column-center w-100 py-12 cursor-pointer">
+    <img src="assets/media/icon/community.svg" alt="" />
+    <span class="ml-8">Cộng đồng</span>
+    <div style="margin-left: auto">
+      <img src="assets/media/icon/chevronRight.svg" alt=">" />
+    </div>
+  </div>
+
+  <div class="mt-2">
+    <div class="row-between">
+      <h6 class="fw-700">Tâm điểm</h6>
+      <span class="column-center color-link cursor-pointer">
+        Các chủ đề tâm điểm
+        <img
+          src="assets/media/icon/chevronRightActive.svg"
+          alt=">"
+          class="ml-4"
+        />
+      </span>
+    </div>
+
+    <div *ngFor="let item of news">
+      <div class="column-center cursor-pointer mb-12">
+        <img src="{{ item.image }}" alt="" class="image-new" />
+        <span class="ml-20">{{ item.title }}</span>
+      </div>
+    </div>
+  </div>
+</div>

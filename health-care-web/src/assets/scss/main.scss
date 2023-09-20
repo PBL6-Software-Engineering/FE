@@ -112,6 +112,18 @@ hr {
     .fs-#{$i} {
         font-size: #{$i}px;
     }
+
+    .w-#{$i * 4} {
+        width: #{$i * 4}px;
+    }
+
+    .mw-#{$i * 4} {
+        min-width: #{$i * 4}px;
+    }
+
+    .h-#{$i * 4} {
+        height: #{$i * 4}px;
+    }
 }
 
 .position {
@@ -136,4 +148,30 @@ hr {
     .fw-#{$i * 100} {
         font-weight: #{$i}00;
     }
+}
+
+.border-radius {
+    &-50 {
+        border-radius: 50%;
+    }
+
+    &-4 {
+        border-radius: 4px;
+    }
+
+    &-6 {
+        border-radius: 6px;
+    }
+
+    &-8 {
+        border-radius: 8px;
+    }
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e4e8ec;
 }

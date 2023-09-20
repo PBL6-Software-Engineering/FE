@@ -6,21 +6,24 @@ import { UserComponent } from './user.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { F1HomePageModule } from './features/f1-home-page/f1-home-page.module';
-import { F2TestModule } from './features/f2-test/f2-test.module';
+import { SubHeaderComponent } from './layout/components/sub-header/sub-header.component';
+import { HeaderInfoUserComponent } from './layout/components/header-info-user/header-info-user.component';
+import { SubHeaderMobileComponent } from './layout/components/sub-header-mobile/sub-header-mobile.component';
 
 
 @NgModule({
   declarations: [
-  
     UserComponent,
        HeaderComponent,
-       FooterComponent
+       FooterComponent,
+       SubHeaderComponent,
+       HeaderInfoUserComponent,
+       SubHeaderMobileComponent
   ],
   imports: [
     CommonModule,
     UserRoutingModule,
     F1HomePageModule,
-    F2TestModule
   ]
 })
 export class UserModule { }

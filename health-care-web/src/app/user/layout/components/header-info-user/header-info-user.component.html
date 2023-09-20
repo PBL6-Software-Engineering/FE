@@ -1,0 +1,102 @@
+<div class="popup header-info-user p-16">
+  <div>
+    <div class="column-center">
+      <img
+        src="http://dut.udn.vn/Files/admin/images/Tin_tuc/Khac/2020/LogoDUT/image002.jpg"
+        alt=""
+        class="border-radius-50 w-64 h-64"
+      />
+      <div class="ml-20 cursor-pointer">
+        <h6 class="fw-700">Toàn Nguyễn</h6>
+        <p style="color: #595959" class="fs-14">
+          Xem hồ sơ của tôi
+          <img src="assets/media/icon/arrow_right.svg" alt="" />
+        </p>
+      </div>
+    </div>
+
+    <div class="component px-16 py-12 my-16 column-center fw-700 fs-14">
+      <img src="assets/media/icon/icon-rank-member.svg" alt="" class="mr-8" />
+      Thành viên
+    </div>
+
+    <div class="row gx-3">
+      <div class="col col-6 mb-16">
+        <div class="px-16 py-12 component fs-14">
+          <img src="assets/media/icon/icon-myHealth.svg" alt="" />
+          <p class="fw-700 mt-2">Sức khoẻ</p>
+        </div>
+      </div>
+
+      <div class="col col-6">
+        <div class="px-16 py-12 component fs-14">
+          <img src="assets/media/icon/icon-mySaved.svg" alt="" />
+          <p class="fw-700 mt-2">Đã lưu</p>
+        </div>
+      </div>
+
+      <div class="col col-6">
+        <div class="px-16 py-12 component fs-14">
+          <img src="assets/media/icon/icon-myBooking.svg" alt="" />
+          <p class="fw-700 mt-2">Lịch sử đặt chỗ</p>
+        </div>
+      </div>
+
+      <div class="col col-6">
+        <div class="px-16 py-12 component fs-14">
+          <img src="assets/media/icon/icon-myCommunity.svg" alt="" />
+          <p class="fw-700 mt-2">Đã tham gia</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="py-20">
+    <div
+      class="row-between border-bottom cursor-pointer h-48"
+      data-bs-toggle="collapse"
+      href="#collapseExample"
+      role="button"
+      aria-expanded="false"
+      aria-controls="collapseExample"
+    >
+      <div class="column-center">
+        <img src="assets/media/icon/icon-settingsWheel.svg" alt="" />
+        <span class="ml-8">Thiết lập tài khoản</span>
+      </div>
+      <img src="assets/media/icon/icon-chevronDown.svg" alt="" width="28px" />
+    </div>
+
+    <div class="collapse fs-14" id="collapseExample">
+      <div class="column-center border-bottom cursor-pointer h-48">
+        <span class="ml-8">Đăng ký bản tin sức khỏe</span>
+      </div>
+
+      <div class="column-center border-bottom cursor-pointer h-48">
+        <span class="ml-8">Mật khẩu</span>
+      </div>
+
+      <div class="column-center border-bottom cursor-pointer h-48">
+        <span class="ml-8">Vô hiệu hoá tài khoản</span>
+      </div>
+    </div>
+
+    <div class="column-center border-bottom cursor-pointer h-48">
+      <img src="assets/media/icon/icon-helpCircle.svg" alt="" />
+      <span class="ml-8">Trợ giúp</span>
+    </div>
+
+    <div class="mt-20">
+      <button class="btn btn-outline-gray w-100 center-full" (click)="logout()">
+        <img
+          src="assets/media/icon/icon-logOut.svg"
+          alt=""
+          width="16px"
+          height="16px"
+          class="mr-8"
+        />
+        Đăng xuất
+      </button>
+    </div>
+  </div>
+</div>

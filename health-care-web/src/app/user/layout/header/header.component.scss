@@ -1,5 +1,8 @@
+$header-height: 70px;
+
 header {
-    height: 70px;
+    height: $header-height;
+    border-bottom: 1px solid #dfe3e6;
 }
 
 #logo-main {
@@ -7,9 +10,84 @@ header {
     height: 24px;
     max-width: 100%;
     max-height: 100%;
+    cursor: pointer;
 }
 
-.btn-login {
-    border: 1px solid rgb(210, 214, 220);
-    background: white;
+.btn {
+    &-login {
+        border: 1px solid rgb(210, 214, 220);
+        background: white;
+        min-width: 120px;
+    }
+
+    &-book {
+        min-width: 165px;
+    }
 }
+
+.nav-link {
+    color: #1b3250 !important;
+    font-weight: 700;
+}
+
+.sub-header {
+    position: absolute;
+    top: $header-height;
+    background-color: white;
+    width: 100%;
+}
+
+@media screen and (max-width: 1296px) {
+    .btn-book {
+        display: none;
+    }
+
+    .icon-login {
+        width: 24px;
+        height: 24px;
+        display: block !important;
+        line-height: 70px;
+    }
+}
+
+.avatar-user {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    margin-top: -6px;
+    border-radius: 50%;
+}
+
+.icon-menu-search {
+    display: none;
+}
+
+@media screen and (max-width: 1296px) {
+    .btn-login {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1092px) {}
+
+
+/*Ipad ngang(1024 x 768)*/
+@media screen and (max-width: 1024px) {}
+
+@media screen and (max-width: 992px) {
+    .icon-menu-search {
+        display: block;
+    }
+}
+
+/*Ipad dọc(768 x 1024)*/
+@media screen and (max-width: 768px) {}
+
+/*Tablet nhỏ(480 x 640)*/
+@media screen and (max-width: 480px) {}
+
+/*Iphone(480 x 640)*/
+@media screen and (max-width: 320px) {}
+
+/*Smart phone nhỏ*/
+@media screen and (max-width: 240px) {}
