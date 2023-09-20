@@ -1,22 +1,120 @@
-<header class="px-30 d-flex align-items-center justify-content-between">
-  <div class="d-flex align-items-center" style="gap: 24px">
+<header class="px-20 row-between column-center position-fixed w-100 top-0">
+  <div class="column-center" style="gap: 16px">
+    <img
+      src="assets/media/icon/hamburgerMenuNewWithSearch.svg"
+      alt=""
+      width="24px"
+      height="24px"
+      class="cursor-pointer icon-menu-search"
+      (click)="clickSubMenuBarMobile()"
+    />
     <img src="assets/media/logo/hellobacsi.png" alt="Logo" id="logo-main" />
     <div class="position-relative">
       <img
         src="assets/media/icon/icon_search.svg"
         alt="Icon"
-        class="position-absolute-left-8"
+        class="position-absolute-left-8 cursor-pointer"
       />
       <input
         type="text"
-        class="form-control pl-40"
+        class="form-control pl-40 mw-160 input-search"
         placeholder="Tìm kiếm HelloBacsi"
       />
     </div>
   </div>
 
-  <div>
-    <button class="btn btn-blue">Đặt lịch với bác sĩ</button>
-    <button class="btn btn-outline-gray ml-20">Đăng nhập</button>
+  <div class="d-flex flex-end">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a
+              class="btn nav-link dropdown-toggle"
+              (click)="chooseTab('CATEGORY')"
+            >
+              Chuyên mục
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="btn nav-link dropdown-toggle"
+              (click)="chooseTab('HEALTH_CHECK')"
+            >
+              Kiểm tra sức khoẻ
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="btn nav-link dropdown-toggle"
+              (click)="chooseTab('BOOKING_DOCTOR')"
+            >
+              Đặt lịch với bác sĩ
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="btn nav-link dropdown-toggle"
+              (click)="chooseTab('SOCIAL')"
+            >
+              Cộng đồng
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-blue btn-book">Đặt lịch với bác sĩ</a>
+          </li>
+          <li class="nav-item ml-12">
+            <!-- Button login -->
+            <a
+              class="btn btn-outline-gray btn-login"
+              (click)="isLogin = true"
+              *ngIf="!isLogin"
+            >
+              Đăng nhập
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="position-relative d-flex align-items-center">
+      <!-- Icon login -->
+      <img
+        src="assets/media/image/icon-login.png"
+        alt=""
+        class="cursor-pointer d-none icon-login"
+        (click)="isLogin = true"
+        *ngIf="!isLogin"
+      />
+
+      <!-- Avatar after login -->
+      <img
+        src="https://lh3.googleusercontent.com/a/ACg8ocIcBt2ydFueGAP7E7wLNuJzG6GM9yQW3hc26fKR28Ey=s96-c"
+        alt=""
+        class="avatar-user"
+        (click)="clickAvatarUser()"
+        *ngIf="isLogin"
+      />
+      <app-header-info-user
+        *ngIf="isOpenHeaderInfo"
+        (logoutEvent)="logout()"
+      ></app-header-info-user>
+    </div>
   </div>
 </header>
+
+<div class="sub-header">
+  <!-- Sub header -->
+  <app-sub-header
+    *ngIf="isOpenSubMenuBar"
+    [data]="tabObj"
+    (closeSubHeader)="this.isOpenSubMenuBar = false"
+  ></app-sub-header>
+
+  <!-- Sub header mobile -->
+  <app-sub-header-mobile
+    *ngIf="isOpenSubMenuBarMobile"
+    [data]="tabObj"
+    (closeSubHeaderMobile)="this.isOpenSubMenuBarMobile = false"
+    class="app-sub-header-mobile"
+  ></app-sub-header-mobile>
+</div>

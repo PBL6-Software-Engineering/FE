@@ -1,0 +1,26 @@
+.popup {
+    position: absolute;
+    z-index: 20;
+    border-radius: 6px;
+    box-shadow: rgb(217, 217, 217) 0px 4px 8px;
+    background-color: white;
+
+    &::before {
+        position: absolute;
+        right: 11px;
+        bottom: 100%;
+        width: 0px;
+        height: 0px;
+        border-right: 0.5rem solid transparent;
+        border-bottom: 0.5rem solid rgb(255, 255, 255);
+        border-left: 0.5rem solid transparent;
+        border-image: initial;
+        border-top: none;
+        content: "";
+        filter: drop-shadow(rgba(0, 0, 0, 0.1) 0px -0.0625rem 0.0625rem);
+    }
+}
+
+.popup-content {
+    padding: 18px 16px;
+}

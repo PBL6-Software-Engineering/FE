@@ -11,6 +11,17 @@
                 background-color: $color-neutral50;
             }
         }
+
+        &-blue {
+            border: 1px solid #2d87f3;
+            background: white;
+            color: #2d87f3;
+            font-weight: 600;
+
+            // &:hover {
+            //     background-color: $color-neutral50;
+            // }
+        }
     }
 
     &-blue {
@@ -23,5 +34,10 @@
             background-color: $color-blue700;
             color: white;
         }
+    }
+
+    &-icon-close {
+        background-color: none;
+        border: none;
     }
 }
