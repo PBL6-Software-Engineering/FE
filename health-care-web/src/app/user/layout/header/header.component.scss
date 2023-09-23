@@ -8,8 +8,8 @@ header {
 }
 
 #logo-main {
-    width: 107px;
-    height: 24px;
+    width: 100px;
+    height: 50px;
     max-width: 100%;
     max-height: 100%;
     cursor: pointer;
@@ -39,19 +39,6 @@ header {
     width: 100%;
 }
 
-@media screen and (max-width: 1296px) {
-    .btn-book {
-        display: none;
-    }
-
-    .icon-login {
-        width: 24px;
-        height: 24px;
-        display: block !important;
-        line-height: 70px;
-    }
-}
-
 .avatar-user {
     width: 40px;
     height: 40px;
@@ -64,14 +51,30 @@ header {
     display: none;
 }
 
-@media screen and (max-width: 1296px) {
-    .btn-login {
-        display: none;
-    }
-}
-
 @media screen and (max-width: 992px) {
     .icon-menu-search {
         display: block;
+    }
+}
+
+@media screen and (max-width: 584px) {
+
+    .icon-login,
+    .icon-menu-search {
+        display: block !important;
+    }
+
+    .btn-login {
+        display: none;
+    }
+
+
+    #logo-main {
+        width: 90px;
+        height: 40px;
+    }
+
+    header {
+        padding: 0 10px;
     }
 }
