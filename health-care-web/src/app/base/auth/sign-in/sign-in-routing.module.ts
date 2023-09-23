@@ -8,7 +8,7 @@ import { SignInUserComponent } from './sign-in-user/sign-in-user.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: '', // auth/sign-in
     component: SignInComponent,
     children: [
       {

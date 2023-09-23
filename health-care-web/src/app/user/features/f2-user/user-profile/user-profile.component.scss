@@ -1,0 +1,21 @@
+.component .item {
+    border-bottom: 1px solid #e4e8ec;
+    padding: 16px 0px;
+}
+
+.component .item:last-child {
+    border-bottom: none;
+}
+
+.item-field {
+    font-size: 14px;
+    color: rgb(89, 89, 89);
+    font-weight: 600;
+    padding-bottom: 12px;
+}
+
+.icon-camera {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}

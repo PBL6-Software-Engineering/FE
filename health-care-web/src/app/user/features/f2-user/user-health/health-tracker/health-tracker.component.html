@@ -1,0 +1,183 @@
+<div class="component row-between py-16 position-relative">
+  <div class="info-health">
+    <span>Tuổi</span>
+    <span class="fw-700 mt-2">2 tuổi</span>
+  </div>
+
+  <div class="info-health">
+    <span> Chiều cao </span>
+    <span class="fw-700 mt-2"> 123cm </span>
+  </div>
+
+  <div class="info-health">
+    <span> Cân nặng </span>
+    <span class="fw-700 mt-2"> 123 kg </span>
+  </div>
+
+  <div class="info-health">
+    <span>Hoạt động</span>
+    <span class="fw-700 mt-2">--</span>
+  </div>
+
+  <img
+    src="assets/media/icon/icon-edit-active.svg"
+    alt=""
+    class="icon-edit"
+    data-bs-toggle="modal"
+    data-bs-target="#modalEditInfo"
+  />
+</div>
+
+<div class="container px-4 mt-24">
+  <div class="row gx-5">
+    <div class="col col-6 p-0">
+      <div class="component component-col p-16">
+        <h3 class="fs-16 fw-700">Tính chỉ số BMI</h3>
+        <div class="row-between column-center mt-2">
+          <div>
+            <p>Không có dữ liệu</p>
+            <p class="color-link fw-700 cursor-pointer">Tính</p>
+          </div>
+          <div>
+            <img src="assets/media/image/bmi.png" class="w-50" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col col-6 p-0">
+      <div class="component component-col p-16">
+        <h3 class="fs-16 fw-700">Tính chỉ số BMR</h3>
+        <div class="row-between column-center mt-2">
+          <div>
+            <p>Không có dữ liệu</p>
+            <p class="color-link fw-700 cursor-pointer">Tính</p>
+          </div>
+          <div>
+            <img src="assets/media/image/kcal.png" class="w-50" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col col-6 p-0">
+      <div class="component component-col p-16">
+        <h3 class="fs-16 fw-700">Nhịp tim lý tưởng</h3>
+        <div class="row-between column-center mt-2">
+          <div>
+            <p>Không có dữ liệu</p>
+            <p class="color-link fw-700 cursor-pointer">Tính</p>
+          </div>
+          <div>
+            <img src="assets/media/image/heart.png" class="w-50" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="modalEditInfo"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title fw-700" id="exampleModalLabel">
+          Cập nhật thông tin
+        </h6>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body pt-0">
+        <div>
+          <h6 class="fs-14 my-3 fw-700">Ngày sinh</h6>
+          <input
+            type="date"
+            class="form-control"
+            id="dateOfBirthPicker"
+            placeholder="Chọn ngày sinh"
+          />
+        </div>
+
+        <div>
+          <h6 class="fs-14 my-3 fw-700">Chiều cao của bạn? (cm)</h6>
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Nhập chiều cao của bạn"
+          />
+        </div>
+
+        <div>
+          <h6 class="fs-14 my-3 fw-700">Cân nặng của bạn? (kg)</h6>
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Nhập cân nặng của bạn"
+          />
+        </div>
+
+        <div>
+          <h6 class="fs-14 my-3 fw-700">Chọn cường độ hoạt động của bạn</h6>
+          <div class="d-flex justify-content-between">
+            <img
+              class="activity-img"
+              src="assets/media/icon/activity-low.svg"
+              alt=""
+              [class.active]="activityMode === 'low'"
+              (click)="changeActivityMode('low')"
+            />
+            <img
+              class="activity-img"
+              src="assets/media/icon/activity-moderate.svg"
+              alt=""
+              [class.active]="activityMode === 'moderate'"
+              (click)="changeActivityMode('moderate')"
+            />
+            <img
+              class="activity-img"
+              src="assets/media/icon/activity-aerobic.svg"
+              alt=""
+              [class.active]="activityMode === 'aerobic'"
+              (click)="changeActivityMode('aerobic')"
+            />
+            <img
+              class="activity-img"
+              src="assets/media/icon/activity-vigorous.svg"
+              alt=""
+              [class.active]="activityMode === 'vigorous'"
+              (click)="changeActivityMode('vigorous')"
+            />
+            <img
+              class="activity-img"
+              src="assets/media/icon/activity-max.svg"
+              alt=""
+              [class.active]="activityMode === 'max'"
+              (click)="changeActivityMode('max')"
+            />
+          </div>
+          <h6 class="fs-14 fw-700 mt-16 mb-0 text-center color-link">
+            {{ noteActivityMode }}
+          </h6>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Huỷ
+        </button>
+        <button type="button" class="btn btn-primary">Lưu</button>
+      </div>
+    </div>
+  </div>
+</div>

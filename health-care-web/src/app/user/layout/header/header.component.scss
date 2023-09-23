@@ -3,6 +3,8 @@ $header-height: 70px;
 header {
     height: $header-height;
     border-bottom: 1px solid #dfe3e6;
+    background-color: white;
+    z-index: 100;
 }
 
 #logo-main {
@@ -68,26 +70,8 @@ header {
     }
 }
 
-@media screen and (max-width: 1092px) {}
-
-
-/*Ipad ngang(1024 x 768)*/
-@media screen and (max-width: 1024px) {}
-
 @media screen and (max-width: 992px) {
     .icon-menu-search {
         display: block;
     }
 }
-
-/*Ipad dọc(768 x 1024)*/
-@media screen and (max-width: 768px) {}
-
-/*Tablet nhỏ(480 x 640)*/
-@media screen and (max-width: 480px) {}
-
-/*Iphone(480 x 640)*/
-@media screen and (max-width: 320px) {}
-
-/*Smart phone nhỏ*/
-@media screen and (max-width: 240px) {}

@@ -9,6 +9,7 @@ import { F1HomePageModule } from './features/f1-home-page/f1-home-page.module';
 import { SubHeaderComponent } from './layout/components/sub-header/sub-header.component';
 import { HeaderInfoUserComponent } from './layout/components/header-info-user/header-info-user.component';
 import { SubHeaderMobileComponent } from './layout/components/sub-header-mobile/sub-header-mobile.component';
+import { F2UserModule } from './features/f2-user/f2-user.module';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { SubHeaderMobileComponent } from './layout/components/sub-header-mobile/
     CommonModule,
     UserRoutingModule,
     F1HomePageModule,
+    F2UserModule,
   ]
 })
 export class UserModule { }
