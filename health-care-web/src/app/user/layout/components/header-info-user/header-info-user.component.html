@@ -6,7 +6,11 @@
         alt=""
         class="border-radius-50 w-64 h-64"
       />
-      <div class="ml-20 cursor-pointer">
+      <div
+        class="ml-20 cursor-pointer"
+        routerLink="/user/profile"
+        (click)="onCloseHeaderInfo()"
+      >
         <h6 class="fw-700">Toàn Nguyễn</h6>
         <p style="color: #595959" class="fs-14">
           Xem hồ sơ của tôi

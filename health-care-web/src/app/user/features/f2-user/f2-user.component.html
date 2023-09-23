@@ -1,0 +1,104 @@
+<div class="container-fluid container-md py-24">
+  <div class="row">
+    <div class="col-3 p-0 component left-component">
+      <div
+        class="item-info"
+        routerLink="/user/profile"
+        routerLinkActive="active"
+      >
+        <img
+          src="assets/media/icon/icon-userDefault.svg"
+          alt=""
+          class="change-color-active-blue"
+        />
+
+        <span class="ml-12">Hồ sơ</span>
+      </div>
+
+      <div
+        class="item-info"
+        routerLink="/user/health"
+        routerLinkActive="active"
+      >
+        <img src="assets/media/icon/icon-myHealth.svg" alt="" />
+        <span class="ml-12">Sức khỏe của tôi</span>
+      </div>
+
+      <div class="item-info" routerLink="/user/saved" routerLinkActive="active">
+        <img src="assets/media/icon/icon-mySaved.svg" alt="" />
+        <span class="ml-12">Đã lưu</span>
+      </div>
+
+      <div
+        class="item-info"
+        routerLink="/user/booking"
+        routerLinkActive="active"
+      >
+        <img src="assets/media/icon/icon-myBooking.svg" alt="" />
+        <span class="ml-12">Lịch sử đặt chỗ</span>
+      </div>
+
+      <div
+        class="row-between cursor-pointer h-48 item-info"
+        data-bs-toggle="collapse"
+        href="#collapseSetting"
+        role="button"
+        aria-expanded="false"
+        aria-controls="collapseSetting"
+      >
+        <div class="column-center">
+          <img src="assets/media/icon/icon-settingsWheel.svg" alt="" />
+          <span class="ml-12">Thiết lập tài khoản</span>
+        </div>
+        <img src="assets/media/icon/icon-chevronDown.svg" alt="" width="28px" />
+      </div>
+
+      <div class="collapse fs-14" id="collapseSetting">
+        <div
+          class="column-center cursor-pointer h-48 item-info"
+          routerLink="/user/subscriptions"
+          routerLinkActive="active"
+        >
+          <span class="ml-12">Đăng ký bản tin sức khỏe</span>
+        </div>
+
+        <div
+          class="column-center cursor-pointer h-48 item-info"
+          routerLink="/user/password"
+          routerLinkActive="active"
+        >
+          <span class="ml-12">Mật khẩu</span>
+        </div>
+
+        <div
+          class="column-center cursor-pointer h-48 item-info border-bottom"
+          routerLink="/user/disable-account"
+          routerLinkActive="active"
+        >
+          <span class="ml-12">Vô hiệu hoá tài khoản</span>
+        </div>
+      </div>
+
+      <div
+        class="column-center cursor-pointer h-48 item-info"
+        routerLink="/user/help"
+        routerLinkActive="active"
+      >
+        <img
+          src="assets/media/icon/icon-helpCircle.svg"
+          alt=""
+          class="change-color-active-blue"
+        />
+        <span class="ml-12">Trợ giúp</span>
+      </div>
+
+      <div class="item-info">
+        <img src="assets/media/icon/icon-logOut.svg" alt="" />
+        <span class="ml-12">Đăng xuất</span>
+      </div>
+    </div>
+    <div class="col-9" style="padding-left: 5%">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

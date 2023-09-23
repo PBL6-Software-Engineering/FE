@@ -7,6 +7,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class HeaderInfoUserComponent {
   @Output() logoutEvent = new EventEmitter();
+  @Output() closeHeaderInfo = new EventEmitter();
   constructor() {
     
   }
@@ -14,5 +15,9 @@ export class HeaderInfoUserComponent {
   logout(): void {
     console.log('logout')
     this.logoutEvent.emit();
+  }
+  
+  onCloseHeaderInfo(): void {
+    this.closeHeaderInfo.emit();
   }
 }

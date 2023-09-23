@@ -1,0 +1,30 @@
+.component {
+    .info-health {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 25%;
+    }
+}
+
+.icon-edit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 50%;
+    padding: 4px;
+    border: 1px solid rgb(45, 135, 243);
+    cursor: pointer;
+    transform: translateX(0%) translateY(-40%);
+}
+
+.activity-img {
+    padding: 16px;
+    cursor: pointer;
+    border: 1px #ccc solid;
+    border-radius: 4px;
+}
+
+.activity-img.active {
+    filter: invert(0.5) sepia(0.5) saturate(5) hue-rotate(175deg);
+}
