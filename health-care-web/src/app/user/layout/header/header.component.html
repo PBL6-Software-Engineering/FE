@@ -1,5 +1,5 @@
 <header class="px-20 row-between column-center position-fixed w-100 top-0">
-  <div class="column-center" style="gap: 16px">
+  <div class="column-center gap-3">
     <img
       src="assets/media/icon/hamburgerMenuNewWithSearch.svg"
       alt=""
@@ -8,7 +8,7 @@
       class="cursor-pointer icon-menu-search"
       (click)="clickSubMenuBarMobile()"
     />
-    <img src="assets/media/logo/hellobacsi.png" alt="Logo" id="logo-main" />
+    <img src="assets/media/logo/logo.svg" alt="Logo" id="logo-main" />
     <div class="position-relative">
       <img
         src="assets/media/icon/icon_search.svg"
@@ -18,7 +18,7 @@
       <input
         type="text"
         class="form-control pl-40 mw-160 input-search"
-        placeholder="Tìm kiếm HelloBacsi"
+        placeholder="Tìm kiếm"
       />
     </div>
   </div>
@@ -35,14 +35,14 @@
               Chuyên mục
             </a>
           </li>
-          <li class="nav-item dropdown">
+          <!-- <li class="nav-item dropdown">
             <a
               class="btn nav-link dropdown-toggle"
               (click)="chooseTab('HEALTH_CHECK')"
             >
               Kiểm tra sức khoẻ
             </a>
-          </li>
+          </li> -->
           <li class="nav-item dropdown">
             <a
               class="btn nav-link dropdown-toggle"
@@ -59,31 +59,47 @@
               Cộng đồng
             </a>
           </li>
-          <li class="nav-item">
-            <a class="btn btn-blue btn-book">Đặt lịch với bác sĩ</a>
-          </li>
-          <li class="nav-item ml-12">
-            <!-- Button login -->
-            <a
-              class="btn btn-outline-gray btn-login"
-              (click)="isLogin = true"
-              *ngIf="!isLogin"
-            >
-              Đăng nhập
-            </a>
-          </li>
+          <!-- <li class="nav-item ml-12">
+            
+          </li> -->
         </ul>
       </div>
     </nav>
 
     <div class="position-relative d-flex align-items-center">
+      <!-- Button login -->
+      <a
+        class="btn btn-outline-gray btn-login"
+        (click)="isLogin = true"
+        *ngIf="!isLogin"
+      >
+        Đăng nhập
+      </a>
+
       <!-- Icon login -->
       <img
         src="assets/media/image/icon-login.png"
         alt=""
-        class="cursor-pointer d-none icon-login"
+        class="cursor-pointer d-none icon-login w-24 h-24"
         (click)="isLogin = true"
         *ngIf="!isLogin"
+      />
+
+      <!-- Icon messenger -->
+      <img
+        src="assets/media/image/messenger.png"
+        class="w-24 h-24 mx-3 cursor-pointer"
+        alt=""
+        *ngIf="isLogin"
+      />
+
+      <!-- Icon booking -->
+      <img
+        src="assets/media/icon/icon-myBooking.svg"
+        alt=""
+        class="cursor-pointer icon-booking mr-16"
+        (click)="isLogin = true"
+        *ngIf="isLogin"
       />
 
       <!-- Avatar after login -->
@@ -94,6 +110,7 @@
         (click)="clickAvatarUser()"
         *ngIf="isLogin"
       />
+
       <app-header-info-user
         *ngIf="isOpenHeaderInfo"
         (logoutEvent)="logout()"

@@ -3,11 +3,13 @@ $header-height: 70px;
 header {
     height: $header-height;
     border-bottom: 1px solid #dfe3e6;
+    background-color: white;
+    z-index: 100;
 }
 
 #logo-main {
-    width: 107px;
-    height: 24px;
+    width: 100px;
+    height: 50px;
     max-width: 100%;
     max-height: 100%;
     cursor: pointer;
@@ -37,19 +39,6 @@ header {
     width: 100%;
 }
 
-@media screen and (max-width: 1296px) {
-    .btn-book {
-        display: none;
-    }
-
-    .icon-login {
-        width: 24px;
-        height: 24px;
-        display: block !important;
-        line-height: 70px;
-    }
-}
-
 .avatar-user {
     width: 40px;
     height: 40px;
@@ -62,32 +51,30 @@ header {
     display: none;
 }
 
-@media screen and (max-width: 1296px) {
-    .btn-login {
-        display: none;
-    }
-}
-
-@media screen and (max-width: 1092px) {}
-
-
-/*Ipad ngang(1024 x 768)*/
-@media screen and (max-width: 1024px) {}
-
 @media screen and (max-width: 992px) {
     .icon-menu-search {
         display: block;
     }
 }
 
-/*Ipad dọc(768 x 1024)*/
-@media screen and (max-width: 768px) {}
+@media screen and (max-width: 584px) {
 
-/*Tablet nhỏ(480 x 640)*/
-@media screen and (max-width: 480px) {}
+    .icon-login,
+    .icon-menu-search {
+        display: block !important;
+    }
 
-/*Iphone(480 x 640)*/
-@media screen and (max-width: 320px) {}
+    .btn-login {
+        display: none;
+    }
 
-/*Smart phone nhỏ*/
-@media screen and (max-width: 240px) {}
+
+    #logo-main {
+        width: 90px;
+        height: 40px;
+    }
+
+    header {
+        padding: 0 10px;
+    }
+}
