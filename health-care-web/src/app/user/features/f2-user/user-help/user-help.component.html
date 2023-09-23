@@ -1,0 +1,22 @@
+<h1 class="fs-28 fw-700 mb-20">Trợ giúp</h1>
+<div class="row col-md-10" *ngFor="let help of helps">
+  <a
+    class="cursor-pointer border-bottom"
+    data-bs-toggle="collapse"
+    href="#collapse-help-{{ help.id }}"
+    role="button"
+    aria-expanded="false"
+    aria-controls="collapse-help"
+  >
+    <div class="row-between py-8">
+      <p class="fs-16 fw-700">{{ help.title }}</p>
+      <img src="assets/media/icon/icon-chevronDown.svg" alt="" width="28px" />
+    </div>
+
+    <div class="collapse" id="collapse-help-{{ help.id }}">
+      <div class="card card-body help-info mb-12 lh-1-6">
+        {{ help.content }}
+      </div>
+    </div>
+  </a>
+</div>

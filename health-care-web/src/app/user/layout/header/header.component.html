@@ -114,6 +114,7 @@
       <app-header-info-user
         *ngIf="isOpenHeaderInfo"
         (logoutEvent)="logout()"
+        (closeHeaderInfo)="isOpenHeaderInfo = false"
       ></app-header-info-user>
     </div>
   </div>
