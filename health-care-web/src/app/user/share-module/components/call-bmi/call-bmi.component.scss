@@ -1,0 +1,27 @@
+.embedToolBannerBlue {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+}
+
+.gender-item {
+    border: 1px solid rgb(242, 242, 242);
+    box-shadow: rgba(40, 74, 117, 0.08) 0px 5px 12px;
+    width: 30%;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.gender-item.active {
+    border: 1px solid #11B3CF;
+}
+
+.btn-primary-cus {
+    background-color: #11B3CF;
+    color: white;
+    font-weight: 700;
+}

@@ -11,7 +11,6 @@ import { HeaderInfoUserComponent } from './layout/components/header-info-user/he
 import { SubHeaderMobileComponent } from './layout/components/sub-header-mobile/sub-header-mobile.component';
 import { F2UserModule } from './features/f2-user/f2-user.module';
 
-
 @NgModule({
   declarations: [
     UserComponent,

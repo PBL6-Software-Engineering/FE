@@ -43,7 +43,7 @@ hr {
 }
 
 /* Thêm các quy tắc CSS cụ thể cho trang web của bạn sau đây */
-@for $i from 1 through 50 {
+@for $i from 1 through 100 {
 
     .p {
         &-#{$i * 2} {
@@ -124,6 +124,11 @@ hr {
     .h-#{$i * 4} {
         height: #{$i * 4}px;
     }
+
+    .wh-#{$i * 4} {
+        width: #{$i * 4}px;
+        height: #{$i * 4}px;
+    }
 }
 
 .position {
@@ -178,4 +183,28 @@ hr {
 
 .lh-1-6 {
     line-height: 1.6;
+}
+
+.active {
+    color: #11B3CF !important;
+}
+
+.bg-active {
+    background: #11B3CF !important;
+}
+
+.bg-linear-primary-90 {
+    background-image: linear-gradient(90deg, #69edf6 0%, rgba(2, 11, 34, 0) 100%);
+}
+
+.bg-linear-primary-120 {
+    background-image: linear-gradient(120deg, #69edf6 0%, rgba(2, 11, 34, 0) 100%);
+}
+
+.bg-linear-primary-180 {
+    background-image: linear-gradient(180deg, #69edf6 0%, rgba(2, 11, 34, 0) 100%);
+}
+
+.bg-gray {
+    background-color: #f1f7fa !important;
 }

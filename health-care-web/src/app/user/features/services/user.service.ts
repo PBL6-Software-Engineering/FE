@@ -1,15 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { helps  } from './data';
+import { helps, categoris } from './data';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-  constructor() { }
+  constructor() {}
 
   getHelps(): Observable<any[]> {
-    return new Observable<any[]>(observer => {
+    return new Observable<any[]>((observer) => {
       observer.next(helps);
+    });
+  }
+
+  getCategoris(): Observable<any[]> {
+    return new Observable<any[]>((observer) => {
+      observer.next(categoris);
     });
   }
 }
