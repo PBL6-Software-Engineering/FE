@@ -1,0 +1,37 @@
+.download-home-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.download-btn {
+    display: inline-block;
+    border: 1px solid #3c73f2;
+    padding: 12px 24px;
+    border-radius: 30px;
+    margin-right: 30px;
+    font-weight: 500;
+    animation: directListDesktopPulse 1.2s infinite;
+    box-shadow: 0 0 0 0 #3c73f299;
+}
+
+@keyframes directListDesktopPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(170, 224, 0, 0.6);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(170, 224, 0, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(170, 224, 0, 0);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .download-home-wrapper {
+        padding-left: 100px;
+        padding-top: 30px;
+    }
+}

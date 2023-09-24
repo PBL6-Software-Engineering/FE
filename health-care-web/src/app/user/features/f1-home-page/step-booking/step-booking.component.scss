@@ -1,0 +1,43 @@
+.next-step {
+    position: absolute;
+    top: 50%;
+    right: -48px;
+    margin: -42px 0 0 0;
+    width: 60px;
+    height: 60px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+    border: 2px solid #ededed;
+    background: #fff url(../../../../../assets/media/icon/arrow-gray-1.svg) no-repeat center center;
+    display: block;
+    z-index: 9;
+}
+
+@media screen and (min-width: 991px) {
+    .card {
+        min-height: 320px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .banner__title-info {
+        font-size: 24px;
+    }
+
+    .banner__sub-info {
+        font-size: 14px;
+    }
+
+    .next-step {
+        top: 103%;
+        left: 50%;
+        margin: -20px 0 0 -35px;
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+}

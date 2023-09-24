@@ -1,0 +1,41 @@
+<div class="container mt-30">
+  <div class="row">
+    <div class="col-md-7 col-sm-12">
+      <!-- Tim mạch -->
+      <div>
+        <div class="column-center">
+          <h1 class="fs-22 fw-700 m-0">Bệnh tim mạch</h1>
+          <div class="color-link fw-700 ml-20">
+            Xem thêm
+            <img src="assets/media/icon/arrow_right.svg" alt="" />
+          </div>
+        </div>
+        <div *ngFor="let item of [0, 1, 2]; index as i">
+          <div class="pb-10" [class.border-bottom]="i !== 2">
+            <app-article-img-left [article]="article"></app-article-img-left>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ung thư - Ung bứu -->
+      <div>
+        <div class="column-center">
+          <h1 class="fs-22 fw-700 m-0">Ung thư - Ung bứu</h1>
+          <div class="color-link fw-700 ml-20">
+            Xem thêm
+            <img src="assets/media/icon/arrow_right.svg" alt="" />
+          </div>
+        </div>
+        <div *ngFor="let item of [0, 1, 2]; index as i">
+          <div class="pb-10" [class.border-bottom]="i !== 2">
+            <app-article-img-left [article]="article"></app-article-img-left>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-5 col-sm-12">
+      <app-call-bmi></app-call-bmi>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="banner-home text-center">
+  <div class="container py-30 d-flex flex-column justify-content-around h-320">
+    <div class="fw-700 fs-30 banner__title-info">
+      Bệnh viện - Bác sĩ - Dịch vụ y tế: Đặt hẹn khám ngay
+    </div>
+    <div class="fw-600 fs-16 banner__sub-info">
+      Tìm các bác sĩ, phòng khám và bệnh viện tốt nhất ở thành phố gần bạn nhất.
+    </div>
+    <div class="wrapper-input-search gap-5">
+      <!--Using ng-option and for loop-->
+      <ng-select
+        [(ngModel)]="province"
+        class="w-200 input-search"
+        placeholder="Chọn tỉnh, thành phố"
+      >
+        <ng-option *ngFor="let province of provinces" [value]="province.name">
+          {{ province.name }}
+        </ng-option>
+      </ng-select>
+
+      <input
+        type="text"
+        class="form-control w-320 input-search"
+        placeholder="Tìm kiếm bác sĩ, dịch vụ, bệnh viện"
+      />
+    </div>
+  </div>
+</div>

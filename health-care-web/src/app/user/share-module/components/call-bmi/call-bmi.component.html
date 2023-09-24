@@ -1,0 +1,70 @@
+<div class="p-40 border border-radius-6 position-relative">
+  <img
+    src="assets/media/icon/embedToolBannerBlue.svg"
+    class="embedToolBannerBlue"
+  />
+  <h1 class="fs-24 fw-700 mb-20">Tính chỉ số BMI - Chỉ số khối cơ thể</h1>
+  <div>
+    <h6 class="fs-14 my-3 fw-700">Chọn giới tính</h6>
+    <div class="d-flex justify-content-between">
+      <div
+        class="gender-item text-center"
+        [class.active]="gender === 0"
+        (click)="gender = 0"
+      >
+        <img
+          src="assets/media/icon/gender-male.svg"
+          alt=""
+          (click)="gender = 0"
+        />
+        Nam
+      </div>
+      <div
+        class="gender-item text-center"
+        [class.active]="gender === 1"
+        (click)="gender = 1"
+      >
+        <img src="assets/media/icon/gender-female.svg" alt="" />
+        Nữ
+      </div>
+
+      <div
+        class="gender-item text-center"
+        [class.active]="gender === 2"
+        (click)="gender = 2"
+      >
+        <img class="wh-24" src="assets/media/image/gender-other.png" alt="" />
+        Khác
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h6 class="fs-14 my-3 fw-700">Số tuổi của bạn? (năm)</h6>
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Nhập số tuổi của bạn"
+    />
+  </div>
+
+  <div>
+    <h6 class="fs-14 my-3 fw-700">Chiều cao của bạn? (cm)</h6>
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Nhập chiều cao của bạn"
+    />
+  </div>
+
+  <div>
+    <h6 class="fs-14 my-3 fw-700">Cân nặng của bạn? (kg)</h6>
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Nhập cân nặng của bạn"
+    />
+  </div>
+
+  <button class="btn btn-primary-cus l w-100 mt-20">Tính ngay</button>
+</div>
