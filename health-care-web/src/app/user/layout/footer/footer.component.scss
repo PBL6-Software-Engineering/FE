@@ -1,0 +1,195 @@
+
+#container{
+    background-color: #1b3250;
+    color:#9aa2ac;
+    font-size: 1rem;
+}
+
+
+#logo-container ,#connect-container ,#copyright-container , hr {
+    width:80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+}
+
+hr{
+    border:none;
+    border-top: 1px solid #9aa2ac;
+    opacity:10%;
+    margin-bottom:20px;
+}
+
+
+#logo{
+    margin-top:40px;
+    width:200px;
+    height:70px;
+}
+
+#grid-container{
+    display: grid;
+    grid-template-columns: 40% 60%;
+    width:80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 20px;
+}
+
+#grid-3{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap:20px;
+}
+
+#grid-container  li{
+    font-weight: bold;
+    color: white;
+}
+
+#grid-container  a:hover{
+    color:white;
+    opacity: 80%;
+}
+
+#link-container,#info-link-container,#about-container {
+    padding-left:10px;
+    padding-right:10px;
+}
+
+#connect-container{
+    display:grid;
+    grid-template-columns: 60% 40%;
+}
+
+#connect-container img{
+    width: 32px;
+    height: 32px;
+    }
+
+#social-media{
+    margin-top: 24px;
+}
+
+#heal-group-container{
+    padding-left:10px
+}
+
+#img-container{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+
+}
+
+#social-media img{
+    padding-right: 5px;
+}
+
+#copyright-container{
+    display: grid;
+    grid-template-columns: 80% 20%;
+    margin-bottom: 0;
+    padding-bottom: 50px;
+}
+
+#copy-right-img-container{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 5px;
+    height: 24px;
+}
+
+#copy-right-img-container img{
+    width:100%;
+}
+
+#copy-right-img-container div {
+    display: flex;
+    align-items: center;
+}
+
+
+
+
+
+#social-media p {
+    margin-bottom: 10px;    
+}
+
+#intro > p{
+    font-weight: bold;
+}
+
+
+
+@media screen and (max-width: 992px) {
+    #grid-container{
+        grid-template-columns: 30% 70%;
+        width:90%;
+     
+    }
+    #logo-container ,#connect-container ,#copyright-container , hr{
+        width:90%;
+    }
+}
+
+@media screen and (max-width: 826px) {
+    #grid-container{
+        display:block;
+        width:90%;
+     
+    }
+    #grid-3{
+        display:grid;
+        grid-template-columns: repeat(3,1fr);
+        gap:10vw;
+    }
+
+    #link-container , #info-link-container , #about-container {
+        padding:0;
+        padding-top: 50px;
+        padding-bottom: 20px;
+    }
+
+    #logo-container ,#connect-container ,#copyright-container , hr{
+        width:90%;
+    }
+
+}
+
+
+@media screen and (max-width: 683px) {
+    #grid-container{
+        display:block;
+        width:90%;
+        text-align: center;
+     
+    }
+
+  
+    #grid-3{
+        grid-template-columns: 100%;
+    }
+    #connect-container{
+        grid-template-columns: 100%;
+    }
+
+    #img-container{
+        width:70%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    #heal-group-container{
+        text-align: center;
+    }
+    #social-media{
+        text-align: center;
+    }
+
+}
+
+@media screen and (max-width: 584px) {
+
+}
