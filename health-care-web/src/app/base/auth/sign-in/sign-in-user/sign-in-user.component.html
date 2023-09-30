@@ -1,1 +1,24 @@
-<p>sign-in-user works!</p>
+<h2>Login</h2>
+
+    <form action="" method>
+        <p>Username</p>
+        <img class="icon" src="assets/media/icon/user.svg" alt="">
+        <input class="inp" type="text" placeholder="Type your username" name="username">
+        <hr>
+        <p>Password</p>
+        <img class="icon" src="assets/media/icon/password-outline.svg" alt="">
+        <input class="inp" id="password" type="password" placeholder="Type your password" name="password" >
+        <img class="icon" id="toggleButton" src="assets/media/icon/eye-solid.svg" alt="" (click)="hideShowPass()">
+        <hr>
+        <input type="checkbox" id="remember">
+        <label for="remember">Remember me</label>
+        <a href="" id="forgot-pass">Forgot password?</a>
+        <input type="submit" value="Login">
+        <p class="text-center" id="or">Or login using</p>
+        <div id="social-media-container">
+            <img src="assets/media/icon/social-media/facebook1.svg" alt="">
+            <img src="assets/media/icon/social-media/twitter.svg" alt="">
+            <img src="assets/media/icon/social-media/google-contained-fill.svg" alt="">
+        </div>
+
+    </form>

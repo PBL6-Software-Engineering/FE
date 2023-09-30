@@ -1,1 +1,27 @@
-<p>sign-up-user works!</p>
+<h2>Sign up</h2>
+
+    <form action="" method>
+        <p>Username</p>
+        <img class="icon" src="assets/media/icon/user.svg" alt="">
+        <input class="inp" type="text" placeholder="Type your username" name="username">
+        <hr>
+        <p>Password</p>
+        <img class="icon" src="assets/media/icon/password-outline.svg" alt="">
+        <input class="inp passwordInp" type="password" placeholder="Type your password" name="password" >
+        <p id="confirm-pass">Confirm Password</p>
+        <img class="icon" src="assets/media/icon/password-outline.svg" alt="">
+
+        <input class="inp passwordInp" type="password" placeholder="Confirm your password" name="password" >
+        <hr>
+        <input type="checkbox" id="show" (click)="hideShowPass()">
+        <label for="show" (click)="hideShowPass()">Show password</label>
+        <!-- <a href="" id="forgot-pass">Forgot password?</a> -->
+        <input type="submit" value="Sign up">
+        <p class="text-center" id="or">Or login using</p>
+        <div id="social-media-container">
+            <img src="assets/media/icon/social-media/facebook1.svg" alt="">
+            <img src="assets/media/icon/social-media/twitter.svg" alt="">
+            <img src="assets/media/icon/social-media/google-contained-fill.svg" alt="">
+        </div>
+
+    </form>
