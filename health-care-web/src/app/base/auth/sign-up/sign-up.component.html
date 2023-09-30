@@ -1,2 +1,10 @@
-<p>sign-up works!</p>
-<router-outlet></router-outlet>
+
+<div id="container">
+    <div id="radio-container">
+        <form action="">
+            <a [routerLink]="['/auth/sign-in']"><input name="change-form" type="radio" ></a>
+            <a [routerLink]="['/auth/sign-up']"><input name="change-form" type="radio" checked></a>
+        </form>
+    </div>
+    <router-outlet></router-outlet>
+</div>
