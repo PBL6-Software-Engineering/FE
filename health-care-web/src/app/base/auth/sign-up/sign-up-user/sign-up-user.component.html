@@ -1,5 +1,13 @@
-<h2>Sign up</h2>
+<div id="radio-container">
+    <div class="conatiner">
+        <div class="col-2"></div>
+        <a [routerLink]="['/auth/sign-in']"><div class="btn col-lg-4 border ">Login</div></a>
+        <a [routerLink]="['/auth/sign-up']"><div class="btn col-lg-4 bg-info  text-white">Sign up</div></a>
+        <div class="col-2"></div>
 
+    </div>
+</div>
+<h2>Sign up</h2>
     <form action="" method>
         <p>Username</p>
         <img class="icon" src="assets/media/icon/user.svg" alt="">
@@ -14,7 +22,7 @@
         <input class="inp passwordInp" type="password" placeholder="Confirm your password" name="password" >
         <hr>
         <input type="checkbox" id="show" (click)="hideShowPass()">
-        <label for="show" (click)="hideShowPass()">Show password</label>
+        <label for="show" >Show password</label>
         <!-- <a href="" id="forgot-pass">Forgot password?</a> -->
         <input type="submit" value="Sign up">
         <p class="text-center" id="or">Or login using</p>

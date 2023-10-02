@@ -1,3 +1,12 @@
+<div id="radio-container">
+    <div class="conatiner">
+        <div class="col-2"></div>
+        <a [routerLink]="['/auth/sign-in']"><div class="btn col-lg-4 bg-info  text-white">Login</div></a>
+        <a [routerLink]="['/auth/sign-up']"><div class="btn col-lg-4 border ">Sign up</div></a>
+        <div class="col-2"></div>
+
+    </div>
+</div>
 <h2>Login</h2>
 
     <form action="" method>
@@ -10,9 +19,15 @@
         <input class="inp" id="password" type="password" placeholder="Type your password" name="password" >
         <img class="icon" id="toggleButton" src="assets/media/icon/eye-solid.svg" alt="" (click)="hideShowPass()">
         <hr>
-        <input type="checkbox" id="remember">
-        <label for="remember">Remember me</label>
-        <a href="" id="forgot-pass">Forgot password?</a>
+        <div class="container">
+            <div class="row">
+                <div class="col-md col-lg col-sm pb-3">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">Remember me</label>
+                </div>
+                <a href="" id="forgot-pass" class="col-md col-lg col-sm">Forgot password?</a>
+            </div>
+        </div>
         <input type="submit" value="Login">
         <p class="text-center" id="or">Or login using</p>
         <div id="social-media-container">

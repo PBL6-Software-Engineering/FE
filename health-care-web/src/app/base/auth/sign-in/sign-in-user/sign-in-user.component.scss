@@ -1,5 +1,7 @@
-
-
+#radio-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
 
 
 h2 {
@@ -49,10 +51,10 @@ label{
 }
 
 
-#forgot-pass {
-    position: relative;
-    left: 40%;
-}
+// #forgot-pass {
+//     position: relative;
+//     left: 40%;
+// }
 
 input[type="submit"] {
     border-radius: 10px;
