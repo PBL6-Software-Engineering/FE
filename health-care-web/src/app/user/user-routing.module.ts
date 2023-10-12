@@ -15,7 +15,7 @@ const routes: Routes = [
       {
         path: 'user',
         loadChildren: () => import('./features/f2-user/f2-user.module').then(m => m.F2UserModule)
-      }
+      },
     ]
   }
 ];

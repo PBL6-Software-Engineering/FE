@@ -5,6 +5,8 @@ import { SignInComponent } from './sign-in.component';
 import { SignInHospitalComponent } from './sign-in-hospital/sign-in-hospital.component';
 import { SignInDoctorComponent } from './sign-in-doctor/sign-in-doctor.component';
 import { SignInUserComponent } from './sign-in-user/sign-in-user.component';
+import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
+import { VerifyEmailComponent } from '../verify-email/verify-email.component';
 
 const routes: Routes = [
   {
@@ -22,6 +24,14 @@ const routes: Routes = [
       {
         path: 'doctor',
         component: SignInDoctorComponent,
+      },
+      {
+        path: 'forgot-password',
+        component: ForgotPasswordComponent,
+      },
+      {
+        path: 'verify-email',
+        component: VerifyEmailComponent,
       },
       {
         path: '',

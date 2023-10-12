@@ -3,6 +3,8 @@
     margin-bottom: 20px;
 }
 
+
+
 h2 {
     text-align: center;
     font-weight: bolder;
@@ -16,7 +18,9 @@ h2 {
 hr {
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-
+    margin: 0;
+    margin-bottom: 7px;
+    margin-top: 3px;
 }
 
 .inp {
@@ -69,7 +73,7 @@ input[type="submit"] {
 }
 
 #confirm-pass{
-    margin-top: 20px;
+    margin-top: 14px;
 }
 
 input[type="submit"]:hover {

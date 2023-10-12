@@ -1,39 +1,46 @@
 <div id="radio-container">
     <div class="conatiner">
         <div class="col-2"></div>
-        <a [routerLink]="['/auth/sign-in']"><div class="btn col-lg-4 bg-info  text-white">Login</div></a>
-        <a [routerLink]="['/auth/sign-up']"><div class="btn col-lg-4 border ">Sign up</div></a>
+        <a [routerLink]="['/auth/sign-in']"><div class="btn col-5 col-sm-5 bg-info  text-white" style="border-radius: 5px 0 0 5px;">Đăng nhập</div></a>
+        <a [routerLink]="['/auth/sign-up']"><div class="btn col-5 border col-sm-5" style="border-radius: 0 5px 5px 0;">Đăng kí</div></a>
         <div class="col-2"></div>
 
     </div>
 </div>
-<h2>Login</h2>
+<h2>Đăng nhập</h2>
 
-    <form action="" method>
-        <p>Username</p>
+    <form action="" method="" class="pb-50" style="padding-bottom: 83px;" (submit)="login()">
+        <p>Tên đăng nhập</p>
         <img class="icon" src="assets/media/icon/user.svg" alt="">
-        <input class="inp" type="text" placeholder="Type your username" name="username">
+        <input class="inp" type="text" placeholder="Nhập tên đăng nhập" name="username" [(ngModel)]="username">
         <hr>
-        <p>Password</p>
+        <p>Mật khẩu</p>
         <img class="icon" src="assets/media/icon/password-outline.svg" alt="">
-        <input class="inp" id="password" type="password" placeholder="Type your password" name="password" >
+        <input class="inp" id="password" type="password" placeholder="Nhập mật khẩu" name="password" [(ngModel)]="password">
         <img class="icon" id="toggleButton" src="assets/media/icon/eye-solid.svg" alt="" (click)="hideShowPass()">
         <hr>
-        <div class="container">
-            <div class="row">
-                <div class="col-md col-lg col-sm pb-3">
+        <div class="container" style="padding-left: 0;">
+            <div class="row ">
+                <div class="col-lg">
                     <input type="checkbox" id="remember">
-                    <label for="remember">Remember me</label>
+                    <label for="remember">Ghi nhớ đăng nhập</label>
                 </div>
-                <a href="" id="forgot-pass" class="col-md col-lg col-sm">Forgot password?</a>
+                <div class="col-lg d-flex flex-row-reverse">
+                    <a href="./auth/sign-in/forgot-password" id="forgot-pass">Quên mật khẩu?</a>
+                </div>
             </div>
         </div>
         <input type="submit" value="Login">
-        <p class="text-center" id="or">Or login using</p>
+    </form>
+    <div class="container position-absolute bottom-0 start-0 mb-30" id="footer">
+        <p class="text-center" id="or">Hoặc đăng nhập bằng:</p>
         <div id="social-media-container">
             <img src="assets/media/icon/social-media/facebook1.svg" alt="">
             <img src="assets/media/icon/social-media/twitter.svg" alt="">
             <img src="assets/media/icon/social-media/google-contained-fill.svg" alt="">
         </div>
+    </div>
 
-    </form>
+
+
+    
