@@ -16,7 +16,6 @@ export class CarouselComponent {
   }
 
   changeSlide(i: number) {
-    console.log(i);
     this.index = i;
   }
 }

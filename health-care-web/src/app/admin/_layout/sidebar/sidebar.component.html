@@ -1,0 +1,44 @@
+<aside class="sidebar-menu">
+  <div role="button" class="px-16 py-8 brand-logo">
+    <img
+      src="assets/media/logo/logo.svg"
+      alt="Logo"
+      id="logo-main"
+      routerLink="/admin"
+      class="w-112"
+    />
+  </div>
+  <ul class="sidebar-menu-wrapper">
+    <li
+      *ngFor="let item of menuItems; let i = index"
+      class="sidebar-menu-item"
+      (click)="onClickSidebar(item)"
+      [class.active]="item.active"
+    >
+      <div class="label-item row-between">
+        {{ item.label }}
+
+        <span *ngIf="item.subItems">
+          <i
+            class="fa fa-caret-up"
+            *ngIf="item.active && item.showSubItems"
+          ></i>
+          <i class="fa fa-caret-down" *ngIf="!item.showSubItems"></i>
+        </span>
+      </div>
+
+      <ng-container *ngIf="item.showSubItems">
+        <ul *ngIf="item.subItems && item.subItems.length">
+          <li
+            *ngFor="let subItem of item.subItems"
+            class="sidebar-menu-sub-item"
+            (click)="onClickSidebar(subItem); $event.stopPropagation()"
+            [class.active]="subItem.active"
+          >
+            <span class="label-item"> {{ subItem.label }} </span>
+          </li>
+        </ul>
+      </ng-container>
+    </li>
+  </ul>
+</aside>

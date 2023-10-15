@@ -3,12 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { F3GeneralRoutingModule } from './f3-general-routing.module';
 
-
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    F3GeneralRoutingModule
-  ]
+  imports: [CommonModule, F3GeneralRoutingModule],
 })
-export class F3GeneralModule { }
+export class F3GeneralModule {}

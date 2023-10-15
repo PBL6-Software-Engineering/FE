@@ -10,7 +10,6 @@ import { UserPasswordComponent } from './user-password/user-password.component';
 import { UserDisableAccountComponent } from './user-disable-account/user-disable-account.component';
 import { UserHelpComponent } from './user-help/user-help.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FormDirective } from 'src/app/core/directives/form.directive';
 import { CoreModule } from 'src/app/core/core.module';
 
 @NgModule({
@@ -30,6 +29,6 @@ import { CoreModule } from 'src/app/core/core.module';
     ReactiveFormsModule,
     FormsModule,
     CoreModule,
-  ]
+  ],
 })
-export class F2UserModule { }
+export class F2UserModule {}

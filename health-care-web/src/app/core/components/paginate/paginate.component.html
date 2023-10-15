@@ -1,0 +1,96 @@
+<nav
+  aria-label="Page navigation example"
+  class="d-flex flex-wrap justify-content-between py-5 align-items-center mx-20"
+>
+  <span class="text-muted">
+    Hiển thị
+    {{ (currentPage - 1) * pageSize + 1 }}
+    đến
+    {{ (currentPage - 1) * pageSize + numberElementOfPage }}
+    của {{ totalElements }} phần tử
+  </span>
+  <ul class="pagination">
+    <!-- First page -->
+    <li class="page-item" (click)="firstPage()">
+      <a class="page-link" aria-label="First page">
+        <i class="fa fa-angle-double-left"></i>
+      </a>
+    </li>
+    <!-- First page -->
+
+    <!-- Previous page -->
+    <li class="page-item" (click)="previousPage()">
+      <a class="page-link" aria-label="Previous">
+        <i class="fa fa-angle-left"></i>
+      </a>
+    </li>
+    <!-- Previous page -->
+
+    <!-- list page -->
+    <ng-container *ngIf="totalPage <= 5">
+      <li
+        class="page-item"
+        *ngFor="let p of arrayNumberPage; let i = index"
+        [class.active]="currentPage - 1 == i"
+        (click)="onChangePage(p)"
+      >
+        <a class="page-link">{{ p }}</a>
+      </li>
+    </ng-container>
+
+    <ng-container *ngIf="totalPage > 5 && currentPage + 2 <= totalPage">
+      <ng-container *ngIf="currentPage <= 3">
+        <li
+          class="page-item"
+          *ngFor="let p of arrayNumberPage; let i = index"
+          [class.active]="currentPage - 1 == i"
+          onChangePage(p)
+        >
+          <a class="page-link">{{ p }}</a>
+        </li>
+      </ng-container>
+
+      <ng-container *ngIf="currentPage <= 3">
+        <li
+          class="page-item"
+          *ngFor="let p of arrayNumberPage; let i = index"
+          [class.active]="i == 2"
+          onChangePage(p)
+        >
+          <a class="page-link">{{ p }}</a>
+        </li>
+      </ng-container>
+    </ng-container>
+
+    <ng-container
+      *ngIf="totalPage > 5 && currentPage + 2 > totalPage"
+      class="row"
+    >
+      <li
+        class="page-item"
+        *ngFor="let p of arrayNumberPage; let i = index"
+        [class.active]="i == currentPage - totalPage + 4"
+        onChangePage(p)
+      >
+        <a class="page-link">{{ p }}</a>
+      </li>
+    </ng-container>
+    <!-- list page -->
+
+    <!-- Next page -->
+    <li class="page-item" (click)="nextPage()">
+      <a class="page-link" aria-label="Next">
+        <i class="fa fa-angle-right"></i>
+      </a>
+    </li>
+    <!-- Next page -->
+
+    <!-- End page -->
+    <li class="page-item" (click)="endPage()">
+      <a class="page-link" aria-label="End page">
+        <i class="fa fa-angle-double-right"></i>
+      </a>
+    </li>
+    <!-- End page -->
+  </ul>
+</nav>

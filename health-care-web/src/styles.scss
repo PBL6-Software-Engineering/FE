@@ -1,11 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 @import '../node_modules/flatpickr/dist/flatpickr.min.css';
+
+// regular style toast
+@import 'ngx-toastr/toastr';
 @import "~@ng-select/ng-select/themes/default.theme.css";
 // @import "~@ng-select/ng-select/themes/material.theme.css";
 @import './assets/scss/font-color.scss';
 @import './assets/scss/main.scss';
 @import './assets/scss/form.scss';
 @import './assets/scss/button.scss';
+@import './assets/scss/table.scss';
 @import './assets/scss/popup.scss';
 @import './assets/scss/component.scss';
 @import './assets/scss/flex.scss';
