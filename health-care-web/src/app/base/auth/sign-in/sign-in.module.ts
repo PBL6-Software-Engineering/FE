@@ -9,7 +9,7 @@ import { SignInDoctorComponent } from './sign-in-doctor/sign-in-doctor.component
 import { SignInComponent } from './sign-in.component';
 import { FormsModule } from '@angular/forms';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,8 @@ import { ForgotPasswordComponent } from '../forgot-password/forgot-password.comp
   imports: [
     CommonModule,
     SignInRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class SignInModule { }

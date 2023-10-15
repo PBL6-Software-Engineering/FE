@@ -1,6 +1,6 @@
 import { Component,OnInit  } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import {NgForm} from '@angular/forms';
+import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-sign-in-user',
@@ -8,15 +8,26 @@ import {NgForm} from '@angular/forms';
   styleUrls: ['./sign-in-user.component.scss']
 })
 export class SignInUserComponent implements OnInit{
-  username: string = '';
-  password: string = '';
+  loginForm: FormGroup;
+  isShow=false;
   responseData: any;
-  constructor(private apiService: AuthService) { }
+  constructor(private apiService: AuthService,private formBuilder: FormBuilder) {
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+    });
+   }
 
+  get emailControl() {
+    return this.loginForm.get('email');
+  }
+  onFocus() {
+    // Khi người dùng focus vào trường email, ẩn thông báo lỗi
+    this.isShow = true;
+  }
+   
   login() {
-    console.log(this.username);
-    console.log(this.password);
-    this.apiService.login(this.username,this.password).subscribe((response) => {
+    this.apiService.login(this.loginForm.value.email,this.loginForm.value.password).subscribe((response) => {
           console.log('Đăng nhập thành công. Token truy cập:', response.token);
         },
         (error) => {

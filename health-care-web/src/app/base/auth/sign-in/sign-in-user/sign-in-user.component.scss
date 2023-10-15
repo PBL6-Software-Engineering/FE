@@ -53,22 +53,29 @@ label{
 }
 
 
-// #forgot-pass {
-//     position: relative;
-//     left: 40%;
+// input[type="submit"] {
+//     border-radius: 10px;
+//     color: white;
+//     background: linear-gradient(to right, #65d1df, #e341f5);
+//     border: none;
+//     width: 100%;
+//     padding-top: 5px;
+//     padding-bottom: 5px;
+//     margin-top:10px;
+//     margin-bottom:20px;
+
 // }
 
-input[type="submit"] {
-    border-radius: 10px;
+#btn-login{
     color: white;
     background: linear-gradient(to right, #65d1df, #e341f5);
-    border: none;
     width: 100%;
     padding-top: 5px;
     padding-bottom: 5px;
     margin-top:10px;
     margin-bottom:20px;
-
+    border: none;
+    border-radius: 10px;
 }
 
 #or{
