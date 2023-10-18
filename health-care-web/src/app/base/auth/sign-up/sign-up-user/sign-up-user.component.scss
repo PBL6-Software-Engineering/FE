@@ -92,6 +92,22 @@ input[type="submit"]:hover {
     margin-right: 10px;
 }
 
+.warning{
+    color:chocolate;
+}
+
+#btn-login{
+    color: white;
+    background: linear-gradient(to right, #65d1df, #e341f5);
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top:10px;
+    margin-bottom:20px;
+    border: none;
+    border-radius: 10px;
+}
+
 @media screen and (min-height:666px) {
     
     input[type="submit"] {

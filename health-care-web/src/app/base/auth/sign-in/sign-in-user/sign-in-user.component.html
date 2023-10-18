@@ -8,22 +8,28 @@
     </div>
 </div>
 <h2>Đăng nhập</h2>
-    
+    <div class="notification" id="notification">
+        {{message}}
+    </div>
     <form action="" method="" class="pb-50" style="padding-bottom: 83px;" [formGroup]="loginForm">
-        <p>Tên đăng nhập</p>
+        <p>Email</p>
         <img class="icon" src="assets/media/icon/user.svg" alt="">
-        <input class="inp" type="text" placeholder="Nhập tên đăng nhập" name="username" formControlName="email" required (focus)="onFocus()">
-        <div *ngIf="isShow&&emailControl&&emailControl.hasError('required')">
-            Email is required.
+        <input class="inp" type="text" placeholder="Nhập email" name="username" formControlName="email" require>
+        <div *ngIf="isShowEmail&&emailControl&&emailControl.hasError('required')" class="warning">
+            Bạn phải nhập email.
         </div>
-        <div *ngIf="isShow&&emailControl&&emailControl.hasError('email')">
-            Please enter a valid email address.
+        <div *ngIf="isShowEmail&&emailControl&&emailControl.hasError('email')" class="warning">
+            Hãy nhập email hợp lệ.
           </div>
         <hr>
         <p>Mật khẩu</p>
+        
         <img class="icon" src="assets/media/icon/password-outline.svg" alt="">
-        <input class="inp" id="password" type="password" placeholder="Nhập mật khẩu" name="password"  formControlName="password" (focus)="onFocus()">
+        <input class="inp" id="password" type="password" placeholder="Nhập mật khẩu" name="password"  formControlName="password">
         <img class="icon" id="toggleButton" src="assets/media/icon/eye-solid.svg" alt="" (click)="hideShowPass()">
+        <div *ngIf="isShowPass&&passwordControl&&passwordControl.hasError('required')" class="warning">
+            Bạn phải nhập mật khẩu.
+        </div>
         <hr>
         <div class="container" style="padding-left: 0;">
             <div class="row ">
@@ -38,8 +44,8 @@
         </div>
         
         <!-- <input type="submit" value="Đăng nhập"> -->
-        <div class="btn btn-secondary d-flex justify-content-center" id="btn-login">
-            <div class="spinner-border spinner-border-sm text-primary  d-none" role="status" style="margin-top: 3px;margin-right: 5px;">
+        <div class="btn btn-secondary d-flex justify-content-center" id="btn-login" (click)="login()">
+            <div class="spinner-border spinner-border-sm text-primary d-none" id="loading" role="status" style="margin-top: 3px;margin-right: 5px;">
                 <span class="visually-hidden">Loading...</span>
               </div>
             <p>Đăng nhập</p>  
@@ -48,7 +54,7 @@
     <div class="container position-absolute bottom-0 start-0 mb-30" id="footer">
         <p class="text-center" id="or">Hoặc đăng nhập bằng:</p>
         <div id="social-media-container">
-            <img src="assets/media/icon/social-media/facebook1.svg" alt="">
+            <img src="assets/media/icon/social-media/facebook1.svg" alt="" (click)="showNotification('hello')">
             <img src="assets/media/icon/social-media/twitter.svg" alt="">
             <img src="assets/media/icon/social-media/google-contained-fill.svg" alt="">
         </div>

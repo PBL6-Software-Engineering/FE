@@ -52,24 +52,35 @@ label{
     padding-left: 10px;
 }
 
+.warning{
+    color:chocolate;
+}
 
-// #forgot-pass {
-//     position: relative;
-//     left: 40%;
-// }
-
-input[type="submit"] {
-    border-radius: 10px;
+#btn-login{
     color: white;
     background: linear-gradient(to right, #65d1df, #e341f5);
-    border: none;
     width: 100%;
     padding-top: 5px;
     padding-bottom: 5px;
-    margin-top:20px;
+    margin-top:10px;
     margin-bottom:20px;
-
+    border: none;
+    border-radius: 10px;
 }
+
+.notification {
+    width: 100%;
+    border-radius: 10px;
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    opacity: 1;
+    transition: opacity 2s ease;
+  }
 
 #or{
     font-size: 15px;
@@ -90,4 +101,12 @@ input[type="submit"]:hover {
     height: 50px;
     margin-left: 10px;
     margin-right: 10px;
+}
+
+@media screen and (min-height:666px) {
+    
+    input[type="submit"] {
+        margin-top:30px;
+
+    }
 }
