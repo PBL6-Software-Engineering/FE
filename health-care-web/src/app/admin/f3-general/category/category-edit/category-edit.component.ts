@@ -80,12 +80,12 @@ export class CategoryEditComponent implements OnInit, OnChanges {
         .subscribe({
           next: (res) => {
             this.form.reset();
-            this.toastrService.success('Sửa danh mục thành công!');
+            this.toastrService.success('Sửa thành công!');
             this.closeModal.nativeElement.click();
             this.reloadData.emit();
           },
           error: (err) => {
-            this.toastrService.error('Sửa danh mục thất bại!');
+            this.toastrService.error('Sửa thất bại!');
           },
         });
     } else {
