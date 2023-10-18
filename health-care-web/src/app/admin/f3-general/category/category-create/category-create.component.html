@@ -32,9 +32,10 @@
 
       <div class="text-center">
         <img
-          src="assets/media/image/image.png"
-          alt=""
+          [src]="srcThumbnail"
+          alt="Thumbnail"
           class="border-radius-4 upload-image"
+          (error)="onErrorImage($event)"
         />
       </div>
 
@@ -44,6 +45,7 @@
         accept="image/*"
         (change)="onChangeFile($event)"
         id="thumbnail"
+        #inputFile
       />
 
       <app-show-error [control]="form.get('thumbnail')"></app-show-error>
@@ -54,6 +56,7 @@
         type="button"
         class="btn btn-secondary mr-12"
         data-bs-dismiss="modal"
+        #closeModal
       >
         Huỷ
       </button>

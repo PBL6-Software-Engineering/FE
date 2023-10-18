@@ -1,4 +1,11 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -11,6 +18,10 @@ import { CategoryService } from 'src/app/admin/_services/category.service';
 })
 export class CategoryCreateComponent implements OnInit {
   form: FormGroup;
+  srcThumbnail = '';
+  @Output() reloadData = new EventEmitter();
+  @ViewChild('closeModal') closeModal!: ElementRef;
+  @ViewChild('inputFile') inputFile!: ElementRef;
 
   constructor(
     private api: CategoryService,
@@ -33,8 +44,7 @@ export class CategoryCreateComponent implements OnInit {
       this.form.patchValue({ thumbnail: file });
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        this.el.nativeElement.querySelector('.upload-image').src =
-          e.target.result;
+        this.srcThumbnail = e.target.result;
       };
       reader.readAsDataURL(file);
     }
@@ -42,12 +52,29 @@ export class CategoryCreateComponent implements OnInit {
 
   save(): void {
     if (this.form.valid) {
-      this.api.create(this.form.value).subscribe((res) => {
-        this.toastrService.success('Thêm danh mục thành công!');
-        this.router.navigate(['/admin/general/category']);
+      this.api.create(this.form.value).subscribe({
+        next: (res) => {
+          this.toastrService.success('Thêm danh mục thành công!');
+          this.closeModal.nativeElement.click();
+          this.reloadData.emit();
+          this.resetForm();
+        },
+        error: (err) => {
+          this.toastrService.error('Thêm danh mục thất bại!');
+        },
       });
     } else {
       this.toastrService.error('Vui lòng nhập đầy đủ thông tin');
     }
+  }
+
+  onErrorImage(event: any): void {
+    event.target.src = 'assets/media/image/image.png';
+  }
+
+  resetForm(): void {
+    this.form.reset();
+    this.srcThumbnail = 'assets/media/image/image.png';
+    this.inputFile.nativeElement.value = '';
   }
 }

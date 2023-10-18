@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { CategoryCreateComponent } from './category-create/category-create.component';
 import { CategoryEditComponent } from './category-edit/category-edit.component';
-import { CategoryDetailComponent } from './category-detail/category-detail.component';
 
 const routes: Routes = [
   {
@@ -17,10 +16,6 @@ const routes: Routes = [
   {
     path: 'edit/:id',
     component: CategoryEditComponent,
-  },
-  {
-    path: 'detail/:id',
-    component: CategoryDetailComponent,
   },
   {
     path: '**',

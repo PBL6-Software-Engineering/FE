@@ -7,6 +7,7 @@ import {
   OnInit,
   Output,
   SimpleChanges,
+  ViewChild,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -20,7 +21,11 @@ import { CategoryService } from 'src/app/admin/_services/category.service';
 })
 export class CategoryEditComponent implements OnInit, OnChanges {
   form: FormGroup;
+  srcThumbnail: string = '';
+  isChangeFile = false;
   @Input() item: any;
+  @Output() reloadData = new EventEmitter();
+  @ViewChild('closeModal') closeModal!: ElementRef;
 
   constructor(
     private api: CategoryService,
@@ -38,6 +43,7 @@ export class CategoryEditComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (this.item && this.item.id) {
       this.form.patchValue(this.item);
+      this.srcThumbnail = this.item.thumbnail;
     }
   }
 
@@ -60,21 +66,34 @@ export class CategoryEditComponent implements OnInit, OnChanges {
       this.form.patchValue({ thumbnail: file });
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        this.el.nativeElement.querySelector('.upload-image').src =
-          e.target.result;
+        this.srcThumbnail = e.target.result;
+        this.isChangeFile = true;
       };
       reader.readAsDataURL(file);
     }
   }
 
   save(): void {
-    // if (this.form.valid) {
-    //   this.api.create(this.form.value).subscribe((res) => {
-    //     this.toastrService.success('Sửa danh mục thành công!');
-    //     this.router.navigate(['/admin/general/category']);
-    //   });
-    // } else {
-    //   this.toastrService.error('Vui lòng nhập đầy đủ thông tin');
-    // }
+    if (this.form.valid) {
+      this.api
+        .update(this.item.id, this.form.value, this.isChangeFile)
+        .subscribe({
+          next: (res) => {
+            this.form.reset();
+            this.toastrService.success('Sửa danh mục thành công!');
+            this.closeModal.nativeElement.click();
+            this.reloadData.emit();
+          },
+          error: (err) => {
+            this.toastrService.error('Sửa danh mục thất bại!');
+          },
+        });
+    } else {
+      this.toastrService.error('Vui lòng nhập đầy đủ thông tin');
+    }
+  }
+
+  onErrorImage(event: any): void {
+    event.target.src = 'assets/media/image/image.png';
   }
 }

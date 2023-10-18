@@ -1,8 +1,16 @@
-import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { CategoryService } from 'src/app/admin/_services/category.service';
 import { ToastrService } from 'ngx-toastr';
+import { prefixApi } from '../../../../core/constants/api.constant';
 
 @Component({
   selector: 'app-category-list',
@@ -22,6 +30,17 @@ export class CategoryListComponent implements OnInit, OnDestroy {
   totalPage = 0;
   totalElements = 0;
   numberElementOfPage = 0;
+
+  textSearch = '';
+  lastTextSearch = '';
+  isSearching = false;
+
+  // data source for grid
+  dataSources: any[] = [];
+
+  // delete id
+  deleteItem: any;
+  updateItem: any;
 
   onCheckAllSelected() {
     this.isSelectAll = !this.isSelectAll;
@@ -46,18 +65,12 @@ export class CategoryListComponent implements OnInit, OnDestroy {
     return ids;
   }
 
-  // data source for grid
-  dataSources: any[] = [];
-
-  // delete id
-  deleteItem: any;
-  updateItem: any;
-
   constructor(
     private api: CategoryService,
     private router: Router,
     private el: ElementRef,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    public cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -71,23 +84,24 @@ export class CategoryListComponent implements OnInit, OnDestroy {
     });
   }
 
-  onLoadData() {
+  onLoadData(isResetPage = false) {
+    console.log('load data nè');
     this.subscription.push(
       this.api
         .paginate({
-          page: this.currentPage,
+          page: isResetPage ? 1 : this.currentPage,
           paginate: 20,
-          search: '',
-          sortLastest: true,
+          search: this.textSearch || '',
+          sortLatest: true,
         })
         .subscribe(({ data }) => {
           this.dataSources = data.data || [];
           this.dataSources.forEach((item: any) => {
-            if (item.thumbnail) {
-              item.thumbnail = 'http://localhost:99/' + item.thumbnail;
+            if (item.thumbnail && item.thumbnail.indexOf('http') === -1) {
+              item.thumbnail = prefixApi + item.thumbnail;
             }
-            if (item.image) {
-              item.image = 'http://localhost:99/' + item.image;
+            if (item.image && item.image.indexOf('http') === -1) {
+              item.image = prefixApi + item.image;
             }
           });
           this.currentPage = data.current_page; // trang hiện tại
@@ -127,16 +141,6 @@ export class CategoryListComponent implements OnInit, OnDestroy {
     this.isSelectAll = false;
   }
 
-  onSearchChange(keyword: string) {
-    //nếu tồn tại keyword
-    if (keyword !== '') {
-      this.totalPage = this.dataSources.length;
-      this.updateCheckedDataSources();
-    } else {
-      this.onLoadData();
-    }
-  }
-
   updateCheckedDataSources() {
     if (this.dataSources.length === 0) {
       this.isSelectAll = false;
@@ -157,5 +161,23 @@ export class CategoryListComponent implements OnInit, OnDestroy {
   onChangePage(page: number) {
     this.currentPage = page;
     this.onLoadData();
+  }
+
+  search(): void {
+    this.isSearching = true;
+
+    setTimeout(() => {
+      this.isSearching = false;
+      this.cdr.detectChanges();
+
+      // call api one second one time
+      if (this.textSearch !== this.lastTextSearch) {
+        this.lastTextSearch = this.textSearch;
+        this.currentPage = 1;
+
+        // call api search
+        this.onLoadData();
+      }
+    }, 1000);
   }
 }

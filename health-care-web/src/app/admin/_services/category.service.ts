@@ -14,10 +14,10 @@ export class CategoryService {
     page = 1,
     paginate = 20,
     search = '',
-    sortLastest = true,
+    sortLatest = true,
   }): Observable<any> {
     return this.http.get<any>(
-      `${linkApi}/${this.model}?page=${page}&search=${search}&paginate=${paginate}&sortlastest=${sortLastest}`
+      `${linkApi}/${this.model}?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}`
     );
   }
 
@@ -36,14 +36,14 @@ export class CategoryService {
     return this.http.post<any>(`${linkApi}/${this.model}/add`, formData);
   }
 
-  update(obj: any, isChangeFile: boolean = false): Observable<any> {
+  update(id: any, obj: any, isChangeFile: boolean = false): Observable<any> {
     const formData = new FormData();
     formData.append('name', obj.name);
     if (isChangeFile) {
       formData.append('thumbnail', obj.thumbnail, obj.thumbnail.name);
     }
     return this.http.post<any>(
-      `${linkApi}/${this.model}/update/${obj.id}`,
+      `${linkApi}/${this.model}/update/${id}`,
       formData
     );
   }

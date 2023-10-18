@@ -5,7 +5,13 @@
     <div class="card-body">
       <div class="mb-20 row-between">
         <div class="col-sm-4">
-          <input type="text" class="form-control" placeholder="Tìm kiếm" />
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Tìm kiếm"
+            [(ngModel)]="textSearch"
+            (change)="search()"
+          />
         </div>
         <div>
           <button
@@ -215,7 +221,9 @@
 >
   <div class="modal-dialog" role="document">
     <div class="modal-content p-30">
-      <app-category-create></app-category-create>
+      <app-category-create
+        (reloadData)="onLoadData(true)"
+      ></app-category-create>
     </div>
   </div>
 </div>
@@ -231,7 +239,10 @@
 >
   <div class="modal-dialog" role="document">
     <div class="modal-content p-30">
-      <app-category-edit [item]="updateItem"></app-category-edit>
+      <app-category-edit
+        [item]="updateItem"
+        (reloadData)="onLoadData(true)"
+      ></app-category-edit>
     </div>
   </div>
 </div>
