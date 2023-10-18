@@ -185,9 +185,9 @@ hr {
     line-height: 1.6;
 }
 
-.active {
-    color: #11B3CF !important;
-}
+// .active {
+//     color: #11B3CF !important;
+// }
 
 .bg-active {
     background: #11B3CF !important;
@@ -211,4 +211,21 @@ hr {
 
 .text-left {
     text-align: left;
+}
+
+.thumbnail {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.text-hover-primary {
+    &:hover {
+        color: #11B3CF !important;
+    }
+}
+
+.upload-image {
+    width: 100px;
+    height: 100px;
 }

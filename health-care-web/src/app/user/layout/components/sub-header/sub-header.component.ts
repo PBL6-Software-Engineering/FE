@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 @Component({
   selector: 'app-sub-header',
   templateUrl: './sub-header.component.html',
-  styleUrls: ['./sub-header.component.scss']
+  styleUrls: ['./sub-header.component.scss'],
 })
 export class SubHeaderComponent {
   @Input() data: any;
@@ -11,7 +11,7 @@ export class SubHeaderComponent {
 
   news: any = [];
   constructor() {
-    for(let i = 1; i <=3; i++) {
+    for (let i = 1; i <= 3; i++) {
       this.news.push({
         image: 'assets/media/image/image-card.jpg',
         title: 'Phòng khám Đa khoa Quốc tế Sài Gòn Chi nhánh Quận 7',
@@ -27,13 +27,12 @@ export class SubHeaderComponent {
         đầy đủ các thiết bị máy móc y tế hiện đại công nghệ cao cùng hệ
         thống cơ sở vật chất nội thất được đầu tư đồng nhất. Tất cả đều
         nhằm mục tiêu cung cấp các dịch vụ thăm khám và điều trị hiệu
-        quả theo đúng phương châm "Y Đức – Chất Lượng – Thân Thiện."`
+        quả theo đúng phương châm "Y Đức – Chất Lượng – Thân Thiện."`,
       });
     }
   }
 
   onCloseSubHeader(): void {
-    console.log('close tab');
     this.closeSubHeader.emit();
   }
 }

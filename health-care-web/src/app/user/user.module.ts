@@ -14,17 +14,12 @@ import { F2UserModule } from './features/f2-user/f2-user.module';
 @NgModule({
   declarations: [
     UserComponent,
-       HeaderComponent,
-       FooterComponent,
-       SubHeaderComponent,
-       HeaderInfoUserComponent,
-       SubHeaderMobileComponent
+    HeaderComponent,
+    FooterComponent,
+    SubHeaderComponent,
+    HeaderInfoUserComponent,
+    SubHeaderMobileComponent,
   ],
-  imports: [
-    CommonModule,
-    UserRoutingModule,
-    F1HomePageModule,
-    F2UserModule,
-  ]
+  imports: [CommonModule, UserRoutingModule, F1HomePageModule, F2UserModule],
 })
-export class UserModule { }
+export class UserModule {}
