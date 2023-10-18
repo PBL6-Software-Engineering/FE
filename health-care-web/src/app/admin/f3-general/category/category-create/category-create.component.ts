@@ -54,13 +54,13 @@ export class CategoryCreateComponent implements OnInit {
     if (this.form.valid) {
       this.api.create(this.form.value).subscribe({
         next: (res) => {
-          this.toastrService.success('Thêm danh mục thành công!');
+          this.toastrService.success('Thêm thành công!');
           this.closeModal.nativeElement.click();
           this.reloadData.emit();
           this.resetForm();
         },
         error: (err) => {
-          this.toastrService.error('Thêm danh mục thất bại!');
+          this.toastrService.error('Thêm thất bại!');
         },
       });
     } else {
