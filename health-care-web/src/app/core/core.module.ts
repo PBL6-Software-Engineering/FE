@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormDirective } from './directives/form.directive';
 import { FormControlPipe } from './pipes/form-control.pipe';
 import { CarouselComponent } from './components/carousel/carousel.component';
+import { PaginateComponent } from './components/paginate/paginate.component';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     FormDirective,
     FormControlPipe,
     CarouselComponent,
+    PaginateComponent,
   ],
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   exports: [
@@ -19,6 +21,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     FormDirective,
     FormControlPipe,
     CarouselComponent,
+    PaginateComponent,
   ],
 })
 export class CoreModule {}

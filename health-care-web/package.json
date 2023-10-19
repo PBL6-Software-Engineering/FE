@@ -10,7 +10,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^16.2.0",
+    "@angular/animations": "^16.2.8",
     "@angular/common": "^16.2.0",
     "@angular/compiler": "^16.2.0",
     "@angular/core": "^16.2.0",
@@ -21,13 +21,16 @@
     "@angular/router": "^16.2.0",
     "@ng-select/ng-select": "^11.1.1",
     "@popperjs/core": "^2.9.2",
+    "angular-animations": "^0.11.0",
+    "apexcharts": "^3.43.0",
     "bootstrap": "^5.0.2",
     "firebase": "^10.5.0",
     "flatpickr": "^4.6.13",
     "jquery": "^3.7.1",
     "lodash": "^4.17.21",
+    "ng-inline-svg-2": "^15.0.1",
+    "ngx-toastr": "^17.0.2",
     "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {
@@ -42,6 +45,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "tslib": "^2.6.2",
     "typescript": "~5.1.3"
   }
 }

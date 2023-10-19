@@ -1,6 +1,20 @@
 @import './font-color.scss';
 
 .btn {
+    font-size: 13px !important;
+    font-weight: 600;
+
+    &-primary-1 {
+        background-color: #11B3CF;
+        color: white;
+
+        &:hover,
+        &:active {
+            background-color: #308a9a !important;
+            color: white !important;
+        }
+    }
+
     &-outline {
         &-gray {
             border: 1px solid rgb(210, 214, 220);

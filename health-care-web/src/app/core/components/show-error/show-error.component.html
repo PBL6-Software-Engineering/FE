@@ -1,6 +1,6 @@
 <div *ngFor="let validate of validates">
   <div
-    class="fs-14 text-danger"
+    class="fs-14 text-danger mt-2"
     *ngIf="
       control?.hasError(validate.type) && (control?.dirty || control?.touched)
     "

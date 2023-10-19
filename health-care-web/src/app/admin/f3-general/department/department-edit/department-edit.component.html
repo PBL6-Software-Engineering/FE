@@ -1,0 +1,90 @@
+<div class="wrapper">
+  <div class="fw-bolder fs-5 mb-3">Sửa chuyên khoa</div>
+  <form
+    (ngSubmit)="save()"
+    appFocusInvalidInput
+    #focusInput="focusInvalidInput"
+    [formGroup]="form"
+    #f="ngForm"
+  >
+    <div class="mb-3">
+      <label for="name" class="form-label fw-bold">
+        Tên chuyên khoa
+        <span class="text-danger">*</span>:
+      </label>
+      <input
+        type="email"
+        class="form-control"
+        id="name"
+        placeholder="Nhập tên chuyên khoa"
+        formControlName="name"
+        required
+      />
+      <app-show-error [control]="form.get('name')"></app-show-error>
+    </div>
+
+    <div class="mb-3">
+      <label for="name" class="form-label fw-bold">
+        Mô tả
+        <span class="text-danger">*</span>:
+      </label>
+
+      <textarea
+        name="description"
+        id="description"
+        rows="4"
+        placeholder="Nhập mô tả"
+        class="form-control"
+        formControlName="description"
+        required
+      ></textarea>
+
+      <app-show-error [control]="form.get('description')"></app-show-error>
+    </div>
+
+    <div class="mb-3">
+      <label for="formFile" class="form-label fw-bold">
+        Ảnh chuyên khoa
+        <span class="text-danger">*</span>:
+      </label>
+      <br />
+
+      <div class="text-center">
+        <img
+          [src]="srcThumbnail"
+          alt="Thumbnail"
+          class="border-radius-4 upload-image"
+          (error)="onErrorImage($event)"
+        />
+      </div>
+
+      <input
+        class="form-control mt-12"
+        type="file"
+        accept="image/*"
+        (change)="onChangeFile($event)"
+        id="thumbnail"
+      />
+
+      <app-show-error [control]="form.get('thumbnail')"></app-show-error>
+    </div>
+
+    <div class="d-flex justify-content-end mt-30">
+      <button
+        type="button"
+        class="btn btn-secondary mr-12"
+        data-bs-dismiss="modal"
+        #closeModal
+      >
+        Huỷ
+      </button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        (click)="focusInput.focus()"
+      >
+        Lưu
+      </button>
+    </div>
+  </form>
+</div>
