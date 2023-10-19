@@ -39,10 +39,10 @@ export const firebaseConfig = {
     CoreModule,
     FormsModule,
     NgSelectModule,
-    BrowserAnimationsModule,,
+    BrowserAnimationsModule,
     AngularFireModule.initializeApp(firebaseConfig),
   ],
-  providers: [authInterceptorProviders,AngularFireAuth],
-  bootstrap: [AppComponent],,
+  providers: [authInterceptorProviders, AngularFireAuth],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
