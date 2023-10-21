@@ -9,8 +9,11 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   private loginURL = 'http://localhost:99/api/user/login';
+  private loginAdminURL = 'http://localhost:99/api/admin/login';
   private signupURL = 'http://localhost:99/api/infor-user/register';
   private forgotPassURL = 'http://localhost:99/api/user/forgot-pw-sendcode';
+  private forgotPassAdminURL =
+    'http://localhost:99/api/admin/forgot-pw-sendcode';
 
   constructor(
     private http: HttpClient,
@@ -20,6 +23,10 @@ export class AuthService {
   forgotPass(email: string): Observable<any> {
     const requestBody = { email: email };
     return this.http.post(this.forgotPassURL, requestBody);
+  }
+  forgotPassAdmin(email: string): Observable<any> {
+    const requestBody = { email: email };
+    return this.http.post(this.forgotPassAdminURL, requestBody);
   }
   login(email: string, password: string): Observable<any> {
     const requestBody = { email: email, password: password };
@@ -39,7 +46,10 @@ export class AuthService {
     };
     return this.http.post(this.signupURL, requestBody);
   }
-
+  loginAdmin(email: string, password: string): Observable<any> {
+    const requestBody = { email: email, password: password };
+    return this.http.post(this.loginAdminURL, requestBody);
+  }
   googleAuth() {
     this.authLogin(new auth.GoogleAuthProvider()).then((res: any) => {
       this.router.navigate(['/']);

@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.scss'],
 })
-export class ForgotPasswordComponent {
+export class ForgotPasswordAdminComponent {
   email: string = '';
   forgotPassForm: FormGroup;
   message: string = '';
@@ -48,11 +48,11 @@ export class ForgotPasswordComponent {
       var loading = this.el.nativeElement.querySelector('#loading');
       this.renderer.removeClass(loading, 'd-none');
       var inpEmail = this.el.nativeElement.querySelector('#inp-email');
-      this.AuthService.forgotPass(inpEmail.value).subscribe(
+      this.AuthService.forgotPassAdmin(inpEmail.value).subscribe(
         (response) => {
           this.email = inpEmail.value;
           this.router.navigate([
-            '/auth/sign-in/verify-email',
+            '/auth/sign-in/verify-email-admin',
             { email: this.email },
           ]);
         },
