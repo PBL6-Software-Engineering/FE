@@ -1,20 +1,224 @@
-<div class="container">
-    <div class="row">
-        <div class="col-lg-1">
-            <div class="side-item">
-                <img class="side-item-img" src="assets/media/icon/share-solid.svg" alt="">
-            </div>
-            <div class="side-item">
-                <img class="side-item-img" src="assets/media/icon/bookmark-line.svg" alt="">
-            </div>
-            <div class="side-item">
-                <img class="side-item-img" src="assets/media/icon/ask-question.svg" alt="">
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body" style="padding: 32px;">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <div class="col-5">
+                        <span style="font-size: 16px; font-weight: bold;">Chia sẻ</span>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between col-7">
+                        <a href=""><img id="btn-share" class="social-item-img"
+                                src="assets/media/icon/social-media/Facebook.svg" alt=""></a>
+                        <a href=""><img id="btn-bookmark" class="social-item-img"
+                                src="assets/media/icon/social-media/zalo.png" alt=""></a>
+                        <a href=""><img id="btn-question" class="social-item-img"
+                                src="assets/media/icon/social-media/twitter.svg" alt=""></a>
+                        <a href=""><img id="btn-question" class="social-item-img"
+                                src="assets/media/icon/social-media/square-whatsapp.svg" alt=""></a>
+                        <a href=""><img id="btn-question" class="social-item-img"
+                                src="assets/media/icon/social-media/Linkedin.svg" alt=""></a>
+                    </div>
+                </div>
+                <div>
+                    <p style="color: #595959;">Sao chép đường dẫn</p>
+                    <div class="d-flex align-items-center" style="border: 1px solid rgba(0, 0, 0, 0.3); padding: 5px;">
+                        <div
+                            style="width: 70%; overflow: hidden;white-space: nowrap ;text-overflow: ellipsis; display: inline-block;">
+                            https://hellobacsi.com/ung-thu-ung-buou/ung-thu-xuong/nguyen-nhan-ung-thu-xuong-la-do-dau/
+                        </div>
+                        <div class="btn" style="border: none;"><span class="ps-3"
+                                style="color: #2d87f3; font-weight: bold;">Sao chép</span></div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-lg">
-            <div class="row"></div>
+    </div>
+</div>
+<div class="container pt-3">
+    <div class="row">
+        <div class="col-1 d-flex align-items-end flex-column" style="margin-top: 90px;">
+            <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                style="background-color: white; border: none;">
+                <img id="btn-share" class="side-item-img mb-4" src="assets/media/icon/share-solid.svg" alt="">
+            </button>
+            <img id="btn-bookmark" class="side-item-img mb-4"
+                [src]="isBookmark ? 'assets/media/icon/bookmark-fill.svg' : 'assets/media/icon/bookmark-line.svg'"
+                alt="" (click)="bookmarkClick()">
+            <img id="btn-question" class="side-item-img" src="assets/media/icon/ask-question.svg" alt="">
+        </div>
+        <div class="col-11">
             <div class="row">
-                
+                <div class="col-12 pb-3 d-flex align-items-center" style="font-size: 0.875rem; color: #595959;">
+                    <a href="./"><img class="side-item-img" src="assets/media/icon/home-smile.svg" alt=""
+                        style="width: 24px; height: 24px; background-color: rgba(0, 0, 0, 0.1); border-radius: 100%;padding: 3px;"></a>
+                    <div class="line-vertical ms-2"></div>
+                    <span class="ms-3">Ung thư - Ung bướu</span>
+                    <img class="side-item-img ms-3 me-3" src="assets/media/icon/ios-arrow-24-filled.svg" alt=""
+                        style="width: 16px; height: 16px; padding: 3px;">
+                    <span>Ung thư xương</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-9">
+
+                    <button type="button" style="border: 1px solid rgba(0, 0, 0, 0.3); border-radius: 2rem;" class="btn"
+                        data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom"
+                        data-bs-content="Đây là bài viết có thể hiện quan điểm hoặc góc nhìn cá nhân về một chủ đề cụ thể."
+                        data-bs-title="Góc nhìn">
+                        <span class="mr-10">Góc nhìn</span>
+                        <img src="assets/media/icon/notice.svg" alt="" style="width: 15px; height: 15px;">
+                    </button>
+                    <div>
+                        <h1>Nguyên nhân ung thư xương là do đâu?</h1>
+                        <p>
+                            Ung thư xương là một loại ung thư hiếm gặp bắt đầu từ xương. Bệnh này được chia thành nhiều
+                            loại khác nhau và hầu hết nguyên nhân ung thư xương vẫn chưa được biết rõ.
+
+                            Cùng Hello Bacsi tìm hiểu rõ hơn nguyên nhân bị ung thư xương ở từng loại, các yếu tố nguy
+                            cơ làm tăng khả năng mắc bệnh và cách phòng ngừa trong bài viết ngay sau đây nhé!
+
+                            Nguyên nhân ung thư xương là do đâu?
+                            Trong bài viết này đề cập đến nguyên nhân ung thư xương nguyên phát, không bao gồm các bệnh
+                            ung thư bắt nguồn từ những bộ phận khác rồi di căn tới xương. Đây là một bệnh ác tính xảy ra
+                            khi các tế bào của xương bị đột biến gen, dẫn đến phân chia và nhân lên mất kiểm soát, cuối
+                            cùng là hình thành một khối u ác tính. Khi khối u ác tính phát triển trong xương, nó có thể
+                            gây hại cho mô xương bình thường.
+
+                            Ung thư xương được chia thành 3 loại dựa trên loại tế bào nơi ung thư bắt đầu. Cụ thể như
+                            sau:
+
+                            Sarcoma xương. Đây là dạng ung thư xương phổ biến nhất. Bệnh bắt đầu trong các tế bào nơi
+                            hình thành mô xương mới. Những người trẻ tuổi và thanh thiếu niên là những đối tượng thường
+                            bị ảnh hưởng bởi bệnh nhiều nhất. Sự tăng trưởng xương nhanh chóng xảy ra ở tuổi dậy thì có
+                            thể khiến các khối u ác tính hình thành trong xương.
+                            Sarcoma sụn. Đây là dạng ung thư xương phổ biến thứ hai. Bệnh bắt đầu phát triển trong mô
+                            sụn. Bệnh thường xảy ra ở người trung niên và người lớn tuổi.
+                            Ewing sarcoma (ESFTs). Khối u Sarcoma Ewing thường ảnh hưởng nhất đến trẻ em và thanh niên.
+                            Những khối u này hình thành ở mô thần kinh chưa trưởng thành trong tủy xương, thuờng ở xương
+                            chậu, chân hoặc cánh tay của trẻ em và thanh niên.
+                            Trong hầu hết trường hợp, nguyên nhân ung thư xương vẫn chưa được xác định. Một số ít bệnh
+                            ung thư xương có liên quan đến yếu tố di truyền, trong khi một số khác có liên quan đến việc
+                            tiếp xúc với bức xạ liều cao trước đó.
+
+                            Các yếu tố nguy cơ
+                            Không rõ nguyên nhân ung thư xương, nhưng các bác sĩ đã tìm thấy một số yếu tố làm tăng nguy
+                            cơ phát triển bệnh lý này, bao gồm:
+
+                            Điều trị một loại ung thư khác
+                            Những người đã được xạ trị để điều trị một loại ung thư khác có nguy cơ phát triển ung thư
+                            xương trong tương lai. Nguy cơ này cao hơn ở những người xạ trị khi còn trẻ (đặc biệt là trẻ
+                            em) và những người được điều trị bằng liều bức xạ cao hơn.
+
+                            Ngoài ra, việc điều trị ung thư bằng thuốc hóa trị được gọi là tác nhân alkyl hóa cũng có
+                            liên quan đến ung thư xương.
+
+                            Nguyên nhân ung thư xương có phải do di truyền?
+                            Nguyên nhân ung thư xương không phải do di truyền, nhưng một số hội chứng di truyền hiếm gặp
+                            được kế thừa trong gia đình làm tăng nguy cơ ung thư xương, bao gồm:
+
+                            Hội chứng Li-Fraumeni: Tình trạng này di truyền trong gia đình do lỗi gen di truyền từ bố mẹ
+                            có thể làm tăng nguy cơ mắc một số dạng ung thư, trong đó có ung thư xương.
+                            U nguyên bào võng mạc di truyền: Đây là một bệnh ung thư mắt hiếm gặp ở trẻ em cũng do gen
+                            di truyền bị lỗi. Trẻ em có lỗi gen này cũng có nguy cơ mắc bệnh ung thư xương cao hơn các
+                            trẻ bình thường. Ngoài ra, bức xạ được sử dụng để điều trị u nguyên bào võng mạc cũng làm
+                            tăng nguy cơ mắc bệnh u xương ác tính ở xương sọ.
+                            Các hội chứng di truyền khác cũng làm tăng nguy cơ mắc bệnh ung thư xương, chẳng hạn như:
+
+                            Hội chứng Werner
+                            Hội chứng Rothmund-Thomson
+                            Hội chứng Bloom.
+                            Khối u xương lành tính
+                            Nguyên nhân ung thư xương có phải là do khối u xương lành tính? Khối u xương lành có nguy cơ
+                            trở thành ung thư nhưng nguy cơ này là rất nhỏ và không xảy ra phổ biến.
+
+                            Trên thực tế, có một số loại khối u xương lành tính có thể làm tăng nguy cơ mắc sarcoma sụn.
+                            Ví dụ, nhiều khối u xương sụn lành tính phát triển ở giữa xương (bệnh đa u sụn) có rủi ro
+                            mắc ung thư xương cao hơn.
+
+                            Vì vậy, những người có khối u xương lành tính vẫn nên cần điều trị để giảm nguy cơ mắc các
+                            vấn đề khác như xương yếu, các vấn đề về khớp và phá hủy mô xương khỏe mạnh, đồng thời, hạn
+                            chế nguy cơ có thể phát triển thành ung thư xương trong tương lai.
+
+                            Các bệnh về xương có phải là nguyên nhân ung thư xương?
+                        </p>
+                    </div>
+                    <div class="border-radius mt-3 mb-3" style="background-color: rgb(255, 248, 226);padding: 10px">
+                        <img src="assets/media/icon/danger-triangle-bold.svg" alt="">
+                        <span style="font-weight: bold;">Miễn trừ trách nhiệm</span>
+                        <p>Các bài viết của Hello Bacsi chỉ có tính chất tham khảo, không thay thế cho việc chẩn đoán hoặc điều trị y khoa.</p>
+                    </div>
+                    <p class="">
+                        <button  style="width: 100%; padding: 0;" class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#ThamKhao" aria-expanded="false" aria-controls="collapseExample">
+                            <div class="border-radius" style="padding:10px;border: 1px solid rgba(0, 0, 0, 0.1);">
+                                <img class="me-2" src="assets/media/icon/plus.svg" alt="">
+                                <span class="bold">Nguồn tham khảo</span>
+                            </div>
+                        </button>
+                      </p>
+                      <div class="collapse" id="ThamKhao">
+                        <div class="card card-body">
+                            <span>Bone cancer.</span> <a style="color: #2d87f3;" href="https://www.mayoclinic.org/diseases-conditions/bone-cancer/symptoms-causes/syc-20350217">https://www.mayoclinic.org/diseases-conditions/bone-cancer/symptoms-causes/syc-20350217</a><span>. Ngày truy cập: 11/10/2023</span>
+                        </div>
+                      </div>
+                    <p class="">
+                        <button  style="width: 100%; padding: 0;" class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            <div class="border-radius" style="padding:10px;border: 1px solid rgba(0, 0, 0, 0.1);">
+                                <img class="me-2" src="assets/media/icon/plus.svg" alt="">
+                                <span class="bold">Lịch sử phiên bản</span>
+                            </div>
+                        </button>
+                      </p>
+                      <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                            <span>Bone cancer.</span> <a href="https://www.mayoclinic.org/diseases-conditions/bone-cancer/symptoms-causes/syc-20350217">https://www.mayoclinic.org/diseases-conditions/bone-cancer/symptoms-causes/syc-20350217</a><span>. Ngày truy cập: 11/10/2023</span>
+                        </div>
+                      </div>
+                 
+
+                    <div class="line mt-3 mb-2"></div>
+                    <div class="mb-5">
+                        <p class="bold mb-4" style="color: #595959;">BÀI VIẾT LIÊN QUAN</p>
+                        <a href=""><p class="bold mb-3">Bệnh ung thư sống được bao lâu</p></a>
+                        <a href=""><p class="bold mb-3">Nhận biết các dấu hiệu ung thư của xương vai</p></a>
+                    </div>    
+                </div>
+                <div class="col-3 d-flex flex-column"
+                    style="border: 1px solid rgba(0,0,0,0.1);color: #595959; font-size: 0.75rem;">
+                    <div class="mb-auto">
+                        <div class="avatar d-flex justify-content-center mt-3">
+                            <img class="img-Avatar" src="assets/media/icon/notice.svg" alt="">
+                        </div>
+                        <p class="Info-check textCenter mt-3">Thông tin kiểm chứng bởi:</p>
+                        <p class="checker-Name textCenter mt-2">Lương Lan</p>
+                        <div class="line mt-2"></div>
+                        <div class="article-Info">
+                            <p class="textCenter mt-1">Tác giả:<span class="arthor-name"> Vi Quỳnh </span>Ngày cập nhật:
+                                5
+                                ngày trước</p>
+                        </div>
+                        <div class="line mt-2"></div>
+                    </div>
+
+                    <div>
+                        <div>
+                            <img src="assets/media/image/Promote.png" alt="" style="width: 100%; border-radius: 5px;">
+                            <div class="mt-4 mb-5" style="border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 5px; padding: 10px;">
+                                <p class="textCenter">Bài viết này có hữu ích với bạn?</p>
+                                <div class="d-flex justify-content-center">
+                                    <div class="btn" style="border: none; background-color: white;">
+                                        <img src="assets/media/icon/check-box.svg" style=" width: 48px;height: 49px;"
+                                            alt="">
+                                    </div>
+                                    <div class="btn" style="border: none; background-color: white;">
+                                        <img src="assets/media/icon/x-fill.svg" style=" width: 48px;height: 49px;"
+                                            alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

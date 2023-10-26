@@ -14,7 +14,6 @@ import { authInterceptorProviders } from './core/helpers/auth.interceptor';
 
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-
 export const firebaseConfig = {
   apiKey: 'AIzaSyDyXcSL45y9ck5_wG1MTb2756cpUpyP2GE',
   authDomain: 'pbl6-8a7ac.firebaseapp.com',
