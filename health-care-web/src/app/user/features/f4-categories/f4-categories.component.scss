@@ -1,0 +1,16 @@
+.line-vertical{
+    border: none;
+    display: inline-block;
+    height: 24px;
+    border-right: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.cateItems{
+    width: 63px;
+    height: 63px;
+}
+
+.inp:focus {
+    outline: none;
+
+}
