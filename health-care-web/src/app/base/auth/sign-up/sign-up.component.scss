@@ -1,8 +1,27 @@
 #container {
     background-color: white;
-    padding: 20px 40px;
+    // padding: 20px 40px;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
     border-radius: 5%;
+    min-height: 80vh;
+    min-width: 40vw;
     ;
 }
+
+@media screen and (max-width:828px) {
+    #container{
+        min-width: 60vw;
+    }
+}
+@media screen and (max-width:712px) {
+    #container{
+        min-width: 70vw;
+    }
+}
+@media screen and (max-width:552px) {
+    #container{
+        min-width: 80vw;
+    }
+}
+
 
