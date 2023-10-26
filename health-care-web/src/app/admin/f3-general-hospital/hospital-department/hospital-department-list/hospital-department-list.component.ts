@@ -1,23 +1,19 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { prefixApi } from '../../../../core/constants/api.constant';
+import { DepartmentHospitalService } from 'src/app/admin/_services/department_hospital.service';
 import { DepartmentService } from 'src/app/admin/_services/department.service';
 
 @Component({
-  selector: 'app-department-list',
-  templateUrl: './department-list.component.html',
-  styleUrls: ['./department-list.component.scss'],
+  selector: 'app-hospital-department-list',
+  templateUrl: './hospital-department-list.component.html',
+  styleUrls: ['./hospital-department-list.component.scss'],
 })
-export class DepartmentListComponent implements OnInit, OnDestroy {
+export class HospitalDepartmentListComponent implements OnInit, OnDestroy {
+  // id hospital login
+  id_hospital = 1;
+
   // subscription
   subscription: Subscription[] = [];
   isLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
@@ -37,6 +33,7 @@ export class DepartmentListComponent implements OnInit, OnDestroy {
 
   // data source for grid
   dataSources: any[] = [];
+  departments: any[] = [];
 
   // delete id
   deleteItem: any;
@@ -66,9 +63,8 @@ export class DepartmentListComponent implements OnInit, OnDestroy {
   }
 
   constructor(
-    private api: DepartmentService,
-    private router: Router,
-    private el: ElementRef,
+    private api: DepartmentHospitalService,
+    private departmentService: DepartmentService,
     private toastr: ToastrService,
     public cdr: ChangeDetectorRef
   ) {}
@@ -92,9 +88,12 @@ export class DepartmentListComponent implements OnInit, OnDestroy {
           paginate: 20,
           search: this.textSearch || '',
           sortLatest: true,
+          id_hospital: this.id_hospital,
         })
         .subscribe(({ data }) => {
+          console.log(data);
           this.dataSources = data.data || [];
+          // this.dataSources = data;
           this.dataSources.forEach((item: any) => {
             if (item.thumbnail && item.thumbnail.indexOf('http') === -1) {
               item.thumbnail = prefixApi + item.thumbnail;
@@ -107,6 +106,15 @@ export class DepartmentListComponent implements OnInit, OnDestroy {
           this.totalPage = data.last_page; // số trang
           this.totalElements = data.total; // tổng số phần tử trong database
           this.numberElementOfPage = this.dataSources.length; // số phần tử của 1 trang
+        })
+    );
+
+    this.subscription.push(
+      this.departmentService
+        .getDepartmentsNotCreatedByHospitalId(this.id_hospital)
+        .subscribe(({ data }) => {
+          this.departments = data;
+          console.log(data);
         })
     );
   }

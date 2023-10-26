@@ -20,6 +20,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'general-hospital',
+        loadChildren: () =>
+          import('./f3-general-hospital/f3-general-hospital.module').then(
+            (m) => m.F3GeneralHospitalModule
+          ),
+      },
+      {
         path: 'general',
         loadChildren: () =>
           import('./f3-general/f3-general.module').then(

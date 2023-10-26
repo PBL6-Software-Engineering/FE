@@ -1,5 +1,5 @@
 <div class="mx-4">
-  <div class="fw-bolder fs-5 mb-3 ml-4">Quản lý chuyên khoa</div>
+  <div class="fw-bolder fs-5 mb-3 ml-4">Quản lý dịch vụ</div>
 
   <div class="card fw-bold">
     <div class="card-body">
@@ -51,8 +51,9 @@
                 </div>
               </th>
               <th>Tên</th>
-              <th class="text-center">Thumbnail</th>
-              <th class="text-center">Ngày tạo</th>
+              <th class="text-center">Giá tiền</th>
+              <th class="text-center">Thời gian tư vấn</th>
+              <th class="text-center">Chuyên khoa</th>
               <th class="text-center">Hành động</th>
             </tr>
           </thead>
@@ -76,6 +77,10 @@
               <td>
                 <span
                   class="text-hover-primary cursor-pointer"
+                  [routerLink]="[
+                    '/admin/general/hospital-service/detail',
+                    item.id
+                  ]"
                 >
                   {{ item?.name }}
                 </span>
@@ -220,9 +225,9 @@
 >
   <div class="modal-dialog" role="document">
     <div class="modal-content p-30">
-      <app-department-create
+      <app-hospital-service-create
         (reloadData)="onLoadData(true)"
-      ></app-department-create>
+      ></app-hospital-service-create>
     </div>
   </div>
 </div>
@@ -238,10 +243,10 @@
 >
   <div class="modal-dialog" role="document">
     <div class="modal-content p-30">
-      <app-department-edit
+      <app-hospital-service-edit
         [item]="updateItem"
         (reloadData)="onLoadData(true)"
-      ></app-department-edit>
+      ></app-hospital-service-edit>
     </div>
   </div>
 </div>

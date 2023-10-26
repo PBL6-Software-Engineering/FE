@@ -1,0 +1,87 @@
+<div class="wrapper">
+  <div class="fw-bolder fs-5 mb-3">Thiết lập chuyên khoa</div>
+  <form
+    (ngSubmit)="save()"
+    appFocusInvalidInput
+    #focusInput="focusInvalidInput"
+    [formGroup]="form"
+    #f="ngForm"
+  >
+    <div class="mb-3">
+      <label for="name" class="form-label fw-bold">
+        Tên chuyên khoa: <span style="color: #11b3cf">{{ item?.name }}</span>
+      </label>
+    </div>
+
+    <div class="mb-3">
+      <label for="name" class="form-label fw-bold">
+        Số tiền tư vấn mặc định:
+        <span class="text-danger">*</span>:
+      </label>
+      <input
+        type="number"
+        class="form-control"
+        id="price"
+        placeholder="Số tiền tư vấn"
+        formControlName="price"
+        required
+      />
+      <app-show-error [control]="form.get('price')"></app-show-error>
+    </div>
+
+    <div class="mb-3 row">
+      <label for="name" class="form-label fw-bold mb-2">
+        Thời gian tư vấn:
+        <span class="text-danger">*</span>:
+      </label>
+      <div class="col-6">
+        <label for="name" class="form-label fw-bold">
+          Giờ:
+          <span class="text-danger">*</span>:
+        </label>
+        <input
+          type="number"
+          class="form-control"
+          id="hour"
+          placeholder="Giờ"
+          formControlName="hour"
+          required
+        />
+        <app-show-error [control]="form.get('hour')"></app-show-error>
+      </div>
+      <div class="col-6">
+        <label for="name" class="form-label fw-bold">
+          Phút:
+          <span class="text-danger">*</span>:
+        </label>
+        <input
+          type="number"
+          class="form-control"
+          id="minute"
+          placeholder="Phút"
+          formControlName="minute"
+          required
+        />
+        <app-show-error [control]="form.get('minute')"></app-show-error>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-end mt-30">
+      <button
+        type="button"
+        class="btn btn-secondary mr-12"
+        data-bs-dismiss="modal"
+        #closeModal
+      >
+        Huỷ
+      </button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        (click)="focusInput.focus()"
+      >
+        Lưu
+      </button>
+    </div>
+  </form>
+</div>

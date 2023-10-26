@@ -10,14 +10,14 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { prefixApi } from '../../../../core/constants/api.constant';
-import { DepartmentService } from 'src/app/admin/_services/department.service';
+import { ServiceHospitalService } from 'src/app/admin/_services/service_hospital.service';
 
 @Component({
-  selector: 'app-department-list',
-  templateUrl: './department-list.component.html',
-  styleUrls: ['./department-list.component.scss'],
+  selector: 'app-hospital-service-list',
+  templateUrl: './hospital-service-list.component.html',
+  styleUrls: ['./hospital-service-list.component.scss'],
 })
-export class DepartmentListComponent implements OnInit, OnDestroy {
+export class HospitalServiceListComponent implements OnInit, OnDestroy {
   // subscription
   subscription: Subscription[] = [];
   isLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
@@ -66,7 +66,7 @@ export class DepartmentListComponent implements OnInit, OnDestroy {
   }
 
   constructor(
-    private api: DepartmentService,
+    private api: ServiceHospitalService,
     private router: Router,
     private el: ElementRef,
     private toastr: ToastrService,
@@ -95,14 +95,6 @@ export class DepartmentListComponent implements OnInit, OnDestroy {
         })
         .subscribe(({ data }) => {
           this.dataSources = data.data || [];
-          this.dataSources.forEach((item: any) => {
-            if (item.thumbnail && item.thumbnail.indexOf('http') === -1) {
-              item.thumbnail = prefixApi + item.thumbnail;
-            }
-            if (item.image && item.image.indexOf('http') === -1) {
-              item.image = prefixApi + item.image;
-            }
-          });
           this.currentPage = data.current_page; // trang hiện tại
           this.totalPage = data.last_page; // số trang
           this.totalElements = data.total; // tổng số phần tử trong database

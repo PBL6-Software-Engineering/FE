@@ -24,7 +24,7 @@ export class AuthInterceptor implements HttpInterceptor {
     let authReq = request;
     // const token = this.tokenService.getToken();
     const token =
-      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6OTlcL2FwaVwvYWRtaW5cL2xvZ2luIiwiaWF0IjoxNjk3MDA2MTI4LCJleHAiOjE2OTgyMTU3MjgsIm5iZiI6MTY5NzAwNjEyOCwianRpIjoidzBVNXJ5bkgzS0xaUmQ0MiIsInN1YiI6MSwicHJ2IjoiZGY4ODNkYjk3YmQwNWVmOGZmODUwODJkNjg2YzQ1ZTgzMmU1OTNhOSJ9.XZvgskVhMt_fL-Ftt2pvduJHj5j9uXwkmOA9OCGwcOw';
+      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6OTlcL2FwaVwvdXNlclwvbG9naW4iLCJpYXQiOjE2OTc4ODk1MzEsImV4cCI6MTY5OTA5OTEzMSwibmJmIjoxNjk3ODg5NTMxLCJqdGkiOiIwYVhUUG1WbzJyWTJXRXpZIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.S0__Hgfds3E8-mDXPzlJWqkoeiMfs4YPo2A37-c-AKc';
     if (token != null) {
       authReq = request.clone({
         headers: request.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token),

@@ -52,6 +52,8 @@
               </th>
               <th>Tên</th>
               <th class="text-center">Thumbnail</th>
+              <th class="text-center">Thời gian tư vấn</th>
+              <th class="text-center">Giá tiền</th>
               <th class="text-center">Ngày tạo</th>
               <th class="text-center">Hành động</th>
             </tr>
@@ -83,6 +85,18 @@
 
               <td class="text-center">
                 <img [src]="item.thumbnail" alt="" class="thumbnail" />
+              </td>
+
+              <td class="text-center">
+                <span class="text-hover-primary">
+                  {{ item?.time_advise | convertToHourAndMinute }}
+                </span>
+              </td>
+
+              <td class="text-center">
+                <span class="text-hover-primary">
+                  {{ item?.price | currency : "VND" }}
+                </span>
               </td>
 
               <td class="text-center">
@@ -220,9 +234,10 @@
 >
   <div class="modal-dialog" role="document">
     <div class="modal-content p-30">
-      <app-department-create
+      <app-hospital-department-create
         (reloadData)="onLoadData(true)"
-      ></app-department-create>
+        [departments]="departments"
+      ></app-hospital-department-create>
     </div>
   </div>
 </div>
@@ -238,10 +253,11 @@
 >
   <div class="modal-dialog" role="document">
     <div class="modal-content p-30">
-      <app-department-edit
+      <app-hospital-department-edit
         [item]="updateItem"
         (reloadData)="onLoadData(true)"
-      ></app-department-edit>
+        [departments]="departments"
+      ></app-hospital-department-edit>
     </div>
   </div>
 </div>

@@ -25,6 +25,20 @@ export class SidebarComponent {
       ],
     },
     {
+      label: 'Quản lý chung hos',
+      routerLink: '',
+      subItems: [
+        {
+          label: 'Chuyên khoa',
+          routerLink: '/admin/general-hospital/department',
+        },
+        {
+          label: 'Dịch vụ',
+          routerLink: '/admin/general-hospital/service',
+        },
+      ],
+    },
+    {
       label: 'Tài khoản người dùng',
       routerLink: '/admin/account-user',
     },
@@ -36,10 +50,10 @@ export class SidebarComponent {
       label: 'Bác sĩ',
       routerLink: '/admin/doctor',
     },
-    {
-      label: 'Dịch vụ',
-      routerLink: '/admin/hospital-service',
-    },
+    // {
+    //   label: 'Dịch vụ',
+    //   routerLink: '/admin/hospital-service',
+    // },
     {
       label: 'Bệnh nhân',
       routerLink: '/admin/patient',

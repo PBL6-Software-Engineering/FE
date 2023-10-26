@@ -85,7 +85,6 @@ export class CategoryListComponent implements OnInit, OnDestroy {
   }
 
   onLoadData(isResetPage = false) {
-    console.log('load data nè');
     this.subscription.push(
       this.api
         .paginate({

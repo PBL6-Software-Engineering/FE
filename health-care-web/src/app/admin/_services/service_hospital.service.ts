@@ -6,8 +6,8 @@ import { linkApi } from '../../core/constants/api.constant';
 @Injectable({
   providedIn: 'root',
 })
-export class DepartmentService {
-  model = 'department';
+export class ServiceHospitalService {
+  model = 'hospital-service';
   constructor(private http: HttpClient) {}
 
   paginate({
@@ -25,33 +25,16 @@ export class DepartmentService {
     return this.http.get<any>(`${linkApi}/${this.model}`);
   }
 
-  getDepartmentsNotCreatedByHospitalId(id: any): Observable<any> {
-    return this.http.get<any>(`${linkApi}/${this.model}?id_hospital=${id}`);
-  }
-
   findById(id: any): Observable<any> {
     return this.http.get<any>(`${linkApi}/${this.model}/detail/${id}`);
   }
 
   create(obj: any): Observable<any> {
-    const formData = new FormData();
-    formData.append('name', obj.name);
-    formData.append('description', obj.description);
-    formData.append('thumbnail', obj.thumbnail, obj.thumbnail.name);
-    return this.http.post<any>(`${linkApi}/${this.model}/add`, formData);
+    return this.http.post<any>(`${linkApi}/${this.model}/add`, obj);
   }
 
-  update(id: any, obj: any, isChangeFile: boolean = false): Observable<any> {
-    const formData = new FormData();
-    formData.append('name', obj.name);
-    formData.append('description', obj.description);
-    if (isChangeFile) {
-      formData.append('thumbnail', obj.thumbnail, obj.thumbnail.name);
-    }
-    return this.http.post<any>(
-      `${linkApi}/${this.model}/update/${id}`,
-      formData
-    );
+  update(id: any, obj: any): Observable<any> {
+    return this.http.post<any>(`${linkApi}/${this.model}/update/${id}`, obj);
   }
 
   deleteById(id: any): Observable<any> {
