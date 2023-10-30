@@ -4,6 +4,7 @@ import { UserComponent } from './user.component';
 import { F1HomePageComponent } from './features/f1-home-page/f1-home-page.component';
 import { F3ArticleDetailComponent } from './features/f3-article-detail/f3-article-detail.component';
 import { F4CategoriesComponent } from './features/f4-categories/f4-categories.component';
+import { F5CategoryDetailComponent } from './features/f5-category-detail/f5-category-detail.component';
 const routes: Routes = [
   {
     path: '',
@@ -18,8 +19,11 @@ const routes: Routes = [
         component: F3ArticleDetailComponent,
       },
       {
-        path: 'categories',
-        component: F4CategoriesComponent,
+        path: 'category',
+        loadChildren: () =>
+          import('./features/f6-category/f6-category.module').then(
+            (m) => m.F6CategoryModule
+          ),
       },
       {
         path: 'user',

@@ -1,0 +1,35 @@
+.line-vertical {
+    border: none;
+    display: inline-block;
+    height: 24px;
+    border-right: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+
+
+.carousel-indicators {
+    text-align: center;
+}
+
+.carousel-indicators li {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 50%;
+    background-color: #777;
+    transform: translateY(30px);
+    /* Màu sắc của bullet chưa được chọn */
+    cursor: pointer;
+}
+
+.carousel-indicators .active {
+    background-color: #2d87f3;
+    /* Màu sắc của bullet đã được chọn */
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+    color: #2d87f3;
+}
