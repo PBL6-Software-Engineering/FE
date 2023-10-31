@@ -4,6 +4,8 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import * as auth from 'firebase/auth';
+import { ToastrService } from 'ngx-toastr';
+import { TokenStorageService } from '../../services/token_storage.service';
 
 @Component({
   selector: 'app-sign-in-admin',
@@ -14,15 +16,16 @@ export class SignInAdminComponent implements OnInit {
   loginForm: FormGroup;
   isShowEmail = false;
   isShowPass = false;
-  responseData: any;
-  message: string = '';
+
   constructor(
     private apiService: AuthService,
     private formBuilder: FormBuilder,
     private el: ElementRef,
     private renderer: Renderer2,
     private router: Router,
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    private toastrService: ToastrService,
+    private tokenStorageService: TokenStorageService
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -38,21 +41,6 @@ export class SignInAdminComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
-  showNotification(message: string) {
-    this.message = message;
-    const notification = this.el.nativeElement.querySelector('#notification');
-    this.renderer.setStyle(notification, 'display', 'block');
-
-    setTimeout(() => {
-      this.renderer.setStyle(notification, 'opacity', '0');
-    }, 2000);
-
-    setTimeout(() => {
-      this.renderer.setStyle(notification, 'display', 'none');
-      this.renderer.setStyle(notification, 'opacity', '1');
-    }, 4000);
-  }
-
   login() {
     if (this.loginForm.valid) {
       // Biểu mẫu hợp lệ, có thể gọi API đăng nhập
@@ -61,39 +49,22 @@ export class SignInAdminComponent implements OnInit {
       console.log(this.loginForm.value.email);
       this.apiService
         .loginAdmin(this.loginForm.value.email, this.loginForm.value.password)
-        .subscribe(
-          (response) => {
-            console.log(
-              'Đăng nhập thành công. Token truy cập:',
-              response.token
-            );
-            this.showNotification('Đăng nhập thành công');
-
-            this.router.navigate(['/']);
+        .subscribe({
+          next: ({data}) => {
+            this.tokenStorageService.saveToken(data.access_token, data.role); 
+            this.toastrService.success('Đăng nhập thành công');
+            this.router.navigate(['/admin']);
           },
-          (error) => {
+          error: (error) => {
             this.renderer.addClass(loading, 'd-none');
-            console.error('Đăng nhập thất bại:', error);
-            this.showNotification(error.error.message);
-          }
-        );
-    } else {
-      // Kiểm tra trường email
-      if (
-        this.loginForm.hasError('required', 'email') ||
-        this.loginForm.hasError('email', 'email') ||
-        this.loginForm.hasError('email', 'password')
-      ) {
-        this.isShowEmail = true;
-      }
-      if (this.loginForm.hasError('required', 'password')) {
-        this.isShowPass = true;
-      }
+            this.toastrService.error('Đăng nhập thất bại');
+          },
+        });
     }
   }
   hideShowPass() {
-    let passField = document.getElementById('password');
-    let toggleButton = document.getElementById('toggleButton');
+    let passField = this.el.nativeElement.querySelector('#password');
+    let toggleButton = this.el.nativeElement.querySelector('#toggleButton');
     if (toggleButton?.getAttribute('src') == 'assets/media/icon/eye-off.svg')
       toggleButton?.setAttribute('src', 'assets/media/icon/eye-solid.svg');
     else {

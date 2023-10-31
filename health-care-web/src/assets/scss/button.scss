@@ -9,7 +9,8 @@
         color: white;
 
         &:hover,
-        &:active {
+        &:active,
+        &:disabled {
             background-color: #308a9a !important;
             color: white !important;
         }
@@ -26,15 +27,20 @@
             }
         }
 
-        &-blue {
-            border: 1px solid #2d87f3;
+        &-primary {
+            border: 1px solid $color-primaryBase;
             background: white;
-            color: #2d87f3;
+            color: $color-primaryBase;
             font-weight: 600;
 
-            // &:hover {
-            //     background-color: $color-neutral50;
-            // }
+            &:hover,
+            &:focus,
+            &:active {
+                background-color: $color-primaryBase !important;
+                color: white;
+                border: 1px solid $color-primaryBase !important;
+                outline: $color-primaryBase !important;
+            }
         }
     }
 

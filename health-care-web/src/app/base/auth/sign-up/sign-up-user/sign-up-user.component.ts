@@ -2,6 +2,7 @@ import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Toast, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sign-up-user',
@@ -14,14 +15,14 @@ export class SignUpUserComponent {
   isShowPass = false;
   isShowConfirm = false;
   isShowName = false;
-  message: string = '';
 
   constructor(
     private apiService: AuthService,
     private formBuilder: FormBuilder,
     private el: ElementRef,
     private renderer: Renderer2,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -47,27 +48,11 @@ export class SignUpUserComponent {
     return this.loginForm.get('name');
   }
 
-  showNotification(message: string) {
-    this.message = message;
-    const notification = this.el.nativeElement.querySelector('#notification');
-    this.renderer.setStyle(notification, 'display', 'block');
-
-    setTimeout(() => {
-      this.renderer.setStyle(notification, 'opacity', '0');
-    }, 2000);
-
-    setTimeout(() => {
-      this.renderer.setStyle(notification, 'display', 'none');
-      this.renderer.setStyle(notification, 'opacity', '1');
-    }, 4000);
-  }
-
   signup() {
     if (this.loginForm.valid) {
       // Biểu mẫu hợp lệ, có thể gọi API đăng nhập
       var loading = this.el.nativeElement.querySelector('#loading');
       this.renderer.removeClass(loading, 'd-none');
-      console.log(this.loginForm.value.email);
       this.apiService
         .signup(
           this.loginForm.value.name,
@@ -75,34 +60,18 @@ export class SignUpUserComponent {
           this.loginForm.value.password,
           this.loginForm.value.confirm
         )
-        .subscribe(
-          (response) => {
-            console.log('Đăng kí thành công. Token truy cập:', response.token);
-            this.showNotification('Đăng nhập thành công');
+        .subscribe({
+          next: (response) => {
+            // response.token
+            this.toastrService.success('Đăng kí thành công');
             this.router.navigate(['/']);
           },
-          (error) => {
+          error: (error) => {
             console.error('Đăng kí thất bại:', error);
-            this.showNotification(error.error.message);
+            this.toastrService.error('Đăng kí thất bại');
             this.renderer.addClass(loading, 'd-none');
-          }
-        );
-    } else {
-      if (this.loginForm.hasError('required', 'name')) {
-        this.isShowName = true;
-      }
-      if (
-        this.loginForm.hasError('required', 'email') ||
-        this.loginForm.hasError('email', 'email')
-      ) {
-        this.isShowEmail = true;
-      }
-      if (this.loginForm.hasError('required', 'password')) {
-        this.isShowPass = true;
-      }
-      if (this.loginForm.hasError('required', 'confirm')) {
-        this.isShowConfirm = true;
-      }
+          },
+        });
     }
   }
 

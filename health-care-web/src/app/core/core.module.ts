@@ -6,22 +6,34 @@ import { FormDirective } from './directives/form.directive';
 import { FormControlPipe } from './pipes/form-control.pipe';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { PaginateComponent } from './components/paginate/paginate.component';
+import { ConvertToHourAndMinutePipe } from './pipes/convert-to-hour-and-minute.pipe';
+import { CurrencyDirective } from './directives/currency.directive';
+import { AgePipe } from './pipes/age.pipe';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
     ShowErrorComponent,
     FormDirective,
     FormControlPipe,
+    ConvertToHourAndMinutePipe,
     CarouselComponent,
     PaginateComponent,
+    CurrencyDirective,
+    AgePipe,
+    SpinnerComponent,
   ],
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   exports: [
     ShowErrorComponent,
     FormDirective,
     FormControlPipe,
+    ConvertToHourAndMinutePipe,
     CarouselComponent,
     PaginateComponent,
+    CurrencyDirective,
+    AgePipe,
+    SpinnerComponent,
   ],
 })
 export class CoreModule {}

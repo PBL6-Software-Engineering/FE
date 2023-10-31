@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { prefixApi } from '../../../../core/constants/api.constant';
 import { DepartmentService } from 'src/app/admin/_services/department.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-department-list',
@@ -22,6 +23,7 @@ export class DepartmentListComponent implements OnInit, OnDestroy {
   subscription: Subscription[] = [];
   isLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   isLoading: boolean = false;
+  isErrorGetData: boolean = false;
 
   isSelectAll = false;
   idsSelected: Map<any, boolean> = new Map();
@@ -70,7 +72,8 @@ export class DepartmentListComponent implements OnInit, OnDestroy {
     private router: Router,
     private el: ElementRef,
     private toastr: ToastrService,
-    public cdr: ChangeDetectorRef
+    public cdr: ChangeDetectorRef,
+    private spinnerService: NgxSpinnerService
   ) {}
 
   ngOnInit() {
@@ -85,7 +88,9 @@ export class DepartmentListComponent implements OnInit, OnDestroy {
   }
 
   onLoadData(isResetPage = false) {
-    console.log('load data nè');
+    this.isLoading = true;
+    this.isErrorGetData = false;
+    this.spinnerService.show();
     this.subscription.push(
       this.api
         .paginate({
@@ -94,20 +99,30 @@ export class DepartmentListComponent implements OnInit, OnDestroy {
           search: this.textSearch || '',
           sortLatest: true,
         })
-        .subscribe(({ data }) => {
-          this.dataSources = data.data || [];
-          this.dataSources.forEach((item: any) => {
-            if (item.thumbnail && item.thumbnail.indexOf('http') === -1) {
-              item.thumbnail = prefixApi + item.thumbnail;
-            }
-            if (item.image && item.image.indexOf('http') === -1) {
-              item.image = prefixApi + item.image;
-            }
-          });
-          this.currentPage = data.current_page; // trang hiện tại
-          this.totalPage = data.last_page; // số trang
-          this.totalElements = data.total; // tổng số phần tử trong database
-          this.numberElementOfPage = this.dataSources.length; // số phần tử của 1 trang
+        .subscribe({
+          next: ({ data }) => {
+            this.dataSources = data.data || [];
+            this.dataSources.forEach((item: any) => {
+              if (item.thumbnail && item.thumbnail.indexOf('http') === -1) {
+                item.thumbnail = prefixApi + '/' + item.thumbnail;
+              }
+              if (item.image && item.image.indexOf('http') === -1) {
+                item.image = prefixApi + '/' + item.image;
+              }
+            });
+            this.currentPage = data.current_page; // trang hiện tại
+            this.totalPage = data.last_page; // số trang
+            this.totalElements = data.total; // tổng số phần tử trong database
+            this.numberElementOfPage = this.dataSources.length; // số phần tử của 1 trang
+          },
+          error: (err) => {
+            this.isErrorGetData = true;
+            this.toastr.error('Lỗi! Không thể tải dữ liệu');
+          },
+          complete: () => {
+            this.isLoading = false;
+            this.spinnerService.hide();
+          },
         })
     );
   }

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sub-header',
@@ -6,11 +7,20 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./sub-header.component.scss'],
 })
 export class SubHeaderComponent {
-  @Input() data: any;
+  @Input() data = {
+    title: '',
+    items: [
+      {
+        thumbnail: '',
+        name: '',
+      },
+    ],
+    tab: '',
+  };
   @Output() closeSubHeader = new EventEmitter();
 
   news: any = [];
-  constructor() {
+  constructor(private router: Router) {
     for (let i = 1; i <= 3; i++) {
       this.news.push({
         image: 'assets/media/image/image-card.jpg',
@@ -34,5 +44,18 @@ export class SubHeaderComponent {
 
   onCloseSubHeader(): void {
     this.closeSubHeader.emit();
+  }
+
+  viewAll(): void {
+    let url = '';
+    if (this.data.tab === 'CATEGORY') {
+      url = 'categories';
+    } else if (this.data.tab === 'BOOKING_DOCTOR') {
+      url = 'departments';
+    } else if (this.data.tab === 'SOCIAL') {
+      url = 'departments';
+    }
+    this.router.navigateByUrl(url);
+    this.onCloseSubHeader();
   }
 }

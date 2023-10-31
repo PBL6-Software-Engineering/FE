@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SignInAdminComponent } from './sign-in-admin/sign-in-admin.component';
 import { SignInComponent } from './sign-in.component';
-import { SignInHospitalComponent } from './sign-in-hospital/sign-in-hospital.component';
-import { SignInDoctorComponent } from './sign-in-doctor/sign-in-doctor.component';
 import { SignInUserComponent } from './sign-in-user/sign-in-user.component';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 import { ForgotPasswordAdminComponent } from '../forgot-password-Admin/forgot-password.component';
@@ -19,14 +17,6 @@ const routes: Routes = [
       {
         path: 'admin',
         component: SignInAdminComponent,
-      },
-      {
-        path: 'hospital',
-        component: SignInHospitalComponent,
-      },
-      {
-        path: 'doctor',
-        component: SignInDoctorComponent,
       },
       {
         path: 'forgot-password',

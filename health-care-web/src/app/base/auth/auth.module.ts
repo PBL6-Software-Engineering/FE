@@ -7,17 +7,8 @@ import { SignInModule } from './sign-in/sign-in.module';
 import { SignUpModule } from './sign-up/sign-up.module';
 import { BackgroundComponent } from './layout/background/background.component';
 
-
 @NgModule({
-  declarations: [
-    AuthComponent,
-    BackgroundComponent,
-  ],
-  imports: [
-    CommonModule,
-    AuthRoutingModule,
-    SignInModule,
-    SignUpModule,
-  ]
+  declarations: [AuthComponent, BackgroundComponent],
+  imports: [CommonModule, AuthRoutingModule, SignInModule, SignUpModule],
 })
-export class AuthModule { }
+export class AuthModule {}

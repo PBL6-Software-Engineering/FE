@@ -8,6 +8,7 @@ import { CategoryEditComponent } from './category-edit/category-edit.component';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from 'src/app/core/core.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { CoreModule } from 'src/app/core/core.module';
     FormsModule,
     CoreModule,
     ReactiveFormsModule,
+    NgxSpinnerModule
   ],
 })
 export class CategoryModule {}

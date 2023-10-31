@@ -1,11 +1,11 @@
 .sub-header {
+    z-index: 10;
     padding: 30px 5%;
     box-shadow: 0 10px 16px rgba(0, 0, 0, .04), 0 2px 8px rgba(0, 0, 0, .04), 0 0 1px rgba(0, 0, 0, .04);
+    background-color: white;
 }
 
 .icon-sub-header {
-    width: 32px;
-    height: 32px;
     max-width: 32px;
     max-height: 32px;
     object-fit: contain;

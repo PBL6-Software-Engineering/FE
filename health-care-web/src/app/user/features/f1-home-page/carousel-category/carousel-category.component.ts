@@ -8,13 +8,11 @@ import { UserService } from '../../services/user.service';
 })
 export class CarouselCategoryComponent implements OnInit {
   categories: any[] = [];
-  constructor(private userService: UserService) {}
+  constructor() {}
   ngOnInit(): void {
-    this.getCategories();
-  }
-  getCategories() {
-    this.userService.getCategoris().subscribe((res) => {
-      this.categories = res;
-    });
+    const categoriesStorage = localStorage.getItem('categories');
+    if (categoriesStorage) {
+      this.categories = JSON.parse(categoriesStorage);
+    }
   }
 }

@@ -11,6 +11,7 @@ import { StepBookingComponent } from './step-booking/step-booking.component';
 import { BannerSearchComponent } from './banner-search/banner-search.component';
 import { FeaturedNewsComponent } from './featured-news/featured-news.component';
 import { ArticleTopicsComponent } from './article-topics/article-topics.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ArticleTopicsComponent } from './article-topics/article-topics.componen
     FormsModule,
     CoreModule,
     ShareModuleModule,
+    NgxSpinnerModule,
   ],
 })
 export class F1HomePageModule {}

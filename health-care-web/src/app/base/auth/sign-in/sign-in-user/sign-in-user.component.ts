@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 // import 'firebase/auth';
 import * as auth from 'firebase/auth';
+import { ToastrService } from 'ngx-toastr';
+import { TokenStorageService } from '../../services/token_storage.service';
 
 @Component({
   selector: 'app-sign-in-user',
@@ -24,7 +26,9 @@ export class SignInUserComponent implements OnInit {
     private el: ElementRef,
     private renderer: Renderer2,
     private router: Router,
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    private toastrService: ToastrService,
+    private tokenStorageService: TokenStorageService
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -40,21 +44,6 @@ export class SignInUserComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
-  showNotification(message: string) {
-    this.message = message;
-    const notification = this.el.nativeElement.querySelector('#notification');
-    this.renderer.setStyle(notification, 'display', 'block');
-
-    setTimeout(() => {
-      this.renderer.setStyle(notification, 'opacity', '0');
-    }, 2000);
-
-    setTimeout(() => {
-      this.renderer.setStyle(notification, 'display', 'none');
-      this.renderer.setStyle(notification, 'opacity', '1');
-    }, 4000);
-  }
-
   login() {
     if (this.loginForm.valid) {
       // Biểu mẫu hợp lệ, có thể gọi API đăng nhập
@@ -63,34 +52,22 @@ export class SignInUserComponent implements OnInit {
       console.log(this.loginForm.value.email);
       this.apiService
         .login(this.loginForm.value.email, this.loginForm.value.password)
-        .subscribe(
-          (response) => {
-            console.log(
-              'Đăng nhập thành công. Token truy cập:',
-              response.token
-            );
-            this.showNotification('Đăng nhập thành công');
-
-            this.router.navigate(['/']);
+        .subscribe({
+          next: ({ data }) => {
+            this.tokenStorageService.saveToken(data.access_token, data.role);
+            this.tokenStorageService.saveUser(data);
+            this.toastrService.success('Đăng nhập thành công');
+            if (data.role === 'user') {
+              this.router.navigateByUrl('/');
+            } else {
+              this.router.navigateByUrl('/admin');
+            }
           },
-          (error) => {
+          error: (err) => {
             this.renderer.addClass(loading, 'd-none');
-            console.error('Đăng nhập thất bại:', error);
-            this.showNotification(error.error.message);
-          }
-        );
-    } else {
-      // Kiểm tra trường email
-      if (
-        this.loginForm.hasError('required', 'email') ||
-        this.loginForm.hasError('email', 'email') ||
-        this.loginForm.hasError('email', 'password')
-      ) {
-        this.isShowEmail = true;
-      }
-      if (this.loginForm.hasError('required', 'password')) {
-        this.isShowPass = true;
-      }
+            this.toastrService.error('Đăng nhập thất bại');
+          },
+        });
     }
   }
   googleLogin() {
@@ -103,7 +80,7 @@ export class SignInUserComponent implements OnInit {
         // Add your logic here
       })
       .catch((err) => {
-        this.showNotification(err.message);
+        // this.showNotification(err.message);
         console.log(err);
       });
   }

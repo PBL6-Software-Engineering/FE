@@ -1,20 +1,17 @@
 <div>
   <div class="row-between fw-600">
-    <h1 class="fs-28 fw-700 mb-20">Hồ sơ</h1>
-    <span class="color-link cursor-pointer">
-      Chỉnh sửa
-      <img src="assets/media/icon/icon-edit-active.svg" alt="" />
-    </span>
+    <h1 class="fs-28 fw-700 mb-16">Hồ sơ</h1>
   </div>
 
   <!-- Avatar + name -->
-  <div class="column-center my-20">
+  <div class="column-center mb-16">
     <div>
       <label for="selectAvatar" class="position-relative cursor-pointer">
         <img
-          src="https://lh3.googleusercontent.com/a/ACg8ocIcBt2ydFueGAP7E7wLNuJzG6GM9yQW3hc26fKR28Ey=s96-c"
+          [src]="user?.avatar"
           alt=""
-          class="border-radius-50"
+          class="border-radius-50 w-64"
+          (error)="user.avatar='assets/media/image/default-user-image.png'"
         />
         <img
           src="assets/media/icon/icon-camera.svg"
@@ -31,19 +28,29 @@
       />
     </div>
     <div class="ml-30">
-      <h5 class="fw-600">{{ user.name }}</h5>
-      <div class="color-link">{{ user.username }}</div>
+      <h5 class="fw-600">{{ user?.name }}</h5>
+      <div class="color-link">{{ user?.email }}</div>
     </div>
   </div>
 
   <div class="component px-16">
-    <div class="item">
-      <div class="item-field pt-0">Tên truy cập</div>
-      <div class="item-field-value">{{ user.username }}</div>
-    </div>
-    <div class="item">
-      <div class="item-field">Họ và tên</div>
-      <div class="item-field-value">{{ user.name }}</div>
+    <div class="item row-between">
+      <div>
+        <div class="item-field">Họ và tên</div>
+        <div class="item-field-value">{{ user.name }}</div>
+      </div>
+
+      <div>
+        <span
+          class="color-link cursor-pointer"
+          data-bs-toggle="modal"
+          data-bs-target="#modalEditInfo"
+          (click)="resetForm()"
+        >
+          Chỉnh sửa
+          <img src="assets/media/icon/icon-edit-active.svg" alt="" />
+        </span>
+      </div>
     </div>
     <div class="item">
       <div class="item-field">Email</div>
@@ -51,19 +58,132 @@
     </div>
     <div class="item">
       <div class="item-field">Ngày sinh</div>
-      <div class="item-field-value">{{ user.date_of_birth }}</div>
+      <div class="item-field-value" *ngIf="user.date_of_birth; else noData">
+        {{ user.date_of_birth }}
+      </div>
     </div>
     <div class="item">
       <div class="item-field">Giới tính</div>
-      <div class="item-field-value">{{ user.gender }}</div>
+      <div class="item-field-value" *ngIf="user.gender; else noData">
+        {{ user.gender }}
+      </div>
     </div>
     <div class="item">
-      <div class="item-field">Tỉnh</div>
-      <div class="item-field-value">{{ user.province }}</div>
+      <div class="item-field">Địa chỉ</div>
+      <div class="item-field-value" *ngIf="user.address; else noData">
+        {{ user.address }}
+      </div>
     </div>
     <div class="item">
       <div class="item-field">Số điện thoại</div>
-      <div class="item-field-value">{{ user.phone }}</div>
+      <div class="item-field-value" *ngIf="user.phone; else noData">
+        {{ user.phone }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noData>
+  <div class="item-field-value text-warning">Không có dữ liệu</div>
+</ng-template>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="modalEditInfo"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title fw-700" id="exampleModalLabel">
+          Cập nhật thông tin
+        </h6>
+      </div>
+      <form class="modal-body pt-0" [formGroup]="form" (ngSubmit)="saveInfo()">
+        <div>
+          <h6 class="fs-14 my-3 fw-700">Ngày sinh</h6>
+          <input
+            type="date"
+            class="form-control"
+            id="dateOfBirthPicker"
+            placeholder="Chọn ngày sinh"
+            formControlName="date_of_birth"
+          />
+        </div>
+
+        <div>
+          <h6 class="fs-14 my-3 fw-700">Giới tính</h6>
+
+          <div class="d-flex justify-content-around">
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="gender"
+                id="male"
+                value="0"
+                formControlName="gender"
+              />
+              <label class="form-check-label" for="male">Nam</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="gender"
+                id="female"
+                value="1"
+                formControlName="gender"
+              />
+              <label class="form-check-label" for="female">Nữ</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="gender"
+                id="other"
+                value="2"
+                formControlName="gender"
+              />
+              <label class="form-check-label" for="other">Khác</label>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h6 class="fs-14 my-3 fw-700">Địa chỉ</h6>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Nhập địa chỉ của bạn"
+            formControlName="address"
+          />
+        </div>
+
+        <div>
+          <h6 class="fs-14 my-3 fw-700">Số điện thoại</h6>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Nhập số điện thoại của bạn"
+            formControlName="phone"
+          />
+        </div>
+        <div class="modal-footer mt-20" style="border-top: 0px">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Huỷ
+          </button>
+          <button type="submit" class="btn btn-primary">Lưu</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

@@ -5,23 +5,22 @@
     border-radius: 5%;
     min-height: 80vh;
     min-width: 40vw;
-    ;
 }
 
 @media screen and (max-width:828px) {
-    #container{
+    #container {
         min-width: 60vw;
     }
 }
+
 @media screen and (max-width:712px) {
-    #container{
+    #container {
         min-width: 70vw;
     }
 }
+
 @media screen and (max-width:552px) {
-    #container{
+    #container {
         min-width: 80vw;
     }
 }
-
-

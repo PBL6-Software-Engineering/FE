@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Toast, ToastrService } from 'ngx-toastr';
+import { TokenStorageService } from 'src/app/base/auth/services/token_storage.service';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
 })
-export class SidebarComponent {
-  menuItems: any[] = [
+export class SidebarComponent implements OnInit {
+  menuItemsAdmin: any[] = [
     {
       label: 'Bảng thống kê',
       routerLink: '/admin/dashboard',
@@ -36,10 +38,10 @@ export class SidebarComponent {
       label: 'Bác sĩ',
       routerLink: '/admin/doctor',
     },
-    {
-      label: 'Dịch vụ',
-      routerLink: '/admin/hospital-service',
-    },
+    // {
+    //   label: 'Dịch vụ',
+    //   routerLink: '/admin/hospital-service',
+    // },
     {
       label: 'Bệnh nhân',
       routerLink: '/admin/patient',
@@ -74,14 +76,104 @@ export class SidebarComponent {
       routerLink: '/admin/setting',
     },
   ];
-  constructor(private router: Router) {}
+  menuItemsHospital: any[] = [
+    {
+      label: 'Bảng thống kê',
+      routerLink: '/admin/dashboard',
+    },
+    {
+      label: 'Thiết lập tài khoản',
+      routerLink: '/admin/account-setting',
+    },
+    {
+      label: 'Quản lý chung',
+      routerLink: '',
+      subItems: [
+        {
+          label: 'Chuyên khoa',
+          routerLink: '/admin/general-hospital/department',
+        },
+        {
+          label: 'Dịch vụ',
+          routerLink: '/admin/general-hospital/service',
+        },
+      ],
+    },
+    {
+      label: 'Tài khoản người dùng',
+      routerLink: '/admin/account-user',
+    },
+    {
+      label: 'Bệnh viện',
+      routerLink: '/admin/hospital',
+    },
+    {
+      label: 'Bác sĩ',
+      routerLink: '/admin/doctor',
+    },
+    // {
+    //   label: 'Dịch vụ',
+    //   routerLink: '/admin/hospital-service',
+    // },
+    {
+      label: 'Bệnh nhân',
+      routerLink: '/admin/patient',
+    },
+    {
+      label: 'Lịch làm việc',
+      routerLink: '/admin/working-time',
+    },
+    {
+      label: 'Lịch hẹn',
+      routerLink: '/admin/appointment',
+    },
+    {
+      label: 'Bài viết',
+      routerLink: '/admin/article',
+    },
+    {
+      label: 'Hội thoại',
+      routerLink: '/admin/chat',
+    },
+    {
+      label: 'Nghỉ phép',
+      routerLink: '/admin/leave-request',
+    },
+    // { label: 'Hóa đơn', routerLink: '/admin/invoice' },
+    {
+      label: 'Báo cáo',
+      routerLink: '/admin/report',
+    },
+    {
+      label: 'Cài đặt',
+      routerLink: '/admin/setting',
+    },
+  ];
+  menuItems: any[] = [];
+  constructor(
+    private router: Router,
+    private tokenStorageService: TokenStorageService,
+    private toastrService: ToastrService
+  ) {}
+
+  ngOnInit(): void {
+    const role = this.tokenStorageService.getRole();
+    console.log(role);
+    if (role && role.toString() === 'manager') {
+      this.menuItems = this.menuItemsAdmin;
+    } else if (role && role.toString() === 'hospital') {
+      this.menuItems = this.menuItemsHospital;
+    } else if (role && role.toString() === 'doctor') {
+      this.menuItems = this.menuItemsHospital;
+    }
+  }
 
   onClickSidebar(item: any): void {
     this.menuItems.forEach((menuItem) => {
       let isExist = false;
 
       // kiểm tra menu level 1
-      if (menuItem.label === item.label) {
+      if (menuItem.routerLink === item.routerLink) {
         isExist = true;
         menuItem.active = true;
         // nếu có menu level 2 thì mở hoặc đóng menu level 2
@@ -96,7 +188,7 @@ export class SidebarComponent {
       // kiểm tra menu level 2
       if (menuItem.subItems) {
         menuItem.subItems.forEach((subItem: any) => {
-          if (subItem.label === item.label) {
+          if (subItem.routerLink === item.routerLink) {
             isExist = true;
             subItem.active = true;
             this.router.navigate([subItem.routerLink]);
@@ -112,5 +204,10 @@ export class SidebarComponent {
         menuItem.showSubItems = false;
       }
     });
+  }
+  logout() {
+    this.tokenStorageService.removeToken();
+    this.router.navigateByUrl('/');
+    this.toastrService.success('Đăng xuất thành công');
   }
 }

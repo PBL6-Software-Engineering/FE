@@ -1,1 +1,104 @@
-<p>f11-article-edit works!</p>
+<div class="right-content">
+  <div class="fw-bolder fs-5 mb-3">Sửa bài viết</div>
+  <form
+    (ngSubmit)="save()"
+    appFocusInvalidInput
+    #focusInput="focusInvalidInput"
+    [formGroup]="form"
+    #f="ngForm"
+  >
+    <div class="row">
+      <div class="col-3 column-center row-center">
+        <label for="thumbnail">
+          <img
+            [src]="srcThumbnail"
+            alt="Thumbnail"
+            class="border-radius-4 upload-image"
+            (error)="onErrorImage($event)"
+          />
+        </label>
+
+        <input
+          class="form-control mt-12"
+          type="file"
+          accept="image/*"
+          (change)="onChangeFile($event)"
+          id="thumbnail"
+          #inputFile
+          hidden
+        />
+
+        <app-show-error [control]="form.get('thumbnail')"></app-show-error>
+      </div>
+      <div class="col-9">
+        <div class="mb-3">
+          <label for="title" class="form-label fw-bold">
+            Tên bài viết:
+            <span class="text-danger">*</span>:
+          </label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            placeholder="Tên dịch vụ"
+            formControlName="title"
+            required
+          />
+          <app-show-error [control]="form.get('title')"></app-show-error>
+        </div>
+        <div class="mb-3">
+          <label for="category" class="form-label fw-bold">
+            Chọn danh mục
+            <span class="text-danger">*</span>:
+          </label>
+          <ng-select
+            formControlName="id_category"
+            class="input-search"
+            placeholder="Chọn danh mục"
+            required="true"
+            id="category"
+          >
+            <ng-option
+              *ngFor="let category of categories"
+              [value]="category.id"
+            >
+              {{ category.name }}
+            </ng-option>
+          </ng-select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <label for="content" class="form-label fw-bold mb-2">
+        Nội dung bài viết:
+        <span class="text-danger">*</span>:
+      </label>
+
+      <quill-editor
+        formControlName="content"
+        placeholder="Nội dung bài viết"
+        id="content"
+      ></quill-editor>
+
+      <app-show-error [control]="form.get('content')"></app-show-error>
+    </div>
+
+    <div class="d-flex justify-content-end mt-70">
+      <button
+        type="button"
+        class="btn btn-secondary mr-12"
+        routerLink="/admin/general-hospital/service"
+      >
+        Huỷ
+      </button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        (click)="focusInput.focus()"
+      >
+        Lưu
+      </button>
+    </div>
+  </form>
+</div>

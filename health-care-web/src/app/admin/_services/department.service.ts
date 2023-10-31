@@ -22,7 +22,11 @@ export class DepartmentService {
   }
 
   getAll(): Observable<any> {
-    return this.http.get<any>(`${linkApi}/${this.model}`);
+    return this.http.get<any>(`${linkApi}/${this.model}?sortname=true`);
+  }
+
+  getDepartmentsNotCreatedByHospitalId(id: any): Observable<any> {
+    return this.http.get<any>(`${linkApi}/${this.model}?id_hospital=${id}`);
   }
 
   findById(id: any): Observable<any> {
