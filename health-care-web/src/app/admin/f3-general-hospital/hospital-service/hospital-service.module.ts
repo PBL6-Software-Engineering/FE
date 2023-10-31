@@ -10,6 +10,8 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
 import { CoreModule } from 'src/app/core/core.module';
 import { HospitalServiceDetailComponent } from './hospital-service-detail/hospital-service-detail.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { QuillModule } from 'ngx-quill';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     CoreModule,
     ReactiveFormsModule,
     NgSelectModule,
+    QuillModule,
+    NgxSpinnerModule,
   ],
 })
 export class HospitalServiceModule {}

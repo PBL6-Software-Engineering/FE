@@ -12,10 +12,13 @@ export class CarouselComponent {
   constructor() {}
 
   getArrayStep() {
-    return new Array(this.items.length - this.numberItemShow + 1);
+    const numberStep = Math.ceil(
+      (this.items.length - this.numberItemShow) / this.numberItemShow
+    );
+    return new Array(numberStep + 1);
   }
 
   changeSlide(i: number) {
-    this.index = i;
+    this.index = i * this.numberItemShow;
   }
 }

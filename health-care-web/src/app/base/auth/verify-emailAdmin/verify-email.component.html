@@ -1,0 +1,38 @@
+<div class="container">
+    
+    <a href="./auth/sign-in/forgot-password-admin">
+        <div class="btn mt-30" id="btn-Back" style="z-index: 1;position: absolute;">
+            <img class="" src="assets/media/icon/arrow-gray-1.svg" alt="" style=" transform: rotate(180deg);">
+        </div>
+    </a>
+    <div class="d-flex flex-column align-items-center">
+        <img class="row" src="assets/media/logo/logo_1.png" alt="" style="width: 40%;">
+    </div>
+    <div class="container">
+            <p class="mb-100 mt-30">Email chứa link xác thực đã được gửi tới <span style="color: cornflowerblue; font-weight: bold;">{{ email }}</span></p>
+            <!-- <form action="">
+                <div class="border mb-20">
+                    <img class="icon" src="assets/media/icon/user.svg" alt="" style="width: 25px; height: 25px;">
+                    <input class="" type="email" placeholder="Nhập mã xác thực" id="inp-email" required>
+                </div>
+                <div class="border mb-20">
+                    <img class="icon" src="assets/media/icon/password-outline.svg" alt="" style="width: 25px; height: 25px;">
+                    <input class="" type="password" placeholder="Mật khẩu mới" id="inp-email" required>
+                </div>
+                <div class="border mb-20">
+                    <img class="icon" src="assets/media/icon/password-outline.svg" alt="" style="width: 25px; height: 25px;">
+                    <input class="" type="password" placeholder="Nhập lại mật khẩu mới" id="inp-email" required>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a class="btn btn-primary d-block col-md-6" href="./auth/sign-in/verify-email"><p class="">Hoàn tất</p></a>
+                </div>
+            </form> -->
+            <div class="btn btn-secondary d-flex justify-content-center" id="btn-login" (click)="goToSignIn()">
+                <div class="spinner-border spinner-border-sm text-primary d-none" id="loading" role="status" style="margin-top: 3px;margin-right: 5px;">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                <p>Trờ lại trang đăng nhập</p>  
+            </div>
+    </div>
+</div>
+

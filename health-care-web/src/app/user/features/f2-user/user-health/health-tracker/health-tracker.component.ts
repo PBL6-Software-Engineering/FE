@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import flatpickr from 'flatpickr';
+import { TokenStorageService } from 'src/app/base/auth/services/token_storage.service';
 
 @Component({
   selector: 'app-health-tracker',
@@ -10,8 +11,11 @@ export class HealthTrackerComponent implements OnInit {
   dateRangeFlatPickr: any;
   activityMode: string = 'low';
   noteActivityMode: string = 'Cường độ Ít';
+  user: any;
 
-  constructor() {}
+  constructor(private tokenStorageService: TokenStorageService) {
+    this.tokenStorageService.getUser().subscribe((user: any) => user = user);
+  }
   ngOnInit(): void {
     this.dateRangeFlatPickr = flatpickr('#dateOfBirthPicker', {
       allowInput: true,

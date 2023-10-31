@@ -1,17 +1,17 @@
 <div class="component row-between py-16 position-relative">
   <div class="info-health">
     <span>Tuổi</span>
-    <span class="fw-700 mt-2">2 tuổi</span>
+    <span class="fw-700 mt-2">{{ user?.date_of_birth | age }} tuổi</span>
   </div>
 
   <div class="info-health">
     <span> Chiều cao </span>
-    <span class="fw-700 mt-2"> 123cm </span>
+    <span class="fw-700 mt-2"> {{ user?.height || 0 }} cm </span>
   </div>
 
   <div class="info-health">
     <span> Cân nặng </span>
-    <span class="fw-700 mt-2"> 123 kg </span>
+    <span class="fw-700 mt-2"> {{ user?.weight || 0 }} kg </span>
   </div>
 
   <div class="info-health">

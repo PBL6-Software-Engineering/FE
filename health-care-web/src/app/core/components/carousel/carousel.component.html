@@ -6,7 +6,7 @@
     >
       <div class="p-16">
         <img
-          src="{{ item.image }}"
+          [src]="item.image || item.thumbnail"
           alt=""
           class="wh-92 border-radius-50 img-item"
         />
@@ -20,7 +20,7 @@
       <span
         class="slick-dot"
         (click)="changeSlide(i)"
-        [class.bg-active]="index === i"
+        [class.bg-active]="index === i * numberItemShow"
       ></span>
     </span>
   </div>

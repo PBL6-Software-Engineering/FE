@@ -1,88 +1,135 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-  SimpleChanges,
-  ViewChild,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { DepartmentHospitalService } from 'src/app/admin/_services/department_hospital.service';
 import { ServiceHospitalService } from 'src/app/admin/_services/service_hospital.service';
+import { TokenStorageService } from 'src/app/base/auth/services/token_storage.service';
 
 @Component({
   selector: 'app-hospital-service-edit',
   templateUrl: './hospital-service-edit.component.html',
   styleUrls: ['./hospital-service-edit.component.scss'],
 })
-export class HospitalServiceEditComponent implements OnInit, OnChanges {
-  @Input() departments: any[] = [];
-  @Input() item: any;
-  @Output() reloadData = new EventEmitter();
-  @ViewChild('closeModal') closeModal!: ElementRef;
-
+export class HospitalServiceEditComponent implements OnInit {
   form: FormGroup;
+  hospital: any;
+  hospitalService: any;
+  departmentsOfHospital: any[] = [];
+  id: any;
+  isLoading: boolean = false;
+  isError: boolean = false;
+  isSaving: boolean = false;
 
   constructor(
     private api: ServiceHospitalService,
-    private toastrService: ToastrService
+    private departmentHospitalService: DepartmentHospitalService,
+    private toastrService: ToastrService,
+    private tokenStorageService: TokenStorageService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private spinnerService: NgxSpinnerService
   ) {
     this.form = new FormGroup({
-      id_department: new FormControl(null, [Validators.required]),
-      price: new FormControl(0, [Validators.required, Validators.min(0)]),
-      hour: new FormControl('', [
+      id_hospital_department: new FormControl(null, [Validators.required]),
+      name: new FormControl('', [Validators.required]),
+      price: new FormControl('', [Validators.required, Validators.min(0)]),
+      hour: new FormControl(0, [
         Validators.required,
         Validators.min(0),
         Validators.max(4),
       ]),
-      minute: new FormControl('', [
+      minute: new FormControl(0, [
         Validators.required,
         Validators.min(0),
         Validators.max(59),
       ]),
+      about_service: new FormControl('', [Validators.required]),
+      prepare_process: new FormControl('', [Validators.required]),
+      service_details: new FormControl('', [Validators.required]),
+      location: new FormControl([26, 29]),
     });
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (this.item && this.item.id) {
-      console.log('this.item', this.item);
-      if (this.item.time_advise) {
-        this.item.hour = Math.floor(this.item.time_advise / 60);
-        this.item.minute = this.item.time_advise % 60;
+  ngOnInit(): void {
+    this.tokenStorageService.getUser().subscribe((user: any) => {
+      this.hospital = JSON.parse(user);
+      this.departmentHospitalService
+        .getDepartmentsOfHospital(this.hospital.id)
+        .subscribe(({ data }) => {
+          this.departmentsOfHospital = data;
+        });
+    });
+    this.route.params.subscribe((params) => {
+      if (params['id']) {
+        this.id = params['id'];
+        this.isLoading = true;
+        this.isError = false;
+        this.spinnerService.show();
+        this.api.findById(params['id']).subscribe({
+          next: ({ data }) => {
+            if (data.time_advise) {
+              data.hour = Math.floor(data.time_advise / 60);
+              data.minute = data.time_advise % 60;
+            }
+            data.about_service = data.infor.about_service;
+            data.prepare_process = data.infor.prepare_process;
+            data.service_details = data.infor.service_details;
+            data.location = data.infor.location;
+
+            this.hospitalService = data;
+            this.form.patchValue(data);
+
+            this.isLoading = false;
+            this.isError = false;
+          },
+          error: (err) => {
+            this.toastrService.error('Không tìm thấy dịch vụ!');
+            this.isLoading = false;
+            this.isError = true;
+          },
+          complete: () => {
+            this.isLoading = false;
+            this.spinnerService.hide();
+          },
+        });
+      } else {
+        this.router.navigateByUrl('/admin/general-hospital/service');
       }
-      this.form.patchValue(this.item);
-    }
+    });
   }
 
-  ngOnInit(): void {}
-
   save(): void {
-    console.log(this.form.value);
-    if (this.form.valid) {
-      const obj = {
-        id_department: this.form.value.id_department,
-        name: this.form.value.name,
-        price: this.form.value.price,
-        time_advise: this.form.value.hour * 60 + this.form.value.minute,
+    if (this.form.valid && !this.isSaving) {
+      const obj = Object.assign({}, this.form.value);
+      obj.infor = {
+        about_service: obj.about_service,
+        prepare_process: obj.prepare_process,
+        service_details: obj.service_details,
+        location: obj.location,
       };
-      this.api.update(this.item.id, obj).subscribe({
+      obj.time_advise = +this.form.value.hour * 60 + +this.form.value.minute;
+
+      this.isSaving = true;
+      this.api.update(this.id, obj).subscribe({
         next: (res) => {
-          this.form.reset();
           this.toastrService.success('Sửa thành công!');
-          this.closeModal.nativeElement.click();
-          this.reloadData.emit();
+          this.router.navigateByUrl('/admin/general-hospital/service');
         },
         error: (err) => {
           this.toastrService.error('Sửa thất bại!');
         },
+        complete: () => {
+          this.isSaving = false;
+        }
       });
     } else {
       this.toastrService.error('Vui lòng nhập đầy đủ thông tin');
     }
+  }
+
+  resetForm(): void {
+    this.form.reset();
   }
 }

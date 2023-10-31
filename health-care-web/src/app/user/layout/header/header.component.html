@@ -109,16 +109,16 @@
 
       <!-- Avatar after login -->
       <img
-        src="https://lh3.googleusercontent.com/a/ACg8ocIcBt2ydFueGAP7E7wLNuJzG6GM9yQW3hc26fKR28Ey=s96-c"
+        [src]="user?.avatar || 'assets/media/image/default-user-image.png'"
         alt=""
         class="avatar-user"
         (click)="clickAvatarUser()"
         *ngIf="isLogin"
+        
       />
 
       <app-header-info-user
         *ngIf="isOpenHeaderInfo"
-        (logoutEvent)="logout()"
         (closeHeaderInfo)="isOpenHeaderInfo = false"
       ></app-header-info-user>
     </div>

@@ -48,15 +48,6 @@ export class CategoryEditComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    // this.route.params.subscribe((params) => {
-    //   if (params && params['id']) {
-    //     this.api.findById(params['id']).subscribe(({ data }) => {
-    //       if (data) {
-    //         this.form.patchValue(data);
-    //       }
-    //     });
-    //   }
-    // });
   }
 
   onChangeFile(event: any): void {

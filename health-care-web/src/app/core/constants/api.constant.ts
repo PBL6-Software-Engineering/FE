@@ -1,2 +1,2 @@
-export const linkApi = 'http://localhost:99/api';
-export const prefixApi = 'http://localhost:99/'
+export const linkApi = 'https://vanmanh.azurewebsites.net/api';
+export const prefixApi = 'https://vanmanh.azurewebsites.net';

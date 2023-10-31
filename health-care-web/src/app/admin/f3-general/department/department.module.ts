@@ -8,6 +8,7 @@ import { DepartmentEditComponent } from './department-edit/department-edit.compo
 import { InlineSVGModule } from 'ng-inline-svg-2/lib_commonjs/inline-svg.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from 'src/app/core/core.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { CoreModule } from 'src/app/core/core.module';
     FormsModule,
     CoreModule,
     ReactiveFormsModule,
+    NgxSpinnerModule
   ],
 })
 export class DepartmentModule {}

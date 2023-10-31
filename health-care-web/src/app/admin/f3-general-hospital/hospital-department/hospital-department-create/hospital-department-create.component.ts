@@ -47,7 +47,6 @@ export class HospitalDepartmentCreateComponent implements OnInit {
   ngOnInit(): void {}
 
   save(): void {
-    console.log('this.form.value', this.form.value);
     if (this.form.valid) {
       const obj = {
         id_department: this.form.value.id_department,

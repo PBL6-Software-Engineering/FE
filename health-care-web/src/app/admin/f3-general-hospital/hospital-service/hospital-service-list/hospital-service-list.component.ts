@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { prefixApi } from '../../../../core/constants/api.constant';
 import { ServiceHospitalService } from 'src/app/admin/_services/service_hospital.service';
+import { TokenStorageService } from 'src/app/base/auth/services/token_storage.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-hospital-service-list',
@@ -22,6 +24,7 @@ export class HospitalServiceListComponent implements OnInit, OnDestroy {
   subscription: Subscription[] = [];
   isLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   isLoading: boolean = false;
+  isErrorGetData: boolean = false;
 
   isSelectAll = false;
   idsSelected: Map<any, boolean> = new Map();
@@ -41,6 +44,7 @@ export class HospitalServiceListComponent implements OnInit, OnDestroy {
   // delete id
   deleteItem: any;
   updateItem: any;
+  hospital: any;
 
   onCheckAllSelected() {
     this.isSelectAll = !this.isSelectAll;
@@ -59,7 +63,7 @@ export class HospitalServiceListComponent implements OnInit, OnDestroy {
     const ids: any[] = [];
     this.dataSources.forEach((item) => {
       if (item.checked) {
-        ids.push(item.id);
+        ids.push(item.id_hospital_service);
       }
     });
     return ids;
@@ -70,11 +74,18 @@ export class HospitalServiceListComponent implements OnInit, OnDestroy {
     private router: Router,
     private el: ElementRef,
     private toastr: ToastrService,
-    public cdr: ChangeDetectorRef
-  ) {}
+    public cdr: ChangeDetectorRef,
+    private tokenStorageService: TokenStorageService,
+    private spinnerService: NgxSpinnerService
+  ) {
+    this.tokenStorageService
+      .getUser()
+      .subscribe((user: any) => (this.hospital = JSON.parse(user)));
+  }
 
   ngOnInit() {
     this.idsSelected = new Map();
+    this.spinnerService.show();
     this.onLoadData();
   }
 
@@ -85,6 +96,9 @@ export class HospitalServiceListComponent implements OnInit, OnDestroy {
   }
 
   onLoadData(isResetPage = false) {
+    this.isLoading = true;
+    this.isErrorGetData = false;
+    this.spinnerService.show();
     this.subscription.push(
       this.api
         .paginate({
@@ -92,20 +106,36 @@ export class HospitalServiceListComponent implements OnInit, OnDestroy {
           paginate: 20,
           search: this.textSearch || '',
           sortLatest: true,
+          id_hospital: this.hospital.id,
         })
-        .subscribe(({ data }) => {
-          this.dataSources = data.data || [];
-          this.currentPage = data.current_page; // trang hiện tại
-          this.totalPage = data.last_page; // số trang
-          this.totalElements = data.total; // tổng số phần tử trong database
-          this.numberElementOfPage = this.dataSources.length; // số phần tử của 1 trang
+        .subscribe({
+          next: ({ data }) => {
+            data.data.forEach((item: any) => {
+              if (item.thumbnail_department) {
+                item.thumbnail_department = `${prefixApi}/${item.thumbnail_department}`;
+              }
+            });
+            this.dataSources = data.data || [];
+            this.currentPage = data.current_page; // trang hiện tại
+            this.totalPage = data.last_page; // số trang
+            this.totalElements = data.total; // tổng số phần tử trong database
+            this.numberElementOfPage = this.dataSources.length; // số phần tử của 1 trang
+          },
+          error: (err) => {
+            this.isErrorGetData = true;
+            this.toastr.error('Lỗi! Không thể tải dữ liệu');
+          },
+          complete: () => {
+            this.isLoading = false;
+            this.spinnerService.hide();
+          },
         })
     );
   }
 
   onDeleteOne() {
     this.subscription.push(
-      this.api.deleteById(this.deleteItem.id).subscribe({
+      this.api.deleteById(this.deleteItem.id_hospital_service).subscribe({
         next: () => {
           this.toastr.success('Xoá thành công!');
           this.onLoadData();
@@ -139,7 +169,7 @@ export class HospitalServiceListComponent implements OnInit, OnDestroy {
       // checked item when id exist in map
       if (this.idsSelected.size > 0) {
         this.dataSources.forEach((data: any) => {
-          if (this.idsSelected.get(data.id)) {
+          if (this.idsSelected.get(data.id_hospital_service)) {
             data.checked = true;
           }
         });
@@ -169,6 +199,6 @@ export class HospitalServiceListComponent implements OnInit, OnDestroy {
         // call api search
         this.onLoadData();
       }
-    }, 1000);
+    }, 500);
   }
 }

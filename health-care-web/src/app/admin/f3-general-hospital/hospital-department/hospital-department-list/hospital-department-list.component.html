@@ -51,7 +51,7 @@
                 </div>
               </th>
               <th>Tên</th>
-              <th class="text-center">Thumbnail</th>
+              <th class="text-center">Ảnh chuyên khoa</th>
               <th class="text-center">Thời gian tư vấn</th>
               <th class="text-center">Giá tiền</th>
               <th class="text-center">Ngày tạo</th>
@@ -76,9 +76,7 @@
               </td>
 
               <td>
-                <span
-                  class="text-hover-primary cursor-pointer"
-                >
+                <span class="text-hover-primary cursor-pointer">
                   {{ item?.name }}
                 </span>
               </td>
@@ -133,6 +131,25 @@
             </tr>
           </tbody>
         </table>
+      </div>
+
+      <div
+        class="text-center text-danger"
+        *ngIf="dataSources?.length == 0 && isErrorGetData"
+      >
+        Lỗi không lấy được dữ liệu
+      </div>
+
+      <div class="wrapper-spinner" *ngIf="isLoading">
+        <ngx-spinner
+          bdColor="rgba(0,0,0,0)"
+          size="default"
+          color="#11B3CF"
+          type="ball-pulse-sync"
+          [fullScreen]="false"
+        >
+          <p class="color-primary">Đang tải dữ liệu</p>
+        </ngx-spinner>
       </div>
     </div>
   </div>

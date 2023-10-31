@@ -4,6 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { prefixApi } from '../../../../core/constants/api.constant';
 import { DepartmentHospitalService } from 'src/app/admin/_services/department_hospital.service';
 import { DepartmentService } from 'src/app/admin/_services/department.service';
+import { TokenStorageService } from 'src/app/base/auth/services/token_storage.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-hospital-department-list',
@@ -11,8 +13,8 @@ import { DepartmentService } from 'src/app/admin/_services/department.service';
   styleUrls: ['./hospital-department-list.component.scss'],
 })
 export class HospitalDepartmentListComponent implements OnInit, OnDestroy {
-  // id hospital login
-  id_hospital = 1;
+  // hospital login
+  hospital: any;
 
   // subscription
   subscription: Subscription[] = [];
@@ -30,6 +32,7 @@ export class HospitalDepartmentListComponent implements OnInit, OnDestroy {
   textSearch = '';
   lastTextSearch = '';
   isSearching = false;
+  isErrorGetData = false;
 
   // data source for grid
   dataSources: any[] = [];
@@ -56,7 +59,7 @@ export class HospitalDepartmentListComponent implements OnInit, OnDestroy {
     const ids: any[] = [];
     this.dataSources.forEach((item) => {
       if (item.checked) {
-        ids.push(item.id);
+        ids.push(item.id_hospital_departments);
       }
     });
     return ids;
@@ -66,12 +69,18 @@ export class HospitalDepartmentListComponent implements OnInit, OnDestroy {
     private api: DepartmentHospitalService,
     private departmentService: DepartmentService,
     private toastr: ToastrService,
-    public cdr: ChangeDetectorRef
+    public cdr: ChangeDetectorRef,
+    private tokenStorageService: TokenStorageService,
+    private spinnerService: NgxSpinnerService
   ) {}
 
   ngOnInit() {
     this.idsSelected = new Map();
-    this.onLoadData();
+    this.tokenStorageService.getUser().subscribe((user: any) => {
+      this.hospital = JSON.parse(user);
+      this.spinnerService.show();
+      this.onLoadData();
+    });
   }
 
   ngOnDestroy() {
@@ -81,6 +90,9 @@ export class HospitalDepartmentListComponent implements OnInit, OnDestroy {
   }
 
   onLoadData(isResetPage = false) {
+    this.isLoading = true;
+    this.isErrorGetData = false;
+    this.spinnerService.show();
     this.subscription.push(
       this.api
         .paginate({
@@ -88,40 +100,46 @@ export class HospitalDepartmentListComponent implements OnInit, OnDestroy {
           paginate: 20,
           search: this.textSearch || '',
           sortLatest: true,
-          id_hospital: this.id_hospital,
+          id_hospital: this.hospital.id,
         })
-        .subscribe(({ data }) => {
-          console.log(data);
-          this.dataSources = data.data || [];
-          // this.dataSources = data;
-          this.dataSources.forEach((item: any) => {
-            if (item.thumbnail && item.thumbnail.indexOf('http') === -1) {
-              item.thumbnail = prefixApi + item.thumbnail;
-            }
-            if (item.image && item.image.indexOf('http') === -1) {
-              item.image = prefixApi + item.image;
-            }
-          });
-          this.currentPage = data.current_page; // trang hiện tại
-          this.totalPage = data.last_page; // số trang
-          this.totalElements = data.total; // tổng số phần tử trong database
-          this.numberElementOfPage = this.dataSources.length; // số phần tử của 1 trang
+        .subscribe({
+          next: ({ data }) => {
+            this.dataSources = data.data || [];
+            this.dataSources.forEach((item: any) => {
+              if (item.thumbnail && item.thumbnail.indexOf('http') === -1) {
+                item.thumbnail = `${prefixApi}/${item.thumbnail}`;
+              }
+              if (item.image && item.image.indexOf('http') === -1) {
+                item.image = `${prefixApi}/${item.image}`;
+              }
+            });
+            this.currentPage = data.current_page; // trang hiện tại
+            this.totalPage = data.last_page; // số trang
+            this.totalElements = data.total; // tổng số phần tử trong database
+            this.numberElementOfPage = this.dataSources.length; // số phần tử của 1 trang
+          },
+          error: (err) => {
+            this.isErrorGetData = true;
+            this.toastr.error('Lỗi! Không thể tải dữ liệu');
+          },
+          complete: () => {
+            this.isLoading = false;
+            this.spinnerService.hide();
+          },
         })
     );
-
     this.subscription.push(
       this.departmentService
-        .getDepartmentsNotCreatedByHospitalId(this.id_hospital)
+        .getDepartmentsNotCreatedByHospitalId(this.hospital.id)
         .subscribe(({ data }) => {
           this.departments = data;
-          console.log(data);
         })
     );
   }
 
   onDeleteOne() {
     this.subscription.push(
-      this.api.deleteById(this.deleteItem.id).subscribe({
+      this.api.deleteById(this.deleteItem.id_hospital_departments).subscribe({
         next: () => {
           this.toastr.success('Xoá thành công!');
           this.onLoadData();
@@ -155,7 +173,7 @@ export class HospitalDepartmentListComponent implements OnInit, OnDestroy {
       // checked item when id exist in map
       if (this.idsSelected.size > 0) {
         this.dataSources.forEach((data: any) => {
-          if (this.idsSelected.get(data.id)) {
+          if (this.idsSelected.get(data.id_hospital_departments)) {
             data.checked = true;
           }
         });

@@ -1,0 +1,88 @@
+<div class="pt-3">
+  <div class="row mt-3">
+    <div class="col-1"></div>
+
+    <div class="col-11">
+      <div class="row">
+        <div class="col-12 pb-3 column-center cursor-pointer" routerLink="/">
+          <i class="fa fa-home fs-16"></i>
+          <div class="line-vertical ms-2 me-2"></div>
+          <span class="fs-16">Tất cả chuyên mục</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="row"
+    style="
+      background: url('assets/media/image/Bg.png') no-repeat;
+      background-size: cover;
+    "
+  >
+    <div class="container">
+      <p
+        style="
+          color: #284a75;
+          font-weight: bold;
+          text-align: center;
+          font-size: 30px;
+        "
+        class="mt-20"
+      >
+        Không biết bắt đầu từ đâu?
+      </p>
+      <div class="row p-16">
+        <div
+          class="p-0 position-relative"
+          style="box-shadow: 1px 4px rgba(0, 0, 0, 0.1)"
+        >
+          <img
+            src="assets/media/icon/search.svg"
+            alt=""
+            class="wh-26 position-absolute"
+            style="
+              transform: translateX(10px);
+              top: 50%;
+              transform: translateY(-50%);
+              left: 10px;
+            "
+          />
+          <input class="py-2 ps-5 pe-4 form-control" type="text" />
+        </div>
+      </div>
+      <div class="row">
+        <div
+          class="col-md-4 col-lg-2 col-sm-6 cursor-pointer"
+          *ngFor="let category of categories"
+        >
+          <div class="p-16">
+            <div class="p-3 card-item">
+              <div class="row-center mb-2">
+                <img
+                  class="image-item border-radius-4"
+                  [src]="category.thumbnail"
+                  alt=""
+                />
+              </div>
+              <p class="text-center fw-bold fs-13 mt-6">
+                {{ category.name }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="position-relative mt-30">
+        <ngx-spinner
+          bdColor="rgba(0,0,0,0)"
+          size="default"
+          color="black"
+          type="ball-pulse-sync"
+          [fullScreen]="false"
+        >
+          <p class="mt-100">Đang tải dữ liệu</p>
+        </ngx-spinner>
+      </div> -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+.line-vertical {
+    border: none;
+    display: inline-block;
+    height: 24px;
+    border-right: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.card-item {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 4px;
+    min-height: 154px;
+    box-shadow: rgba(40, 74, 117, 0.08) 0px 5px 12px;
+}
+
+.image-item {
+    width: 80px;
+    height: 80px;
+}
+
+.container {
+    min-height: 80vh;
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-bottom: 100px;
+}

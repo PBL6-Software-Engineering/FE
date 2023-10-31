@@ -16,8 +16,7 @@
         <div>
           <button
             class="btn btn-primary-1 mx-20"
-            data-bs-toggle="modal"
-            data-bs-target="#modalCreate"
+            routerLink="/admin/general-hospital/service/create"
           >
             Thêm
           </button>
@@ -54,6 +53,7 @@
               <th class="text-center">Giá tiền</th>
               <th class="text-center">Thời gian tư vấn</th>
               <th class="text-center">Chuyên khoa</th>
+              <th class="text-center">Ảnh chuyên khoa</th>
               <th class="text-center">Hành động</th>
             </tr>
           </thead>
@@ -79,7 +79,7 @@
                   class="text-hover-primary cursor-pointer"
                   [routerLink]="[
                     '/admin/general/hospital-service/detail',
-                    item.id
+                    item.id_hospital_service
                   ]"
                 >
                   {{ item?.name }}
@@ -87,13 +87,29 @@
               </td>
 
               <td class="text-center">
-                <img [src]="item.thumbnail" alt="" class="thumbnail" />
+                <span class="text-hover-primary">
+                  {{ item?.price | currency : "VND" }}
+                </span>
               </td>
 
               <td class="text-center">
                 <span class="text-hover-primary">
-                  {{ item?.created_at | date : "dd/MM/yyyy" }}
+                  {{ item?.time_advise | convertToHourAndMinute }}
                 </span>
+              </td>
+
+              <td class="text-center">
+                <span class="text-hover-primary">
+                  {{ item?.name_department }}
+                </span>
+              </td>
+
+              <td class="text-center">
+                <img
+                  [src]="item.thumbnail_department"
+                  alt=""
+                  class="thumbnail"
+                />
               </td>
 
               <!-- Action -->
@@ -103,9 +119,10 @@
                   <button
                     class="btn btn-primary"
                     (click)="updateItem = item"
-                    data-bs-toggle="modal"
-                    data-bs-target="#modalEdit"
-                    class="btn btn-primary ml-12"
+                    [routerLink]="[
+                      '/admin/general-hospital/service/edit',
+                      item.id_hospital_service
+                    ]"
                   >
                     Sửa
                   </button>
@@ -124,6 +141,26 @@
             </tr>
           </tbody>
         </table>
+      </div>
+
+      <div
+        class="text-center text-danger"
+        *ngIf="dataSources?.length == 0 && isErrorGetData"
+      >
+        Lỗi không lấy được dữ liệu
+      </div>
+
+      <div class="wrapper-spinner" *ngIf="isLoading">
+        <ngx-spinner
+          bdColor="rgba(0,0,0,0)"
+          size="default"
+          color="#11B3CF"
+          type="ball-pulse-sync"
+          [fullScreen]="false"
+          class="ball-pulse-sync"
+        >
+          <p class="color-primary">Đang tải dữ liệu</p>
+        </ngx-spinner>
       </div>
     </div>
   </div>
@@ -210,43 +247,6 @@
           Xóa
         </button>
       </div>
-    </div>
-  </div>
-</div>
-
-<!-- Create modal -->
-<div
-  class="modal fade"
-  id="modalCreate"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="modalCreate"
-  aria-hidden="true"
->
-  <div class="modal-dialog" role="document">
-    <div class="modal-content p-30">
-      <app-hospital-service-create
-        (reloadData)="onLoadData(true)"
-      ></app-hospital-service-create>
-    </div>
-  </div>
-</div>
-
-<!-- Edit modal -->
-<div
-  class="modal fade"
-  id="modalEdit"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="modalEdit"
-  aria-hidden="true"
->
-  <div class="modal-dialog" role="document">
-    <div class="modal-content p-30">
-      <app-hospital-service-edit
-        [item]="updateItem"
-        (reloadData)="onLoadData(true)"
-      ></app-hospital-service-edit>
     </div>
   </div>
 </div>

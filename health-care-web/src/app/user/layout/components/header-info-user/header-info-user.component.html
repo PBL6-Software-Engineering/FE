@@ -2,16 +2,17 @@
   <div>
     <div class="column-center">
       <img
-        src="http://dut.udn.vn/Files/admin/images/Tin_tuc/Khac/2020/LogoDUT/image002.jpg"
+        [src]="user?.avatar"
         alt=""
         class="border-radius-50 w-64 h-64"
+        (error)="user.avatar='assets/media/image/default-user-image.png'"
       />
       <div
         class="ml-20 cursor-pointer"
         routerLink="/user/profile"
         (click)="onCloseHeaderInfo()"
       >
-        <h6 class="fw-700">Toàn Nguyễn</h6>
+        <h6 class="fw-700">{{user?.name}}</h6>
         <p style="color: #595959" class="fs-14">
           Xem hồ sơ của tôi
           <img src="assets/media/icon/arrow_right.svg" alt="" />

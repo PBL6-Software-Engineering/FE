@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { CoreModule } from 'src/app/core/core.module';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     CoreModule,
     ReactiveFormsModule,
     NgSelectModule,
+    NgxSpinnerModule,
   ],
 })
 export class HospitalDepartmentModule {}

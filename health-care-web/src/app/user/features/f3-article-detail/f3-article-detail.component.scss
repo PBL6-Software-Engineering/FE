@@ -1,0 +1,56 @@
+.side-item{
+    width: 100%;
+}
+.side-item-img{
+    width: 24px;
+    height:24px;
+
+}
+
+.img-Avatar{
+    width: 56px;
+    height: 56px;
+    border-radius: 100%;
+}
+
+.textCenter {
+    text-align: center;
+}
+
+.arthor-name{
+    font-weight: bold;
+}
+
+.checker-Name{
+    font-weight: bold;
+    font-size: 1rem;
+
+}
+.line{
+    border: none;
+    border-top: 1px solid rgba(0,0,0,0.3);
+}
+
+.line-vertical{
+    border: none;
+    display: inline-block;
+    height: 24px;
+    border-right: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.social-item-img{
+    width: 32px;
+    height: 32px;
+}
+
+#btn-bookmark , #btn-question:hover {
+    cursor: pointer;
+}
+
+.border-radius {
+    border-radius: 5px;
+}
+
+.bold{
+    font-weight: bold;
+}

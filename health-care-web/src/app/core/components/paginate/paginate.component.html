@@ -4,7 +4,7 @@
 >
   <span class="text-muted">
     Hiển thị
-    {{ (currentPage - 1) * pageSize + 1 }}
+    {{ totalElements ? (currentPage - 1) * pageSize + 1 : 0 }}
     đến
     {{ (currentPage - 1) * pageSize + numberElementOfPage }}
     của {{ totalElements }} phần tử

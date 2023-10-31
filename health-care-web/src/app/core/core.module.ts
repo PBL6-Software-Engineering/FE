@@ -8,6 +8,8 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { PaginateComponent } from './components/paginate/paginate.component';
 import { ConvertToHourAndMinutePipe } from './pipes/convert-to-hour-and-minute.pipe';
 import { CurrencyDirective } from './directives/currency.directive';
+import { AgePipe } from './pipes/age.pipe';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { CurrencyDirective } from './directives/currency.directive';
     CarouselComponent,
     PaginateComponent,
     CurrencyDirective,
+    AgePipe,
+    SpinnerComponent,
   ],
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   exports: [
@@ -28,6 +32,8 @@ import { CurrencyDirective } from './directives/currency.directive';
     CarouselComponent,
     PaginateComponent,
     CurrencyDirective,
+    AgePipe,
+    SpinnerComponent,
   ],
 })
 export class CoreModule {}

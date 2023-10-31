@@ -15,9 +15,10 @@ export class ServiceHospitalService {
     paginate = 20,
     search = '',
     sortLatest = true,
+    id_hospital = '',
   }): Observable<any> {
     return this.http.get<any>(
-      `${linkApi}/${this.model}?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}`
+      `${linkApi}/${this.model}/hospital/${id_hospital}?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}`
     );
   }
 
@@ -38,7 +39,7 @@ export class ServiceHospitalService {
   }
 
   deleteById(id: any): Observable<any> {
-    return this.http.delete<any>(`${linkApi}/${this.model}/delete/${id}`);
+    return this.http.delete<any>(`${linkApi}/${this.model}/${id}`);
   }
 
   deleteMany(ids: any[]): Observable<any> {

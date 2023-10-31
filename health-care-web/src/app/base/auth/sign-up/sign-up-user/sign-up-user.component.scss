@@ -3,8 +3,6 @@
     margin-bottom: 20px;
 }
 
-
-
 h2 {
     text-align: center;
     font-weight: bolder;
@@ -18,7 +16,9 @@ h2 {
 hr {
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-
+    margin: 0;
+    margin-bottom: 7px;
+    margin-top: 3px;
 }
 
 .inp {
@@ -42,7 +42,7 @@ hr {
     opacity: 80%;
 }
 
-label{  
+label {
     padding-left: 10px;
 }
 
@@ -60,18 +60,18 @@ input[type="submit"] {
     width: 100%;
     padding-top: 5px;
     padding-bottom: 5px;
-    margin-top:20px;
-    margin-bottom:10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
 
 }
 
-#or{
+#or {
     font-size: 15px;
     padding-bottom: 10px;
 }
 
-#confirm-pass{
-    margin-top: 20px;
+#confirm-pass {
+    margin-top: 14px;
 }
 
 input[type="submit"]:hover {
@@ -88,4 +88,28 @@ input[type="submit"]:hover {
     height: 50px;
     margin-left: 10px;
     margin-right: 10px;
+}
+
+.warning {
+    color: chocolate;
+}
+
+#btn-login {
+    color: white;
+    background: linear-gradient(to right, #65d1df, #e341f5);
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 10px;
+}
+
+@media screen and (min-height:666px) {
+
+    input[type="submit"] {
+        margin-top: 20px;
+
+    }
 }

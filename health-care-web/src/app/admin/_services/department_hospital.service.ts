@@ -32,6 +32,12 @@ export class DepartmentHospitalService {
     );
   }
 
+  getDepartmentsOfHospital(id: any): Observable<any> {
+    return this.http.get<any>(
+      `${linkApi}/${this.model}/hospital/${id}`
+    );
+  }
+
   findById(id: any): Observable<any> {
     return this.http.get<any>(`${linkApi}/${this.model}/detail/${id}`);
   }

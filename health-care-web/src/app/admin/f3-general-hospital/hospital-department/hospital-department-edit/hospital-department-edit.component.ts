@@ -48,7 +48,7 @@ export class HospitalDepartmentEditComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.item && this.item.id) {
+    if (this.item && this.item.id_hospital_departments) {
       console.log('this.item', this.item);
       if (this.item.time_advise) {
         this.item.hour = Math.floor(this.item.time_advise / 60);
@@ -61,7 +61,6 @@ export class HospitalDepartmentEditComponent implements OnInit, OnChanges {
   ngOnInit(): void {}
 
   save(): void {
-    console.log(this.form.value);
     if (this.form.valid) {
       const obj = {
         id_department: this.form.value.id_department,
@@ -69,7 +68,7 @@ export class HospitalDepartmentEditComponent implements OnInit, OnChanges {
         price: this.form.value.price,
         time_advise: this.form.value.hour * 60 + this.form.value.minute,
       };
-      this.api.update(this.item.id, obj).subscribe({
+      this.api.update(this.item.id_hospital_departments, obj).subscribe({
         next: (res) => {
           this.form.reset();
           this.toastrService.success('Sửa thành công!');

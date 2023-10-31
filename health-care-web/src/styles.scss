@@ -4,6 +4,7 @@
 // regular style toast
 @import 'ngx-toastr/toastr';
 @import "~@ng-select/ng-select/themes/default.theme.css";
+@import '~quill/dist/quill.snow.css';
 // @import "~@ng-select/ng-select/themes/material.theme.css";
 @import './assets/scss/font-color.scss';
 @import './assets/scss/main.scss';
@@ -15,3 +16,30 @@
 @import './assets/scss/flex.scss';
 @import './assets/scss/responsive.scss';
 @import './assets/scss/toggle.scss';
+@import './assets/scss/loading.scss';
+@import './assets/scss/text.scss';
+
+.wrapper-spinner {
+    position: relative;
+    height: 96px;
+}
+
+.ngx-spinner-overlay {
+    .la-ball-pulse-sync {
+        top: 20% !important;
+    }
+}
+
+.ball-pulse-sync {
+    color: #11B3CF !important;
+}
+
+.page-link {
+    color: #11B3CF !important;
+}
+
+.active>.page-link {
+    background-color: #11B3CF !important;
+    border-color: #11B3CF !important;
+    color: white !important;
+}
