@@ -10,6 +10,7 @@ import { ConvertToHourAndMinutePipe } from './pipes/convert-to-hour-and-minute.p
 import { CurrencyDirective } from './directives/currency.directive';
 import { AgePipe } from './pipes/age.pipe';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     AgePipe,
     SpinnerComponent,
   ],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
   exports: [
     ShowErrorComponent,
     FormDirective,

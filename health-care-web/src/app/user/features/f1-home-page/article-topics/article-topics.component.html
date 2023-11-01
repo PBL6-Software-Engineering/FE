@@ -19,7 +19,10 @@
               class="pb-10"
               [class.border-bottom]="i !== articleObj?.articles?.length - 1"
             >
-              <app-article-img-left [article]="article"></app-article-img-left>
+              <app-article-img-left
+                [article]="article"
+                routerLink="/article/{{ article.id_article }}"
+              ></app-article-img-left>
             </div>
           </div>
         </div>

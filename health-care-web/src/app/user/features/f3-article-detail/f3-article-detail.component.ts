@@ -1,13 +1,43 @@
-import { AfterViewInit, Component, ElementRef, Renderer2 } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  Renderer2,
+} from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ArticleService } from 'src/app/admin/_services/article.service';
 declare var $: any;
 @Component({
   selector: 'app-f3-article-detail',
   templateUrl: './f3-article-detail.component.html',
   styleUrls: ['./f3-article-detail.component.scss'],
 })
-export class F3ArticleDetailComponent implements AfterViewInit {
+export class F3ArticleDetailComponent implements AfterViewInit, OnInit {
   public isBookmark: boolean = false;
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  id: any;
+  article: any;
+
+  constructor(
+    private el: ElementRef,
+    private renderer: Renderer2,
+    private articleService: ArticleService,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit(): void {
+    this.route.params.subscribe((params) => {
+      if (params['id']) {
+        this.id = params['id'];
+        this.articleService.findById(this.id).subscribe({
+          next: ({ data }) => {
+            this.article = data;
+          },
+        });
+      }
+    });
+  }
+
   checkToken() {
     ////////////
     return true;

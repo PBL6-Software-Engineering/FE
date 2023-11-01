@@ -55,7 +55,7 @@
           class="col-md-4 col-lg-2 col-sm-6 cursor-pointer"
           *ngFor="let category of categories"
         >
-          <div class="p-16">
+          <div class="p-16" routerLink="/category/{{category.name}}">
             <div class="p-3 card-item">
               <div class="row-center mb-2">
                 <img
@@ -71,18 +71,6 @@
           </div>
         </div>
       </div>
-
-      <!-- <div class="position-relative mt-30">
-        <ngx-spinner
-          bdColor="rgba(0,0,0,0)"
-          size="default"
-          color="black"
-          type="ball-pulse-sync"
-          [fullScreen]="false"
-        >
-          <p class="mt-100">Đang tải dữ liệu</p>
-        </ngx-spinner>
-      </div> -->
     </div>
   </div>
 </div>

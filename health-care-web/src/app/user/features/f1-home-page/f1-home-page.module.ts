@@ -12,6 +12,7 @@ import { BannerSearchComponent } from './banner-search/banner-search.component';
 import { FeaturedNewsComponent } from './featured-news/featured-news.component';
 import { ArticleTopicsComponent } from './article-topics/article-topics.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     CoreModule,
     ShareModuleModule,
     NgxSpinnerModule,
+    RouterModule
   ],
 })
 export class F1HomePageModule {}

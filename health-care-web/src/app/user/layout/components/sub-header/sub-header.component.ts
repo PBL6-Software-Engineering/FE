@@ -49,7 +49,7 @@ export class SubHeaderComponent {
   viewAll(): void {
     let url = '';
     if (this.data.tab === 'CATEGORY') {
-      url = 'categories';
+      url = 'category';
     } else if (this.data.tab === 'BOOKING_DOCTOR') {
       url = 'departments';
     } else if (this.data.tab === 'SOCIAL') {
