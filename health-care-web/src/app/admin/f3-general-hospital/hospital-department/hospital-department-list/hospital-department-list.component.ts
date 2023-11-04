@@ -121,6 +121,8 @@ export class HospitalDepartmentListComponent implements OnInit, OnDestroy {
           error: (err) => {
             this.isErrorGetData = true;
             this.toastr.error('Lỗi! Không thể tải dữ liệu');
+             this.isLoading = false;
+             this.spinnerService.hide();
           },
           complete: () => {
             this.isLoading = false;

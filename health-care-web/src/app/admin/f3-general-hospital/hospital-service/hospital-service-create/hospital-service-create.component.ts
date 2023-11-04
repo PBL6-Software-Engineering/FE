@@ -61,8 +61,6 @@ export class HospitalServiceCreateComponent implements OnInit {
         .getDepartmentsOfHospital(this.hospital.id)
         .subscribe(({ data }) => {
           this.departmentsOfHospital = data;
-
-          console.log('this.departmentsOfHospital', this.departmentsOfHospital);
         });
     });
   }

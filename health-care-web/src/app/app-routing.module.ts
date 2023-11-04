@@ -4,6 +4,7 @@ import { CanLoadAdminGuard } from './core/guards/can-load-admin-guard';
 import { CategoryResolve } from './user/resolver/category.resolve';
 import { DepartmentResolve } from './user/resolver/department.resolve';
 import { ArticleOutstandingResolve } from './user/resolver/article_outstanding.resolve';
+import { ProvinceResolve } from './user/resolver/province.resolve';
 
 const routes: Routes = [
   {
@@ -14,6 +15,9 @@ const routes: Routes = [
   {
     path: 'admin',
     canLoad: [CanLoadAdminGuard],
+    resolve: {
+      province: ProvinceResolve,
+    },
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
   },
@@ -23,6 +27,7 @@ const routes: Routes = [
       category: CategoryResolve,
       department: DepartmentResolve,
       articleOutstanding: ArticleOutstandingResolve,
+      province: ProvinceResolve,
     },
     loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
   },

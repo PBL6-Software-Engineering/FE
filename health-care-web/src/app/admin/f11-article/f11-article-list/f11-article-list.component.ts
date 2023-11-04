@@ -36,6 +36,7 @@ export class F11ArticleListComponent implements OnInit, OnDestroy {
   textSearch = '';
   lastTextSearch = '';
   isSearching = false;
+  role = '';
 
   // data source for grid
   dataSources: any[] = [];
@@ -43,6 +44,7 @@ export class F11ArticleListComponent implements OnInit, OnDestroy {
   // delete id
   deleteItem: any;
   updateItem: any;
+  itemSelected: any;
 
   onCheckAllSelected() {
     this.isSelectAll = !this.isSelectAll;
@@ -78,6 +80,7 @@ export class F11ArticleListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.idsSelected = new Map();
+    this.role = localStorage.getItem('role') || '';
     this.onLoadData();
   }
 
@@ -93,11 +96,12 @@ export class F11ArticleListComponent implements OnInit, OnDestroy {
     this.spinnerService.show();
     this.subscription.push(
       this.api
-        .paginate({
+        .getArticles({
           page: isResetPage ? 1 : this.currentPage,
           paginate: 20,
           search: this.textSearch || '',
           sortLatest: true,
+          role: this.role,
         })
         .subscribe({
           next: ({ data }) => {
@@ -122,7 +126,7 @@ export class F11ArticleListComponent implements OnInit, OnDestroy {
           complete: () => {
             this.isLoading = false;
             this.spinnerService.hide();
-          }
+          },
         })
     );
   }
@@ -194,5 +198,51 @@ export class F11ArticleListComponent implements OnInit, OnDestroy {
         this.onLoadData();
       }
     }, 500);
+  }
+
+  changeHideShow() {
+    this.subscription.push(
+      this.api.changeShow(this.itemSelected.id_article, !this.itemSelected.is_show).subscribe({
+        next: () => {
+          if (this.itemSelected.is_show) {
+            this.toastr.success('Ẩn bài viết thành công!');
+          } else {
+            this.toastr.success('Hiện bài viết thành công!');
+          }
+          // this.onLoadData();
+          this.dataSources.forEach((data) => {
+            if (data.id_article === this.itemSelected.id_article) {
+              data.is_show = !this.itemSelected.is_show;
+            }
+          });
+        },
+        error: (err) => {
+          this.toastr.error('Thay đổi trạng thái thất bại!');
+        },
+      })
+    );
+  }
+
+  changeAccept() {
+    this.subscription.push(
+      this.api.changeAccept(this.itemSelected.id_article, !this.itemSelected.is_accept).subscribe({
+        next: () => {
+          if (!this.itemSelected.is_accept) {
+            this.toastr.success('Phê duyệt bài viết thành công!');
+          } else {
+            this.toastr.success('Hủy phê duyệt bài viết thành công!');
+          }
+          // this.onLoadData();
+          this.dataSources.forEach(data => {
+            if(data.id_article === this.itemSelected.id_article) {
+              data.is_accept = !this.itemSelected.is_accept;
+            }
+          });
+        },
+        error: (err) => {
+          this.toastr.error('Thay đổi trạng thái thất bại!');
+        },
+      })
+    );
   }
 }

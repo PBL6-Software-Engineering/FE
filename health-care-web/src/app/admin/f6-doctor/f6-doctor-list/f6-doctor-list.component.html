@@ -1,1 +1,254 @@
-<p>f6-doctor-list works!</p>
+<div class="mx-4">
+  <div class="fw-bolder fs-5 mb-3 ml-4">Quản lý bác sĩ</div>
+
+  <div class="card fw-bold">
+    <div class="card-body">
+      <div class="mb-20 row-between">
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Tìm kiếm"
+            [(ngModel)]="textSearch"
+            (change)="search()"
+          />
+        </div>
+        <div>
+          <button
+            class="btn btn-primary-1 mx-20"
+            routerLink="/admin/doctor/create"
+          >
+            Thêm
+          </button>
+          <!-- <button
+            class="btn btn-danger mr-20"
+            data-bs-toggle="modal"
+            data-bs-target="#deleteManyModal"
+            *ngIf="getListIdSelect().length > 0"
+          >
+            Xoá
+          </button> -->
+        </div>
+      </div>
+
+      <div class="wrapper-spinner" *ngIf="isLoading">
+        <ngx-spinner
+          bdColor="rgba(0,0,0,0)"
+          size="default"
+          color="#11B3CF"
+          type="ball-pulse-sync"
+          [fullScreen]="false"
+          class="ball-pulse-sync"
+        >
+          <p class="color-primary">Đang tải dữ liệu</p>
+        </ngx-spinner>
+      </div>
+
+      <div class="table-responsive" *ngIf="!isLoading">
+        <table
+          class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3"
+        >
+          <thead>
+            <tr>
+              <!-- <th>
+                <div
+                  class="form-check form-check-sm form-check-custom form-check-solid"
+                >
+                  <input
+                    [(ngModel)]="isSelectAll"
+                    (click)="onCheckAllSelected()"
+                    class="form-check-input"
+                    type="checkbox"
+                  />
+                </div>
+              </th> -->
+              <th class="text-center">Ảnh</th>
+              <th>Tên</th>
+              <th>Email</th>
+              <th class="text-center">Số điện thoại</th>
+              <th class="text-center">Chuyên khoa</th>
+              <th class="text-center">Hành động</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of dataSources">
+              <!-- <td>
+                <div
+                  class="form-check form-check-sm form-check-custom form-check-solid"
+                >
+                  <input
+                    [(ngModel)]="item.checked"
+                    (click)="onItemSelected(item)"
+                    class="form-check-input widget-13-check"
+                    type="checkbox"
+                    value="1"
+                  />
+                </div>
+              </td> -->
+
+              <td class="text-center">
+                <img
+                  [src]="item.avatar"
+                  alt=""
+                  class="thumbnail"
+                  (error)="onErrorImage($event)"
+                />
+              </td>
+
+
+              <td>
+                <span
+                  class="text-hover-primary cursor-pointer"
+                  [routerLink]="[
+                    '/admin/doctor/detail',
+                    item.id_doctor
+                  ]"
+                >
+                  {{ item?.name_doctor }}
+                </span>
+              </td>
+
+              <td>
+                <span class="text-hover-primary">
+                  {{ item?.email }}
+                </span>
+              </td>
+
+              <td class="text-center">
+                <span class="text-hover-primary">
+                  {{ item?.phone }}
+                </span>
+              </td>
+
+              <td class="text-center">
+                <span class="text-hover-primary">
+                  {{ item?.name_department }}
+                </span>
+              </td>
+
+              <!-- Action -->
+              <td>
+                <div class="d-flex justify-content-center">
+                  <!-- Edit -->
+                  <button
+                    class="btn btn-sm btn-primary"
+                    (click)="updateItem = item"
+                    [routerLink]="[
+                      '/admin/doctor/edit',
+                      item.id_doctor
+                    ]"
+                  >
+                    <i class="fa fa-pencil-square-o fs-15" aria-hidden="true"></i>
+                  </button>
+
+                  <!-- Delete -->
+                  <button
+                    (click)="deleteItem = item"
+                    data-bs-toggle="modal"
+                    data-bs-target="#deleteOneModal"
+                    class="btn btn-sm btn-danger ml-8"
+                  >
+                    <i class="fa fa-trash-o fs-15" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div
+        class="text-center text-danger"
+        *ngIf="dataSources?.length == 0 && isErrorGetData"
+      >
+        Lỗi không lấy được dữ liệu
+      </div>
+    </div>
+  </div>
+
+  <app-paginate
+    *ngIf="dataSources"
+    [currentPage]="currentPage"
+    [numberElementOfPage]="numberElementOfPage"
+    [totalPage]="totalPage"
+    [totalElements]="totalElements"
+    (changePage)="onChangePage($event)"
+  ></app-paginate>
+</div>
+<!--Delete one modal -->
+<div
+  class="modal fade"
+  id="deleteOneModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="deleteOneModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <h5 class="text-center my-20 fw-bold">
+        Bạn có thực sự muốn xóa
+        <span class="text-warning">{{ deleteItem?.name_doctor }}</span>
+        ?
+      </h5>
+
+      <div class="text-center mb-20">Quá trình này không thể hoàn tác.</div>
+
+      <div class="modal-footer justify-content-center">
+        <button
+          type="button"
+          class="btn btn-secondary w-150px mr-10"
+          data-bs-dismiss="modal"
+        >
+          Hủy
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger w-150px"
+          data-bs-dismiss="modal"
+          (click)="onDeleteOne()"
+        >
+          Xóa
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete many Modal -->
+<div
+  class="modal fade"
+  id="deleteManyModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="deleteManyModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <h5 class="text-center my-20 fw-bold">
+        Bạn có thực sự muốn xóa {{ getListIdSelect().length }} thiết bị được
+        chọn?
+      </h5>
+      <div class="text-center mb-20">Quá trình này không thể hoàn tác.</div>
+      <div class="modal-footer justify-content-center">
+        <button
+          type="button"
+          class="btn btn-secondary w-150px mr-10"
+          data-bs-dismiss="modal"
+        >
+          Hủy
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger w-150px"
+          data-bs-dismiss="modal"
+          (click)="onDeleteMany()"
+        >
+          Xóa
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

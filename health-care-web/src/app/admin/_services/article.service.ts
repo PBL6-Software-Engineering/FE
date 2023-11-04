@@ -10,14 +10,47 @@ export class ArticleService {
   model = 'article';
   constructor(private http: HttpClient) {}
 
-  paginate({
+  getArticles({
     page = 1,
     paginate = 20,
     search = '',
     sortLatest = true,
+    role = '',
   }): Observable<any> {
-    return this.http.get<any>(
-      `${linkApi}/${this.model}/hospital?role=hospital&search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}`
+    if (role === 'manager') {
+      return this.http.get<any>(
+        `${linkApi}/${this.model}/admin?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}`
+      );
+    } else if (role === 'hospital') {
+      return this.http.get<any>(
+        `${linkApi}/${this.model}/hospital?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}`
+      );
+    } else if (role === 'doctor') {
+      return this.http.get<any>(
+        `${linkApi}/${this.model}/doctor?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}`
+      );
+    } else {
+      return this.http.get<any>(
+        `${linkApi}/${this.model}?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}`
+      );
+    }
+  }
+
+  changeAccept(id_article: any, is_accept: boolean): Observable<any> {
+    return this.http.post<any>(
+      `${linkApi}/${this.model}/change-accept/${id_article}`,
+      {
+        is_accept: is_accept,
+      }
+    );
+  }
+
+  changeShow(id_article: any, is_show: boolean): Observable<any> {
+    return this.http.post<any>(
+      `${linkApi}/${this.model}/hide-show/${id_article}`,
+      {
+        is_show: is_show,
+      }
     );
   }
 

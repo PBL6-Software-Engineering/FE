@@ -31,7 +31,20 @@
         </div>
       </div>
 
-      <div class="table-responsive">
+      <div class="wrapper-spinner" *ngIf="isLoading">
+        <ngx-spinner
+          bdColor="rgba(0,0,0,0)"
+          size="default"
+          color="#11B3CF"
+          type="ball-pulse-sync"
+          [fullScreen]="false"
+          class="ball-pulse-sync"
+        >
+          <p class="color-primary">Đang tải dữ liệu</p>
+        </ngx-spinner>
+      </div>
+
+      <div class="table-responsive" *ngIf="!isLoading">
         <table
           class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3"
         >
@@ -73,12 +86,9 @@
                   />
                 </div>
               </td>
-
+              <!-- [routerLink]="['/admin/article/detail', item.id_article]" -->
               <td>
-                <span
-                  class="text-hover-primary cursor-pointer"
-                  [routerLink]="['/admin/article/detail', item.id_article]"
-                >
+                <span class="text-hover-primary cursor-pointer">
                   {{ item?.title }}
                 </span>
               </td>
@@ -108,13 +118,49 @@
               <!-- Action -->
               <td>
                 <div class="d-flex justify-content-center">
+                  <!-- accept article -->
+                  <button
+                    class="btn btn-sm"
+                    [ngClass]="item?.is_accept ? 'btn-success' : 'btn-secondary'"
+                    *ngIf="role === 'hospital'"
+                    (click)="itemSelected = item"
+                    data-bs-toggle="modal"
+                    data-bs-target="#changeAcceptModal"
+                  >
+                    <i class="fa fa-check-circle-o fs-15" aria-hidden="true"></i>
+                  </button>
+                  
+                  <!-- Is showing -->
+                  <button
+                    class="btn btn-sm btn-success ml-8"
+                    [ngClass]="item?.is_show ? 'btn-success' : 'btn-warning'"
+                    *ngIf="role === 'hospital' || role === 'manager'"
+                    (click)="itemSelected = item"
+                    data-bs-toggle="modal"
+                    data-bs-target="#changeShowModal"
+                  >
+                    <i
+                      class="fa fa-eye fs-15"
+                      aria-hidden="true"
+                      *ngIf="item?.is_show"
+                    ></i>
+                    <i
+                      class="fa fa-eye-slash fs-15"
+                      aria-hidden="true"
+                      *ngIf="!item?.is_show"
+                    ></i>
+                  </button>
+
                   <!-- Edit -->
                   <button
-                    class="btn btn-primary"
+                    class="btn btn-sm btn-primary ml-8"
                     (click)="updateItem = item"
                     [routerLink]="['/admin/article/edit', item.id_article]"
                   >
-                    Sửa
+                    <i
+                      class="fa fa-pencil-square-o fs-15"
+                      aria-hidden="true"
+                    ></i>
                   </button>
 
                   <!-- Delete -->
@@ -122,9 +168,9 @@
                     (click)="deleteItem = item"
                     data-bs-toggle="modal"
                     data-bs-target="#deleteOneModal"
-                    class="btn btn-danger ml-12"
+                    class="btn btn-sm btn-danger ml-8"
                   >
-                    Xoá
+                    <i class="fa fa-trash-o fs-15" aria-hidden="true"></i>
                   </button>
                 </div>
               </td>
@@ -139,19 +185,6 @@
       >
         Lỗi không lấy được dữ liệu
       </div>
-
-      <div class="wrapper-spinner" *ngIf="isLoading">
-        <ngx-spinner
-          bdColor="rgba(0,0,0,0)"
-          size="default"
-          color="#11B3CF"
-          type="ball-pulse-sync"
-          [fullScreen]="false"
-          class="ball-pulse-sync"
-        >
-          <p class="color-primary">Đang tải dữ liệu</p>
-        </ngx-spinner>
-      </div>
     </div>
   </div>
 
@@ -164,6 +197,7 @@
     (changePage)="onChangePage($event)"
   ></app-paginate>
 </div>
+
 <!--Delete one modal -->
 <div
   class="modal fade"
@@ -177,7 +211,7 @@
     <div class="modal-content">
       <h5 class="text-center my-20 fw-bold">
         Bạn có thực sự muốn xóa
-        <span class="text-warning">{{ deleteItem?.name }}</span>
+        <span class="text-warning">{{ deleteItem?.title }}</span>
         ?
       </h5>
 
@@ -235,6 +269,98 @@
           (click)="onDeleteMany()"
         >
           Xóa
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Confirm hide show -->
+<div
+  class="modal fade"
+  id="changeShowModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="changeShowLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header row-center">
+        <h5 class="modal-title text-center fw-bold">
+          Bạn có muốn
+
+          <span class="color-primary">{{
+            itemSelected?.is_show ? "ẩn" : "hiện"
+          }}</span>
+
+          bài viết
+          <span class="text-warning">{{ itemSelected?.title }}</span>
+          không?
+        </h5>
+      </div>
+
+      <div class="modal-footer justify-content-center">
+        <button
+          type="button"
+          class="btn btn-secondary w-150px mr-10"
+          data-bs-dismiss="modal"
+        >
+          Hủy
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary-1 w-150px"
+          data-bs-dismiss="modal"
+          (click)="changeHideShow()"
+        >
+          Lưu
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Change Accept -->
+<div
+  class="modal fade"
+  id="changeAcceptModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="changeAcceptLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header row-center">
+        <h5 class="modal-title text-center fw-bold">
+          Bạn có muốn
+
+          <span class="color-primary">{{
+            itemSelected?.is_accept ? "huỷ phê duyệt" : "phê duyệt"
+          }}</span>
+
+          bài viết
+          <span class="text-warning">{{ itemSelected?.title }}</span>
+          không?
+        </h5>
+      </div>
+
+      <div class="modal-footer justify-content-center">
+        <button
+          type="button"
+          class="btn btn-secondary w-150px mr-10"
+          data-bs-dismiss="modal"
+        >
+          Hủy
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary-1 w-150px"
+          data-bs-dismiss="modal"
+          (click)="changeAccept()"
+        >
+          Lưu
         </button>
       </div>
     </div>

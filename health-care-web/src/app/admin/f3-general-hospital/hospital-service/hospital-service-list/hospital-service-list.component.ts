@@ -124,6 +124,8 @@ export class HospitalServiceListComponent implements OnInit, OnDestroy {
           error: (err) => {
             this.isErrorGetData = true;
             this.toastr.error('Lỗi! Không thể tải dữ liệu');
+             this.isLoading = false;
+             this.spinnerService.hide();
           },
           complete: () => {
             this.isLoading = false;
@@ -200,5 +202,9 @@ export class HospitalServiceListComponent implements OnInit, OnDestroy {
         this.onLoadData();
       }
     }, 500);
+  }
+
+  onErrorImage(event: any): void {
+    event.target.src = 'assets/media/icon/icon-userDefault.svg';
   }
 }

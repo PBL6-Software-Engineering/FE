@@ -18,6 +18,7 @@ export class UserComponent implements OnInit {
     const category = this.route.snapshot.data['category'];
     const department = this.route.snapshot.data['department'];
     const articleOutstanding = this.route.snapshot.data['articleOutstanding'];
+    const province = this.route.snapshot.data['province'];
     category.data.forEach((item: any) => {
       item.thumbnail = `${prefixApi}/${item.thumbnail}`;
     });
@@ -25,7 +26,6 @@ export class UserComponent implements OnInit {
       item.thumbnail = `${prefixApi}/${item.thumbnail}`;
     });
 
-    console.log('articleOutstanding', articleOutstanding);
     articleOutstanding.data.data.forEach((item: any) => {
       item.thumbnail_article = `${prefixApi}/${item.thumbnail_article}`;
       item.thumbnail_categorie = `${prefixApi}/${item.thumbnail_categorie}`;
@@ -37,5 +37,6 @@ export class UserComponent implements OnInit {
       'articlesOutstanding',
       JSON.stringify(articleOutstanding.data.data)
     );
+    localStorage.setItem('provinces', JSON.stringify(province.provinces));
   }
 }

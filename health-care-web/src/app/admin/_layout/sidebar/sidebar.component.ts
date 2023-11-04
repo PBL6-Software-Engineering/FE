@@ -34,18 +34,14 @@ export class SidebarComponent implements OnInit {
       label: 'Bệnh viện',
       routerLink: '/admin/hospital',
     },
-    {
-      label: 'Bác sĩ',
-      routerLink: '/admin/doctor',
-    },
     // {
-    //   label: 'Dịch vụ',
-    //   routerLink: '/admin/hospital-service',
+    //   label: 'Bác sĩ',
+    //   routerLink: '/admin/doctor',
     // },
-    {
-      label: 'Bệnh nhân',
-      routerLink: '/admin/patient',
-    },
+    // {
+    //   label: 'Bệnh nhân',
+    //   routerLink: '/admin/patient',
+    // },
     {
       label: 'Lịch làm việc',
       routerLink: '/admin/working-time',
@@ -62,11 +58,6 @@ export class SidebarComponent implements OnInit {
       label: 'Hội thoại',
       routerLink: '/admin/chat',
     },
-    {
-      label: 'Nghỉ phép',
-      routerLink: '/admin/leave-request',
-    },
-    // { label: 'Hóa đơn', routerLink: '/admin/invoice' },
     {
       label: 'Báo cáo',
       routerLink: '/admin/report',
@@ -100,25 +91,13 @@ export class SidebarComponent implements OnInit {
       ],
     },
     {
-      label: 'Tài khoản người dùng',
-      routerLink: '/admin/account-user',
-    },
-    {
-      label: 'Bệnh viện',
-      routerLink: '/admin/hospital',
-    },
-    {
       label: 'Bác sĩ',
       routerLink: '/admin/doctor',
     },
     // {
-    //   label: 'Dịch vụ',
-    //   routerLink: '/admin/hospital-service',
+    //   label: 'Bệnh nhân',
+    //   routerLink: '/admin/patient',
     // },
-    {
-      label: 'Bệnh nhân',
-      routerLink: '/admin/patient',
-    },
     {
       label: 'Lịch làm việc',
       routerLink: '/admin/working-time',
@@ -136,10 +115,57 @@ export class SidebarComponent implements OnInit {
       routerLink: '/admin/chat',
     },
     {
-      label: 'Nghỉ phép',
-      routerLink: '/admin/leave-request',
+      label: 'Báo cáo',
+      routerLink: '/admin/report',
     },
-    // { label: 'Hóa đơn', routerLink: '/admin/invoice' },
+    {
+      label: 'Cài đặt',
+      routerLink: '/admin/setting',
+    },
+  ];
+  menuItemsDoctor: any[] = [
+    {
+      label: 'Bảng thống kê',
+      routerLink: '/admin/dashboard',
+    },
+    {
+      label: 'Thiết lập tài khoản',
+      routerLink: '/admin/account-setting',
+    },
+    {
+      label: 'Quản lý chung',
+      routerLink: '',
+      subItems: [
+        {
+          label: 'Chuyên khoa',
+          routerLink: '/admin/general-hospital/department',
+        },
+        {
+          label: 'Dịch vụ',
+          routerLink: '/admin/general-hospital/service',
+        },
+      ],
+    },
+    // {
+    //   label: 'Bệnh nhân',
+    //   routerLink: '/admin/patient',
+    // },
+    {
+      label: 'Lịch làm việc',
+      routerLink: '/admin/working-time',
+    },
+    {
+      label: 'Lịch hẹn',
+      routerLink: '/admin/appointment',
+    },
+    {
+      label: 'Bài viết',
+      routerLink: '/admin/article',
+    },
+    {
+      label: 'Hội thoại',
+      routerLink: '/admin/chat',
+    },
     {
       label: 'Báo cáo',
       routerLink: '/admin/report',
@@ -164,7 +190,7 @@ export class SidebarComponent implements OnInit {
     } else if (role && role.toString() === 'hospital') {
       this.menuItems = this.menuItemsHospital;
     } else if (role && role.toString() === 'doctor') {
-      this.menuItems = this.menuItemsHospital;
+      this.menuItems = this.menuItemsDoctor;
     }
   }
 

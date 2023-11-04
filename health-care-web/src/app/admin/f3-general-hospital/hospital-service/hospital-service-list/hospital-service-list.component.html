@@ -109,6 +109,7 @@
                   [src]="item.thumbnail_department"
                   alt=""
                   class="thumbnail"
+                  (error)="onErrorImage($event)"
                 />
               </td>
 
@@ -117,14 +118,14 @@
                 <div class="d-flex justify-content-center">
                   <!-- Edit -->
                   <button
-                    class="btn btn-primary"
+                    class="btn btn-sm btn-primary"
                     (click)="updateItem = item"
                     [routerLink]="[
                       '/admin/general-hospital/service/edit',
                       item.id_hospital_service
                     ]"
                   >
-                    Sửa
+                    <i class="fa fa-pencil-square-o fs-15" aria-hidden="true"></i>
                   </button>
 
                   <!-- Delete -->
@@ -132,9 +133,9 @@
                     (click)="deleteItem = item"
                     data-bs-toggle="modal"
                     data-bs-target="#deleteOneModal"
-                    class="btn btn-danger ml-12"
+                    class="btn btn-sm btn-danger ml-8"
                   >
-                    Xoá
+                    <i class="fa fa-trash-o fs-15" aria-hidden="true"></i>
                   </button>
                 </div>
               </td>

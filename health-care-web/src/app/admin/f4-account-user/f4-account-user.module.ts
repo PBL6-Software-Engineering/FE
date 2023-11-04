@@ -6,6 +6,10 @@ import { F4AccountUserListComponent } from './f4-account-user-list/f4-account-us
 import { F4AccountUserCreateComponent } from './f4-account-user-create/f4-account-user-create.component';
 import { F4AccountUserEditComponent } from './f4-account-user-edit/f4-account-user-edit.component';
 import { F4AccountUserDetailComponent } from './f4-account-user-detail/f4-account-user-detail.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { CoreModule } from 'src/app/core/core.module';
 
 @NgModule({
   declarations: [
@@ -14,6 +18,14 @@ import { F4AccountUserDetailComponent } from './f4-account-user-detail/f4-accoun
     F4AccountUserEditComponent,
     F4AccountUserDetailComponent,
   ],
-  imports: [CommonModule, F4AccountUserRoutingModule],
+  imports: [
+    CommonModule,
+    F4AccountUserRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
+    NgxSpinnerModule,
+    CoreModule
+  ],
 })
 export class F4AccountUserModule {}
