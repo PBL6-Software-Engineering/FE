@@ -4,6 +4,7 @@ import {
   ElementRef,
   OnInit,
   Renderer2,
+  ViewEncapsulation,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ArticleService } from 'src/app/admin/_services/article.service';
@@ -12,6 +13,7 @@ declare var $: any;
   selector: 'app-f3-article-detail',
   templateUrl: './f3-article-detail.component.html',
   styleUrls: ['./f3-article-detail.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class F3ArticleDetailComponent implements AfterViewInit, OnInit {
   public isBookmark: boolean = false;
