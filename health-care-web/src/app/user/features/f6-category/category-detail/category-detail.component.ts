@@ -32,7 +32,6 @@ export class CategoryDetailComponent implements OnInit {
           })
           .subscribe({
             next: ({ data }) => {
-              console.log(data);
               data.data.forEach((article: any) => {
                 if (article.thumbnail_article) {
                   article.thumbnail_article =
