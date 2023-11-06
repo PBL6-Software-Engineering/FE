@@ -9,14 +9,14 @@
     <img
       style="width: 70%; max-width: 150px"
       class="p-4"
-      src="https://cdn.hellobacsi.com/assets/avatar-default.png"
+      [src]="doctor.avatar || 'assets/media/image/default-doctor.jpg'"
       alt=""
     />
   </div>
-  <p class="fw-700 mt-3" style="text-align: center">Bác sĩ Lê Thị Mỹ Duyên</p>
+  <p class="fw-700 mt-3" style="text-align: center">{{ doctor.name_doctor }}</p>
   <div style="color: rgba(0, 0, 0, 0.7); text-align: center">
-    <span>Đa khoa</span>
+    <span>{{ doctor.name_department }}</span>
     •
-    <span>Nha khoa Cẩm Tú</span>
+    <span>{{ doctor.name_hospital }}</span>
   </div>
 </div>

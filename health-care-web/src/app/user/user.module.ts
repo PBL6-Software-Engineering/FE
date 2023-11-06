@@ -23,6 +23,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     HeaderInfoUserComponent,
     SubHeaderMobileComponent,
     F5DepartmentsComponent,
+    
   ],
   imports: [
     CommonModule,
