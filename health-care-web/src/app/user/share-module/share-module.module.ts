@@ -6,6 +6,7 @@ import { CallBmiComponent } from './components/call-bmi/call-bmi.component';
 import { Call } from '@angular/compiler';
 import { ArticleImgTopNoContentComponent } from './components/article-img-top-no-content/article-img-top-no-content.component';
 import { ArticleImgLeft2Component } from './components/article-img-left2/article-img-left2.component';
+import { ArticleImgRightComponent } from './components/article-img-right/article-img-right.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { ArticleImgLeft2Component } from './components/article-img-left2/article
     CallBmiComponent,
     ArticleImgTopNoContentComponent,
     ArticleImgLeft2Component,
+    ArticleImgRightComponent,
   ],
   imports: [CommonModule],
   exports: [
@@ -22,6 +24,7 @@ import { ArticleImgLeft2Component } from './components/article-img-left2/article
     CallBmiComponent,
     ArticleImgLeft2Component,
     ArticleImgTopNoContentComponent,
+    ArticleImgRightComponent,
   ],
 })
 export class ShareModuleModule {}

@@ -47,7 +47,7 @@
               left: 10px;
             "
           />
-          <input class="py-2 ps-5 pe-4 form-control" type="text" />
+          <input class="py-2 ps-5 pe-4 form-control" type="text" id="searchInput" (keyup.enter)="search()"/>
         </div>
       </div>
       <div class="row">
@@ -64,7 +64,7 @@
                   alt=""
                 />
               </div>
-              <p class="text-center fw-bold fs-13 mt-6">
+              <p class="text-center fw-bold fs-13 mt-6 category-name">
                 {{ category.name }}
               </p>
             </div>

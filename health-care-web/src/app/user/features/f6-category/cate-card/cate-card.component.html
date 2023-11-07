@@ -1,21 +1,15 @@
 <div style="padding: 16px">
   <a href="">
-    <div
-      style="
+    <div style="
         background-color: white;
         box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.1);
         border-radius: 3px;
-      "
-      class="pt-3 pb-3"
-    >
+        min-height: 151px;
+      " class="pt-3 pb-3">
       <div class="d-flex justify-content-center mb-2">
-        <img
-          class="cateItems"
-          [src]="category?.thumbnail"
-          alt=""
-        />
+        <img class="cateItems" [src]="category?.thumbnail" alt="" />
       </div>
-      <p style="text-align: center; font-weight: bold">{{category?.name}}</p>
+      <p style="text-align: center; font-weight: bold" class="cateName">{{category?.name}}</p>
     </div>
   </a>
 </div>
