@@ -211,18 +211,16 @@ body {
 }
 
 .event-schedule-area-two .tab-content .table tbody tr td .event-wrap .categories {
-    // display: -webkit-inline-box;
-    // display: -ms-inline-flexbox;
-    // display: inline-flex;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
     margin: 10px 0;
 }
-
-
 
 .event-schedule-area-two .tab-content .table tbody tr td .event-wrap .categories a {
     color: #252525;
     font-size: 16px;
-    // margin-left: 10px;
+    margin-left: 10px;
     -webkit-transition: all 0.4s;
     -o-transition: all 0.4s;
     transition: all 0.4s;
