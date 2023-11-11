@@ -15,6 +15,7 @@ export class UserService {
     });
   }
 
+
   getCategoris(): Observable<any[]> {
     return new Observable<any[]>((observer) => {
       observer.next(categoris);

@@ -9,8 +9,15 @@
     border: 1px solid rgba(0, 0, 0, 0.1);
     background-color: white;
     border-radius: 4px;
-    min-height: 154px;
+    min-height: 161px;
     box-shadow: rgba(40, 74, 117, 0.08) 0px 5px 12px;
+}
+
+.category-name {
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    overflow: hidden;
 }
 
 .image-item {

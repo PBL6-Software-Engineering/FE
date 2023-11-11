@@ -5,21 +5,12 @@
 
       <div class="col-11">
         <div class="row">
-          <div
-            class="col-12 pb-3 d-flex align-items-center"
-            style="font-size: 0.875rem; color: #595959"
-          >
-            <a href="./"
-              ><img
-                class="side-item-img wh-24"
-                [src]="category.thumbnail"
-                alt=""
-                style="
+          <div class="col-12 pb-3 d-flex align-items-center" style="font-size: 0.875rem; color: #595959">
+            <a href="./"><img class="side-item-img wh-24" [src]="category.thumbnail" alt="" style="
                   background-color: rgba(0, 0, 0, 0.1);
                   border-radius: 100%;
                   padding: 3px;
-                "
-            /></a>
+                " /></a>
             <div class="line-vertical ms-2 me-2"></div>
             <span style="color: #262626">{{ nameCategory }}</span>
           </div>
@@ -32,28 +23,20 @@
       <div>
         <div class="row d-flex justify-content-center">
           <div style="border-radius: 100%" class="ps-5 d-inline-block col-md-7">
-            <img
-              class=""
-              [src]="category.thumbnail"
-              alt=""
-              style="
+            <img class="" [src]="category.thumbnail" alt="" style="
                 width: 140px;
                 height: 140px;
                 border-radius: 100%;
                 transform: translateY(-30%);
                 background-color: white;
                 box-shadow: 2px 4px rgba(0, 0, 0, 0.1);
-              "
-            />
-            <span
-              style="
+              " />
+            <span style="
                 font-weight: bold;
                 font-size: 20px;
                 padding-top: 49px;
                 padding-left: 10px;
-              "
-              >{{ nameCategory }}</span
-            >
+              ">{{ nameCategory }}</span>
           </div>
         </div>
         <!-- <div class="row d-flex justify-content-center">
@@ -81,10 +64,7 @@
               </div>
               <div class="col-sm-12 col-md-6 border-bottom">
                 <div class="row">
-                  <div
-                    *ngFor="let article of articles | slice : 1 : 5; index as i"
-                    class="col-md-6"
-                  >
+                  <div *ngFor="let article of articles | slice : 1 : 5; index as i" class="col-md-6">
                     <div class="pb-10">
                       <app-article-img-top-no-content routerLink="/article/{{article?.id_article}}"
                         [article]="article"
@@ -98,79 +78,21 @@
         </div>
 
         <div class="row">
-          <div
-            id="carouselExampleIndicators"
-            class="carousel carousel-dark slide"
-          >
-            <ol class="carousel-indicators">
-              <li
-                type="button"
-                data-bs-target="#carouselExampleIndicators"
-                data-bs-slide-to="0"
-                class="active"
-                aria-current="true"
-                aria-label="Slide 1"
-              ></li>
-              <li
-                type="button"
-                data-bs-target="#carouselExampleIndicators"
-                data-bs-slide-to="1"
-                aria-label="Slide 2"
-              ></li>
-            </ol>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <div class="row">
-                  <div
-                    class="col-md-4 col-lg-2 col-sm-4"
-                    *ngFor="let category of categories | slice : 0 : 6; index as i"
-                  >
-                    <app-cate-card [category]="category"></app-cate-card>
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="col-md-4 col-lg-2 col-sm-4">
-                  <app-cate-card [category]="category"></app-cate-card>
-                </div>
-              </div>
-            </div>
-            <button
-              class="carousel-control-prev"
-              type="button"
-              data-bs-target="#carouselExampleIndicators"
-              data-bs-slide="prev"
-              style="transform: translateX(-100px)"
-            >
-              <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button
-              class="carousel-control-next"
-              type="button"
-              data-bs-target="#carouselExampleIndicators"
-              data-bs-slide="next"
-              style="transform: translateX(100px)"
-            >
-              <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
+          <app-carousel-category></app-carousel-category>
         </div>
+
         <div class="container mt-50 mb-5">
           <div class="row">
             <div class="col-md-7 col-sm-12">
               <div>
                 <div class="column-center">
                   <h1 class="fs-26 fw-700 m-0 mb-4">
-                    Xem thêm về Sức khỏe răng miệng
+                    Xem thêm về <span>{{ nameCategory }}</span>
                   </h1>
                 </div>
-                <div *ngFor="let item of [0, 1, 2]; index as i">
+                <div *ngFor="let article of articles | slice : 1 : 5; index as i">
                   <div class="pb-10" [class.border-bottom]="i !== 2">
-                    <app-article-img-left2
-                      [article]="article"
-                    ></app-article-img-left2>
+                    <app-article-img-left2 [article]="article"></app-article-img-left2>
                   </div>
                 </div>
                 <!-- Phân trang .......................... -->
@@ -207,11 +129,8 @@
           </div>
           <div class="col-md-6">
             <div class="row">
-              <div
-                class="col-md-6 mb-4 col-sm-4"
-                *ngFor="let item of [0, 1, 2, 3]; index as i"
-              >
-                <app-doctor-card [doctor]="Doctor"></app-doctor-card>
+              <div class="col-md-6 mb-4 col-sm-4" *ngFor="let doctor of doctors | slice : 1 : 5; index as i">
+                <app-doctor-card [doctor]="doctor"></app-doctor-card>
               </div>
             </div>
           </div>

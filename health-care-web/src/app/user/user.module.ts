@@ -24,6 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HeaderInfoUserComponent,
     SubHeaderMobileComponent,
     F5DepartmentsComponent,
+    
   ],
   imports: [
     CommonModule,

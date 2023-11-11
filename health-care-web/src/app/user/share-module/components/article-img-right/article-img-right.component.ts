@@ -1,11 +1,11 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 
 @Component({
-  selector: 'app-article-img-top-no-content',
-  templateUrl: './article-img-top-no-content.component.html',
-  styleUrls: ['./article-img-top-no-content.component.scss'],
+  selector: 'app-article-img-right',
+  templateUrl: './article-img-right.component.html',
+  styleUrls: ['./article-img-right.component.scss'],
 })
-export class ArticleImgTopNoContentComponent {
+export class ArticleImgRightComponent {
   @Input() article: any = {};
 
   constructor() {}

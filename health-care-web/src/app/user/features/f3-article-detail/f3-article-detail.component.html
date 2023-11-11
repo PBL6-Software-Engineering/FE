@@ -9,11 +9,11 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-body" style="padding: 32px">
-        <div class="d-flex align-items-center justify-content-between mb-4">
+        <div class="column-center row-between mb-4">
           <div class="col-5">
             <span style="font-size: 16px; font-weight: bold">Chia sẻ</span>
           </div>
-          <div class="d-flex align-items-center justify-content-between col-7">
+          <div class="column-center row-between col-7">
             <a href=""
               ><img
                 id="btn-share"
@@ -42,20 +42,21 @@
                 src="assets/media/icon/social-media/square-whatsapp.svg"
                 alt=""
             /></a>
-            <a href=""
-              ><img
+            <a href="">
+              <img
                 id="btn-question"
                 class="social-item-img"
                 src="assets/media/icon/social-media/Linkedin.svg"
                 alt=""
-            /></a>
+              />
+            </a>
           </div>
         </div>
         <div>
           <p style="color: #595959">Sao chép đường dẫn</p>
           <div
-            class="d-flex align-items-center"
-            style="border: 1px solid rgba(0, 0, 0, 0.3); padding: 5px"
+            class="column-center p-6"
+            style="border: 1px solid rgba(0, 0, 0, 0.3)"
           >
             <div
               style="
@@ -69,9 +70,9 @@
               https://hellobacsi.com/ung-thu-ung-buou/ung-thu-xuong/nguyen-nhan-ung-thu-xuong-la-do-dau/
             </div>
             <div class="btn" style="border: none">
-              <span class="ps-3" style="color: #2d87f3; font-weight: bold"
-                >Sao chép</span
-              >
+              <span class="ps-3" style="color: #2d87f3; font-weight: bold">
+                Sao chép
+              </span>
             </div>
           </div>
         </div>
@@ -146,7 +147,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-9">
+        <div class="col-9" id="content-container">
           <button
             type="button"
             style="border: 1px solid rgba(0, 0, 0, 0.3); border-radius: 2rem"
@@ -165,8 +166,19 @@
             />
           </button>
           <div>
-            <h1>{{ article?.title }}</h1>
-            <div [innerHTML]="article?.content" id="content" style="width: 100%"></div>
+            <h1 class="fw-bold mb-2">{{ article?.title }}</h1>
+            <p>
+              <img
+                src="assets/media/icon/eye-solid.svg"
+                alt=""
+                style="width: 14px; height: 14px; margin-right: 10px"
+              />{{ article.search_number_article }} lượt xem
+            </p>
+            <div
+              [innerHTML]="article?.content"
+              id="content"
+              style="width: 100%"
+            ></div>
           </div>
           <div
             class="border-radius mt-3 mb-3"
@@ -179,36 +191,24 @@
               thế cho việc chẩn đoán hoặc điều trị y khoa.
             </p>
           </div>
-          <p class="">
-            <button
-              style="width: 100%; padding: 0"
-              class="btn"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#ThamKhao"
-              aria-expanded="false"
-              aria-controls="collapseExample"
-            >
-              <div
-                class="border-radius"
-                style="padding: 10px; border: 1px solid rgba(0, 0, 0, 0.1)"
-              >
+          <!-- <div class="">
+            <button style="width: 100%; padding: 0" class="btn" type="button" data-bs-toggle="collapse"
+              data-bs-target="#ThamKhao" aria-expanded="false" aria-controls="collapseExample">
+              <div class="border-radius" style="padding: 10px; border: 1px solid rgba(0, 0, 0, 0.1)">
                 <img class="me-2" src="assets/media/icon/plus.svg" alt="" />
                 <span class="bold">Nguồn tham khảo</span>
               </div>
             </button>
-          </p>
+          </div>
           <div class="collapse" id="ThamKhao">
             <div class="card card-body">
               <span>Bone cancer.</span>
-              <a
-                style="color: #2d87f3"
-                href="https://www.mayoclinic.org/diseases-conditions/bone-cancer/symptoms-causes/syc-20350217"
-                >https://www.mayoclinic.org/diseases-conditions/bone-cancer/symptoms-causes/syc-20350217</a
-              ><span>. Ngày truy cập: 11/10/2023</span>
+              <a style="color: #2d87f3"
+                href="https://www.mayoclinic.org/diseases-conditions/bone-cancer/symptoms-causes/syc-20350217">https://www.mayoclinic.org/diseases-conditions/bone-cancer/symptoms-causes/syc-20350217</a><span>.
+                Ngày truy cập: 11/10/2023</span>
             </div>
-          </div>
-          <p class="">
+          </div> -->
+          <div class="">
             <button
               style="width: 100%; padding: 0"
               class="btn"
@@ -226,28 +226,31 @@
                 <span class="bold">Lịch sử phiên bản</span>
               </div>
             </button>
-          </p>
+          </div>
           <div class="collapse" id="collapseExample">
             <div class="card card-body">
-              <span>Bone cancer.</span>
-              <a
-                href="https://www.mayoclinic.org/diseases-conditions/bone-cancer/symptoms-causes/syc-20350217"
-                >https://www.mayoclinic.org/diseases-conditions/bone-cancer/symptoms-causes/syc-20350217</a
-              ><span>. Ngày truy cập: 11/10/2023</span>
+              <p class="fw-bold mb-3">{{ article.title }}</p>
+              <p>
+                <span class="fw-bold mb-2">Ngày tạo :</span
+                >{{ article.created_at_article }}
+              </p>
+              <p>
+                <span class="fw-bold">Ngày cập nhật gần nhất :</span
+                >{{ article.updated_at_article }}
+              </p>
             </div>
           </div>
 
           <div class="line mt-3 mb-2"></div>
           <div class="mb-5">
             <p class="bold mb-4" style="color: #595959">BÀI VIẾT LIÊN QUAN</p>
-            <a href=""
-              ><p class="bold mb-3">Bệnh ung thư sống được bao lâu</p></a
-            >
-            <a href=""
-              ><p class="bold mb-3">
-                Nhận biết các dấu hiệu ung thư của xương vai
-              </p></a
-            >
+
+            <a href="article/{{ relativeArticles[0].id_article }}">
+              <p class="bold mb-3">{{ relativeArticles[0].title }}</p>
+            </a>
+            <a href="article/{{ relativeArticles[1].id_article }}">
+              <p class="bold mb-3">{{ relativeArticles[1].title }}</p>
+            </a>
           </div>
         </div>
         <div
@@ -262,7 +265,9 @@
             <div class="avatar d-flex justify-content-center mt-3">
               <img
                 class="img-Avatar"
-                src="assets/media/icon/notice.svg"
+                [src]="
+                  doctor.avatar || ' assets/media/image/default-doctor.jpg'
+                "
                 alt=""
               />
             </div>

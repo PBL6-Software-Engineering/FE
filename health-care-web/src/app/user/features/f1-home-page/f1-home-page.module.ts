@@ -37,6 +37,7 @@ import { CarouselModule } from 'primeng/carousel';
   ],
   exports: [
     BannerSearchComponent,
+    CarouselCategoryComponent
   ]
 })
 export class F1HomePageModule {}

@@ -9,6 +9,7 @@ import { DoctorCardComponent } from './doctor-card/doctor-card.component';
 import { CateCardComponent } from './cate-card/cate-card.component';
 import { FormsModule } from '@angular/forms';
 import { CoreModule } from 'src/app/core/core.module';
+import { F1HomePageModule } from '../f1-home-page/f1-home-page.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,13 @@ import { CoreModule } from 'src/app/core/core.module';
     DoctorCardComponent,
     CateCardComponent,
   ],
-  imports: [CommonModule, F6CategoryRoutingModule, ShareModuleModule, FormsModule, CoreModule],
+  imports: [
+    CommonModule,
+    F6CategoryRoutingModule,
+    ShareModuleModule,
+    FormsModule,
+    CoreModule,
+    F1HomePageModule,
+  ],
 })
 export class F6CategoryModule {}

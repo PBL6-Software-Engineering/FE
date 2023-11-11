@@ -10,9 +10,6 @@ export class CategoriesComponent implements OnInit {
   textSearch: string = '';
   constructor() {}
   ngOnInit(): void {
-    const categoriesStorage = localStorage.getItem('categories');
-    if (categoriesStorage) {
-      this.categories = JSON.parse(categoriesStorage);
-    }
+    this.categories = JSON.parse(localStorage.getItem('categories') || '[]');
   }
 }

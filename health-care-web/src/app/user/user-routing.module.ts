@@ -29,6 +29,13 @@ const routes: Routes = [
         component: F5DepartmentsComponent,
       },
       {
+        path: 'expert',
+        loadChildren: () =>
+          import('./features/f7-expert/f7-expert.module').then(
+            (m) => m.F7ExpertModule
+          ),
+      },
+      {
         path: 'user',
         loadChildren: () =>
           import('./features/f2-user/f2-user.module').then(
