@@ -9,7 +9,6 @@ import {
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { prefixApi } from 'src/app/core/constants/api.constant';
 import { ArticleService } from '../../_services/article.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 
@@ -105,14 +104,6 @@ export class F11ArticleListComponent implements OnInit, OnDestroy {
         })
         .subscribe({
           next: ({ data }) => {
-            data.data.forEach((item: any) => {
-              if (item.thumbnail_article) {
-                item.thumbnail_article = `${prefixApi}/${item.thumbnail_article}`;
-              }
-              if (item.thumbnail) {
-                item.thumbnail = `${prefixApi}/${item.thumbnail}`;
-              }
-            });
             this.dataSources = data.data || [];
             this.currentPage = data.current_page; // trang hiện tại
             this.totalPage = data.last_page; // số trang

@@ -1,0 +1,33 @@
+ol {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+li {
+    padding-left: 4px;
+    margin-top: 8px;
+    list-style-type: disc;
+}
+
+.title {
+    display: flex;
+    position: relative;
+    color: #1b3250;
+    font-weight: bold;
+    margin-top: 12px;
+}
+
+.title::before {
+    display: block;
+    content: "";
+    width: 3px;
+    height: 16px;
+    background: #11B3CF;
+    position: absolute;
+    top: 4px;
+    left: -8px;
+}
+
+.time_work>div {
+    margin-top: 4px;
+}

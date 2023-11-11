@@ -55,13 +55,16 @@
             class="inp pt-2 pb-2 ps-5 pe-4"
             type="text"
             style="width: 100%; border: none"
+            [(ngModel)]="textSearch"
           />
         </div>
       </div>
       <div class="row">
         <div
           class="col-md-4 col-lg-2 col-sm-6 cursor-pointer"
-          *ngFor="let department of departments"
+          *ngFor="
+            let department of departments | filter : ['name'] : textSearch
+          "
         >
           <div class="p-16">
             <div class="p-3 card-item">

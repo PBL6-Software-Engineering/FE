@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoriesComponent implements OnInit {
   categories: any[] = [];
+  textSearch: string = '';
   constructor() {}
   ngOnInit(): void {
     const categoriesStorage = localStorage.getItem('categories');

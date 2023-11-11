@@ -1,0 +1,10 @@
+:host ::ng-deep {
+    .p-link {
+        margin: 0 8px;
+        // height: 0.3rem;
+    }
+
+    .p-highlight>.p-link {
+        background-color: #11B3CF !important;
+    }
+}

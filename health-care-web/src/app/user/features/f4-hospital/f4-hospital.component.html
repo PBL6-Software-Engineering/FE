@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="header">
+    <div class="banner">
+      <img
+        src="https://cdn-healthcare.hellohealthgroup.com/2023/06/1687490654_6495105ef02194.17483979.jpg"
+        alt=""
+      />
+    </div>
+
+    <div class="main-info d-flex mx-50">
+      <div class="logo">
+        <img
+          [src]="hospital?.avatar"
+          alt=""
+          onerror="this.src='assets/media/image/avatar_hospital_default.jpg'"
+        />
+      </div>
+      <div class="info ml-30 mt-20">
+        <div class="fs-22 fw-bold">{{ hospital?.name || 'Bệnh viện' }}</div>
+        <div class="address">{{ hospital?.address || 'Việt Nam' }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content my-30">
+    <div class="row">
+      <div class="col-8">
+        <ul class="d-flex w-100 border-bottom">
+          <li
+            class="nav-tab"
+            (click)="tab = 'info'"
+            [class.active]="tab === 'info'"
+          >
+            Thông tin chung
+          </li>
+          <li
+            class="nav-tab"
+            (click)="tab = 'service'"
+            [class.active]="tab === 'service'"
+          >
+            Dịch vụ
+          </li>
+          <li
+            class="nav-tab"
+            (click)="tab = 'doctor'"
+            [class.active]="tab === 'doctor'"
+          >
+            Bác sĩ
+          </li>
+        </ul>
+
+        <div *ngIf="tab === 'info'">
+          <app-hospital-info [hospital]="hospital"></app-hospital-info>
+        </div>
+
+        <div *ngIf="tab === 'service'">
+          <app-hospital-service
+            [hospital]="hospital"
+            [services]="services"
+          ></app-hospital-service>
+        </div>
+
+        <div *ngIf="tab === 'doctor'">
+          <app-hospital-doctor
+            [hospital]="hospital"
+            [doctors]="doctors"
+          ></app-hospital-doctor>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <app-booking-hospital
+          [hospital]="hospital"
+          [doctorsOfHospital]="doctors"
+          [services]="services"
+        ></app-booking-hospital>
+      </div>
+    </div>
+  </div>
+</div>

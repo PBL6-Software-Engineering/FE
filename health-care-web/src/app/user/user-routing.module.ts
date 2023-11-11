@@ -35,6 +35,13 @@ const routes: Routes = [
             (m) => m.F2UserModule
           ),
       },
+      {
+        path: 'benh-vien',
+        loadChildren: () =>
+          import('./features/f4-hospital/f4-hospital.module').then(
+            (m) => m.F4HospitalModule
+          ),
+      },
     ],
   },
 ];

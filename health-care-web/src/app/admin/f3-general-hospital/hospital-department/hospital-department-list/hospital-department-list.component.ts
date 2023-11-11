@@ -1,7 +1,6 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-import { prefixApi } from '../../../../core/constants/api.constant';
 import { DepartmentHospitalService } from 'src/app/admin/_services/department_hospital.service';
 import { DepartmentService } from 'src/app/admin/_services/department.service';
 import { TokenStorageService } from 'src/app/base/auth/services/token_storage.service';
@@ -105,14 +104,6 @@ export class HospitalDepartmentListComponent implements OnInit, OnDestroy {
         .subscribe({
           next: ({ data }) => {
             this.dataSources = data.data || [];
-            this.dataSources.forEach((item: any) => {
-              if (item.thumbnail && item.thumbnail.indexOf('http') === -1) {
-                item.thumbnail = `${prefixApi}/${item.thumbnail}`;
-              }
-              if (item.image && item.image.indexOf('http') === -1) {
-                item.image = `${prefixApi}/${item.image}`;
-              }
-            });
             this.currentPage = data.current_page; // trang hiện tại
             this.totalPage = data.last_page; // số trang
             this.totalElements = data.total; // tổng số phần tử trong database

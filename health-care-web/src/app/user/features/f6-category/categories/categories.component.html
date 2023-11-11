@@ -47,15 +47,19 @@
               left: 10px;
             "
           />
-          <input class="py-2 ps-5 pe-4 form-control" type="text" />
+          <input
+            class="py-2 ps-5 pe-4 form-control"
+            type="text"
+            [(ngModel)]="textSearch"
+          />
         </div>
       </div>
       <div class="row">
         <div
           class="col-md-4 col-lg-2 col-sm-6 cursor-pointer"
-          *ngFor="let category of categories"
+          *ngFor="let category of categories | filter : ['name'] : textSearch"
         >
-          <div class="p-16" routerLink="/category/{{category.name}}">
+          <div class="p-16" routerLink="/category/{{ category.name }}">
             <div class="p-3 card-item">
               <div class="row-center mb-2">
                 <img

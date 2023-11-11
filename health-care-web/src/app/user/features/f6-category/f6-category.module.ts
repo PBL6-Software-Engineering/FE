@@ -7,6 +7,8 @@ import { CategoriesComponent } from './categories/categories.component';
 import { ShareModuleModule } from '../../share-module/share-module.module';
 import { DoctorCardComponent } from './doctor-card/doctor-card.component';
 import { CateCardComponent } from './cate-card/cate-card.component';
+import { FormsModule } from '@angular/forms';
+import { CoreModule } from 'src/app/core/core.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,6 @@ import { CateCardComponent } from './cate-card/cate-card.component';
     DoctorCardComponent,
     CateCardComponent,
   ],
-  imports: [CommonModule, F6CategoryRoutingModule, ShareModuleModule],
+  imports: [CommonModule, F6CategoryRoutingModule, ShareModuleModule, FormsModule, CoreModule],
 })
 export class F6CategoryModule {}

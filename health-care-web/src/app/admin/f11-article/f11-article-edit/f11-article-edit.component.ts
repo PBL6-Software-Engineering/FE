@@ -12,7 +12,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CategoryService } from '../../_services/category.service';
 import { ArticleService } from '../../_services/article.service';
-import { prefixApi } from 'src/app/core/constants/api.constant';
 
 @Component({
   selector: 'app-f11-article-edit',
@@ -50,7 +49,6 @@ export class F11ArticleEditComponent implements OnInit {
       if (params['id']) {
         this.id = params['id'];
         this.api.findById(params['id']).subscribe(({ data }) => {
-          data.thumbnail_article = prefixApi + '/' + data.thumbnail_article;
           this.form.patchValue({ thumbnail: data.thumbnail_article });
           this.form.patchValue({ title: data.title });
           this.form.patchValue({ content: data.content });

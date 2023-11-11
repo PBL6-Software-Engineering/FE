@@ -3,6 +3,9 @@
     padding: 30px 5%;
     box-shadow: 0 10px 16px rgba(0, 0, 0, .04), 0 2px 8px rgba(0, 0, 0, .04), 0 0 1px rgba(0, 0, 0, .04);
     background-color: white;
+    position: fixed;
+    top: 70px;
+    width: 100%;
 }
 
 .icon-sub-header {
@@ -22,9 +25,9 @@
 }
 
 .card-img-top {
-    height: 152px;
-    width: auto;
-    object-fit: contain;
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
 }
 
 .card-title {
@@ -39,6 +42,7 @@
     -webkit-box-orient: vertical;
     color: rgb(89, 89, 89);
     line-height: 1.6;
+    min-height: 46px;
 }
 
 .view-more {

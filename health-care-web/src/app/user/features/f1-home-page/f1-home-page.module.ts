@@ -13,6 +13,7 @@ import { FeaturedNewsComponent } from './featured-news/featured-news.component';
 import { ArticleTopicsComponent } from './article-topics/article-topics.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { RouterModule } from '@angular/router';
+import { CarouselModule } from 'primeng/carousel';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,11 @@ import { RouterModule } from '@angular/router';
     CoreModule,
     ShareModuleModule,
     NgxSpinnerModule,
-    RouterModule
+    RouterModule,
+    CarouselModule,
   ],
+  exports: [
+    BannerSearchComponent,
+  ]
 })
 export class F1HomePageModule {}

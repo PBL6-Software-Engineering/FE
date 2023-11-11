@@ -9,7 +9,6 @@ import {
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { prefixApi } from '../../../../core/constants/api.constant';
 import { ServiceHospitalService } from 'src/app/admin/_services/service_hospital.service';
 import { TokenStorageService } from 'src/app/base/auth/services/token_storage.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -110,11 +109,6 @@ export class HospitalServiceListComponent implements OnInit, OnDestroy {
         })
         .subscribe({
           next: ({ data }) => {
-            data.data.forEach((item: any) => {
-              if (item.thumbnail_department) {
-                item.thumbnail_department = `${prefixApi}/${item.thumbnail_department}`;
-              }
-            });
             this.dataSources = data.data || [];
             this.currentPage = data.current_page; // trang hiện tại
             this.totalPage = data.last_page; // số trang

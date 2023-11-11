@@ -93,13 +93,6 @@ const routes: Routes = [
           import('./f12-chat/f12-chat.module').then((m) => m.F12ChatModule),
       },
       {
-        path: 'leave-request',
-        loadChildren: () =>
-          import('./f13-leave-request/f13-leave-request.module').then(
-            (m) => m.F13LeaveRequestModule
-          ),
-      },
-      {
         path: 'report',
         loadChildren: () =>
           import('./f14-report/f14-report.module').then(

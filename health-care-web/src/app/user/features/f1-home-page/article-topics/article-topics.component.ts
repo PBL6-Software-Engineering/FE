@@ -41,30 +41,6 @@ export class ArticleTopicsComponent implements OnInit {
         const [res1, res2, res3] = results;
         this.isLoading = false;
         this.spinnerService.hide();
-        res1.data.data.forEach((e: any) => {
-          if (e.thumbnail_article) {
-            e.thumbnail_article = prefixApi + '/' + e.thumbnail_article;
-          }
-          if (e.avatar_user) {
-            e.avatar_user = prefixApi + '/' + e.avatar_user;
-          }
-        });
-        res2.data.data.forEach((e: any) => {
-          if (e.thumbnail_article) {
-            e.thumbnail_article = prefixApi + '/' + e.thumbnail_article;
-          }
-          if (e.avatar_user) {
-            e.avatar_user = prefixApi + '/' + e.avatar_user;
-          }
-        });
-        res3.data.data.forEach((e: any) => {
-          if (e.thumbnail_article) {
-            e.thumbnail_article = prefixApi + '/' + e.thumbnail_article;
-          }
-          if (e.avatar_user) {
-            e.avatar_user = prefixApi + '/' + e.avatar_user;
-          }
-        });
         this.articles = [
           {
             category: categories[0].name,

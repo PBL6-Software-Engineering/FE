@@ -7,12 +7,8 @@ import {
   ViewChild,
 } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ServiceHospitalService } from 'src/app/admin/_services/service_hospital.service';
-import { TokenStorageService } from 'src/app/base/auth/services/token_storage.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { prefixApi } from 'src/app/core/constants/api.constant';
 import { HospitalService } from '../../_services/hospital.service';
 
 @Component({
@@ -103,15 +99,6 @@ export class F6DoctorListComponent implements OnInit, OnDestroy {
         })
         .subscribe({
           next: ({ data }) => {
-            console.log('data', data);
-            data.data.forEach((item: any) => {
-              if (item.avatar) {
-                item.avatar = `${prefixApi}/${item.avatar}`;
-              }
-              if (item.thumbnail) {
-                item.thumbnail = `${prefixApi}/${item.thumbnail}`;
-              }
-            });
             this.dataSources = data.data || [];
             this.currentPage = data.current_page; // trang hiện tại
             this.totalPage = data.last_page; // số trang

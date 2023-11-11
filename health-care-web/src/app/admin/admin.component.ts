@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 export class AdminComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
   ngOnInit(): void {
-    const province = this.route.snapshot.data['province'];
-    localStorage.setItem('provinces', JSON.stringify(province.provinces));
+    // const province = this.route.snapshot.data['province'];
+    // localStorage.setItem('provinces', JSON.stringify(province.provinces));
   }
 }

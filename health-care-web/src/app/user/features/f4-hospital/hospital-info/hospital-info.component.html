@@ -1,0 +1,267 @@
+<div>
+  <span class="title">Giờ làm việc</span>
+
+  <div
+    *ngIf="hospital?.time_work && hospital?.time_work?.enable === 1"
+    class="time_work"
+  >
+    <div
+      class="row"
+      *ngIf="
+        hospital?.time_work?.times?.monday &&
+        hospital?.time_work?.times?.monday?.enable
+      "
+    >
+      <div class="col-2">Thứ 2</div>
+      <div class="col-10">
+        <!-- sáng -->
+        <span class="fw-bold"
+          >{{ hospital?.time_work?.times?.monday?.morning.time[0] }} :
+          {{ hospital?.time_work?.times?.monday?.morning.time[1] }}</span
+        >
+        ,
+        <!-- trưa -->
+        <span class="fw-bold"
+          >{{ hospital?.time_work?.times?.monday?.afternoon.time[0] }} :
+          {{ hospital?.time_work?.times?.monday?.afternoon.time[1] }}</span
+        >
+        ,
+        <!-- chiều -->
+        <span class="fw-bold"
+          >{{ hospital?.time_work?.times?.monday?.night.time[0] }} :
+          {{ hospital?.time_work?.times?.monday?.night.time[1] }}</span
+        >
+      </div>
+    </div>
+
+    <div
+      class="row"
+      *ngIf="
+        hospital?.time_work?.times?.tuesday &&
+        hospital?.time_work?.times?.tuesday?.enable
+      "
+    >
+      <div class="col-2">Thứ 3</div>
+      <div class="col-10">
+        <!-- sáng -->
+        <span class="fw-bold"
+          >{{ hospital?.time_work?.times?.tuesday?.morning.time[0] }} :
+          {{ hospital?.time_work?.times?.tuesday?.morning.time[1] }}</span
+        >
+        ,
+        <!-- trưa -->
+        <span class="fw-bold"
+          >{{ hospital?.time_work?.times?.tuesday?.afternoon.time[0] }} :
+          {{ hospital?.time_work?.times?.tuesday?.afternoon.time[1] }}</span
+        >
+        ,
+        <!-- chiều -->
+        <span class="fw-bold"
+          >{{ hospital?.time_work?.times?.tuesday?.night.time[0] }} :
+          {{ hospital?.time_work?.times?.tuesday?.night.time[1] }}</span
+        >
+      </div>
+    </div>
+
+    <div
+      class="row"
+      *ngIf="
+        hospital?.time_work?.times?.wednesday &&
+        hospital?.time_work?.times?.wednesday?.enable
+      "
+    >
+      <div class="col-2">Thứ 4</div>
+      <div class="col-10">
+        <!-- sáng -->
+        <span class="fw-bold"
+          >{{ hospital?.time_work?.times?.wednesday?.morning.time[0] }} :
+          {{ hospital?.time_work?.times?.wednesday?.morning.time[1] }}</span
+        >
+        ,
+        <!-- trưa -->
+        <span class="fw-bold"
+          >{{ hospital?.time_work?.times?.wednesday?.afternoon.time[0] }} :
+          {{ hospital?.time_work?.times?.wednesday?.afternoon.time[1] }}</span
+        >
+        ,
+        <!-- chiều -->
+        <span class="fw-bold"
+          >{{ hospital?.time_work?.times?.wednesday?.night.time[0] }} :
+          {{ hospital?.time_work?.times?.wednesday?.night.time[1] }}</span
+        >
+      </div>
+    </div>
+
+    <div
+      class="row"
+      *ngIf="
+        hospital?.time_work?.times?.thursday &&
+        hospital?.time_work?.times?.thursday?.enable
+      "
+    >
+      <div class="col-2">Thứ 5</div>
+      <div class="col-10">
+        <!-- sáng -->
+        <span class="fw-bold"
+          >{{ hospital?.time_work?.times?.thursday?.morning.time[0] }} :
+          {{ hospital?.time_work?.times?.thursday?.morning.time[1] }}</span
+        >
+        ,
+        <!-- trưa -->
+        <span class="fw-bold"
+          >{{ hospital?.time_work?.times?.thursday?.afternoon.time[0] }} :
+          {{ hospital?.time_work?.times?.thursday?.afternoon.time[1] }}</span
+        >
+        ,
+        <!-- chiều -->
+        <span class="fw-bold"
+          >{{ hospital?.time_work?.times?.thursday?.night.time[0] }} :
+          {{ hospital?.time_work?.times?.thursday?.night.time[1] }}</span
+        >
+      </div>
+    </div>
+
+    <div
+      class="row"
+      *ngIf="
+        hospital?.time_work?.times?.friday &&
+        hospital?.time_work?.times?.friday?.enable
+      "
+    >
+      <div class="col-2">Thứ 6</div>
+      <div class="col-10">
+        <!-- sáng -->
+        <span class="fw-bold"
+          >{{ hospital?.time_work?.times?.friday?.morning.time[0] }} :
+          {{ hospital?.time_work?.times?.friday?.morning.time[1] }}</span
+        >
+        ,
+        <!-- trưa -->
+        <span class="fw-bold"
+          >{{ hospital?.time_work?.times?.friday?.afternoon.time[0] }} :
+          {{ hospital?.time_work?.times?.friday?.afternoon.time[1] }}</span
+        >
+        ,
+        <!-- chiều -->
+        <span class="fw-bold"
+          >{{ hospital?.time_work?.times?.friday?.night.time[0] }} :
+          {{ hospital?.time_work?.times?.friday?.night.time[1] }}</span
+        >
+      </div>
+    </div>
+
+    <div
+      class="row"
+      *ngIf="
+        hospital?.time_work?.times?.saturday &&
+        hospital?.time_work?.times?.saturday?.enable
+      "
+    >
+      <div class="col-2">Thứ 7</div>
+      <div class="col-10">
+        <!-- sáng -->
+        <span class="fw-bold"
+          >{{ hospital?.time_work?.times?.saturday?.morning.time[0] }} :
+          {{ hospital?.time_work?.times?.saturday?.morning.time[1] }}</span
+        >
+        ,
+        <!-- trưa -->
+        <span class="fw-bold"
+          >{{ hospital?.time_work?.times?.saturday?.afternoon.time[0] }} :
+          {{ hospital?.time_work?.times?.saturday?.afternoon.time[1] }}</span
+        >
+        ,
+        <!-- chiều -->
+        <span class="fw-bold"
+          >{{ hospital?.time_work?.times?.saturday?.night.time[0] }} :
+          {{ hospital?.time_work?.times?.saturday?.night.time[1] }}</span
+        >
+      </div>
+    </div>
+
+    <div
+      class="row"
+      *ngIf="
+        hospital?.time_work?.times?.sunday &&
+        hospital?.time_work?.times?.sunday?.enable
+      "
+    >
+      <div class="col-2">Chủ nhật</div>
+      <div class="col-10">
+        <!-- sáng -->
+        <span class="fw-bold"
+          >{{ hospital?.time_work?.times?.sunday?.morning.time[0] }} :
+          {{ hospital?.time_work?.times?.sunday?.morning.time[1] }}</span
+        >
+        ,
+        <!-- trưa -->
+        <span class="fw-bold"
+          >{{ hospital?.time_work?.times?.sunday?.afternoon.time[0] }} :
+          {{ hospital?.time_work?.times?.sunday?.afternoon.time[1] }}</span
+        >
+        ,
+        <!-- chiều -->
+        <span class="fw-bold"
+          >{{ hospital?.time_work?.times?.sunday?.night.time[0] }} :
+          {{ hospital?.time_work?.times?.sunday?.night.time[1] }}</span
+        >
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <span class="title">Thông tin bệnh viện</span>
+  <div class="mt-8">{{ hospital?.description }}</div>
+</div>
+<div>
+  <span class="title">Chuyên khoa</span>
+  <ol>
+    <li *ngFor="let item of hospital?.departments">
+      {{ item }}
+    </li>
+  </ol>
+</div>
+<div>
+  <span class="title">Cơ sở vật chất</span>
+  <ol>
+    <li *ngFor="let item of hospital?.infrastructure">
+      {{ item }}
+    </li>
+  </ol>
+</div>
+
+<div>
+  <span class="title">Hướng dẫn khám bệnh</span>
+  <div class="mt-12">
+    • Khi tiến hành đặt lịch khám, quý bệnh nhân sẽ nhận được email xác nhận đặt
+    lịch từ Elister. Trong quá trình lấy số và đăng ký thông tin khám bệnh, có
+    thể đưa email này cho đội ngũ lễ tân/nhân viên y tế.
+  </div>
+
+  <div class="mt-12">• Quy trình thăm khám tại bệnh viện:</div>
+
+  <div class="mt-2">
+    <span class="fw-bold">Bước 1:</span>
+    Quý khách đến trực tiếp quầy tiếp đón ấn nút màu xanh có chữ “Tiếp nhận” để
+    đăng ký khám bệnh. Trường hợp khám theo BHYT, quý khách nhấn nút màu cam có
+    chữ “Bảo hiểm”.
+  </div>
+  <div class="mt-2">
+    <span class="fw-bold">Bước 2:</span> Lấy số thứ tự và ngồi chờ tới lượt
+    khám.
+  </div>
+  <div class="mt-2">
+    <span class="fw-bold">Bước 3:</span> Khám lâm sàng và thực hiện một số kiểm
+    tra theo chỉ định của bác sĩ (nếu có).
+  </div>
+  <div class="mt-2">
+    <span class="fw-bold">Bước 4:</span> Đến quầy nhận thuốc và thanh toán chi
+    phí.
+  </div>
+
+  <div>
+    <span class="fw-bold">Lưu ý:</span>
+    Các bước khám chữa bệnh có thể thay đổi tùy thuộc vào yêu cầu từ phía bác sĩ
+    đối với từng trường hợp bệnh khác nhau.
+  </div>
+</div>

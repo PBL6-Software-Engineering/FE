@@ -21,6 +21,45 @@ export class HospitalService {
     );
   }
 
+  getAll({
+    search= "",
+    paginate= 20, 
+    page= 1,
+    typesort= "name", 
+    sortlatest= true
+  }): Observable<any> {
+    return this.http.get<any>(
+      `${linkApi}/${this.model}/all-hospital?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortlatest}`
+    );
+  }
+
+  viewProfileHospital(id: any): Observable<any> {
+    return this.http.get<any>(`${linkApi}/${this.model}/view-profile/${id}`);
+  }
+
+  getThreeHospitals({
+    search = '',
+    page = 1,
+    paginate = 3,
+    sort_search_number = true,
+  }): Observable<any> {
+    return this.http.get<any>(
+      `${linkApi}/${this.model}/all-hospital?search=${search}&page=${page}&paginate=${paginate}&sort_search_number=${sort_search_number}`
+    );
+  }
+
+  getHospitalService(id_hospital: any): Observable<any> {
+    return this.http.get<any>(
+      `${linkApi}/hospital-service/hospital/${id_hospital}`
+    );
+  }
+
+  getDoctorsOfHospital(id_hospital: any): Observable<any> {
+    return this.http.get<any>(
+      `${linkApi}/${this.model}/doctors-home/${id_hospital}`
+    );
+  }
+
   changeConfirmDoctor(id_doctor: any, is_confirm: boolean): Observable<any> {
     return this.http.post<any>(
       `${linkApi}/${this.model}/change-confirm/${id_doctor}`,

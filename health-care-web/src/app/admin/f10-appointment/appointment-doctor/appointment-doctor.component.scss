@@ -1,0 +1,30 @@
+.demo-app {
+    width: 80%;
+    margin: auto;
+}
+
+.avatar-user {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+}
+
+.modal-dialog {
+    min-width: 800px;
+}
+
+table {
+    width: 100%;
+}
+
+th,
+td {
+    font-size: 16px;
+    margin: 8px 0;
+}
+
+.btn-close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
