@@ -1,0 +1,34 @@
+<div class="card my-30 p-0" *ngFor="let doctor of doctors">
+  <div class="card-body p-0">
+    <div class="column-center px-12 py-20">
+      <img [src]="doctor?.avatar" alt="" class="avatar-doctor" />
+      <div class="ml-20">
+        <div class="fw-bold">{{ doctor?.name_doctor }}</div>
+        <div class="fs-14 my-8">Khoa {{ doctor?.name_department }}</div>
+        <div>
+          <span style="color: #595959">
+            <i class="fa fa-money" aria-hidden="true"></i>
+            Phí tư vấn ban đầu:
+          </span>
+          <span class="text-success ml-2">{{
+            doctor?.price | currency : "VND"
+          }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row-between info-hospital column-center p-12">
+      <div class="column-center">
+        <img [src]="hospital?.avatar" alt="" class="avatar-hospital" />
+        <div class="ml-20">
+          <div class="fw-bold">{{ hospital?.name }}</div>
+          <div class="fs-12" style="color: rgb(89, 89, 89)">{{ hospital?.address }}</div>
+        </div>
+      </div>
+
+      <div>
+        <button class="btn btn-primary-1">Đặt lịch hẹn</button>
+      </div>
+    </div>
+  </div>
+</div>

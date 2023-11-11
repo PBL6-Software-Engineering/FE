@@ -54,6 +54,17 @@ export class ArticleService {
     );
   }
 
+  getThreeArticles({
+    search = '',
+    page = 1,
+    paginate = 3,
+    sort_search_number = true,
+  }): Observable<any> {
+    return this.http.get<any>(
+      `${linkApi}/${this.model}?search=${search}&page=${page}&paginate=${paginate}&sort_search_number=${sort_search_number}`
+    );
+  }
+
   getArticleOutStandingPublic({
     page = 1,
     paginate = 20,

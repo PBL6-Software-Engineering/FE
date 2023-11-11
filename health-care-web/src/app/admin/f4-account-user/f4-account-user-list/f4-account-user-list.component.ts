@@ -9,7 +9,6 @@ import {
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { prefixApi } from 'src/app/core/constants/api.constant';
 import { AdminService } from '../../_services/admin.service';
 
 @Component({
@@ -98,17 +97,11 @@ export class F4AccountUserListComponent implements OnInit, OnDestroy {
           paginate: 20,
           search: this.textSearch || '',
           sortlatest: true,
-          sortname: false,
           role: 'user',
           is_accept: 'both',
         })
         .subscribe({
           next: ({ data }) => {
-            data.data.forEach((item: any) => {
-              if (item.avatar) {
-                item.avatar = `${prefixApi}/${item.avatar}`;
-              }
-            });
             this.dataSources = data.data || [];
             this.currentPage = data.current_page; // trang hiện tại
             this.totalPage = data.last_page; // số trang

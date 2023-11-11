@@ -17,6 +17,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { QuillModule } from 'ngx-quill';
 import { spinnerInterceptorProviders } from './core/helpers/http.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { preprocessResponseProviders } from './core/helpers/preprocess_response.interceptor';
 
 
 export const firebaseConfig = {
@@ -57,6 +58,7 @@ interface NgxSpinnerConfig {
   providers: [
     authInterceptorProviders,
     spinnerInterceptorProviders,
+    preprocessResponseProviders,
     AngularFireAuth,
   ],
   bootstrap: [AppComponent],

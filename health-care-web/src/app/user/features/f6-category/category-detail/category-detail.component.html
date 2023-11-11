@@ -57,15 +57,18 @@
             <h1 class="fs-22 fw-700 mb-30">Kiến thức chung</h1>
             <div class="row">
               <div class="col-sm-12 col-md-6 border-bottom">
-                <app-article-img-top [article]="articles[0]"
-                  routerLink="/article/{{articles[0].id_article}}"></app-article-img-top>
+                <app-article-img-top
+                  [article]="articles[0]"
+                  routerLink="/article/{{articles[0]?.id_article}}"
+                ></app-article-img-top>
               </div>
               <div class="col-sm-12 col-md-6 border-bottom">
                 <div class="row">
                   <div *ngFor="let article of articles | slice : 1 : 5; index as i" class="col-md-6">
                     <div class="pb-10">
-                      <app-article-img-top-no-content routerLink="/article/{{article.id_article}}"
-                        [article]="article"></app-article-img-top-no-content>
+                      <app-article-img-top-no-content routerLink="/article/{{article?.id_article}}"
+                        [article]="article"
+                      ></app-article-img-top-no-content>
                     </div>
                   </div>
                 </div>
@@ -75,40 +78,9 @@
         </div>
 
         <div class="row">
-          <div id="carouselExampleIndicators" class="carousel carousel-dark slide">
-            <ol class="carousel-indicators">
-              <li type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></li>
-              <li type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2">
-              </li>
-            </ol>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <div class="row">
-                  <div class="col-md-4 col-lg-2 col-sm-4"
-                    *ngFor="let category of categories | slice : 0 : 6; index as i">
-                    <app-cate-card [category]="category"></app-cate-card>
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="col-md-4 col-lg-2 col-sm-4">
-                  <app-cate-card [category]="categories[1]"></app-cate-card>
-                </div>
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-              data-bs-slide="prev" style="transform: translateX(-100px)">
-              <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-              data-bs-slide="next" style="transform: translateX(100px)">
-              <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
+          <app-carousel-category></app-carousel-category>
         </div>
+
         <div class="container mt-50 mb-5">
           <div class="row">
             <div class="col-md-7 col-sm-12">
@@ -136,11 +108,11 @@
           <div class="col-md-6">
             <p class="fw-700 fs-26">Đội ngũ chuyên gia của ELISTER</p>
             <p style="color: rgba(0, 0, 0, 0.6)">
-              Đội ngũ cố vấn của Hello Bacsi gồm các chuyên gia sức khỏe và y
+              Đội ngũ cố vấn của Elister gồm các chuyên gia sức khỏe và y
               bác sĩ từ nhiều chuyên khoa, với đầy đủ chứng nhận, chứng chỉ hành
               nghề, hỗ trợ xây dựng và củng cố nội dung theo chuyên môn của
               mình. Trách nhiệm của chuyên gia là bảo đảm tính chính xác về mặt
-              y học ở những nội dung đăng tải trên Hello Bacsi, thường xuyên cập
+              y học ở những nội dung đăng tải trên Elister, thường xuyên cập
               nhật các thông tin mới về khoa học, nghiên cứu và sức khỏe. Đội
               ngũ của chúng tôi làm việc không mệt mỏi để những thông tin hữu
               ích có thể dễ dàng tiếp cận đến bạn đọc, giúp bạn chủ động hơn

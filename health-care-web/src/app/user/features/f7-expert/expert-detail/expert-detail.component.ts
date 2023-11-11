@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { expertService } from '../../services/expert.service';
 import { prefixApi } from 'src/app/core/constants/api.constant';
 import { ArticleService } from 'src/app/admin/_services/article.service';
+import { ExpertService } from '../../services/expert.service';
 
 @Component({
   selector: 'app-expert-detail',
@@ -16,7 +16,7 @@ export class ExpertDetailComponent implements OnInit {
   categories: any[] = [];
   constructor(
     private route: ActivatedRoute,
-    private expertService: expertService,
+    private expertService: ExpertService,
     private articleService: ArticleService
   ) {}
   ngOnInit(): void {

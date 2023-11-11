@@ -1,0 +1,78 @@
+<div class="py-30 container">
+  <div class="row">
+    <div class="col-sm-8">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Tìm kiếm với tên bệnh viện"
+        [(ngModel)]="textSearch"
+      />
+    </div>
+
+    <div class="col-sm-2" routerLink="/benh-vien/tim-kiem/{{ textSearch }}">
+      <button class="btn btn-primary-1">Tìm kiếm</button>
+    </div>
+  </div>
+
+  <div class="card mt-30 p-0" *ngFor="let item of dataSources">
+    <div class="card-body p-0 position-relative">
+      <div class="column-center px-12 py-20">
+        <img [src]="item?.avatar" alt="" class="avatar-doctor" />
+        <div class="ml-20">
+          <div class="fw-bold">{{ item?.name }}</div>
+          <div style="color: rgb(89, 89, 89)">
+            <i class="fa fa-location-arrow mr-4" aria-hidden="true"></i>
+            {{ item?.address }}
+          </div>
+
+          <div style="color: rgb(89, 89, 89)">
+            <i class="fa fa-medkit mr-4" aria-hidden="true"></i>
+            Có thể nhận lịch hẹn: Bác sĩ | Dịch vụ
+          </div>
+
+          <div>
+            {{ item?.description }}
+          </div>
+        </div>
+      </div>
+
+      <button
+        class="btn btn-primary-1 position-absolute"
+        style="right: 20px; bottom: 20px"
+        routerLink="/benh-vien/chi-tiet/{{ item?.id_hospital }}"
+      >
+        Xem chi tiết
+      </button>
+    </div>
+  </div>
+
+  <app-paginate
+    *ngIf="dataSources && dataSources.length > 0"
+    [currentPage]="currentPage"
+    [numberElementOfPage]="numberElementOfPage"
+    [totalPage]="totalPage"
+    [totalElements]="totalElements"
+    (changePage)="onChangePage($event)"
+  ></app-paginate>
+
+  <!-- Error data -->
+  <div
+    class="text-center text-danger mt-30"
+    *ngIf="dataSources?.length == 0 && isError"
+  >
+    Lỗi không lấy được dữ liệu
+  </div>
+
+  <!-- Loading spinner -->
+  <div class="wrapper-spinner" *ngIf="isLoading">
+    <ngx-spinner
+      bdColor="rgba(0,0,0,0)"
+      size="default"
+      color="#11B3CF"
+      type="ball-pulse-sync"
+      [fullScreen]="false"
+    >
+      <p class="color-primary">Đang tải dữ liệu</p>
+    </ngx-spinner>
+  </div>
+</div>

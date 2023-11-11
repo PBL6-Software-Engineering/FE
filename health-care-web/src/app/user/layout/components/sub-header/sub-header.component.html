@@ -1,4 +1,4 @@
-<div class="sub-header position-relative">
+<div class="sub-header">
   <div class="row">
     <div class="col-3 left-content pr-20">
       <h5 class="mb-20 fw-700">
@@ -22,15 +22,65 @@
       </div>
     </div>
     <div class="col-9 pl-20 position-relative">
-      <h6 class="fw-700 mb-20">Tâm điểm</h6>
-      <div class="row d-flex justify-content-between">
-        <div class="col-4" *ngFor="let new of news">
-          <div class="card">
-            <img src="{{ new.image }}" class="card-img-top" alt="Image" />
+      <h6 class="fw-700 mb-20">
+        Tâm điểm
+
+        <span
+          *ngIf="data.tab === 'BOOKING_DOCTOR'"
+          class="color-primary cursor-pointer"
+          routerLink="/benh-vien"
+          (click)="onCloseSubHeader()"
+        >
+          <i class="fa fa-chevron-right mx-6" aria-hidden="true"></i>
+          Tất cả bệnh viện
+        </span>
+      </h6>
+      <div
+        class="row d-flex justify-content-between"
+        *ngIf="data.tab === 'CATEGORY' || data.tab === 'SOCIAL'"
+      >
+        <div class="col-4" *ngFor="let article of articles">
+          <div
+            class="card cursor-pointer"
+            (click)="viewCategory(article?.id_article)"
+          >
+            <img
+              [src]="article?.thumbnail_article"
+              class="card-img-top"
+              alt="Image"
+            />
             <div class="card-body">
-              <h5 class="card-title fs-16 fw-700">{{ new.title }}</h5>
-              <p class="card-text fs-14">{{ new.content }}</p>
-              <p class="view-more d-flex align-items-center mt-12">
+              <h5 class="card-title fs-16 fw-700">{{ article.title }}</h5>
+              <p class="card-text fs-14 preview-content-2">
+                {{ article.content }}
+              </p>
+              <p
+                class="view-more d-flex align-items-center mt-12 color-primary"
+              >
+                Xem thêm
+                <img src="assets/media/icon/arrow_right.svg" alt="" />
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="row d-flex justify-content-between"
+        *ngIf="data.tab === 'BOOKING_DOCTOR'"
+      >
+        <div class="col-4" *ngFor="let hospital of hospitals">
+          <div
+            class="card cursor-pointer"
+            (click)="viewHospital(hospital?.id_hospital)"
+          >
+            <img [src]="hospital.avatar" class="card-img-top" alt="Image" />
+            <div class="card-body">
+              <h5 class="card-title fs-16 fw-700">{{ hospital.name }}</h5>
+              <p class="card-text fs-14">{{ hospital.description }}</p>
+              <p
+                class="view-more d-flex align-items-center mt-12 color-primary"
+              >
                 Xem thêm
                 <img src="assets/media/icon/arrow_right.svg" alt="" />
               </p>

@@ -1,4 +1,4 @@
-import { NgModule, OnInit } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { F7ExpertRoutingModule } from './f7-expert-routing.module';
@@ -11,6 +11,4 @@ import { ShareModuleModule } from '../../share-module/share-module.module';
   declarations: [ExpertComponent, ExpertDetailComponent, ExpertCardComponent],
   imports: [CommonModule, F7ExpertRoutingModule, ShareModuleModule],
 })
-export class F7ExpertModule{
-  
-}
+export class F7ExpertModule {}

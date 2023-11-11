@@ -5,6 +5,8 @@ import { CategoryResolve } from './user/resolver/category.resolve';
 import { DepartmentResolve } from './user/resolver/department.resolve';
 import { ArticleOutstandingResolve } from './user/resolver/article_outstanding.resolve';
 import { ProvinceResolve } from './user/resolver/province.resolve';
+import { ThreeHospitalOutstandingResolve } from './user/resolver/hospital_outstanding.resolve';
+import { QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
 
 const routes: Routes = [
   {
@@ -16,7 +18,7 @@ const routes: Routes = [
     path: 'admin',
     canLoad: [CanLoadAdminGuard],
     resolve: {
-      province: ProvinceResolve,
+      // province: ProvinceResolve,
     },
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
@@ -24,12 +26,16 @@ const routes: Routes = [
   {
     path: '',
     resolve: {
-      category: CategoryResolve,
-      department: DepartmentResolve,
-      articleOutstanding: ArticleOutstandingResolve,
-      province: ProvinceResolve,
+      // category: CategoryResolve,
+      // department: DepartmentResolve,
+      // articleOutstanding: ArticleOutstandingResolve,
+      // province: ProvinceResolve,
+      // hospitalOutStanding: ThreeHospitalOutstandingResolve,
     },
     loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
+    data: {
+      shouldPreload: true,
+    },
   },
   {
     path: '**',
@@ -39,7 +45,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    QuicklinkModule,
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: QuicklinkStrategy,
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

@@ -1,8 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { HeaderService } from '../../services/header.service';
-import { CommonObj } from '../../model/common-obj';
 import { TokenStorageService } from 'src/app/base/auth/services/token_storage.service';
-import { prefixApi } from 'src/app/core/constants/api.constant';
 
 @Component({
   selector: 'app-header',
@@ -41,7 +39,7 @@ export class HeaderComponent implements OnInit {
     );
     this.tokenStorageService
       .getUser()
-      .subscribe((user: any) => (this.user = user));
+      .subscribe((user: any) => (this.user = JSON.parse(user)));
 
     const categoriesStorage = localStorage.getItem('categories');
     if (categoriesStorage) {

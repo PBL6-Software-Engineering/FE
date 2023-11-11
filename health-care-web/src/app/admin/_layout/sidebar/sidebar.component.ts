@@ -34,14 +34,6 @@ export class SidebarComponent implements OnInit {
       label: 'Bệnh viện',
       routerLink: '/admin/hospital',
     },
-    // {
-    //   label: 'Bác sĩ',
-    //   routerLink: '/admin/doctor',
-    // },
-    // {
-    //   label: 'Bệnh nhân',
-    //   routerLink: '/admin/patient',
-    // },
     {
       label: 'Lịch làm việc',
       routerLink: '/admin/working-time',
@@ -94,17 +86,13 @@ export class SidebarComponent implements OnInit {
       label: 'Bác sĩ',
       routerLink: '/admin/doctor',
     },
-    // {
-    //   label: 'Bệnh nhân',
-    //   routerLink: '/admin/patient',
-    // },
     {
       label: 'Lịch làm việc',
       routerLink: '/admin/working-time',
     },
     {
       label: 'Lịch hẹn',
-      routerLink: '/admin/appointment',
+      routerLink: '/admin/appointment/hospital',
     },
     {
       label: 'Bài viết',
@@ -146,17 +134,9 @@ export class SidebarComponent implements OnInit {
         },
       ],
     },
-    // {
-    //   label: 'Bệnh nhân',
-    //   routerLink: '/admin/patient',
-    // },
-    {
-      label: 'Lịch làm việc',
-      routerLink: '/admin/working-time',
-    },
     {
       label: 'Lịch hẹn',
-      routerLink: '/admin/appointment',
+      routerLink: '/admin/appointment/doctor',
     },
     {
       label: 'Bài viết',

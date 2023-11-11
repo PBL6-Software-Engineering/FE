@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DepartmentService } from 'src/app/admin/_services/department.service';
-import { prefixApi } from 'src/app/core/constants/api.constant';
 
 @Component({
   selector: 'app-f5-departments',
@@ -9,6 +8,7 @@ import { prefixApi } from 'src/app/core/constants/api.constant';
 })
 export class F5DepartmentsComponent implements OnInit {
   departments: any[] = [];
+  textSearch: string = ''
   constructor(private departmentService: DepartmentService) {}
   ngOnInit(): void {
     const departmentsStorage = localStorage.getItem('departments');
@@ -16,9 +16,6 @@ export class F5DepartmentsComponent implements OnInit {
       this.departments = JSON.parse(departmentsStorage);
     } else {
       this.departmentService.getAll().subscribe(({ data }) => {
-        data.forEach((item: any) => {
-          item.thumbnail = `${prefixApi}/${item.thumbnail}`;
-        });
         this.departments = data;
         localStorage.setItem('departments', JSON.stringify(data));
       });

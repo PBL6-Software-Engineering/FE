@@ -16,10 +16,9 @@ export class AdminService {
     paginate = 20,
     role = '',
     is_accept = 'both',
-    sortlatest = true,
-    sortname = false
+    sortlatest = true
   }): Observable<any> {
-    return this.http.get<any>(`${linkApi}/${this.model}/all-user?search=${search}&page=${page}&paginate=${paginate}&role=${role}&is_accept=${is_accept}&sortlatest=${sortlatest}&sortname=${sortname}`);
+    return this.http.get<any>(`${linkApi}/${this.model}/all-user?search=${search}&page=${page}&paginate=${paginate}&role=${role}&is_accept=${is_accept}&sortlatest=${sortlatest}`);
   }
 
   changeAccept(id_user: any, is_accept: boolean): Observable<any> {

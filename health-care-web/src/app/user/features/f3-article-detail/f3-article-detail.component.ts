@@ -9,8 +9,8 @@ import {
 
 import { ActivatedRoute } from '@angular/router';
 import { ArticleService } from 'src/app/admin/_services/article.service';
-import { expertService } from '../services/expert.service';
 import { prefixApi } from 'src/app/core/constants/api.constant';
+import { ExpertService } from '../services/expert.service';
 declare var $: any;
 @Component({
   selector: 'app-f3-article-detail',
@@ -22,14 +22,14 @@ export class F3ArticleDetailComponent implements AfterViewInit, OnInit {
   public isBookmark: boolean = false;
   id: any;
   article: any;
-  relativeArticles : any;
+  relativeArticles: any;
   doctor: any;
 
   constructor(
     private el: ElementRef,
     private renderer: Renderer2,
     private articleService: ArticleService,
-    private expertService: expertService,
+    private expertService: ExpertService,
     private route: ActivatedRoute
   ) {}
 
@@ -63,7 +63,7 @@ export class F3ArticleDetailComponent implements AfterViewInit, OnInit {
               .subscribe({
                 next: ({ data }) => {
                   this.relativeArticles = data.data;
-                  console.log(this.relativeArticles)
+                  console.log(this.relativeArticles);
                 },
                 error: (err) => {
                   console.log('Error', err);

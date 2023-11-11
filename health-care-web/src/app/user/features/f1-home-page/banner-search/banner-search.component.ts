@@ -17,8 +17,8 @@ export class BannerSearchComponent {
   }
 
   getProvinces() {
-    this.commonService.getProvinces().subscribe((res) => {
-      this.provinces = res;
+    this.commonService.getProvinces().subscribe((data) => {
+      this.provinces = data.provinces;
     });
   }
 }

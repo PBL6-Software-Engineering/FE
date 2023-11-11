@@ -1,0 +1,22 @@
+.card {
+    box-shadow: (44, 74, 117, 0.08) 0px 5px 12px;
+}
+
+.avatar-hospital {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+
+.avatar-doctor {
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+}
+
+.info-hospital {
+    border-top: 1px solid #ccc;
+    background-color: rgb(248, 249, 252);
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
