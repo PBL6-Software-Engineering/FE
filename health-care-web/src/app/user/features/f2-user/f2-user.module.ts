@@ -11,6 +11,7 @@ import { UserDisableAccountComponent } from './user-disable-account/user-disable
 import { UserHelpComponent } from './user-help/user-help.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from 'src/app/core/core.module';
+import { CalendarComponent } from './calendar/calendar.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { CoreModule } from 'src/app/core/core.module';
     UserPasswordComponent,
     UserDisableAccountComponent,
     UserHelpComponent,
+    CalendarComponent,
   ],
   imports: [
     CommonModule,
