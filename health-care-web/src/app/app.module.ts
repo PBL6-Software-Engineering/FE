@@ -18,7 +18,11 @@ import { QuillModule } from 'ngx-quill';
 import { spinnerInterceptorProviders } from './core/helpers/http.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { preprocessResponseProviders } from './core/helpers/preprocess_response.interceptor';
-
+import {
+  FacebookLoginProvider,
+  GoogleLoginProvider,
+  SocialAuthServiceConfig,
+} from '@abacritt/angularx-social-login';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDyXcSL45y9ck5_wG1MTb2756cpUpyP2GE',
@@ -28,11 +32,6 @@ export const firebaseConfig = {
   messagingSenderId: '40680894288',
   appId: '1:40680894288:web:8f452aa8c6387c288c8655',
 };
-
-interface NgxSpinnerConfig {
-  type?: string;
-  color?: string;
-}
 
 @NgModule({
   declarations: [AppComponent],
@@ -60,6 +59,24 @@ interface NgxSpinnerConfig {
     spinnerInterceptorProviders,
     preprocessResponseProviders,
     AngularFireAuth,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('1058739175311564'),
+          },
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '255808396138-caffgiei9rvo2nve4l2206db309bvjbb.apps.googleusercontent.com'
+            ),
+          },
+        ],
+      } as SocialAuthServiceConfig,
+    },
   ],
   bootstrap: [AppComponent],
 })

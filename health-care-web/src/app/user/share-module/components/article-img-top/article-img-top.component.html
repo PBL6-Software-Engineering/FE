@@ -16,6 +16,7 @@
         [src]="article?.avatar_user"
         alt="Lỗi"
         class="wh-36 border-radius-50 mr-12"
+        onerror="this.src='assets/media/image/avatar_doctor_default.jpg'"
       />
     </div>
 
@@ -27,18 +28,3 @@
     <div class="ml-4">{{ article?.updated_at_article | date }}</div>
   </div>
 </div>
-
-<!-- const template = await WhatsappTemplate.findOne({ templateId: templateId });
-  const templateMessage = {};
-  _.forEach(template.components, component => {
-    const typeComponent = component.type.toLowerCase();
-    if (['header', 'body', 'footer'].includes(typeComponent)) {
-      templateMessage[typeComponent] = {
-        text: component.text
-      };
-      if (typeComponent === 'header') {
-        templateMessage.header.type = component.format ? component.format.toLowerCase() : 'text';
-      }
-    }
-  });
-  return templateMessage; -->

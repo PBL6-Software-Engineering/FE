@@ -55,18 +55,19 @@ export class SubHeaderComponent implements OnInit {
   viewAll(): void {
     let url = '';
     if (this.data.tab === 'CATEGORY') {
-      url = 'category';
+      url = '/danh-muc';
     } else if (this.data.tab === 'BOOKING_DOCTOR') {
-      url = 'departments';
+      url = '/chuyen-khoa';
     } else if (this.data.tab === 'SOCIAL') {
-      url = 'departments';
+      url = '/chuyen-khoa';
     }
     this.router.navigateByUrl(url);
     this.onCloseSubHeader();
   }
 
-  viewCategory(id: any): void {
-    this.router.navigateByUrl(`/article/${id}`);
+  viewArticle(id: any): void {
+    console.log(`/bai-viet/${id}`);
+    this.router.navigateByUrl(`/bai-viet/${id}`);
     this.onCloseSubHeader();
   }
 

@@ -7,12 +7,15 @@
   <h3 class="fs-20 fw-700">
     {{ article?.title }}
   </h3>
-  <!-- <p class="my-12 preview-content-3">
-    {{ article?.previewContent }}
-  </p> -->
+
   <div class="column-center my-12">
     <div>
-      <img [src]="article?.avatar_user" alt="Lỗi" class="wh-36 border-radius-50 mr-12" />
+      <img
+        [src]="article?.avatar_user"
+        alt="Lỗi"
+        class="wh-36 border-radius-50 mr-12"
+        onerror="this.src='assets/media/image/avatar_doctor_default.jpg'"
+      />
     </div>
 
     <div>
@@ -22,20 +25,4 @@
       <span class="ml-4">{{ article?.updated_at_article | date }}</span>
     </div>
   </div>
-
 </div>
-
-<!-- const template = await WhatsappTemplate.findOne({ templateId: templateId });
-  const templateMessage = {};
-  _.forEach(template.components, component => {
-    const typeComponent = component.type.toLowerCase();
-    if (['header', 'body', 'footer'].includes(typeComponent)) {
-      templateMessage[typeComponent] = {
-        text: component.text
-      };
-      if (typeComponent === 'header') {
-        templateMessage.header.type = component.format ? component.format.toLowerCase() : 'text';
-      }
-    }
-  });
-  return templateMessage; -->

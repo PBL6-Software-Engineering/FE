@@ -9,8 +9,7 @@ import {
 
 import { ActivatedRoute } from '@angular/router';
 import { ArticleService } from 'src/app/admin/_services/article.service';
-import { prefixApi } from 'src/app/core/constants/api.constant';
-import { ExpertService } from '../services/expert.service';
+import { ExpertService } from '../../services/expert.service';
 declare var $: any;
 @Component({
   selector: 'app-f3-article-detail',
@@ -19,15 +18,14 @@ declare var $: any;
   encapsulation: ViewEncapsulation.None,
 })
 export class F3ArticleDetailComponent implements AfterViewInit, OnInit {
-  public isBookmark: boolean = false;
+  isBookmark: boolean = false;
   id: any;
   article: any;
-  relativeArticles: any;
+  relativeArticles: any[] = [];
   doctor: any;
 
   constructor(
     private el: ElementRef,
-    private renderer: Renderer2,
     private articleService: ArticleService,
     private expertService: ExpertService,
     private route: ActivatedRoute
@@ -40,14 +38,9 @@ export class F3ArticleDetailComponent implements AfterViewInit, OnInit {
         this.articleService.findById(this.id).subscribe({
           next: ({ data }) => {
             this.article = data;
-            console.log(this.article);
             this.expertService.getDoctorById(this.article.id_user).subscribe({
               next: ({ data }) => {
-                if (data.avatar) {
-                  data.avatar = prefixApi + '/' + data.avatar;
-                }
                 this.doctor = data;
-                console.log(this.doctor);
               },
               error: (err) => {
                 console.log('Error', err);
@@ -63,7 +56,6 @@ export class F3ArticleDetailComponent implements AfterViewInit, OnInit {
               .subscribe({
                 next: ({ data }) => {
                   this.relativeArticles = data.data;
-                  console.log(this.relativeArticles);
                 },
                 error: (err) => {
                   console.log('Error', err);
@@ -75,26 +67,6 @@ export class F3ArticleDetailComponent implements AfterViewInit, OnInit {
     });
   }
 
-  checkToken() {
-    ////////////
-    return true;
-  }
-  shareClick() {
-    if (this.checkToken())
-      var btnShare = this.el.nativeElement.querySelector('#btn-share');
-    else {
-    }
-  }
-
-  bookmarkClick() {
-    if (this.checkToken()) {
-      var btnBookmark = this.el.nativeElement.querySelector('#btn-bookmark');
-      if (this.isBookmark) {
-        this.isBookmark = false;
-      } else this.isBookmark = true;
-    } else {
-    }
-  }
   ngAfterViewInit() {
     // Kích hoạt Popover
     $(this.el.nativeElement).find('[data-bs-toggle="popover"]').popover();

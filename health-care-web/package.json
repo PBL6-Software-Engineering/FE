@@ -10,6 +10,7 @@
   },
   "private": true,
   "dependencies": {
+    "@abacritt/angularx-social-login": "^2.1.0",
     "@angular/animations": "^16.2.8",
     "@angular/common": "^16.2.0",
     "@angular/compiler": "^16.2.0",
@@ -35,6 +36,7 @@
     "firebase": "^10.5.0",
     "flatpickr": "^4.6.13",
     "fullcalendar": "^6.1.9",
+    "@types/google-one-tap": "^1.2.1",
     "jquery": "^3.7.1",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",

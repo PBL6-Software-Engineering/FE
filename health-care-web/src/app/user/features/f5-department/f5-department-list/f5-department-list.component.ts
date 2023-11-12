@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { DepartmentService } from 'src/app/admin/_services/department.service';
 
 @Component({
-  selector: 'app-f5-departments',
-  templateUrl: './f5-departments.component.html',
-  styleUrls: ['./f5-departments.component.scss'],
+  selector: 'app-f5-department-list',
+  templateUrl: './f5-department-list.component.html',
+  styleUrls: ['./f5-department-list.component.scss'],
 })
-export class F5DepartmentsComponent implements OnInit {
+export class F5DepartmentListComponent implements OnInit {
   departments: any[] = [];
-  textSearch: string = ''
+  textSearch: string = '';
   constructor(private departmentService: DepartmentService) {}
   ngOnInit(): void {
     const departmentsStorage = localStorage.getItem('departments');
