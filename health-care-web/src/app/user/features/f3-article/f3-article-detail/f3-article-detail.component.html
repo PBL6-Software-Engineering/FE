@@ -8,44 +8,44 @@
 >
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-body" style="padding: 32px">
+      <div class="modal-body p-32">
         <div class="column-center row-between mb-4">
           <div class="col-5">
-            <span style="font-size: 16px; font-weight: bold">Chia sẻ</span>
+            <span class="fs-16 fw-bold">Chia sẻ</span>
           </div>
           <div class="column-center row-between col-7">
-            <a href=""
+            <a
               ><img
                 id="btn-share"
-                class="social-item-img"
+                class="wh-32"
                 src="assets/media/icon/social-media/Facebook.svg"
                 alt=""
             /></a>
-            <a href=""
+            <a
               ><img
                 id="btn-bookmark"
-                class="social-item-img"
+                class="wh-32"
                 src="assets/media/icon/social-media/zalo.png"
                 alt=""
             /></a>
-            <a href=""
+            <a
               ><img
                 id="btn-question"
-                class="social-item-img"
+                class="wh-32"
                 src="assets/media/icon/social-media/twitter.svg"
                 alt=""
             /></a>
-            <a href=""
+            <a
               ><img
                 id="btn-question"
-                class="social-item-img"
+                class="wh-32"
                 src="assets/media/icon/social-media/square-whatsapp.svg"
                 alt=""
             /></a>
-            <a href="">
+            <a>
               <img
                 id="btn-question"
-                class="social-item-img"
+                class="wh-32"
                 src="assets/media/icon/social-media/Linkedin.svg"
                 alt=""
               />
@@ -69,8 +69,8 @@
             >
               https://hellobacsi.com/ung-thu-ung-buou/ung-thu-xuong/nguyen-nhan-ung-thu-xuong-la-do-dau/
             </div>
-            <div class="btn" style="border: none">
-              <span class="ps-3" style="color: #2d87f3; font-weight: bold">
+            <div class="btn border-0">
+              <span class="ps-3 fw-bold" style="color: #2d87f3">
                 Sao chép
               </span>
             </div>
@@ -82,37 +82,33 @@
 </div>
 <div class="container pt-3">
   <div class="row">
-    <div
-      class="col-1 d-flex align-items-end flex-column"
-      style="margin-top: 90px"
-    >
+    <div class="col-1 d-flex align-items-end flex-column mt-90">
       <button
         type="button"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
-        style="background-color: white; border: none"
+        class="border-0 bg-white"
       >
         <img
           id="btn-share"
-          class="side-item-img mb-4"
+          class="wh-24 mb-4"
           src="assets/media/icon/share-solid.svg"
           alt=""
         />
       </button>
       <img
         id="btn-bookmark"
-        class="side-item-img mb-4"
+        class="wh-24 mb-4"
         [src]="
           isBookmark
             ? 'assets/media/icon/bookmark-fill.svg'
             : 'assets/media/icon/bookmark-line.svg'
         "
         alt=""
-        (click)="bookmarkClick()"
       />
       <img
         id="btn-question"
-        class="side-item-img"
+        class="wh-24"
         src="assets/media/icon/ask-question.svg"
         alt=""
       />
@@ -120,29 +116,23 @@
     <div class="col-11">
       <div class="row">
         <div
-          class="col-12 pb-3 d-flex align-items-center"
+          class="col-12 pb-3 column-center"
           style="font-size: 0.875rem; color: #595959"
         >
-          <a href="./"
-            ><img
-              class="side-item-img"
-              src="assets/media/icon/home-smile.svg"
-              alt=""
-              style="
-                width: 24px;
-                height: 24px;
-                background-color: rgba(0, 0, 0, 0.1);
-                border-radius: 100%;
-                padding: 3px;
-              "
-          /></a>
+          <a
+            routerLink="/"
+            class="wh-30 border-radius-100 column-center row-center"
+            style="background-color: rgba(0, 0, 0, 0.1)"
+          >
+            <i class="fa fa-home fs-20" routerLink="/" aria-hidden="true"></i>
+          </a>
+
           <div class="line-vertical ms-2"></div>
-          <span class="ms-3">{{ article.name_category }}</span>
+          <span class="ms-3">{{ article?.name_category }}</span>
           <img
-            class="side-item-img ms-3 me-3"
+            class="wh-24 ms-3 me-3 wh-16 p-3"
             src="assets/media/icon/ios-arrow-24-filled.svg"
             alt=""
-            style="width: 16px; height: 16px; padding: 3px"
           />
         </div>
       </div>
@@ -159,11 +149,7 @@
             data-bs-title="Góc nhìn"
           >
             <span class="mr-10">Góc nhìn</span>
-            <img
-              src="assets/media/icon/notice.svg"
-              alt=""
-              style="width: 15px; height: 15px"
-            />
+            <img src="assets/media/icon/notice.svg" alt="" class="wh-16" />
           </button>
           <div>
             <h1 class="fw-bold mb-2">{{ article?.title }}</h1>
@@ -171,47 +157,30 @@
               <img
                 src="assets/media/icon/eye-solid.svg"
                 alt=""
-                style="width: 14px; height: 14px; margin-right: 10px"
-              />{{ article.search_number_article }} lượt xem
+                class="wh-14 mr-10"
+              />{{ article?.search_number_article }} lượt xem
             </p>
             <div
               [innerHTML]="article?.content"
               id="content"
-              style="width: 100%"
+              class="w-100"
             ></div>
           </div>
           <div
-            class="border-radius mt-3 mb-3"
-            style="background-color: rgb(255, 248, 226); padding: 10px"
+            class="border-radius-5 mt-3 mb-3 p-10"
+            style="background-color: rgb(255, 248, 226)"
           >
             <img src="assets/media/icon/danger-triangle-bold.svg" alt="" />
-            <span style="font-weight: bold">Miễn trừ trách nhiệm</span>
+            <span class="fw-bold">Miễn trừ trách nhiệm</span>
             <p>
               Các bài viết của Elister chỉ có tính chất tham khảo, không thay
               thế cho việc chẩn đoán hoặc điều trị y khoa.
             </p>
           </div>
-          <!-- <div class="">
-            <button style="width: 100%; padding: 0" class="btn" type="button" data-bs-toggle="collapse"
-              data-bs-target="#ThamKhao" aria-expanded="false" aria-controls="collapseExample">
-              <div class="border-radius" style="padding: 10px; border: 1px solid rgba(0, 0, 0, 0.1)">
-                <img class="me-2" src="assets/media/icon/plus.svg" alt="" />
-                <span class="bold">Nguồn tham khảo</span>
-              </div>
-            </button>
-          </div>
-          <div class="collapse" id="ThamKhao">
-            <div class="card card-body">
-              <span>Bone cancer.</span>
-              <a style="color: #2d87f3"
-                href="https://www.mayoclinic.org/diseases-conditions/bone-cancer/symptoms-causes/syc-20350217">https://www.mayoclinic.org/diseases-conditions/bone-cancer/symptoms-causes/syc-20350217</a><span>.
-                Ngày truy cập: 11/10/2023</span>
-            </div>
-          </div> -->
+
           <div class="">
             <button
-              style="width: 100%; padding: 0"
-              class="btn"
+              class="btn w-100 p-0"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#collapseExample"
@@ -219,38 +188,45 @@
               aria-controls="collapseExample"
             >
               <div
-                class="border-radius"
-                style="padding: 10px; border: 1px solid rgba(0, 0, 0, 0.1)"
+                class="border-radius-5 p-10"
+                style="border: 1px solid rgba(0, 0, 0, 0.1)"
               >
                 <img class="me-2" src="assets/media/icon/plus.svg" alt="" />
-                <span class="bold">Lịch sử phiên bản</span>
+                <span class="fw-bold">Lịch sử phiên bản</span>
               </div>
             </button>
           </div>
           <div class="collapse" id="collapseExample">
             <div class="card card-body">
-              <p class="fw-bold mb-3">{{ article.title }}</p>
+              <p class="fw-bold mb-3">{{ article?.title }}</p>
               <p>
-                <span class="fw-bold mb-2">Ngày tạo :</span
-                >{{ article.created_at_article }}
+                <span class="fw-bold mb-2">Ngày tạo: </span
+                >{{ article?.created_at_article }}
               </p>
               <p>
-                <span class="fw-bold">Ngày cập nhật gần nhất :</span
-                >{{ article.updated_at_article }}
+                <span class="fw-bold">Ngày cập nhật gần nhất: </span
+                >{{ article?.updated_at_article }}
               </p>
             </div>
           </div>
 
           <div class="line mt-3 mb-2"></div>
           <div class="mb-5">
-            <p class="bold mb-4" style="color: #595959">BÀI VIẾT LIÊN QUAN</p>
+            <p class="fw-bold mb-4" style="color: #595959">
+              BÀI VIẾT LIÊN QUAN
+            </p>
 
-            <a href="article/{{ relativeArticles[0].id_article }}">
-              <p class="bold mb-3">{{ relativeArticles[0].title }}</p>
-            </a>
-            <a href="article/{{ relativeArticles[1].id_article }}">
-              <p class="bold mb-3">{{ relativeArticles[1].title }}</p>
-            </a>
+            <ng-container *ngIf="relativeArticles[0]">
+              <a routerLink="bai-viet/{{ relativeArticles[0].id_article }}">
+                <p class="fw-bold mb-3">{{ relativeArticles[0]?.title }}</p>
+              </a>
+            </ng-container>
+
+            <ng-container *ngIf="relativeArticles[1]">
+              <a routerLink="bai-viet/{{ relativeArticles[1].id_article }}">
+                <p class="fw-bold mb-3">{{ relativeArticles[1]?.title }}</p>
+              </a>
+            </ng-container>
           </div>
         </div>
         <div
@@ -265,20 +241,22 @@
             <div class="avatar d-flex justify-content-center mt-3">
               <img
                 class="img-Avatar"
-                [src]="
-                  doctor.avatar || ' assets/media/image/default-doctor.jpg'
-                "
-                alt=""
+                [src]="doctor?.avatar"
+                alt="Ảnh bác sĩ"
+                onerror="this.src='assets/media/image/default-doctor.jpg'"
               />
             </div>
-            <p class="Info-check textCenter mt-3">Thông tin kiểm chứng bởi:</p>
-            <p class="checker-Name textCenter mt-2">{{ article?.name_user }}</p>
+            <p class="Info-check text-center mt-3">Thông tin kiểm chứng bởi:</p>
+            <p class="checker-Name text-center mt-2 color-primary">
+              {{ article?.name_user }}
+            </p>
             <div class="line mt-2"></div>
             <div class="article-Info">
-              <p class="textCenter mt-1">
-                Tác giả:<span class="arthor-name">
-                  {{ article?.name_user }} </span
-                >Ngày cập nhật:
+              <p class="text-center mt-1">
+                Tác giả:
+                <span class="fw-bold">{{ article?.name_user }}</span>
+                <br>
+                Ngày cập nhật:
                 {{ article?.updated_at_article }}
               </p>
             </div>
@@ -290,35 +268,25 @@
               <img
                 src="assets/media/image/Promote.png"
                 alt=""
-                style="width: 100%; border-radius: 5px"
+                class="w-100 border-radius-5"
               />
               <div
-                class="mt-4 mb-5"
-                style="
-                  border: 1px solid rgba(0, 0, 0, 0.1);
-                  border-radius: 5px;
-                  padding: 10px;
-                "
+                class="mt-4 mb-5 p-10"
+                style="border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 5px"
               >
-                <p class="textCenter">Bài viết này có hữu ích với bạn?</p>
-                <div class="d-flex justify-content-center">
-                  <div
-                    class="btn"
-                    style="border: none; background-color: white"
-                  >
+                <p class="text-center">Bài viết này có hữu ích với bạn?</p>
+                <div class="row-center">
+                  <div class="btn border-0 bg-white">
                     <img
                       src="assets/media/icon/check-box.svg"
-                      style="width: 48px; height: 49px"
+                      class="wh-48"
                       alt=""
                     />
                   </div>
-                  <div
-                    class="btn"
-                    style="border: none; background-color: white"
-                  >
+                  <div class="btn border-0 bg-white">
                     <img
                       src="assets/media/icon/x-fill.svg"
-                      style="width: 48px; height: 49px"
+                      class="wh-48"
                       alt=""
                     />
                   </div>

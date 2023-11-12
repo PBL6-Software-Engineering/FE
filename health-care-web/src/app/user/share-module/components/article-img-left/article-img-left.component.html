@@ -5,11 +5,9 @@
   <h3 class="fs-18 fw-700 my-8">
     {{ article?.title }}
   </h3>
-  <div class="row">
-    <div class="col-4 my-auto text-center">
-      <img [src]="article?.thumbnail_article" alt="" class="article-image" />
-    </div>
-    <div class="col-8">
+  <div class="d-flex">
+    <img [src]="article?.thumbnail_article" alt="" class="article-image" />
+    <div class="px-12">
       <p class="mb-8 preview-content-2">
         {{ article?.previewContent }}
       </p>
@@ -17,6 +15,7 @@
         <div class="column-center">
           <img
             [src]="article?.avatar_user"
+            onerror="this.src='assets/media/image/avatar_doctor_default.jpg'"
             alt=""
             class="wh-36 border-radius-50"
           />

@@ -1,119 +1,157 @@
-<div style="width:100%" id="container">
-    <div class="pt-3">
+<div id="container" class="w-100">
+  <div class="pt-3">
+    <div class="row">
+      <div class="col-1"></div>
+
+      <div class="col-11">
         <div class="row">
-            <div class="col-1"></div>
-
-            <div class="col-11">
-                <div class="row">
-                    <div class="col-12 pb-3 d-flex align-items-center" style="font-size: 0.875rem; color: #595959">
-                        <a href="./"><img class="side-item-img" src="assets/media/icon/home-smile.svg" alt="" style="
-                  width: 24px;
-                  height: 24px;
-                  background-color: rgba(0, 0, 0, 0.1);
-                  border-radius: 100%;
-                  padding: 3px;
-                " /></a>
-                        <div class="line-vertical ms-2 me-2"></div>
-                        <a href="/expert"><span style="color: #262626">Đội ngũ chuyên gia</span></a>
-                    </div>
-                </div>
-            </div>
+          <div
+            class="col-12 pb-3 d-flex align-items-center"
+            style="font-size: 0.875rem; color: #595959"
+          >
+            <a routerLink="/"
+              ><img
+                class="side-item-img wh-24 p-3 border-radius-100"
+                src="assets/media/icon/home-smile.svg"
+                alt=""
+                style="background-color: rgba(0, 0, 0, 0.1)"
+            /></a>
+            <div class="line-vertical ms-2 me-2"></div>
+            <a href="/expert"
+              ><span style="color: #262626">Đội ngũ chuyên gia</span></a
+            >
+          </div>
         </div>
+      </div>
     </div>
-    <div style="background-color: #e3f2ff" class="pt-4">
+  </div>
+
+  <div style="background-color: #e3f2ff" class="pt-4">
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-11">
+        <div>
+          <h1 class="fs-24" style="font-weight: bolder">
+            Đội ngũ chuyên gia của ELISTER
+          </h1>
+        </div>
+      </div>
+      <div
+        class="mt-5 pt-5 bg-white"
+        style="border-radius: 50px"
+      >
         <div class="row">
-            <div class="col-1"></div>
-            <div class="col-11">
-                <div>
-                    <h1 class="fs-24" style="font-weight: bolder;">
-                        Đội ngũ chuyên gia của ELISTER
-                    </h1>
+          <div class="col-1"></div>
+          <div class="col-10">
+            <p class="mb-3">
+              Đội ngũ cố vấn của ELISTER gồm các chuyên gia sức khỏe và y bác sĩ
+              từ nhiều chuyên khoa, với đầy đủ chứng nhận, chứng chỉ hành nghề,
+              hỗ trợ xây dựng và củng cố nội dung theo chuyên môn của mình.
+              Trách nhiệm của chuyên gia là bảo đảm tính chính xác về mặt y học
+              ở những nội dung đăng tải trên ELISTER, thường xuyên cập nhật các
+              thông tin mới về khoa học, nghiên cứu và sức khỏe.
+            </p>
+            <p class="mb-5">
+              Đội ngũ của chúng tôi làm việc không mệt mỏi để những thông tin
+              hữu ích có thể dễ dàng tiếp cận đến bạn đọc, giúp bạn chủ động hơn
+              trong các quyết định chăm sóc sức khỏe.
+            </p>
+            <div class="row">
+              <div class="col-4">
+                <div class="dropdown">
+                  <div data-bs-toggle="dropdown" aria-expanded="false">
+                    <input
+                      class="myInput w-100"
+                      placeholder="Chọn chuyên khoa"
+                      id="departmentInput"
+                    />
+                    <i
+                      class="fa fa-angle-down"
+                      aria-hidden="true"
+                      style="
+                        position: absolute;
+                        right: 10px;
+                        top: 10px;
+                        line-height: 28px;
+                      "
+                    ></i>
+                  </div>
+                  <ul
+                    class="dropdown-menu w-100"
+                    style="max-height: 160px; overflow-y: auto"
+                  >
+                    <li>
+                      <p
+                        *ngFor="let department of departments"
+                        class="dropdown-item"
+                        href="#"
+                        (click)="selectDepartment($event)"
+                      >
+                        {{ department.name }}
+                      </p>
+                    </li>
+                  </ul>
                 </div>
-            </div>
-            <div class="mt-5 pt-5" style="background-color: white; border-radius: 50px">
-                <div class="row">
-                    <div class="col-1"></div>
-                    <div class="col-10">
-                        <p class="mb-3">Đội ngũ cố vấn của ELISTER gồm các chuyên gia sức khỏe và y bác sĩ từ nhiều
-                            chuyên
-                            khoa, với đầy
-                            đủ
-                            chứng nhận,
-                            chứng chỉ hành nghề, hỗ trợ xây dựng và củng cố nội dung theo chuyên môn của mình. Trách
-                            nhiệm
-                            của
-                            chuyên gia là bảo đảm
-                            tính chính xác về mặt y học ở những nội dung đăng tải trên ELISTER, thường xuyên cập nhật
-                            các
-                            thông
-                            tin mới về khoa
-                            học, nghiên cứu và sức khỏe.</p>
-                        <p class="mb-5">Đội ngũ của chúng tôi làm việc không mệt mỏi để những thông tin hữu ích có thể
-                            dễ
-                            dàng
-                            tiếp cận đến
-                            bạn
-                            đọc, giúp bạn
-                            chủ động hơn trong các quyết định chăm sóc sức khỏe.</p>
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="dropdown">
-                                    <div data-bs-toggle="dropdown" aria-expanded="false">
-                                        <input class="myInput" style="width: 100%;" placeholder="Chọn chuyên khoa"
-                                            id="departmentInput">
-                                        <i class="fa fa-angle-down" aria-hidden="true"
-                                            style="position: absolute; right: 10px;top:10px; line-height: 28px;"></i>
-                                    </div>
-                                    <ul class="dropdown-menu"
-                                        style="width: 100%;max-height: 160px;  overflow-y: auto; ">
-                                        <li>
-                                            <p *ngFor="let department of departments" class="dropdown-item" href="#"
-                                                (click)="selectDepartment($event)">{{
-                                                department.name }}</p>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="dropdown">
-                                    <div data-bs-toggle="dropdown" aria-expanded="false">
-                                        <input class="myInput" placeholder="Tìm kiếm theo tên bác sĩ" id="doctorInput">
-                                        <i class="fa fa-angle-down" aria-hidden="true"
-                                            style="position: absolute; right: 10px;top:10px; line-height: 28px;"></i>
-                                    </div>
-                                    <ul class="dropdown-menu"
-                                        style="width: 100%;max-height: 160px;  overflow-y: auto; ">
-                                        <li>
-                                            <p *ngFor="let doctor of doctors" class="dropdown-item" href="#"
-                                                (click)="selectDoctor($event)">{{
-                                                doctor.name_doctor }}</p>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <button class="btn btn-primary" style="height: 100%;" (click)="searchDoctor()">Tìm
-                                    kiếm</button>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <h3 class="fs-20 fw-700 mb-2">
-                                Chuyên gia của chúng tôi
-                            </h3>
-                            <p style="color: #595959;" class="mb-2">
-                                {{total}} kết quả được tìm thấy
-                            </p>
-                        </div>
-                        <div class="row pt-3 mb-5">
-                            <div class="col-6 px-3 py-3" *ngFor="let expert of doctors">
-                                <app-expert-card [expert]="expert"></app-expert-card>
-                            </div>
-                        </div>
-                    </div>
-
+              </div>
+              <div class="col-6">
+                <div class="dropdown">
+                  <div data-bs-toggle="dropdown" aria-expanded="false">
+                    <input
+                      class="myInput"
+                      placeholder="Tìm kiếm theo tên bác sĩ"
+                      id="doctorInput"
+                    />
+                    <i
+                      class="fa fa-angle-down"
+                      aria-hidden="true"
+                      style="
+                        position: absolute;
+                        right: 10px;
+                        top: 10px;
+                        line-height: 28px;
+                      "
+                    ></i>
+                  </div>
+                  <ul
+                    class="dropdown-menu"
+                    style="width: 100%; max-height: 160px; overflow-y: auto"
+                  >
+                    <li>
+                      <p
+                        *ngFor="let doctor of doctors"
+                        class="dropdown-item"
+                        (click)="selectDoctor($event)"
+                      >
+                        {{ doctor?.name_doctor }}
+                      </p>
+                    </li>
+                  </ul>
                 </div>
+              </div>
+              <div class="col-2">
+                <button
+                  class="btn btn-primary"
+                  style="height: 100%"
+                  (click)="searchDoctor()"
+                >
+                  Tìm kiếm
+                </button>
+              </div>
             </div>
+            <div class="row mt-3">
+              <h3 class="fs-20 fw-700 mb-2">Chuyên gia của chúng tôi</h3>
+              <p style="color: #595959" class="mb-2">
+                {{ total }} kết quả được tìm thấy
+              </p>
+            </div>
+            <div class="row pt-3 mb-5">
+              <div class="col-6 px-3 py-3" *ngFor="let expert of doctors">
+                <app-expert-card [expert]="expert"></app-expert-card>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
+</div>

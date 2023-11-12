@@ -16,6 +16,7 @@ export class ArticleImgLeftComponent implements OnChanges {
         /<[^>]*>/g,
         ''
       );
+      console.log(this.article);
     }
   }
 }

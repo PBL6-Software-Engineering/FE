@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-categories',
-  templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.scss'],
+  selector: 'app-category-list',
+  templateUrl: './category-list.component.html',
+  styleUrls: ['./category-list.component.scss'],
 })
-export class CategoriesComponent implements OnInit {
+export class CategoryListComponent implements OnInit {
   categories: any[] = [];
   textSearch: string = '';
   constructor() {}

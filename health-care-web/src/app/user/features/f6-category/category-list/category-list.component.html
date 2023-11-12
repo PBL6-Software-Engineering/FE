@@ -5,9 +5,9 @@
     <div class="col-11">
       <div class="row">
         <div class="col-12 pb-3 column-center cursor-pointer" routerLink="/">
-          <a> <i class="fa fa-home fs-16"></i></a>
+          <i class="fa fa-home fs-16"></i>
           <div class="line-vertical ms-2 me-2"></div>
-          <span class="fs-16">Tất cả chuyên khoa</span>
+          <span class="fs-16">Tất cả danh mục</span>
         </div>
       </div>
     </div>
@@ -29,32 +29,27 @@
         "
         class="mt-20"
       >
-        Không biết bắt đầu từ đâu?
+        Tất cả danh mục sức khoẻ
       </p>
-      <div class="row" style="padding: 16px">
+      <div class="row p-16">
         <div
-          style="
-            box-shadow: 1px 4px rgba(0, 0, 0, 0.1);
-            padding: 0;
-            position: relative;
-          "
+          class="p-0 position-relative"
+          style="box-shadow: 1px 4px rgba(0, 0, 0, 0.1)"
         >
           <img
             src="assets/media/icon/search.svg"
             alt=""
-            class="wh-26"
+            class="wh-26 position-absolute"
             style="
               transform: translateX(10px);
-              position: absolute;
               top: 50%;
               transform: translateY(-50%);
               left: 10px;
             "
           />
           <input
-            class="inp pt-2 pb-2 ps-5 pe-4"
+            class="py-2 ps-5 pe-4 form-control"
             type="text"
-            style="width: 100%; border: none"
             [(ngModel)]="textSearch"
           />
         </div>
@@ -62,21 +57,19 @@
       <div class="row">
         <div
           class="col-md-4 col-lg-2 col-sm-6 cursor-pointer"
-          *ngFor="
-            let department of departments | filter : ['name'] : textSearch
-          "
+          *ngFor="let category of categories | filter : ['name'] : textSearch"
         >
-          <div class="p-16">
+          <div class="p-16" routerLink="/danh-muc/{{ category?.name }}">
             <div class="p-3 card-item">
               <div class="row-center mb-2">
                 <img
                   class="image-item border-radius-4"
-                  [src]="department.thumbnail"
+                  [src]="category?.thumbnail"
                   alt=""
                 />
               </div>
-              <p class="text-center fw-bold fs-13 mt-6">
-                {{ department.name }}
+              <p class="text-center fw-bold fs-13 mt-6 preview-content-2">
+                {{ category?.name }}
               </p>
             </div>
           </div>

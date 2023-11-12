@@ -1,196 +1,206 @@
-<div class="width=100%">
-    <div class="pt-3">
+<div class="w-100">
+  <div class="pt-3">
+    <div class="row">
+      <div class="col-1"></div>
+
+      <div class="col-11">
         <div class="row">
-            <div class="col-1"></div>
-
-            <div class="col-11">
-                <div class="row">
-                    <div class="col-12 pb-3 d-flex align-items-center" style="font-size: 0.875rem; color: #595959">
-                        <a href="./"><img class="side-item-img" src="assets/media/icon/home-smile.svg" alt="" style="
-                  width: 24px;
-                  height: 24px;
-                  background-color: rgba(0, 0, 0, 0.1);
-                  border-radius: 100%;
-                  padding: 3px;
-                " /></a>
-                        <div class="line-vertical ms-2 me-2"></div>
-                        <span style="color: #262626">Sức khỏe răng miệng</span>
-                        <i class="fa fa-angle-right ms-2 me-2" aria-hidden="true"></i>
-                        <span>{{ doctor.name }}</span>
-                    </div>
-                </div>
-            </div>
+          <div
+            class="col-12 pb-3 column-center"
+            style="font-size: 0.875rem; color: #595959"
+          >
+            <a routerLink="/">
+              <img
+                class="side-item-img wh-24 border-radius-100 p-3"
+                src="assets/media/icon/home-smile.svg"
+                alt=""
+                style="background-color: rgba(0, 0, 0, 0.1)"
+            /></a>
+            <div class="line-vertical ms-2 me-2"></div>
+            <span style="color: #262626">Sức khỏe răng miệng</span>
+            <i class="fa fa-angle-right ms-2 me-2" aria-hidden="true"></i>
+            <span>{{ doctor?.name }}</span>
+          </div>
         </div>
+      </div>
     </div>
-    <div style="background-color: #e3f2ff" class="pt-4">
-        <div class="mt-5" style="background-color: white; border-radius: 50px">
-            <div class="mb-3">
-                <div class="row d-flex justify-content-center">
-                    <div style="border-radius: 100%" class="ps-5 d-inline-block col-md-6">
-                        <div class="row">
-                            <div class="col-3">
-                                <img class="" [src]="doctor.avatar" alt="" style="
-                                                                        width: 140px;
-                                                                        height: 140px;
-                                                                        border-radius: 100%;
-                                                                        transform: translateY(-30%);
-                                                                        background-color: white;
-                                                                        box-shadow: 2px 4px rgba(0, 0, 0, 0.1);
-                                                                      " />
-                            </div>
-                            <div class="col-9">
-                                <span style="
-                                                                        font-weight: bold;
-                                                                        font-size: 20px;
-                                                                        padding-top: 49px;
-                                                                      ">{{ doctor.name }}</span>
-                                <p style="color: rgba(0,0,0,0.7);" class="fs-16">
-                                    <span></span> • <span style="text-decoration: underline;">Bệnh
-                                        viện Đa khoa Quốc tế Vinmec</span>
-                                </p>
-                            </div>
+  </div>
+  <div style="background-color: #e3f2ff" class="pt-4">
+    <div class="mt-5 bg-white" style="border-radius: 50px">
+      <div class="mb-3">
+        <div class="row row-center">
+          <div class="ps-5 d-inline-block col-md-6 border-radius-100">
+            <div class="row">
+              <div class="col-3">
+                <img
+                  class="wh-140 bg-white border-radius-100"
+                  [src]="doctor?.avatar"
+                  onerror="this.src='assets/media/image/default-doctor.jpg'"
+                  alt="Ảnh bác sĩ"
+                  style="
+                    transform: translateY(-30%);
+                    box-shadow: 2px 4px rgba(0, 0, 0, 0.1);
+                  "
+                />
+              </div>
+              <div class="col-9">
+                <span class="fw-bold fs-24 pt-48">{{ doctor?.name }}</span>
+                <p style="color: rgba(0, 0, 0, 0.7)" class="fs-16">
+                  <span></span> •
+                  <span style="text-decoration: underline">
+                    Bệnh viện Đa khoa Quốc tế Vinmec
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+          <div style="height: 26px" class="d-flex align-items-center mb-3">
+            <div class="blue-line-vertical me-2"></div>
+            <span class="fs-18 fw-700">Hồ sơ chuyên gia</span>
+          </div>
+          <p class="fs-16">
+            BS. Phùng Thị Phương Chi đã có hơn 20 năm kinh nghiệm trong nghề tại
+            Bệnh viện Ung Bướu TP. HCM. Thế mạnh của chị là khám, chẩn đoán,
+            điều trị phẫu thuật và hóa trị bệnh lý ung thư.
+          </p>
+          <p class="fs-16">
+            BS. Phùng Thị Phương Chi từng tham gia các khóa đào tạo trong và
+            ngoài nước. Chị là một trong những phẫu thuật viên đầu tiên thực
+            hiện phẫu thuật nội soi ung thư phụ khoa tại TP. HCM.
+          </p>
+          <h3 class="fs-18 fw-bold mt-3 mb-3">Đề tài nghiên cứu</h3>
 
-                        </div>
-                    </div>
-
-                </div>
-
+          <p class="mb-3">
+            <i class="fa fa-check-square-o" aria-hidden="true"></i>
+            <span class="fs-18 fw-700">Năm 1998:</span
+            ><span>Xác định nhu cầu của người nhiễm HIV/AIDS</span>
+          </p>
+          <p class="mb-3">
+            <i class="fa fa-check-square-o" aria-hidden="true"></i>
+            <span class="fs-18 fw-700">Năm 1998:</span
+            ><span>Xác định nhu cầu của người nhiễm HIV/AIDS</span>
+          </p>
+          <p class="mb-3">
+            <i class="fa fa-check-square-o" aria-hidden="true"></i>
+            <span class="fs-18 fw-700">Năm 1998:</span
+            ><span>Xác định nhu cầu của người nhiễm HIV/AIDS</span>
+          </p>
+          <p class="mb-3">
+            <i class="fa fa-check-square-o" aria-hidden="true"></i>
+            <span class="fs-18 fw-700">Năm 1998:</span
+            ><span>Xác định nhu cầu của người nhiễm HIV/AIDS</span>
+          </p>
+          <div>
+            <div style="height: 26px" class="d-flex align-items-center mb-3">
+              <div class="blue-line-vertical me-2"></div>
+              <span class="fs-18 fw-700">Thông tin xác thực</span>
             </div>
             <div class="row">
-                <div class="col-1"></div>
-                <div class="col-10">
-                    <div style="height: 26px;" class="d-flex align-items-center mb-3">
-                        <div class="blue-line-vertical me-2"></div><span class="fs-18 fw-700">Hồ sơ
-                            chuyên
-                            gia</span>
-                    </div>
-                    <p class="fs-16">
-                        BS. Phùng Thị Phương Chi đã có hơn 20 năm kinh nghiệm trong nghề tại Bệnh viện Ung Bướu TP. HCM.
-                        Thế
-                        mạnh của chị là
-                        khám, chẩn đoán, điều trị phẫu thuật và hóa trị bệnh lý ung thư.
-                    </p>
-                    <p class="fs-16">
-                        BS. Phùng Thị Phương Chi từng tham gia các khóa đào tạo trong và ngoài nước. Chị là một trong
-                        những phẫu
-                        thuật viên đầu
-                        tiên thực hiện phẫu thuật nội soi ung thư phụ khoa tại TP. HCM.
-                    </p>
-                    <h3 class="fs-18 fw-bold mt-3 mb-3">
-                        Đề tài nghiên cứu
-                    </h3>
-
-                    <p class="mb-3"><i class="fa fa-check-square-o" aria-hidden="true"></i>
-                        <span class="fs-18 fw-700">Năm 1998:</span><span>Xác định nhu cầu của người nhiễm
-                            HIV/AIDS</span>
-                    </p>
-                    <p class="mb-3"><i class="fa fa-check-square-o" aria-hidden="true"></i>
-                        <span class="fs-18 fw-700">Năm 1998:</span><span>Xác định nhu cầu của người nhiễm
-                            HIV/AIDS</span>
-                    </p>
-                    <p class="mb-3"><i class="fa fa-check-square-o" aria-hidden="true"></i>
-                        <span class="fs-18 fw-700">Năm 1998:</span><span>Xác định nhu cầu của người nhiễm
-                            HIV/AIDS</span>
-                    </p>
-                    <p class="mb-3"><i class="fa fa-check-square-o" aria-hidden="true"></i>
-                        <span class="fs-18 fw-700">Năm 1998:</span><span>Xác định nhu cầu của người nhiễm
-                            HIV/AIDS</span>
-                    </p>
-                    <div>
-                        <div style="height: 26px;" class="d-flex align-items-center mb-3">
-                            <div class="blue-line-vertical me-2"></div><span class="fs-18 fw-700">Thông tin xác
-                                thực</span>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <p class="fw-700 mb-2" style="color: #8c8c8c;">BẰNG CẤP</p>
-                                <div class="row">
-                                    <div class="col-1">
-                                        <i class="fa fa-circle fs-10" style="color: aquamarine;" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="col">
-                                        <p>
-                                            Chuyên ngành Y khoa
-                                        </p>
-                                        <p>
-                                            Trung tâm Đào tạo và Bồi dưỡng Cán bộ y tế
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-1">
-                                        <i class="fa fa-circle fs-10" style="color: aquamarine;" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="col">
-                                        <p>
-                                            Chuyên ngành Y khoa
-                                        </p>
-                                        <p>
-                                            Trung tâm Đào tạo và Bồi dưỡng Cán bộ y tế
-                                        </p>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="col-6">
-                                <p class="fw-700 mb-2" style="color: #8c8c8c">KINH NGHIỆM</p>
-                                <div class="row">
-                                    <div class="col-1">
-                                        <i class="fa fa-circle fs-10" style="color: aquamarine;" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="col">
-                                        <p>
-                                            Chuyên ngành Y khoa
-                                        </p>
-                                        <p>
-                                            Trung tâm Đào tạo và Bồi dưỡng Cán bộ y tế
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-1">
-                                        <i class="fa fa-circle fs-10" style="color: aquamarine;" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="col">
-                                        <p>
-                                            Chuyên ngành Y khoa
-                                        </p>
-                                        <p>
-                                            Trung tâm Đào tạo và Bồi dưỡng Cán bộ y tế
-                                        </p>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div style="height: 26px;" class="d-flex align-items-center mb-3 mt-3">
-                            <div class="blue-line-vertical me-2"></div><span class="fs-18 fw-700">Bài viết của chuyên
-                                gia</span>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-7">
-                                <app-article-img-top-no-content [article]="articles[0]"></app-article-img-top-no-content>
-                            </div>
-                            <div class="col-5">
-                                <div class="row">
-                                    <app-article-img-top-no-content
-                                        [article]="articles[1] || articles[0]"></app-article-img-top-no-content>
-                                </div>
-                                <div class="row">
-                                    <app-article-img-right [article]="articles[2] || articles[0]"></app-article-img-right>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-3" *ngFor="let article of articles.slice(0,5); index as i">
-                                <app-article-img-top-no-content [article]="article"></app-article-img-top-no-content>
-                            </div>
-                        </div>
-                    </div>
+              <div class="col-6">
+                <p class="fw-700 mb-2" style="color: #8c8c8c">BẰNG CẤP</p>
+                <div class="row">
+                  <div class="col-1">
+                    <i
+                      class="fa fa-circle fs-10"
+                      style="color: aquamarine"
+                      aria-hidden="true"
+                    ></i>
+                  </div>
+                  <div class="col">
+                    <p>Chuyên ngành Y khoa</p>
+                    <p>Trung tâm Đào tạo và Bồi dưỡng Cán bộ y tế</p>
+                  </div>
                 </div>
+                <div class="row">
+                  <div class="col-1">
+                    <i
+                      class="fa fa-circle fs-10"
+                      style="color: aquamarine"
+                      aria-hidden="true"
+                    ></i>
+                  </div>
+                  <div class="col">
+                    <p>Chuyên ngành Y khoa</p>
+                    <p>Trung tâm Đào tạo và Bồi dưỡng Cán bộ y tế</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <p class="fw-700 mb-2" style="color: #8c8c8c">KINH NGHIỆM</p>
+                <div class="row">
+                  <div class="col-1">
+                    <i
+                      class="fa fa-circle fs-10"
+                      style="color: aquamarine"
+                      aria-hidden="true"
+                    ></i>
+                  </div>
+                  <div class="col">
+                    <p>Chuyên ngành Y khoa</p>
+                    <p>Trung tâm Đào tạo và Bồi dưỡng Cán bộ y tế</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-1">
+                    <i
+                      class="fa fa-circle fs-10"
+                      style="color: aquamarine"
+                      aria-hidden="true"
+                    ></i>
+                  </div>
+                  <div class="col">
+                    <p>Chuyên ngành Y khoa</p>
+                    <p>Trung tâm Đào tạo và Bồi dưỡng Cán bộ y tế</p>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+          <div>
+            <div
+              style="height: 26px"
+              class="d-flex align-items-center mb-3 mt-3"
+            >
+              <div class="blue-line-vertical me-2"></div>
+              <span class="fs-18 fw-700">Bài viết của chuyên gia</span>
+            </div>
+            <div class="row mb-3">
+              <div class="col-7">
+                <app-article-img-top-no-content
+                  [article]="articles[0]"
+                ></app-article-img-top-no-content>
+              </div>
+              <div class="col-5">
+                <div class="row">
+                  <app-article-img-top-no-content
+                    [article]="articles[1] || articles[0]"
+                  ></app-article-img-top-no-content>
+                </div>
+                <div class="row">
+                  <app-article-img-right
+                    [article]="articles[2] || articles[0]"
+                  ></app-article-img-right>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div
+                class="col-3"
+                *ngFor="let article of articles.slice(0, 5); index as i"
+              >
+                <app-article-img-top-no-content
+                  [article]="article"
+                ></app-article-img-top-no-content>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>

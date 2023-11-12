@@ -43,69 +43,69 @@ hr {
 }
 
 /* Thêm các quy tắc CSS cụ thể cho trang web của bạn sau đây */
-@for $i from 1 through 100 {
+@for $i from 1 through 200 {
 
     .p {
-        &-#{$i * 2} {
-            padding: #{$i * 2}px;
+        &-#{$i} {
+            padding: #{$i}px;
         }
 
-        &t-#{$i * 2} {
-            padding-top: #{$i * 2}px;
+        &t-#{$i} {
+            padding-top: #{$i}px;
         }
 
-        &l-#{$i * 2} {
-            padding-left: #{$i * 2}px;
+        &l-#{$i} {
+            padding-left: #{$i}px;
         }
 
-        &b-#{$i * 2} {
-            padding-bottom: #{$i * 2}px;
+        &b-#{$i} {
+            padding-bottom: #{$i}px;
         }
 
-        &r-#{$i * 2} {
-            padding-right: #{$i * 2}px;
+        &r-#{$i} {
+            padding-right: #{$i}px;
         }
 
-        &x-#{$i * 2} {
-            padding-left: #{$i * 2}px;
-            padding-right: #{$i * 2}px;
+        &x-#{$i} {
+            padding-left: #{$i}px;
+            padding-right: #{$i}px;
         }
 
-        &y-#{$i * 2} {
-            padding-top: #{$i * 2}px;
-            padding-bottom: #{$i * 2}px;
+        &y-#{$i} {
+            padding-top: #{$i}px;
+            padding-bottom: #{$i}px;
         }
     }
 
     .m {
-        &-#{$i * 2} {
-            margin: #{$i * 2}px;
+        &-#{$i} {
+            margin: #{$i}px;
         }
 
-        &t-#{$i * 2} {
-            margin-top: #{$i * 2}px;
+        &t-#{$i} {
+            margin-top: #{$i}px;
         }
 
-        &l-#{$i * 2} {
-            margin-left: #{$i * 2}px;
+        &l-#{$i} {
+            margin-left: #{$i}px;
         }
 
-        &b-#{$i * 2} {
-            margin-bottom: #{$i * 2}px;
+        &b-#{$i} {
+            margin-bottom: #{$i}px;
         }
 
-        &r-#{$i * 2} {
-            margin-right: #{$i * 2}px;
+        &r-#{$i} {
+            margin-right: #{$i}px;
         }
 
-        &x-#{$i * 2} {
-            margin-left: #{$i * 2}px;
-            margin-right: #{$i * 2}px;
+        &x-#{$i} {
+            margin-left: #{$i}px;
+            margin-right: #{$i}px;
         }
 
-        &y-#{$i * 2} {
-            margin-top: #{$i * 2}px;
-            margin-bottom: #{$i * 2}px;
+        &y-#{$i} {
+            margin-top: #{$i}px;
+            margin-bottom: #{$i}px;
         }
     }
 
@@ -113,21 +113,21 @@ hr {
         font-size: #{$i}px;
     }
 
-    .w-#{$i * 4} {
-        width: #{$i * 4}px;
+    .w-#{$i * 2} {
+        width: #{$i * 2}px;
     }
 
-    .mw-#{$i * 4} {
-        min-width: #{$i * 4}px;
+    .mw-#{$i * 2} {
+        min-width: #{$i * 2}px;
     }
 
-    .h-#{$i * 4} {
-        height: #{$i * 4}px;
+    .h-#{$i * 2} {
+        height: #{$i * 2}px;
     }
 
-    .wh-#{$i * 4} {
-        width: #{$i * 4}px;
-        height: #{$i * 4}px;
+    .wh-#{$i * 2} {
+        width: #{$i * 2}px;
+        height: #{$i * 2}px;
     }
 }
 
@@ -160,8 +160,20 @@ hr {
         border-radius: 50%;
     }
 
+    &-100 {
+        border-radius: 100%;
+    }
+
+    &-3 {
+        border-radius: 3px;
+    }
+
     &-4 {
         border-radius: 4px;
+    }
+
+    &-5 {
+        border-radius: 5px;
     }
 
     &-6 {

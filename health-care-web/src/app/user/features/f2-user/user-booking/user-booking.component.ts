@@ -1,6 +1,7 @@
 import { Component, ElementRef } from '@angular/core';
 import { UserWorkScheduleService } from '../../services/user-work-schedule.service';
 import { prefixApi } from 'src/app/core/constants/api.constant';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-user-booking',
@@ -10,11 +11,16 @@ import { prefixApi } from 'src/app/core/constants/api.constant';
 export class UserBookingComponent {
   tab = 'waitBooking';
   items: any[] = [];
+  itemsWait: any[] = [];
+  itemsDone: any[] = [];
+  itemHistory: any[] = [];
   doneNumber = 0;
   waitNumber = 0;
+  isLoading = false;
   constructor(
     private workSchedule: UserWorkScheduleService,
-    private el: ElementRef
+    private el: ElementRef,
+    private spinner: NgxSpinnerService
   ) {}
   ngOnInit(): void {
     // call API here
@@ -25,19 +31,22 @@ export class UserBookingComponent {
   chooseTab(tab: string): void {
     this.tab = tab;
     if (tab == 'waitBooking') {
-      this.getWaitBooking();
+      this.items = this.itemsWait;
     } else if (tab == 'doneBooking') {
-      this.getDoneBooking();
+      this.items = this.itemsDone;
     } else {
-      this.getHistoryBooking();
+      this.items = this.itemHistory;
     }
   }
 
   getWaitBooking(): void {
+    this.isLoading = true;
+    this.spinner.show();
     // call API here
     this.workSchedule.getWorkSchedule({ status: 'upcoming' }).subscribe({
       next: ({ data }) => {
-        console.log(data);
+        this.isLoading = false;
+        this.spinner.hide();
         data.data.forEach((element: any) => {
           const myDate = new Date(element.work_schedule_time.date);
           element.day = myDate.getDate();
@@ -69,10 +78,13 @@ export class UserBookingComponent {
           }
         });
         this.items = data.data;
-        this.waitNumber = this.items.length;
+        this.itemsWait = data.data;
+        this.waitNumber = this.itemsWait.length;
       },
       error: (err) => {
         console.log('Error', err);
+        this.isLoading = false;
+        this.spinner.hide();
       },
     });
   }
@@ -112,8 +124,8 @@ export class UserBookingComponent {
               '/assets/media/image/Default-hospital.jpg';
           }
         });
-        this.items = data.data;
-        this.doneNumber = this.items.length;
+        this.itemsDone = data.data;
+        this.doneNumber = this.itemsDone.length;
       },
       error: (err) => {
         console.log('Error', err);
@@ -156,7 +168,7 @@ export class UserBookingComponent {
               '/assets/media/image/Default-hospital.jpg';
           }
         });
-        this.items = data.data;
+        this.itemHistory = data.data;
       },
       error: (err) => {
         console.log('Error', err);

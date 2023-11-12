@@ -3,20 +3,18 @@ import { CommonModule } from '@angular/common';
 
 import { F6CategoryRoutingModule } from './f6-category-routing.module';
 import { CategoryDetailComponent } from './category-detail/category-detail.component';
-import { CategoriesComponent } from './categories/categories.component';
 import { ShareModuleModule } from '../../share-module/share-module.module';
 import { DoctorCardComponent } from './doctor-card/doctor-card.component';
-import { CateCardComponent } from './cate-card/cate-card.component';
 import { FormsModule } from '@angular/forms';
 import { CoreModule } from 'src/app/core/core.module';
 import { F1HomePageModule } from '../f1-home-page/f1-home-page.module';
+import { CategoryListComponent } from './category-list/category-list.component';
 
 @NgModule({
   declarations: [
+    CategoryListComponent,
     CategoryDetailComponent,
-    CategoriesComponent,
     DoctorCardComponent,
-    CateCardComponent,
   ],
   imports: [
     CommonModule,

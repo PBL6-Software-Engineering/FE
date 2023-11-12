@@ -15,6 +15,7 @@ import { TagModule } from 'primeng/tag';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { HospitalListComponent } from './hospital-list/hospital-list.component';
 import { F1HomePageModule } from '../f1-home-page/f1-home-page.module';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { F1HomePageModule } from '../f1-home-page/f1-home-page.module';
     TagModule,
     NgxSpinnerModule,
     F1HomePageModule,
+    NgxSkeletonLoaderModule
   ],
 })
 export class F4HospitalModule {}
