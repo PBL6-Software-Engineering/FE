@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { HeaderService } from '../../services/header.service';
 import { TokenStorageService } from 'src/app/base/auth/services/token_storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -27,9 +27,11 @@ export class HeaderComponent implements OnInit {
   isLogin: any;
   user: any;
 
+  textSearch: string = '';
+
   constructor(
-    private headerService: HeaderService,
-    private tokenStorageService: TokenStorageService
+    private tokenStorageService: TokenStorageService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -82,5 +84,9 @@ export class HeaderComponent implements OnInit {
   clickAvatarUser(): void {
     this.isOpenHeaderInfo = !this.isOpenHeaderInfo;
     this.isOpenSubMenuBar = this.isOpenSubMenuBarMobile = false;
+  }
+
+  searchArticle(): void {
+    this.router.navigate(['/bai-viet/tim-kiem', this.textSearch || '']);
   }
 }

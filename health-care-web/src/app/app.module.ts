@@ -23,6 +23,9 @@ import {
   GoogleLoginProvider,
   SocialAuthServiceConfig,
 } from '@abacritt/angularx-social-login';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { NgProgressModule } from 'ngx-progressbar';
+import { NgProgressHttpModule } from 'ngx-progressbar/http';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDyXcSL45y9ck5_wG1MTb2756cpUpyP2GE',
@@ -53,6 +56,11 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     QuillModule.forRoot(),
     NgxSpinnerModule.forRoot({ type: 'ball-pulse-sync' }),
+    NgxSkeletonLoaderModule.forRoot(),
+    NgProgressModule.withConfig({
+      color: '#11B3CF',
+    }),
+    NgProgressHttpModule,
   ],
   providers: [
     authInterceptorProviders,

@@ -2,14 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { ArticleService } from 'src/app/admin/_services/article.service';
 import { HospitalService } from 'src/app/admin/_services/hospital.service';
 
 @Component({
-  selector: 'app-hospital-list',
-  templateUrl: './hospital-list.component.html',
-  styleUrls: ['./hospital-list.component.scss'],
+  selector: 'app-f3-article-list',
+  templateUrl: './f3-article-list.component.html',
+  styleUrls: ['./f3-article-list.component.scss'],
 })
-export class HospitalListComponent implements OnInit {
+export class F3ArticleListComponent implements OnInit {
   dataSources: any[] = [];
   isLoading = false;
   isError = false;
@@ -24,7 +25,7 @@ export class HospitalListComponent implements OnInit {
   isSearching = false;
 
   constructor(
-    private hospitalService: HospitalService,
+    private api: ArticleService,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
     private route: ActivatedRoute,
@@ -44,8 +45,8 @@ export class HospitalListComponent implements OnInit {
     this.isLoading = true;
     this.spinner.show();
     this.dataSources = [];
-    this.hospitalService
-      .getAll({
+    this.api
+      .getArticles({
         page: this.currentPage,
         paginate: 15,
         search: this.textSearch,

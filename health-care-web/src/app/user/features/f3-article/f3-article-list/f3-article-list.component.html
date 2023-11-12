@@ -4,7 +4,7 @@
       <input
         type="text"
         class="form-control"
-        placeholder="Tìm kiếm với tên bệnh viện"
+        placeholder="Tìm kiếm với tên bài viết"
         [(ngModel)]="textSearch"
       />
     </div>
@@ -12,43 +12,15 @@
     <div class="col-sm-2">
       <button
         class="btn btn-primary-1"
-        [routerLink]="['/benh-vien/tim-kiem', textSearch || '']"
+        [routerLink]="['/bai-viet/tim-kiem', textSearch || '']"
       >
         Tìm kiếm
       </button>
     </div>
   </div>
 
-  <div class="card mt-30 p-0" *ngFor="let item of dataSources">
-    <div class="card-body p-0 position-relative">
-      <div class="column-center px-12 py-20">
-        <img [src]="item?.avatar" alt="" class="avatar-hospital" />
-        <div class="ml-20">
-          <div class="fw-bold">{{ item?.name }}</div>
-          <div style="color: rgb(89, 89, 89)">
-            <i class="fa fa-location-arrow mr-4" aria-hidden="true"></i>
-            {{ item?.address }}
-          </div>
-
-          <div style="color: rgb(89, 89, 89)">
-            <i class="fa fa-medkit mr-4" aria-hidden="true"></i>
-            Có thể nhận lịch hẹn: Bác sĩ | Dịch vụ
-          </div>
-
-          <div>
-            {{ item?.description }}
-          </div>
-        </div>
-      </div>
-
-      <button
-        class="btn btn-primary-1 position-absolute"
-        style="right: 20px; bottom: 20px"
-        routerLink="/benh-vien/chi-tiet/{{ item?.id_hospital }}"
-      >
-        Xem chi tiết
-      </button>
-    </div>
+  <div class="card mt-30 p-10" *ngFor="let item of dataSources">
+    <app-article-img-left [article]="item"></app-article-img-left>
   </div>
 
   <app-paginate
@@ -78,7 +50,7 @@
       [fullScreen]="false"
     >
       <p class="color-primary fs-20 fw-bold mt-30">
-        Đang tìm kiếm danh sách bệnh viện
+        Đang tìm kiếm danh sách bài viết
       </p>
     </ngx-spinner>
   </div>
