@@ -1,6 +1,10 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { UserWorkScheduleService } from '../../services/user-work-schedule.service';
+import { ToastrService } from 'ngx-toastr';
 import { prefixApi } from 'src/app/core/constants/api.constant';
+
+import { FormsModule } from '@angular/forms';
+// import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-user-booking',
@@ -9,17 +13,27 @@ import { prefixApi } from 'src/app/core/constants/api.constant';
 })
 export class UserBookingComponent {
   tab = 'waitBooking';
+  delId = 0;
+  // delIdArray: any[]=[];
   items: any[] = [];
   doneNumber = 0;
   waitNumber = 0;
   constructor(
     private workSchedule: UserWorkScheduleService,
-    private el: ElementRef
+    private el: ElementRef,
+    private renderer: Renderer2,
+    private toastrService: ToastrService
   ) {}
   ngOnInit(): void {
-    // call API here
-    this.getDoneBooking();
     this.getWaitBooking();
+    this.workSchedule.getWorkSchedule({ status: 'complete' }).subscribe({
+      next: ({ data }) => {
+        this.doneNumber = data.data.length;
+      },
+      error: (err) => {
+        console.log('Error', err);
+      },
+    });
   }
 
   chooseTab(tab: string): void {
@@ -39,6 +53,7 @@ export class UserBookingComponent {
       next: ({ data }) => {
         console.log(data);
         data.data.forEach((element: any) => {
+          element.selected = false;
           const myDate = new Date(element.work_schedule_time.date);
           element.day = myDate.getDate();
           const options = { month: 'long' } as Intl.DateTimeFormatOptions;
@@ -83,6 +98,7 @@ export class UserBookingComponent {
       next: ({ data }) => {
         console.log(data);
         data.data.forEach((element: any) => {
+          element.selected = false;
           const myDate = new Date(element.work_schedule_time.date);
           element.day = myDate.getDate();
           const options = { month: 'long' } as Intl.DateTimeFormatOptions;
@@ -127,6 +143,7 @@ export class UserBookingComponent {
       next: ({ data }) => {
         console.log(data);
         data.data.forEach((element: any) => {
+          element.selected = false;
           const myDate = new Date(element.work_schedule_time.date);
           element.day = myDate.getDate();
           const options = { month: 'long' } as Intl.DateTimeFormatOptions;
@@ -199,5 +216,75 @@ export class UserBookingComponent {
         }
       }
     }
+  }
+  saveID(id: any) {
+    this.delId = id;
+  }
+  areAllSelected(): boolean {
+    return this.items.every((item) => item.selected);
+  }
+  toggleSelectAll(): void {
+    const allSelected = this.areAllSelected();
+    this.items.forEach((item) => (item.selected = !allSelected));
+  }
+  delete(): void {
+    var loading = this.el.nativeElement.querySelector('#loading');
+    this.renderer.removeClass(loading, 'd-none');
+
+    this.workSchedule.deleteWorkSchedule(this.delId.toString()).subscribe({
+      next: () => {
+        this.getWaitBooking();
+        const deleteButton = this.el.nativeElement.querySelector('#delete-btn');
+        if (deleteButton) {
+          this.renderer.selectRootElement(deleteButton).click();
+        }
+        this.renderer.addClass(loading, 'd-none');
+        this.toastrService.success('Hủy lịch hẹn thành công');
+      },
+      error: (err) => {
+        this.toastrService.error('Hủy lịch hẹn thất bại');
+        this.renderer.addClass(loading, 'd-none');
+        console.log('Error', err);
+      },
+    });
+  }
+
+  deleteMany(): void {
+    // this.delIdArray = this.items
+    //   .filter((item) => item.selected)
+    //   .map((item) => item.id);
+    var loading = this.el.nativeElement.querySelector('#loading-2');
+    if (this.items.some((item) => item.selected)) {
+      this.renderer.removeClass(loading, 'd-none');
+      this.workSchedule
+        .deleteManyWorkSchedule(
+          this.items.filter((item) => item.selected).map((item) => item.id)
+        )
+        .subscribe({
+          next: () => {
+            const deleteButton =
+              this.el.nativeElement.querySelector('#delete-btn-2');
+            if (deleteButton) {
+              this.renderer.selectRootElement(deleteButton).click();
+            }
+            this.renderer.addClass(loading, 'd-none');
+            this.toastrService.success('Hủy lịch hẹn thành công');
+            this.getWaitBooking();
+          },
+          error: (error) => {
+            this.renderer.addClass(loading, 'd-none');
+            this.toastrService.error('Hủy lịch hẹn thất bại');
+            console.log('Error', error);
+          },
+        });
+    } else {
+      this.toastrService.error('Không có lịch nào được chọn');
+      var deleteButton = this.el.nativeElement.querySelector('#delete-btn-2');
+      if (deleteButton) {
+        this.renderer.selectRootElement(deleteButton).click();
+        deleteButton.innerText = 'Đóng';
+      }
+    }
+    // console.log('Selected IDs:', this.delIdArray);
   }
 }
