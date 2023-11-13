@@ -1,22 +1,20 @@
 <div
-  style="
-    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    height: 300px;
-  "
+  class="p-10"
+  style="box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1); height: 300px"
 >
-  <div class="d-flex justify-content-center" style="background-color: #e3f2ff">
+  <div class="row-center" style="background-color: #e3f2ff">
     <img
       style="width: 70%; max-width: 150px"
       class="p-4"
-      [src]="doctor.avatar || 'assets/media/image/default-doctor.jpg'"
-      alt=""
+      [src]="doctor?.avatar"
+      onerror="this.src='assets/media/image/default-doctor.jpg'"
+      alt="Ảnh bác sĩ"
     />
   </div>
-  <p class="fw-700 mt-3" style="text-align: center">{{ doctor.name_doctor }}</p>
-  <div style="color: rgba(0, 0, 0, 0.7); text-align: center">
-    <span>{{ doctor.name_department }}</span>
+  <p class="fw-700 mt-3 text-center">{{ doctor?.name_doctor }}</p>
+  <div class="text-center" style="color: rgba(0, 0, 0, 0.7)">
+    <span>{{ doctor?.name_department }}</span>
     •
-    <span>{{ doctor.name_hospital }}</span>
+    <span>{{ doctor?.name_hospital }}</span>
   </div>
 </div>

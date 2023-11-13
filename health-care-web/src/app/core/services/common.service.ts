@@ -1,19 +1,15 @@
 import { Injectable } from "@angular/core";
-import { provinces } from '../data/provinces';
 import { Observable } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { linkApi } from "../constants/api.constant";
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class CommonService {
-    constructor() {
-        
-    }
+  constructor(private http: HttpClient) {}
 
-    getProvinces(): Observable<any[]> {
-        return new Observable<any[]>(observer => {
-            observer.next(provinces);
-            observer.complete();
-        });
-    }
+  getProvinces(): Observable<any> {
+    return this.http.get<any>(`${linkApi}/province`);
+  }
 }

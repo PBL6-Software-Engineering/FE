@@ -39,7 +39,7 @@ export class TokenStorageService {
   }
 
   saveUser(user: any): void {
-    if(user.avatar) {
+    if(user.avatar && user.avatar.indexOf('http') === -1) {
       user.avatar = `${prefixApi}/${user.avatar}`;
     }
     localStorage.setItem('user', JSON.stringify(user));

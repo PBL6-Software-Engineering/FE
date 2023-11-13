@@ -11,6 +11,8 @@ import { CurrencyDirective } from './directives/currency.directive';
 import { AgePipe } from './pipes/age.pipe';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { RouterModule } from '@angular/router';
+import { ClickOutsideDirective } from './directives/click_outside.directive';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { RouterModule } from '@angular/router';
     CurrencyDirective,
     AgePipe,
     SpinnerComponent,
+    ClickOutsideDirective,
+    FilterPipe,
   ],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
   exports: [
@@ -35,6 +39,8 @@ import { RouterModule } from '@angular/router';
     CurrencyDirective,
     AgePipe,
     SpinnerComponent,
+    ClickOutsideDirective,
+    FilterPipe,
   ],
 })
 export class CoreModule {}

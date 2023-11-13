@@ -1,0 +1,41 @@
+.color-26 {
+    color: #595959;
+}
+
+.wrapper {
+    min-width: 360px;
+    max-width: 360px;
+    background-color: rgb(248, 249, 252);
+    border-radius: 6px;
+    padding: 16px;
+    margin-top: 24px;
+}
+
+.time {
+    border: 1px solid rgb(210, 214, 220);
+    border-radius: 6px;
+}
+
+.day {
+    background: rgb(255, 255, 255);
+    border-radius: 6px;
+    cursor: pointer;
+
+    &.active {
+        border: 1px solid rgb(17, 179, 207);
+        background-color: rgba(17, 179, 207, 0.1);
+    }
+}
+
+.divise-time.active {
+    border: 1px solid rgb(17, 179, 207);
+    background-color: rgba(17, 179, 207, 0.1);
+}
+
+:host ::ng-deep p-carousel {
+
+    //On later realease of PrimeNG, this can be done programmatically with [showIndicators | showNavigators]="false"
+    .p-carousel-indicators {
+        display: none !important;
+    }
+}

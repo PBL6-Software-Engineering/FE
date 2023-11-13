@@ -12,6 +12,7 @@ import { UserHelpComponent } from './user-help/user-help.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from 'src/app/core/core.module';
 import { CalendarComponent } from './calendar/calendar.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { CalendarComponent } from './calendar/calendar.component';
     ReactiveFormsModule,
     FormsModule,
     CoreModule,
+    NgxSpinnerModule
   ],
 })
 export class F2UserModule {}

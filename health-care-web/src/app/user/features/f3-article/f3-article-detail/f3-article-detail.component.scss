@@ -1,0 +1,33 @@
+.img-Avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 100%;
+}
+
+.checker-Name {
+    font-weight: bold;
+    font-size: 1rem;
+
+}
+
+.line {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.line-vertical {
+    border: none;
+    display: inline-block;
+    height: 24px;
+    border-right: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+#btn-bookmark,
+#btn-question:hover {
+    cursor: pointer;
+}
+
+
+p img {
+    width: 100%;
+}

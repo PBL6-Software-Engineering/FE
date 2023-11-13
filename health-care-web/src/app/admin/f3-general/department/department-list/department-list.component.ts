@@ -9,7 +9,6 @@ import {
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { prefixApi } from '../../../../core/constants/api.constant';
 import { DepartmentService } from 'src/app/admin/_services/department.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 
@@ -102,14 +101,6 @@ export class DepartmentListComponent implements OnInit, OnDestroy {
         .subscribe({
           next: ({ data }) => {
             this.dataSources = data.data || [];
-            this.dataSources.forEach((item: any) => {
-              if (item.thumbnail && item.thumbnail.indexOf('http') === -1) {
-                item.thumbnail = prefixApi + '/' + item.thumbnail;
-              }
-              if (item.image && item.image.indexOf('http') === -1) {
-                item.image = prefixApi + '/' + item.image;
-              }
-            });
             this.currentPage = data.current_page; // trang hiện tại
             this.totalPage = data.last_page; // số trang
             this.totalElements = data.total; // tổng số phần tử trong database
@@ -118,6 +109,8 @@ export class DepartmentListComponent implements OnInit, OnDestroy {
           error: (err) => {
             this.isErrorGetData = true;
             this.toastr.error('Lỗi! Không thể tải dữ liệu');
+            this.isLoading = false;
+            this.spinnerService.hide();
           },
           complete: () => {
             this.isLoading = false;

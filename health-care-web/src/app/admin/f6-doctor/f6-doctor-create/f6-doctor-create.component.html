@@ -1,1 +1,105 @@
-<p>f6-doctor-create works!</p>
+<div class="right-content">
+  <div class="fw-bolder fs-5 mb-3">Thêm bác sĩ</div>
+  <form
+    (ngSubmit)="save()"
+    appFocusInvalidInput
+    #focusInput="focusInvalidInput"
+    [formGroup]="form"
+    #f="ngForm"
+  >
+    <div class="mb-3">
+      <label for="name" class="form-label fw-bold">
+        Tên:
+        <span class="text-danger">*</span>
+      </label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        placeholder="Tên"
+        formControlName="name"
+        required
+      />
+      <app-show-error [control]="form.get('name')"></app-show-error>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label fw-bold">
+        Email:
+        <span class="text-danger">*</span>
+      </label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        placeholder="Nhập email"
+        formControlName="email"
+        required
+      />
+      <app-show-error [control]="form.get('email')"></app-show-error>
+    </div>
+
+    <div class="mb-3">
+      <label for="id_department" class="form-label fw-bold">
+        Chọn chuyên khoa:
+        <span class="text-danger">*</span>
+      </label>
+
+      <ng-select
+        formControlName="id_department"
+        class="input-search"
+        placeholder="Chọn chuyên khoa"
+        required="true"
+        id="id_department"
+      >
+        <ng-option
+          *ngFor="let department of departmentsOfHospital"
+          [value]="department.id_hospital_departments"
+        >
+          {{ department.name }}
+        </ng-option>
+      </ng-select>
+    </div>
+
+    <div class="mb-3">
+      <label for="province_code" class="form-label fw-bold">
+        Chọn thành phố:
+        <span class="text-danger">*</span>
+      </label>
+
+      <ng-select
+        formControlName="province_code"
+        class="input-search"
+        placeholder="Chọn thành phố"
+        required="true"
+        id="province_code"
+      >
+        <ng-option
+          *ngFor="let province of provinces"
+          [value]="province.province_code"
+        >
+          {{ province.name }}
+        </ng-option>
+      </ng-select>
+    </div>
+
+    <div class="d-flex justify-content-end mt-30">
+      <button
+        type="button"
+        class="btn btn-secondary mr-12"
+        routerLink="/admin/general-hospital/service"
+      >
+        Huỷ
+      </button>
+      <button
+        type="submit"
+        class="btn btn-primary-1 column-center"
+        (click)="focusInput.focus()"
+        [disabled]="isSaving"
+      >
+        <div class="loader" *ngIf="isSaving"></div>
+        Lưu
+      </button>
+    </div>
+  </form>
+</div>

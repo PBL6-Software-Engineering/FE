@@ -38,6 +38,12 @@ export class DepartmentHospitalService {
     );
   }
 
+  getDoctorOfDepartment(id_hospital: any, id_department: any): Observable<any> {
+    return this.http.get<any>(
+      `${linkApi}/infor-doctor/book-doctor/${id_hospital}/${id_department}`
+    );
+  }
+
   findById(id: any): Observable<any> {
     return this.http.get<any>(`${linkApi}/${this.model}/detail/${id}`);
   }

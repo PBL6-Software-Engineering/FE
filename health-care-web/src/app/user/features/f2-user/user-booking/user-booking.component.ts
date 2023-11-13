@@ -2,6 +2,7 @@ import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { UserWorkScheduleService } from '../../services/user-work-schedule.service';
 import { ToastrService } from 'ngx-toastr';
 import { prefixApi } from 'src/app/core/constants/api.constant';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 import { FormsModule } from '@angular/forms';
 // import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -16,42 +17,45 @@ export class UserBookingComponent {
   delId = 0;
   // delIdArray: any[]=[];
   items: any[] = [];
+  itemsWait: any[] = [];
+  itemsDone: any[] = [];
+  itemHistory: any[] = [];
   doneNumber = 0;
   waitNumber = 0;
+  isLoading = false;
   constructor(
     private workSchedule: UserWorkScheduleService,
     private el: ElementRef,
+    private spinner: NgxSpinnerService,
     private renderer: Renderer2,
     private toastrService: ToastrService
   ) {}
   ngOnInit(): void {
     this.getWaitBooking();
-    this.workSchedule.getWorkSchedule({ status: 'complete' }).subscribe({
-      next: ({ data }) => {
-        this.doneNumber = data.data.length;
-      },
-      error: (err) => {
-        console.log('Error', err);
-      },
-    });
+    this.getDoneBooking();
+    this.getHistoryBooking();
   }
 
   chooseTab(tab: string): void {
     this.tab = tab;
     if (tab == 'waitBooking') {
-      this.getWaitBooking();
+      this.items = this.itemsWait;
     } else if (tab == 'doneBooking') {
-      this.getDoneBooking();
+      this.items = this.itemsDone;
     } else {
-      this.getHistoryBooking();
+      this.items = this.itemHistory;
     }
+    console.log(this.items);
   }
 
   getWaitBooking(): void {
+    this.isLoading = true;
+    this.spinner.show();
     // call API here
     this.workSchedule.getWorkSchedule({ status: 'upcoming' }).subscribe({
       next: ({ data }) => {
-        console.log(data);
+        this.isLoading = false;
+        this.spinner.hide();
         data.data.forEach((element: any) => {
           element.selected = false;
           const myDate = new Date(element.work_schedule_time.date);
@@ -84,10 +88,13 @@ export class UserBookingComponent {
           }
         });
         this.items = data.data;
-        this.waitNumber = this.items.length;
+        this.itemsWait = data.data;
+        this.waitNumber = this.itemsWait.length;
       },
       error: (err) => {
         console.log('Error', err);
+        this.isLoading = false;
+        this.spinner.hide();
       },
     });
   }
@@ -128,8 +135,8 @@ export class UserBookingComponent {
               '/assets/media/image/Default-hospital.jpg';
           }
         });
-        this.items = data.data;
-        this.doneNumber = this.items.length;
+        this.itemsDone = data.data;
+        this.doneNumber = this.itemsDone.length;
       },
       error: (err) => {
         console.log('Error', err);
@@ -173,7 +180,7 @@ export class UserBookingComponent {
               '/assets/media/image/Default-hospital.jpg';
           }
         });
-        this.items = data.data;
+        this.itemHistory = data.data;
       },
       error: (err) => {
         console.log('Error', err);

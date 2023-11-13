@@ -9,7 +9,6 @@ import {
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { prefixApi } from 'src/app/core/constants/api.constant';
 import { ArticleService } from '../../_services/article.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 
@@ -36,6 +35,7 @@ export class F11ArticleListComponent implements OnInit, OnDestroy {
   textSearch = '';
   lastTextSearch = '';
   isSearching = false;
+  role = '';
 
   // data source for grid
   dataSources: any[] = [];
@@ -43,6 +43,7 @@ export class F11ArticleListComponent implements OnInit, OnDestroy {
   // delete id
   deleteItem: any;
   updateItem: any;
+  itemSelected: any;
 
   onCheckAllSelected() {
     this.isSelectAll = !this.isSelectAll;
@@ -78,6 +79,7 @@ export class F11ArticleListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.idsSelected = new Map();
+    this.role = localStorage.getItem('role') || '';
     this.onLoadData();
   }
 
@@ -93,22 +95,15 @@ export class F11ArticleListComponent implements OnInit, OnDestroy {
     this.spinnerService.show();
     this.subscription.push(
       this.api
-        .paginate({
+        .getArticles({
           page: isResetPage ? 1 : this.currentPage,
           paginate: 20,
           search: this.textSearch || '',
           sortLatest: true,
+          role: this.role,
         })
         .subscribe({
           next: ({ data }) => {
-            data.data.forEach((item: any) => {
-              if (item.thumbnail_article) {
-                item.thumbnail_article = `${prefixApi}/${item.thumbnail_article}`;
-              }
-              if (item.thumbnail) {
-                item.thumbnail = `${prefixApi}/${item.thumbnail}`;
-              }
-            });
             this.dataSources = data.data || [];
             this.currentPage = data.current_page; // trang hiện tại
             this.totalPage = data.last_page; // số trang
@@ -122,7 +117,7 @@ export class F11ArticleListComponent implements OnInit, OnDestroy {
           complete: () => {
             this.isLoading = false;
             this.spinnerService.hide();
-          }
+          },
         })
     );
   }
@@ -194,5 +189,51 @@ export class F11ArticleListComponent implements OnInit, OnDestroy {
         this.onLoadData();
       }
     }, 500);
+  }
+
+  changeHideShow() {
+    this.subscription.push(
+      this.api.changeShow(this.itemSelected.id_article, !this.itemSelected.is_show).subscribe({
+        next: () => {
+          if (this.itemSelected.is_show) {
+            this.toastr.success('Ẩn bài viết thành công!');
+          } else {
+            this.toastr.success('Hiện bài viết thành công!');
+          }
+          // this.onLoadData();
+          this.dataSources.forEach((data) => {
+            if (data.id_article === this.itemSelected.id_article) {
+              data.is_show = !this.itemSelected.is_show;
+            }
+          });
+        },
+        error: (err) => {
+          this.toastr.error('Thay đổi trạng thái thất bại!');
+        },
+      })
+    );
+  }
+
+  changeAccept() {
+    this.subscription.push(
+      this.api.changeAccept(this.itemSelected.id_article, !this.itemSelected.is_accept).subscribe({
+        next: () => {
+          if (!this.itemSelected.is_accept) {
+            this.toastr.success('Phê duyệt bài viết thành công!');
+          } else {
+            this.toastr.success('Hủy phê duyệt bài viết thành công!');
+          }
+          // this.onLoadData();
+          this.dataSources.forEach(data => {
+            if(data.id_article === this.itemSelected.id_article) {
+              data.is_accept = !this.itemSelected.is_accept;
+            }
+          });
+        },
+        error: (err) => {
+          this.toastr.error('Thay đổi trạng thái thất bại!');
+        },
+      })
+    );
   }
 }
