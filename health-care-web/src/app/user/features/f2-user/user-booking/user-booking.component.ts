@@ -45,7 +45,6 @@ export class UserBookingComponent {
     } else {
       this.items = this.itemHistory;
     }
-    console.log(this.items);
   }
 
   getWaitBooking(): void {
@@ -103,7 +102,6 @@ export class UserBookingComponent {
     // call API here
     this.workSchedule.getWorkSchedule({ status: 'complete' }).subscribe({
       next: ({ data }) => {
-        console.log(data);
         data.data.forEach((element: any) => {
           element.selected = false;
           const myDate = new Date(element.work_schedule_time.date);
@@ -148,7 +146,6 @@ export class UserBookingComponent {
     // call API here
     this.workSchedule.getWorkSchedule({}).subscribe({
       next: ({ data }) => {
-        console.log(data);
         data.data.forEach((element: any) => {
           element.selected = false;
           const myDate = new Date(element.work_schedule_time.date);
@@ -190,11 +187,9 @@ export class UserBookingComponent {
 
   showDetail(event: MouseEvent): void {
     var clickedElement = event.target as HTMLElement;
-    console.log(this.items);
     for (let i = 0; i < this.items.length; i++) {
       if (this.items[i].id == clickedElement.id) {
         if (this.items[i].service_name) {
-          console.log(this.items[i]);
           var detailModalLabel =
             this.el.nativeElement.querySelector('#detailModalLabel');
           detailModalLabel.innerText = this.items[i].service_name;
