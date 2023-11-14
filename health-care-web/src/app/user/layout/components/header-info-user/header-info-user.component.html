@@ -5,14 +5,14 @@
         [src]="user?.avatar"
         alt=""
         class="border-radius-50 w-64 h-64"
-        (error)="user.avatar='assets/media/image/default-user-image.png'"
+        (error)="user.avatar = 'assets/media/image/default-user-image.png'"
       />
       <div
         class="ml-20 cursor-pointer"
         routerLink="/user/profile"
         (click)="onCloseHeaderInfo()"
       >
-        <h6 class="fw-700">{{user?.name}}</h6>
+        <h6 class="fw-700">{{ user?.name }}</h6>
         <p style="color: #595959" class="fs-14">
           Xem hồ sơ của tôi
           <img src="assets/media/icon/arrow_right.svg" alt="" />
@@ -20,28 +20,44 @@
       </div>
     </div>
 
-    <div class="component px-16 py-12 my-16 column-center fw-700 fs-14">
+    <div
+      class="component px-16 py-12 my-16 column-center fw-700 fs-14"
+      routerLink="/user/health"
+      (click)="onCloseHeaderInfo()"
+    >
       <img src="assets/media/icon/icon-rank-member.svg" alt="" class="mr-8" />
       Thành viên
     </div>
 
     <div class="row gx-3">
       <div class="col col-6 mb-16">
-        <div class="px-16 py-12 component fs-14">
+        <div
+          class="px-16 py-12 component fs-14"
+          routerLink="/user/health"
+          (click)="onCloseHeaderInfo()"
+        >
           <img src="assets/media/icon/icon-myHealth.svg" alt="" />
           <p class="fw-700 mt-2">Sức khoẻ</p>
         </div>
       </div>
 
       <div class="col col-6">
-        <div class="px-16 py-12 component fs-14">
+        <div
+          class="px-16 py-12 component fs-14"
+          routerLink="/user/saved"
+          (click)="onCloseHeaderInfo()"
+        >
           <img src="assets/media/icon/icon-mySaved.svg" alt="" />
           <p class="fw-700 mt-2">Đã lưu</p>
         </div>
       </div>
 
       <div class="col col-6">
-        <div class="px-16 py-12 component fs-14">
+        <div
+          class="px-16 py-12 component fs-14"
+          routerLink="/user/booking"
+          (click)="onCloseHeaderInfo()"
+        >
           <img src="assets/media/icon/icon-myBooking.svg" alt="" />
           <p class="fw-700 mt-2">Lịch sử đặt chỗ</p>
         </div>

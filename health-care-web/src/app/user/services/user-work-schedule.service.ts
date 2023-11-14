@@ -24,4 +24,14 @@ export class UserWorkScheduleService {
       `${linkApi}/${this.model}/user?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortlatest}&is_service=${is_service}&typesort=${typesort}&start_date=${start_date}&end_date=${end_date}&status=${status}`
     );
   }
+
+  deleteWorkSchedule(id = ''): Observable<any> {
+    return this.http.delete<any>(`${linkApi}/${this.model}/user-cancel/${id}`);
+  }
+  
+  deleteManyWorkSchedule(ids: Number[] = []): Observable<any> {
+    return this.http.delete<any>(`${linkApi}/${this.model}/user-cancel-many`, {
+      body: { list_id: ids },
+    });
+  }
 }

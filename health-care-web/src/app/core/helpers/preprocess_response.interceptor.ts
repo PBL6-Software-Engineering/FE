@@ -85,6 +85,20 @@ function processImageOfArray(array: any[]) {
     }
 
     if (
+      item.department_thumbnail &&
+      item.department_thumbnail.indexOf('http') === -1
+    ) {
+      item.department_thumbnail = prefixApi + '/' + item.department_thumbnail;
+    }
+
+    if (
+      item.thumbnail_categorie &&
+      item.thumbnail_categorie.indexOf('http') === -1
+    ) {
+      item.thumbnail_categorie = prefixApi + '/' + item.thumbnail_categorie;
+    }
+
+    if (
       item.thumbnail_department &&
       item.thumbnail_department.indexOf('http') === -1
     ) {
@@ -120,6 +134,20 @@ function processImageOfObject(item: any) {
 
   if (item.thumbnail_article && item.thumbnail_article.indexOf('http') === -1) {
     item.thumbnail_article = prefixApi + '/' + item.thumbnail_article;
+  }
+
+  if (
+    item.department_thumbnail &&
+    item.department_thumbnail.indexOf('http') === -1
+  ) {
+    item.department_thumbnail = prefixApi + '/' + item.department_thumbnail;
+  }
+
+  if (
+    item.thumbnail_categorie &&
+    item.thumbnail_categorie.indexOf('http') === -1
+  ) {
+    item.thumbnail_categorie = prefixApi + '/' + item.thumbnail_categorie;
   }
 
   if (

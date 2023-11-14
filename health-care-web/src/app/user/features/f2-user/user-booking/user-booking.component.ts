@@ -1,7 +1,7 @@
-import { Component, ElementRef } from '@angular/core';
-import { UserWorkScheduleService } from '../../../services/user-work-schedule.service';
-import { prefixApi } from 'src/app/core/constants/api.constant';
+import { Component, ElementRef, Renderer2 } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { UserWorkScheduleService } from 'src/app/user/services/user-work-schedule.service';
 
 @Component({
   selector: 'app-user-booking',
@@ -10,22 +10,32 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class UserBookingComponent {
   tab = 'waitBooking';
+
   items: any[] = [];
   itemsWait: any[] = [];
   itemsDone: any[] = [];
   itemHistory: any[] = [];
+
   doneNumber = 0;
   waitNumber = 0;
+
   isLoading = false;
+  isDeleting = false;
+  itemSelected: any;
+
+  isSelectAll = false;
+
   constructor(
     private workSchedule: UserWorkScheduleService,
     private el: ElementRef,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private toastrService: ToastrService
   ) {}
+
   ngOnInit(): void {
-    // call API here
-    this.getDoneBooking();
     this.getWaitBooking();
+    this.getDoneBooking();
+    this.getHistoryBooking();
   }
 
   chooseTab(tab: string): void {
@@ -47,34 +57,15 @@ export class UserBookingComponent {
       next: ({ data }) => {
         this.isLoading = false;
         this.spinner.hide();
-        data.data.forEach((element: any) => {
-          const myDate = new Date(element.work_schedule_time.date);
-          element.day = myDate.getDate();
-          const options = { month: 'long' } as Intl.DateTimeFormatOptions;
-          const month = new Intl.DateTimeFormat('en-US', options).format(
-            myDate
-          );
-          element.year = myDate.getFullYear();
-          element.month = month;
-
-          if (element.doctor_avatar) {
-            element.doctor_avatar = prefixApi + '/' + element.doctor_avatar;
-          } else {
-            element.doctor_avatar = '/assets/media/image/default-doctor.jpg';
-          }
-          if (element.hospital_avatar) {
-            element.hospital_avatar = prefixApi + '/' + element.hospital_avatar;
-          } else {
-            element.hospital_avatar =
-              '/assets/media/image/Default-hospital.jpg';
-          }
-
-          if (element.department_thumbnail) {
-            element.department_thumbnail =
-              prefixApi + '/' + element.department_thumbnail;
-          } else {
-            element.department_thumbnail =
-              '/assets/media/image/Default-hospital.jpg';
+        data.data.forEach((el: any) => {
+          el.selected = false;
+          if (el.work_schedule_time.date) {
+            const myDate = new Date(el.work_schedule_time.date);
+            el.day = myDate.getDate();
+            const options = { month: 'long' } as Intl.DateTimeFormatOptions;
+            const month = new Intl.DateTimeFormat('vi', options).format(myDate);
+            el.year = myDate.getFullYear();
+            el.month = month;
           }
         });
         this.items = data.data;
@@ -82,7 +73,6 @@ export class UserBookingComponent {
         this.waitNumber = this.itemsWait.length;
       },
       error: (err) => {
-        console.log('Error', err);
         this.isLoading = false;
         this.spinner.hide();
       },
@@ -93,35 +83,15 @@ export class UserBookingComponent {
     // call API here
     this.workSchedule.getWorkSchedule({ status: 'complete' }).subscribe({
       next: ({ data }) => {
-        console.log(data);
-        data.data.forEach((element: any) => {
-          const myDate = new Date(element.work_schedule_time.date);
-          element.day = myDate.getDate();
-          const options = { month: 'long' } as Intl.DateTimeFormatOptions;
-          const month = new Intl.DateTimeFormat('en-US', options).format(
-            myDate
-          );
-          element.year = myDate.getFullYear();
-          element.month = month;
-
-          if (element.doctor_avatar) {
-            element.doctor_avatar = prefixApi + '/' + element.doctor_avatar;
-          } else {
-            element.doctor_avatar = '/assets/media/image/default-doctor.jpg';
-          }
-          if (element.hospital_avatar) {
-            element.hospital_avatar = prefixApi + '/' + element.hospital_avatar;
-          } else {
-            element.hospital_avatar =
-              '/assets/media/image/Default-hospital.jpg';
-          }
-
-          if (element.department_thumbnail) {
-            element.department_thumbnail =
-              prefixApi + '/' + element.department_thumbnail;
-          } else {
-            element.department_thumbnail =
-              '/assets/media/image/Default-hospital.jpg';
+        data.data.forEach((el: any) => {
+          el.selected = false;
+          if (el.work_schedule_time.date) {
+            const myDate = new Date(el.work_schedule_time.date);
+            el.day = myDate.getDate();
+            const options = { month: 'long' } as Intl.DateTimeFormatOptions;
+            const month = new Intl.DateTimeFormat('vi', options).format(myDate);
+            el.year = myDate.getFullYear();
+            el.month = month;
           }
         });
         this.itemsDone = data.data;
@@ -137,35 +107,15 @@ export class UserBookingComponent {
     // call API here
     this.workSchedule.getWorkSchedule({}).subscribe({
       next: ({ data }) => {
-        console.log(data);
-        data.data.forEach((element: any) => {
-          const myDate = new Date(element.work_schedule_time.date);
-          element.day = myDate.getDate();
-          const options = { month: 'long' } as Intl.DateTimeFormatOptions;
-          const month = new Intl.DateTimeFormat('en-US', options).format(
-            myDate
-          );
-          element.year = myDate.getFullYear();
-          element.month = month;
-
-          if (element.doctor_avatar) {
-            element.doctor_avatar = prefixApi + '/' + element.doctor_avatar;
-          } else {
-            element.doctor_avatar = '/assets/media/image/default-doctor.jpg';
-          }
-          if (element.hospital_avatar) {
-            element.hospital_avatar = prefixApi + '/' + element.hospital_avatar;
-          } else {
-            element.hospital_avatar =
-              '/assets/media/image/Default-hospital.jpg';
-          }
-
-          if (element.department_thumbnail) {
-            element.department_thumbnail =
-              prefixApi + '/' + element.department_thumbnail;
-          } else {
-            element.department_thumbnail =
-              '/assets/media/image/Default-hospital.jpg';
+        data.data.forEach((el: any) => {
+          el.selected = false;
+          if (el.work_schedule_time.date) {
+            const myDate = new Date(el.work_schedule_time.date);
+            el.day = myDate.getDate();
+            const options = { month: 'long' } as Intl.DateTimeFormatOptions;
+            const month = new Intl.DateTimeFormat('vi', options).format(myDate);
+            el.year = myDate.getFullYear();
+            el.month = month;
           }
         });
         this.itemHistory = data.data;
@@ -176,40 +126,40 @@ export class UserBookingComponent {
     });
   }
 
-  showDetail(event: MouseEvent): void {
-    var clickedElement = event.target as HTMLElement;
-    console.log(this.items);
-    for (let i = 0; i < this.items.length; i++) {
-      if (this.items[i].id == clickedElement.id) {
-        if (this.items[i].service_name) {
-          console.log(this.items[i]);
-          var detailModalLabel =
-            this.el.nativeElement.querySelector('#detailModalLabel');
-          detailModalLabel.innerText = this.items[i].service_name;
-          this.items[i].service_infor.about_service;
-          var aboutService =
-            this.el.nativeElement.querySelector('#aboutService');
-          aboutService.innerHTML = this.items[i].service_infor.about_service;
-          var prepareProcess =
-            this.el.nativeElement.querySelector('#prepareProcess');
-          prepareProcess.innerHTML =
-            this.items[i].service_infor.prepare_process;
-          var serviceDetails =
-            this.el.nativeElement.querySelector('#serviceDetails');
-          serviceDetails.innerHTML =
-            this.items[i].service_infor.prepare_process;
-          break;
-        } else {
-          this.el.nativeElement
-            .querySelector('#service-container')
-            .classList.add('d-none');
-          var detailModalLabel =
-            this.el.nativeElement.querySelector('#detailModalLabel');
-          detailModalLabel.innerText = 'Lịch tư vấn';
-          var detail = this.el.nativeElement.querySelector('#detail');
-          detail.innerText = this.items[i].work_schedule_content;
-        }
-      }
-    }
+  isAllSelected(): boolean {
+    return this.items.every((item) => item.selected);
+  }
+
+  toggleSelectAll(): void {
+    const allSelected = this.isAllSelected();
+    this.items.forEach((item) => (item.selected = !allSelected));
+  }
+
+  onCheckAllSelected() {
+    this.isSelectAll = !this.isSelectAll;
+    // check or uncheck all items
+    this.items.forEach((item) => {
+      item.checked = this.isSelectAll;
+    });
+  }
+
+  deleteOne(): void {
+    // if (this.itemSelected && this.itemSelected.id) {
+    //   this.isDeleting = true;
+    //   this.workSchedule.deleteWorkSchedule(this.itemSelected.id).subscribe({
+    //     next: () => {
+    //       this.getWaitBooking();
+    //       this.el.nativeElement.querySelector('#btnCloseModalDelete').click();
+    //       this.toastrService.success('Hủy lịch hẹn thành công');
+    //     },
+    //     error: () => {
+    //       this.toastrService.error('Hủy lịch hẹn thất bại');
+    //     },
+    //   });
+    // } else {
+    //   this.toastrService.error('Hủy lịch hẹn thất bại');
+    //   this.el.nativeElement.querySelector('#btnCloseModalDelete').click();
+    // }
+    this.el.nativeElement.querySelector('#btnCloseModalDelete').click();
   }
 }
