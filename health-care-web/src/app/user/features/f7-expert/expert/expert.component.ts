@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ElementRef } from '@angular/core';
-import { ExpertService } from '../../services/expert.service';
+import { ExpertService } from '../../../services/expert.service';
 
 @Component({
   selector: 'app-expert',

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import flatpickr from 'flatpickr';
 import { TokenStorageService } from 'src/app/base/auth/services/token_storage.service';
-import { UserService } from '../../services/user.service';
+import { UserService } from '../../../services/user.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

@@ -1,103 +1,24 @@
-<!-- Modal -->
-<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5 fw-700" id="detailModalLabel"></h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div id="service-container">
-          <h3 class="fw-700 mb-3">Về dịch vụ</h3>
-          <div class="" id="aboutService"></div>
-          <h3 class="fw-700 mb-3">Quy trình</h3>
-          <div class="" id="prepareProcess"></div>
-          <h3 class="fw-700 mb-3">Chi tiết dịch vụ</h3>
-          <div class="" id="serviceDetails"></div>
-        </div>
-        <div id="detail"></div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- Modal HTML -->
-<div id="myModal" class="modal fade">
-  <div class="modal-dialog modal-confirm">
-    <div class="modal-content">
-      <div class="modal-header d-flex flex-column" style="border: none;">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        <div class="icon-box">
-          <i class="fa fa-times mb-3 fw-100" aria-hidden="true"
-            style="padding: 30px; border-radius: 100%; border: 4px solid rgb(233, 69, 69); color:  rgb(233, 69, 69); font-size: 40px;"></i>
-        </div>
-        <h4 class="modal-title w-100 text-center">Bạn có chắc chắn muốn hủy?</h4>
-      </div>
-      <div class="modal-body">
-        <p class="ps-3 pe-3" style="opacity: 0.7;">Khi xác nhận hủy lịch hẹn ,lịch hẹn sẽ biến mất .Quá trình này không
-          thể hoàn tác.</p>
-      </div>
-      <div class="modal-footer justify-content-center" style="border: none;">
-        <button id="delete-btn" type="button" class="btn btn-secondary" style="opacity: 0.7;"
-          data-bs-dismiss="modal">Đóng</button>
-        <button type="button" class="btn btn-danger" (click)="delete()">
-          <div class="spinner-border spinner-border-sm text-light d-none" id="loading" role="status"
-            style="margin-top: 3px; margin-right: 5px">
-            <span class="visually-hidden">Loading...</span>
-          </div>Xác nhận
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- Modal HTML -->
-<div id="deletemanyModal" class="modal fade">
-  <div class="modal-dialog modal-confirm">
-    <div class="modal-content">
-      <div class="modal-header d-flex flex-column" style="border: none;">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        <div class="icon-box">
-          <i class="fa fa-times mb-3 fw-100" aria-hidden="true"
-            style="padding: 30px; border-radius: 100%; border: 4px solid rgb(233, 69, 69); color:  rgb(233, 69, 69); font-size: 40px;"></i>
-        </div>
-        <h4 class="modal-title w-100 text-center">Bạn có chắc chắn muốn các lịch hẹn này không?</h4>
-      </div>
-      <div class="modal-body">
-        <p class="ps-3 pe-3" style="opacity: 0.7;">Khi xác nhận hủy lịch hẹn ,các lịch hẹn sẽ biến mất .Quá trình này
-          không
-          thể hoàn tác.</p>
-      </div>
-      <div class="modal-footer justify-content-center" style="border: none;">
-        <button id="delete-btn-2" type="button" class="btn btn-secondary" style="opacity: 0.7;"
-          data-bs-dismiss="modal">Đóng</button>
-        <button type="button" class="btn btn-danger" (click)="deleteMany()">
-          <div class="spinner-border spinner-border-sm text-light d-none" id="loading-2" role="status"
-            style="margin-top: 3px; margin-right: 5px">
-            <span class="visually-hidden">Loading...</span>
-          </div>Xác nhận
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
 <h1 class="fs-28 fw-700 mb-20">Lịch sử đặt chỗ</h1>
 <ul class="d-flex w-100 border-bottom">
-  <li class="nav-tab" (click)="chooseTab('waitBooking')" [class.active]="tab === 'waitBooking'">
+  <li
+    class="nav-tab"
+    (click)="chooseTab('waitBooking')"
+    [class.active]="tab === 'waitBooking'"
+  >
     Lịch hẹn sắp đến ({{ waitNumber }})
   </li>
-  <li class="nav-tab" (click)="chooseTab('doneBooking')" [class.active]="tab === 'doneBooking'">
+  <li
+    class="nav-tab"
+    (click)="chooseTab('doneBooking')"
+    [class.active]="tab === 'doneBooking'"
+  >
     Hoàn thành ({{ doneNumber }})
   </li>
-  <li class="nav-tab" (click)="chooseTab('historyBooking')" [class.active]="tab === 'historyBooking'">
+  <li
+    class="nav-tab"
+    (click)="chooseTab('historyBooking')"
+    [class.active]="tab === 'historyBooking'"
+  >
     Lịch sử đặt chỗ
   </li>
 </ul>
@@ -107,125 +28,77 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12 px-0">
-          <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade active show" id="home" role="tabpanel">
-              <div class="table-responsive">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th *ngIf="tab === 'waitBooking'" style="background-color: rgb(45, 135, 243); color: white;"
-                        scope="col">
-                        <div class="btn btn-primary" (click)="toggleSelectAll()">
-                          <i class="fa fa-check" aria-hidden="true"></i>
-                          <!-- {{ areAllSelected() ? 'Unselect All' : 'SelectAll' }} -->
-                        </div>
-                      </th>
-                      <!-- class="text-center" -->
-                      <th style="
-                          background-color: rgb(45, 135, 243);
-                          color: white;
-                        " scope="col">
-                        Thời gian
-                      </th>
-                      <!-- <th style="background-color: rgb(45, 135, 243); color: white;" scope="col">Speakers</th> -->
-                      <th style="
-                          background-color: rgb(45, 135, 243);
-                          color: white;
-                        " scope="col">
-                        Thông tin
-                      </th>
-                      <th style="
-                          background-color: rgb(45, 135, 243);
-                          color: white;
-                        " scope="col">
-                        Địa điểm
-                      </th>
-                      <th style="
-                          background-color: rgb(45, 135, 243);
-                          color: white;
-                        " scope="col"></th>
-                    </tr>
-                  </thead>
-                  <tbody>
+          <div class="table-responsive">
+            <table
+              class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3"
+            >
+              <thead>
+                <tr>
+                  <th class="text-center">Thời gian</th>
+                  <th class="text-center">Thông tin</th>
+                  <th class="text-center">Địa điểm</th>
+                  <th class="text-center">Hành động</th>
+                </tr>
+              </thead>
 
-                    <!-- <div class="d-flex py-20 border-bottom" > -->
-                    <tr class="inner-box" *ngFor="let item of items, let i = index">
-                      <td *ngIf="tab === 'waitBooking'" class="d-flex justify-content-center align-items-center"
-                        style="border-bottom: none; height: 203px;">
-                        <input class="" type="checkbox" [(ngModel)]="item.selected">
-                      </td>
-                      <th scope="row">
-                        <div class="event-date">
-                          <span>{{ item.day }}</span>
-                          <p>{{ item.month }}</p>
-                        </div>
-                      </th>
+              <tbody>
+                <!-- <div class="d-flex py-20 border-bottom" > -->
+                <tr class="inner-box" *ngFor="let item of items; let i = index">
+                  <th scope="row" class="text-center">
+                    <span class="fs-30">{{ item.day }}</span>
+                    <p>{{ item.month }}</p>
+                  </th>
 
-                      <td>
-                        <div class="event-wrap">
-                          <h3>
-                            <ng-container *ngIf="item.service_name; else showDefault">
-                              <a class="color-primary">{{ item.service_name }}</a>
-                            </ng-container>
-                            <ng-template #showDefault>
-                              <a class="color-primary">Lịch tư vấn</a>
-                            </ng-template>
-                          </h3>
-                          <div class="meta">
-                            <div class="organizers">
-                              <ng-container *ngIf="item.doctor_name; else showNone">
-                                <a>{{ item.doctor_name }}</a>
-                              </ng-container>
-                              <ng-template #showNone>
-                                <a>Đang cập nhật tên bác sĩ</a>
-                              </ng-template>
-                            </div>
-                            <div class="categories">
-                              <a>{{ item.department_name }}</a>
-                            </div>
-                            <div class="time">
-                              <span>{{ item.work_schedule_time.interval[0] }} -
-                                {{ item.work_schedule_time.interval[1] }}</span>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="r-no">
-                          <span>{{ item.hospital_address }}</span>
-                        </div>
-                      </td>
-                      <!-- Button trigger modal -->
-                      <td>
-                        <div class="row">
-                          <div class="col-lg-6">
-                            <div id="{{item.id}}" class=" btn primary-btn" data-bs-toggle="modal"
-                              data-bs-target="#detailModal" (click)="showDetail($event)"
-                              style="background-color: rgb(45, 135, 243);color: white;">
-                              Xem
-                            </div>
-                          </div>
-                          <div class="col-lg-6">
+                  <td>
+                    <h4 class="color-primary">
+                      {{ item?.service_name || "Lịch tư vấn" }}
+                    </h4>
+                    <div class="my-8 fs-14">
+                      <i class="fa fa-user-md fs-16 mr-4" aria-hidden="true"></i>
+                      {{ item?.doctor_name || "Đang cập nhật tên bác sĩ" }}
+                    </div>
+                    <div class="my-8 fs-14">
+                      <i class="fa fa-stethoscope fs-16 mr-4" aria-hidden="true"></i>
+                      {{ item?.department_name }}
+                    </div>
+                    <div class="my-8 fs-14">
+                      <i class="fa fa-calendar fs-16 mr-4" aria-hidden="true"></i>
+                      {{ item?.work_schedule_time?.interval[0] }} -
+                      {{ item?.work_schedule_time?.interval[1] }}
+                    </div>
+                  </td>
+                  <td>
+                    <div class="text-center">
+                      <span>{{ item?.hospital_address }}</span>
+                    </div>
+                  </td>
+                  <!-- Button trigger modal -->
+                  <td class="text-center">
+                    <button
+                      type="button"
+                      id="{{ item.id }}"
+                      class="btn btn-primary-1 text-white"
+                      data-bs-toggle="modal"
+                      data-bs-target="#detailModal"
+                      (click)="itemSelected = item"
+                    >
+                      Xem
+                    </button>
 
-                            <div *ngIf="tab === 'waitBooking'" class=" btn primary-btn" data-bs-toggle="modal"
-                              data-bs-target="#myModal" style="background-color: rgb(45, 135, 243);color: white;"
-                              (click)="saveID(item.id)">
-                              Hủy
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <!-- </div> -->
-                  </tbody>
-                </table>
-                <div class="mt-3 mb-5">
-                  <button data-bs-toggle="modal" data-bs-target="#deletemanyModal" class="btn btn-primary"
-                    *ngIf="tab === 'waitBooking'">Xóa những lịch đã chọn
-                  </button>
-                </div>
-              </div>
-            </div>
+                    <button
+                      type="button"
+                      *ngIf="tab === 'waitBooking'"
+                      class="btn btn-danger ml-12"
+                      data-bs-toggle="modal"
+                      data-bs-target="#deleteOne"
+                      (click)="itemSelected = item"
+                    >
+                      Hủy
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -234,7 +107,13 @@
 </div>
 <div *ngIf="isLoading">
   <div class="wrapper-spinner" *ngIf="isLoading">
-    <ngx-spinner bdColor="rgba(0,0,0,0)" size="default" color="#11B3CF" type="ball-pulse-sync" [fullScreen]="false">
+    <ngx-spinner
+      bdColor="rgba(0,0,0,0)"
+      size="default"
+      color="#11B3CF"
+      type="ball-pulse-sync"
+      [fullScreen]="false"
+    >
       <p class="color-primary">Đang tải dữ liệu</p>
     </ngx-spinner>
   </div>
@@ -258,6 +137,93 @@
     <h2 class="fw-700 fs-18 mb-20">Không có lịch hẹn đã hoàn thành</h2>
     <div class="color-sub fs-14">
       Lịch hẹn đã hoàn thành của bạn sẽ xuất hiện ở đây
+    </div>
+  </div>
+</div>
+
+<!-- Modal detail -->
+<div
+  class="modal fade"
+  id="detailModal"
+  tabindex="-1"
+  aria-labelledby="detailModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 fw-700" id="detailModalLabel">
+          {{ itemSelected?.service_name || "Lịch tư vấn" }}
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div id="service-container">
+          <h3 class="fw-700 mb-3">Về dịch vụ</h3>
+          <div [innerHTML]="itemSelected?.service_infor?.about_service"></div>
+          <h3 class="fw-700 mb-3">Quy trình</h3>
+          <div [innerHTML]="itemSelected?.service_infor?.prepare_process"></div>
+          <h3 class="fw-700 mb-3">Chi tiết dịch vụ</h3>
+          <div [innerHTML]="itemSelected?.service_infor?.prepare_process"></div>
+        </div>
+        <div [innerHTML]="itemSelected?.work_schedule_content"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Đóng
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal deleteOne -->
+<div id="deleteOne" class="modal fade">
+  <div class="modal-dialog modal-confirm">
+    <div class="modal-content">
+      <div class="modal-header d-flex flex-column border-0">
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+        <div class="icon-box">
+          <i
+            class="fa fa-times mb-3 fw-100 fs-40l border-radius-100 p-30"
+            aria-hidden="true"
+            style="border: 4px solid rgb(233, 69, 69); color: rgb(233, 69, 69)"
+          ></i>
+        </div>
+        <h4 class="modal-title w-100 text-center">
+          Bạn có chắc chắn muốn hủy?
+        </h4>
+      </div>
+      <div class="modal-body text-center">
+        <p class="ps-3 pe-3 opacity-7">
+          Khi xác nhận hủy lịch hẹn, lịch hẹn sẽ biến mất. Quá trình này không
+          thể hoàn tác.
+        </p>
+      </div>
+      <div class="modal-footer row-center border-0">
+        <button
+          id="btnCloseModalDelete"
+          type="button"
+          class="btn btn-secondary opacity-7"
+          data-bs-dismiss="modal"
+        >
+          Huỷ
+        </button>
+        <button type="button" class="btn btn-danger" (click)="deleteOne()">
+          <div class="loader" *ngIf="isDeleting"></div>
+          Xác nhận
+        </button>
+      </div>
     </div>
   </div>
 </div>

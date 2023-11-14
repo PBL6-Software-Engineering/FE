@@ -141,7 +141,7 @@
           <button
             type="button"
             style="border: 1px solid rgba(0, 0, 0, 0.3); border-radius: 2rem"
-            class="btn"
+            class="btn my-12"
             data-bs-container="body"
             data-bs-toggle="popover"
             data-bs-placement="bottom"
@@ -153,13 +153,15 @@
           </button>
           <div>
             <h1 class="fw-bold mb-2">{{ article?.title }}</h1>
-            <p>
+
+            <p class="column-center my-8">
               <img
                 src="assets/media/icon/eye-solid.svg"
                 alt=""
                 class="wh-14 mr-10"
-              />{{ article?.search_number_article }} lượt xem
+              />{{ article?.search_number_article || 0 }} lượt xem
             </p>
+
             <div
               [innerHTML]="article?.content"
               id="content"
@@ -200,30 +202,30 @@
             <div class="card card-body">
               <p class="fw-bold mb-3">{{ article?.title }}</p>
               <p>
-                <span class="fw-bold mb-2">Ngày tạo: </span
-                >{{ article?.created_at_article }}
+                <span class="fw-bold mb-2"> Ngày tạo: </span>
+                {{ article?.created_at_article }}
               </p>
               <p>
-                <span class="fw-bold">Ngày cập nhật gần nhất: </span
-                >{{ article?.updated_at_article }}
+                <span class="fw-bold">Ngày cập nhật gần nhất: </span>
+                {{ article?.updated_at_article }}
               </p>
             </div>
           </div>
 
-          <div class="line mt-3 mb-2"></div>
-          <div class="mb-5">
+          <div class="line my-5"></div>
+          <div>
             <p class="fw-bold mb-4" style="color: #595959">
               BÀI VIẾT LIÊN QUAN
             </p>
 
             <ng-container *ngIf="relativeArticles[0]">
-              <a routerLink="bai-viet/{{ relativeArticles[0].id_article }}">
+              <a routerLink="bai-viet/{{ relativeArticles[0]?.id_article }}">
                 <p class="fw-bold mb-3">{{ relativeArticles[0]?.title }}</p>
               </a>
             </ng-container>
 
             <ng-container *ngIf="relativeArticles[1]">
-              <a routerLink="bai-viet/{{ relativeArticles[1].id_article }}">
+              <a routerLink="bai-viet/{{ relativeArticles[1]?.id_article }}">
                 <p class="fw-bold mb-3">{{ relativeArticles[1]?.title }}</p>
               </a>
             </ng-container>
@@ -255,7 +257,7 @@
               <p class="text-center mt-1">
                 Tác giả:
                 <span class="fw-bold">{{ article?.name_user }}</span>
-                <br>
+                <br />
                 Ngày cập nhật:
                 {{ article?.updated_at_article }}
               </p>

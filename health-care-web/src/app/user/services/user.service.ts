@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { helps, categoris } from './data';
+import { helps } from './data';
 import { HttpClient } from '@angular/common/http';
 import { linkApi } from 'src/app/core/constants/api.constant';
 @Injectable({
@@ -15,12 +15,6 @@ export class UserService {
     });
   }
 
-
-  getCategoris(): Observable<any[]> {
-    return new Observable<any[]>((observer) => {
-      observer.next(categoris);
-    });
-  }
 
   updateProfile(obj: any): Observable<any> {
     const form = new FormData();

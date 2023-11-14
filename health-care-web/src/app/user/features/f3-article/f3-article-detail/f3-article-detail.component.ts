@@ -9,7 +9,7 @@ import {
 
 import { ActivatedRoute } from '@angular/router';
 import { ArticleService } from 'src/app/admin/_services/article.service';
-import { ExpertService } from '../../services/expert.service';
+import { ExpertService } from '../../../services/expert.service';
 declare var $: any;
 @Component({
   selector: 'app-f3-article-detail',
@@ -38,14 +38,16 @@ export class F3ArticleDetailComponent implements AfterViewInit, OnInit {
         this.articleService.findById(this.id).subscribe({
           next: ({ data }) => {
             this.article = data;
-            this.expertService.getDoctorById(this.article.id_user).subscribe({
-              next: ({ data }) => {
-                this.doctor = data;
-              },
-              error: (err) => {
-                console.log('Error', err);
-              },
-            });
+            if (this.article.id_user) {
+              this.expertService.getDoctorById(this.article.id_user).subscribe({
+                next: ({ data }) => {
+                  this.doctor = data;
+                },
+                error: (err) => {
+                  console.log('Error', err);
+                },
+              });
+            }
             this.articleService
               .getArticleByCategory({
                 page: 1,
