@@ -5,7 +5,7 @@ import { linkApi } from 'src/app/core/constants/api.constant';
 @Injectable({
   providedIn: 'root',
 })
-export class departmentService {
+export class DepartmentService {
   model = 'department';
   constructor(private http: HttpClient) {}
 

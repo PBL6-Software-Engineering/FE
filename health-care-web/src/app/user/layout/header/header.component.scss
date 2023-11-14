@@ -15,6 +15,10 @@ header {
     cursor: pointer;
 }
 
+.input-search {
+    min-width: 350px;
+}
+
 .btn {
     &-login {
         border: 1px solid rgb(210, 214, 220);

@@ -1,5 +1,5 @@
 import { Component, ElementRef } from '@angular/core';
-import { UserWorkScheduleService } from '../../services/user-work-schedule.service';
+import { UserWorkScheduleService } from '../../../services/user-work-schedule.service';
 import { prefixApi } from 'src/app/core/constants/api.constant';
 import { NgxSpinnerService } from 'ngx-spinner';
 

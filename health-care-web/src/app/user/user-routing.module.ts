@@ -12,12 +12,26 @@ const routes: Routes = [
         component: F1HomePageComponent,
       },
       {
+        path: 'user',
+        loadChildren: () =>
+          import('./features/f2-user/f2-user.module').then(
+            (m) => m.F2UserModule
+          ),
+      },
+      {
         path: 'bai-viet',
         loadChildren: () => {
           return import('./features/f3-article/f3-article.module').then(
             (m) => m.F3ArticleModule
           );
         },
+      },
+      {
+        path: 'benh-vien',
+        loadChildren: () =>
+          import('./features/f4-hospital/f4-hospital.module').then(
+            (m) => m.F4HospitalModule
+          ),
       },
       {
         path: 'chuyen-khoa',
@@ -34,24 +48,10 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'expert',
+        path: 'chuyen-gia',
         loadChildren: () =>
           import('./features/f7-expert/f7-expert.module').then(
             (m) => m.F7ExpertModule
-          ),
-      },
-      {
-        path: 'user',
-        loadChildren: () =>
-          import('./features/f2-user/f2-user.module').then(
-            (m) => m.F2UserModule
-          ),
-      },
-      {
-        path: 'benh-vien',
-        loadChildren: () =>
-          import('./features/f4-hospital/f4-hospital.module').then(
-            (m) => m.F4HospitalModule
           ),
       },
     ],

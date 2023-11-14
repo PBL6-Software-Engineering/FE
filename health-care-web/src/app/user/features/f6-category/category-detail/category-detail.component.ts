@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ArticleService } from 'src/app/admin/_services/article.service';
-import { ExpertService } from '../../services/expert.service';
+import { ExpertService } from '../../../services/expert.service';
 
 @Component({
   selector: 'app-category-detail',
