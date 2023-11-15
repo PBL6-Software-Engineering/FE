@@ -14,19 +14,36 @@ export class AppointmentService {
     startDate = '2023-11-06',
     endDate = '2023-11-12',
   }): Observable<any> {
-    return this.http.get<any>(`${linkApi}/${this.model}/doctor?startDate=${startDate}&endDate=${endDate}`);
+    return this.http.get<any>(
+      `${linkApi}/${this.model}/doctor?startDate=${startDate}&endDate=${endDate}`
+    );
   }
 
   getAppointmentHospital({
     startDate = '2023-11-06',
     endDate = '2023-11-12',
   }): Observable<any> {
-    return this.http.get<any>(`${linkApi}/${this.model}/hospital?startDate=${startDate}&endDate=${endDate}`);
+    return this.http.get<any>(
+      `${linkApi}/${this.model}/hospital?startDate=${startDate}&endDate=${endDate}`
+    );
   }
 
   cancleAppointment(id_work_schedule: string): Observable<any> {
     return this.http.delete<any>(
       `${linkApi}/${this.model}/hospital-cancel/${id_work_schedule}`
     );
+  }
+
+  getListDoctorSpecify(id_work_schedule: any): Observable<any> {
+    return this.http.get<any>(
+      `${linkApi}/${this.model}/list-specify/${id_work_schedule}`
+    );
+  }
+
+  specifyDoctor(id_work_schedule: any, id_doctor: any): Observable<any> {
+    return this.http.post<any>(`${linkApi}/${this.model}/specify-doctor`, {
+      id_work_schedule,
+      id_doctor
+    });
   }
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { prefixApi } from 'src/app/core/constants/api.constant';
 import { ArticleService } from 'src/app/admin/_services/article.service';
 import { ExpertService } from '../../../services/expert.service';
 
@@ -25,10 +24,6 @@ export class ExpertDetailComponent implements OnInit {
         this.id = params['id'];
         this.expertService.getDoctorById(this.id).subscribe({
           next: ({ data }) => {
-            console.log(data);
-            if (data.avatar) {
-              data.avatar = prefixApi + '/' + data.avatar;
-            }
             this.doctor = data;
             this.articleService
               .getArticleOutStandingPublic({
@@ -40,17 +35,6 @@ export class ExpertDetailComponent implements OnInit {
               })
               .subscribe({
                 next: ({ data }) => {
-                  console.log('---------------', data);
-                  data.data.forEach((article: any) => {
-                    if (article.thumbnail_article) {
-                      article.thumbnail_article =
-                        prefixApi + '/' + article.thumbnail_article;
-                    }
-                    if (article.avatar_user) {
-                      article.avatar_user =
-                        prefixApi + '/' + article.avatar_user;
-                    }
-                  });
                   this.articles = data.data;
                 },
               });

@@ -39,6 +39,7 @@
             [class.active]="tab === 'service'"
           >
             Dịch vụ
+            <span *ngIf="services && services.length">({{services.length}})</span>
           </li>
           <li
             class="nav-tab"
@@ -46,6 +47,7 @@
             [class.active]="tab === 'doctor'"
           >
             Bác sĩ
+            <span *ngIf="doctors && doctors.length">({{services.length}})</span>
           </li>
         </ul>
 

@@ -5,11 +5,7 @@ import {
   OnInit,
   signal,
 } from '@angular/core';
-import {
-  CalendarOptions,
-  EventApi,
-  EventClickArg,
-} from 'fullcalendar';
+import { CalendarOptions, EventApi, EventClickArg } from 'fullcalendar';
 import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -133,7 +129,6 @@ export class AppointmentDoctorComponent implements OnInit {
 
   handleEventClick(clickInfo: EventClickArg) {
     this.dataClick = clickInfo.event.extendedProps;
-    console.log(clickInfo.event);
     this.el.nativeElement.querySelector('#btnOpenModalShowInfo').click();
   }
 
@@ -151,5 +146,3 @@ export class AppointmentDoctorComponent implements OnInit {
     };
   }
 }
-
-

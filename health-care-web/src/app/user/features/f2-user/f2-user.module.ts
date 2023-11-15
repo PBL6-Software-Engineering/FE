@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from 'src/app/core/core.module';
 import { CalendarComponent } from './calendar/calendar.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     ReactiveFormsModule,
     FormsModule,
     CoreModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    FullCalendarModule,
   ],
 })
 export class F2UserModule {}

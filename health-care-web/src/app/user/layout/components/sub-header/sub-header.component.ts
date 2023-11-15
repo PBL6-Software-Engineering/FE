@@ -66,7 +66,6 @@ export class SubHeaderComponent implements OnInit {
   }
 
   viewArticle(id: any): void {
-    console.log(`/bai-viet/${id}`);
     this.router.navigateByUrl(`/bai-viet/${id}`);
     this.onCloseSubHeader();
   }

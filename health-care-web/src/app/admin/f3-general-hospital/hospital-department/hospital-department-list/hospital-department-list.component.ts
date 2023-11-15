@@ -76,7 +76,7 @@ export class HospitalDepartmentListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.idsSelected = new Map();
     this.tokenStorageService.getUser().subscribe((user: any) => {
-      this.hospital = JSON.parse(user);
+      this.hospital = user;
       this.spinnerService.show();
       this.onLoadData();
     });

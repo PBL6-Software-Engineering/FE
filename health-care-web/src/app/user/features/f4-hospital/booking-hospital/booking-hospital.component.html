@@ -8,14 +8,14 @@
   <ul class="row-between w-100 border-bottom">
     <li
       class="nav-tab w-50 text-center fs-12"
-      (click)="tab = 'doctor'"
+      (click)="tab = 'doctor';"
       [class.active]="tab === 'doctor'"
     >
       Bác sĩ
     </li>
     <li
       class="nav-tab w-50 text-center fs-12"
-      (click)="tab = 'service'"
+      (click)="tab = 'service';"
       [class.active]="tab === 'service'"
     >
       Dịch vụ
@@ -80,7 +80,7 @@
   </div>
 
   <!-- Hiển thị thời gian để chọn lịch -->
-  <div *ngIf="times && times.length">
+  <div *ngIf="times && times.length && typeTimeWorking === tab">
     <div class="my-12">
       <ul class="row-center w-100 border-bottom mt-12">
         <li class="nav-tab w-50 text-center fs-12 active w-100">
@@ -118,6 +118,7 @@
         *ngIf="day?.morning?.enable"
       >
         Sáng
+        <span *ngIf="day?.morning?.divided_times">({{day?.morning?.divided_times?.length}})</span>
       </li>
       <li
         class="nav-tab w-50 text-center fs-12"
@@ -126,6 +127,7 @@
         *ngIf="day?.afternoon?.enable"
       >
         Chiều
+        <span *ngIf="day?.afternoon?.divided_times">({{day?.afternoon?.divided_times?.length}})</span>
       </li>
 
       <li
@@ -135,6 +137,7 @@
         *ngIf="day?.night?.enable"
       >
         Tối
+        <span *ngIf="day?.night?.divided_times">({{day?.night?.divided_times?.length}})</span>
       </li>
     </ul>
 
@@ -232,7 +235,7 @@
 
         <div *ngIf="diviseTime">
           Thời gian: {{ diviseTime[0] }} - {{ diviseTime[1] }},
-          {{ day.date }}
+          {{ day?.date }}
         </div>
 
         <div class="text-danger" *ngIf="isErrorBooking">

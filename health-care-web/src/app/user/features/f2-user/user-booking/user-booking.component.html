@@ -1,4 +1,19 @@
-<h1 class="fs-28 fw-700 mb-20">Lịch sử đặt chỗ</h1>
+<div class="fw-700 mb-20 row-between">
+  <span class="fs-28">Lịch sử đặt chỗ</span>
+  <div class="form-check form-switch">
+    <input
+      class="form-check-input cursor-pointer"
+      type="checkbox"
+      role="switch"
+      id="flexSwitchCheckChecked"
+      [checked]="typeView === 'calendar'"
+      (change)="typeView = typeView === 'calendar' ? 'table' : 'calendar'"
+    />
+    <label class="form-check-label" for="flexSwitchCheckChecked"
+      >Xem lịch
+    </label>
+  </div>
+</div>
 <ul class="d-flex w-100 border-bottom">
   <li
     class="nav-tab"
@@ -27,7 +42,7 @@
   <div class="event-schedule-area-two bg-color pad100">
     <div class="container">
       <div class="row">
-        <div class="col-lg-12 px-0">
+        <div class="col-lg-12 px-0" *ngIf="typeView === 'table'">
           <div class="table-responsive">
             <table
               class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3"
@@ -35,7 +50,7 @@
               <thead>
                 <tr>
                   <th class="text-center">Thời gian</th>
-                  <th class="text-center">Thông tin</th>
+                  <th>Thông tin</th>
                   <th class="text-center">Địa điểm</th>
                   <th class="text-center">Hành động</th>
                 </tr>
@@ -50,19 +65,28 @@
                   </th>
 
                   <td>
-                    <h4 class="color-primary">
+                    <h5 class="color-primary">
                       {{ item?.service_name || "Lịch tư vấn" }}
-                    </h4>
+                    </h5>
                     <div class="my-8 fs-14">
-                      <i class="fa fa-user-md fs-16 mr-4" aria-hidden="true"></i>
+                      <i
+                        class="fa fa-user-md fs-16 mr-4"
+                        aria-hidden="true"
+                      ></i>
                       {{ item?.doctor_name || "Đang cập nhật tên bác sĩ" }}
                     </div>
                     <div class="my-8 fs-14">
-                      <i class="fa fa-stethoscope fs-16 mr-4" aria-hidden="true"></i>
+                      <i
+                        class="fa fa-stethoscope fs-16 mr-4"
+                        aria-hidden="true"
+                      ></i>
                       {{ item?.department_name }}
                     </div>
                     <div class="my-8 fs-14">
-                      <i class="fa fa-calendar fs-16 mr-4" aria-hidden="true"></i>
+                      <i
+                        class="fa fa-calendar fs-16 mr-4"
+                        aria-hidden="true"
+                      ></i>
                       {{ item?.work_schedule_time?.interval[0] }} -
                       {{ item?.work_schedule_time?.interval[1] }}
                     </div>
@@ -99,6 +123,22 @@
                 </tr>
               </tbody>
             </table>
+          </div>
+        </div>
+
+        <div class="col-lg-12 px-0" *ngIf="typeView === 'calendar'">
+          <div class="demo-app" *ngIf="!isLoading">
+            <div class="demo-app-main">
+              <full-calendar
+                *ngIf="calendarVisible()"
+                [options]="calendarOptions()"
+              >
+                <ng-template #eventContent let-arg>
+                  <b>{{ arg.timeText }}</b>
+                  <i>{{ arg.event.title }}</i>
+                </ng-template>
+              </full-calendar>
+            </div>
           </div>
         </div>
       </div>
@@ -152,7 +192,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5 fw-700" id="detailModalLabel">
+        <h1 class="modal-title fs-5 fw-700 color-primary" id="detailModalLabel">
           {{ itemSelected?.service_name || "Lịch tư vấn" }}
         </h1>
         <button
@@ -164,11 +204,21 @@
       </div>
       <div class="modal-body">
         <div id="service-container">
-          <h3 class="fw-700 mb-3">Về dịch vụ</h3>
+          <h5
+            *ngIf="itemSelected?.service_infor?.about_service"
+            class="fw-700 mb-3"
+          >
+            Về dịch vụ
+          </h5>
           <div [innerHTML]="itemSelected?.service_infor?.about_service"></div>
-          <h3 class="fw-700 mb-3">Quy trình</h3>
+          <h5
+            *ngIf="itemSelected?.service_infor?.prepare_process"
+            class="fw-700 mb-3"
+          >
+            Quy trình
+          </h5>
           <div [innerHTML]="itemSelected?.service_infor?.prepare_process"></div>
-          <h3 class="fw-700 mb-3">Chi tiết dịch vụ</h3>
+          <h5 class="fw-700 mb-3">Chi tiết dịch vụ</h5>
           <div [innerHTML]="itemSelected?.service_infor?.prepare_process"></div>
         </div>
         <div [innerHTML]="itemSelected?.work_schedule_content"></div>
@@ -219,10 +269,77 @@
         >
           Huỷ
         </button>
-        <button type="button" class="btn btn-danger" (click)="deleteOne()">
+        <button type="button" class="btn btn-danger column-center" (click)="deleteOne()">
           <div class="loader" *ngIf="isDeleting"></div>
           Xác nhận
         </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button
+  hidden
+  data-bs-toggle="modal"
+  data-bs-target="#modalShowInfo"
+  id="btnOpenModalShowInfo"
+></button>
+
+<div
+  class="modal fade"
+  id="modalShowInfo"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="modalShowInfoLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content p-30">
+      <div class="modal-header row-center position-relative">
+        <h5 class="modal-title color-primary">
+          Xem thông tin chi tiết lịch hẹn
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-2">
+            <img [src]="itemSelected?.user_avatar" alt="" class="avatar-user" onerror="this.src='assets/media/image/avatar_user_default.png'" />
+          </div>
+          <div class="col-10">
+            <table class="fs-16">
+              <tr>
+                <th>Họ tên bệnh nhân:</th>
+                <td>{{ itemSelected?.user_name }}</td>
+              </tr>
+              <tr>
+                <th>Ngày sinh:</th>
+                <td>{{ itemSelected?.user_date_of_birth | date : "dd/MM/yyyy" }}</td>
+              </tr>
+              <tr>
+                <th>Địa chỉ:</th>
+                <td>{{ itemSelected?.user_address }}</td>
+              </tr>
+              <tr>
+                <th>Số điện thoại:</th>
+                <td>{{ itemSelected?.user_phone }}</td>
+              </tr>
+              <tr>
+                <th>Email:</th>
+                <td>{{ itemSelected?.user_email }}</td>
+              </tr>
+              <tr>
+                <th>Tên dịch vụ tư vấn:</th>
+                <td>{{ itemSelected?.service_name || "Lịch tư vấn" }}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </div>

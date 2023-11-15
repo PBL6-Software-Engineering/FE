@@ -54,10 +54,6 @@ export class SidebarComponent implements OnInit {
       label: 'Báo cáo',
       routerLink: '/admin/report',
     },
-    {
-      label: 'Cài đặt',
-      routerLink: '/admin/setting',
-    },
   ];
   menuItemsHospital: any[] = [
     {
@@ -106,10 +102,6 @@ export class SidebarComponent implements OnInit {
       label: 'Báo cáo',
       routerLink: '/admin/report',
     },
-    {
-      label: 'Cài đặt',
-      routerLink: '/admin/setting',
-    },
   ];
   menuItemsDoctor: any[] = [
     {
@@ -150,10 +142,6 @@ export class SidebarComponent implements OnInit {
       label: 'Báo cáo',
       routerLink: '/admin/report',
     },
-    {
-      label: 'Cài đặt',
-      routerLink: '/admin/setting',
-    },
   ];
   menuItems: any[] = [];
   constructor(
@@ -164,7 +152,6 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
     const role = this.tokenStorageService.getRole();
-    console.log(role);
     if (role && role.toString() === 'manager') {
       this.menuItems = this.menuItemsAdmin;
     } else if (role && role.toString() === 'hospital') {
@@ -172,12 +159,30 @@ export class SidebarComponent implements OnInit {
     } else if (role && role.toString() === 'doctor') {
       this.menuItems = this.menuItemsDoctor;
     }
+
+    const url = this.router.url;
+
+    this.menuItems.forEach((menuItem) => {
+      // kiểm tra menu level 1
+      if (menuItem.routerLink === url) {
+        this.onClickSidebar(menuItem, false);
+      }
+
+      // kiểm tra menu level 2
+      if (menuItem.subItems) {
+        menuItem.subItems.forEach((subItem: any) => {
+          if (subItem.routerLink === url) {
+            this.onClickSidebar(subItem, false);
+          }
+        });
+      }
+    });
   }
 
-  onClickSidebar(item: any): void {
-    this.menuItems.forEach((menuItem) => {
+  onClickSidebar(item: any, isNavigate = true): void {
+    for (let i = 0; i < this.menuItems.length; i++) {
       let isExist = false;
-
+      const menuItem = this.menuItems[i];
       // kiểm tra menu level 1
       if (menuItem.routerLink === item.routerLink) {
         isExist = true;
@@ -187,21 +192,29 @@ export class SidebarComponent implements OnInit {
           menuItem.showSubItems = !menuItem.showSubItems;
         } else {
           // nếu không có thì chuyển hướng routerLink
-          this.router.navigate([menuItem.routerLink]);
+          if (isNavigate) {
+            this.router.navigate([menuItem.routerLink]);
+          }
         }
       }
 
       // kiểm tra menu level 2
       if (menuItem.subItems) {
-        menuItem.subItems.forEach((subItem: any) => {
+        for (let j = 0; j < menuItem.subItems.length; j++) {
+          const subItem = menuItem.subItems[j];
           if (subItem.routerLink === item.routerLink) {
             isExist = true;
             subItem.active = true;
-            this.router.navigate([subItem.routerLink]);
+            menuItem.active = true;
+            menuItem.showSubItems = true;
+
+            if (isNavigate) {
+              this.router.navigate([subItem.routerLink]);
+            }
           } else {
             subItem.active = false;
           }
-        });
+        }
       }
 
       // nếu item không tồn tại trong menu thì ẩn menu
@@ -209,7 +222,7 @@ export class SidebarComponent implements OnInit {
         menuItem.active = false;
         menuItem.showSubItems = false;
       }
-    });
+    }
   }
   logout() {
     this.tokenStorageService.removeToken();

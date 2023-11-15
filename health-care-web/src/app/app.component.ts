@@ -57,7 +57,6 @@ export class AppComponent implements OnInit {
     this.socialAuthService.authState.subscribe((user) => {
       this.socialUser = user;
       this.isLoggedin = user != null;
-      console.log('after login', this.socialUser);
     });
   }
   loginWithFacebook(): void {

@@ -79,7 +79,7 @@ export class HospitalServiceListComponent implements OnInit, OnDestroy {
   ) {
     this.tokenStorageService
       .getUser()
-      .subscribe((user: any) => (this.hospital = JSON.parse(user)));
+      .subscribe((user: any) => (this.hospital = user));
   }
 
   ngOnInit() {
