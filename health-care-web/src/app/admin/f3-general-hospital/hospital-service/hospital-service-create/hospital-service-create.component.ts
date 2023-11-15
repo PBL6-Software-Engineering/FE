@@ -56,7 +56,7 @@ export class HospitalServiceCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.tokenStorageService.getUser().subscribe((user: any) => {
-      this.hospital = JSON.parse(user);
+      this.hospital = user;
       this.departmentHospitalService
         .getDepartmentsOfHospital(this.hospital.id)
         .subscribe(({ data }) => {

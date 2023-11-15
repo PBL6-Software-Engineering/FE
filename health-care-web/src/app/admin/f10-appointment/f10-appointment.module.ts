@@ -8,6 +8,7 @@ import { CoreModule } from 'src/app/core/core.module';
 import { FormsModule } from '@angular/forms';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     CoreModule,
     FormsModule,
     FullCalendarModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgSelectModule
   ]
 })
 export class F10AppointmentModule { }

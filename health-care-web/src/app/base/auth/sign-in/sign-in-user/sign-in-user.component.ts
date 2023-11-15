@@ -49,11 +49,11 @@ export class SignInUserComponent implements OnInit {
       // Biểu mẫu hợp lệ, có thể gọi API đăng nhập
       var loading = this.el.nativeElement.querySelector('#loading');
       this.renderer.removeClass(loading, 'd-none');
-      console.log(this.loginForm.value.email);
       this.apiService
         .login(this.loginForm.value.email, this.loginForm.value.password)
         .subscribe({
           next: ({ data }) => {
+            console.log('data user after login', data);
             this.tokenStorageService.saveToken(data.access_token, data.role);
             this.tokenStorageService.saveUser(data);
             this.toastrService.success('Đăng nhập thành công');

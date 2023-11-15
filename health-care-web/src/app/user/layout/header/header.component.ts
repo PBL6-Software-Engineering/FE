@@ -39,9 +39,9 @@ export class HeaderComponent implements OnInit {
     this.tokenStorageService.isLogin.subscribe(
       (isLogin) => (this.isLogin = isLogin)
     );
-    this.tokenStorageService
-      .getUser()
-      .subscribe((user: any) => (this.user = JSON.parse(user)));
+    this.tokenStorageService.getUser().subscribe((user: any) => {
+      this.user = user || {};
+    });
 
     const categoriesStorage = localStorage.getItem('categories');
     if (categoriesStorage) {

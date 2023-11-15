@@ -10,7 +10,6 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { BookingService } from 'src/app/admin/_services/booking.service';
 import { DepartmentHospitalService } from 'src/app/admin/_services/department_hospital.service';
-import { HospitalService } from 'src/app/admin/_services/hospital.service';
 
 @Component({
   selector: 'app-booking-hospital',
@@ -23,6 +22,7 @@ export class BookingHospitalComponent implements OnInit, OnChanges {
   @Input() services: any[] = [];
 
   tab: any = 'doctor';
+  typeTimeWorking: any = 'doctor';
   isGetTime: boolean = false;
   isErrorGetTime: boolean = false;
   isBooking: boolean = false;
@@ -73,11 +73,8 @@ export class BookingHospitalComponent implements OnInit, OnChanges {
   }
 
   onChangeDepartment() {
-    console.log('doctorsOfHospital', this.doctorsOfHospital);
-    console.log('department', this.department);
     this.doctors = this.doctorsOfHospital.filter(
-      (doctor) =>
-        doctor.name_department === this.department.name
+      (doctor) => doctor.name_department === this.department.name
     );
   }
 
@@ -85,6 +82,11 @@ export class BookingHospitalComponent implements OnInit, OnChanges {
     this.times = [];
     this.isGetTime = true;
     this.isErrorGetTime = false;
+    this.typeTimeWorking = 'doctor';
+    this.isErrorBooking = false;
+    this.day = {};
+    this.diviseTime = [];
+    this.dayName = '';
     this.spinnerService.show();
     this.bookingService.getTimeWorkDoctor(this.doctor.id_doctor).subscribe({
       next: ({ data }) => {
@@ -110,6 +112,11 @@ export class BookingHospitalComponent implements OnInit, OnChanges {
     this.times = [];
     this.isGetTime = true;
     this.isErrorGetTime = false;
+    this.typeTimeWorking = 'service';
+    this.isErrorBooking = false;
+    this.day = {};
+    this.diviseTime = [];
+    this.dayName = '';
     this.spinnerService.show();
     this.bookingService
       .getTimeWorkService(this.service.id_hospital_service)

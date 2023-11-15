@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { forkJoin } from 'rxjs';
 import { ArticleService } from 'src/app/admin/_services/article.service';
-import { prefixApi } from 'src/app/core/constants/api.constant';
 
 @Component({
   selector: 'app-article-topics',
@@ -55,7 +54,6 @@ export class ArticleTopicsComponent implements OnInit {
             articles: res3.data.data,
           },
         ];
-        console.log(this.articles);
       });
     }
   }

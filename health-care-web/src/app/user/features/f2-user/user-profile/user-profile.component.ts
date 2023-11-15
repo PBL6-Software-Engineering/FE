@@ -43,7 +43,6 @@ export class UserProfileComponent implements OnInit {
       name: new FormControl(''),
       username: new FormControl(''),
     });
-    console.log(this.user);
     this.form.patchValue(this.user);
   }
 

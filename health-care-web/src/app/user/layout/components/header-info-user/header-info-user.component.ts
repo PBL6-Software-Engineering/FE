@@ -20,7 +20,7 @@ export class HeaderInfoUserComponent {
   ) {
     this.tokenStorageService
       .getUser()
-      .subscribe((user: any) => (this.user = JSON.parse(user)));
+      .subscribe((user: any) => this.user = user || {});
   }
 
   onCloseHeaderInfo(): void {

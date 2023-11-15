@@ -53,20 +53,6 @@ const routes: Routes = [
           import('./f6-doctor/f6-doctor.module').then((m) => m.F6DoctorModule),
       },
       {
-        path: 'hospital-service',
-        loadChildren: () =>
-          import('./f7-hospital-service/f7-hospital-service.module').then(
-            (m) => m.F7HospitalServiceModule
-          ),
-      },
-      {
-        path: 'patient',
-        loadChildren: () =>
-          import('./f8-patient/f8-patient.module').then(
-            (m) => m.F8PatientModule
-          ),
-      },
-      {
         path: 'working-time',
         loadChildren: () =>
           import('./f9-working-time/f9-working-time.module').then(
@@ -97,13 +83,6 @@ const routes: Routes = [
         loadChildren: () =>
           import('./f14-report/f14-report.module').then(
             (m) => m.F14ReportModule
-          ),
-      },
-      {
-        path: 'setting',
-        loadChildren: () =>
-          import('./f15-setting/f15-setting.module').then(
-            (m) => m.F15SettingModule
           ),
       },
       {

@@ -35,7 +35,6 @@ export class HospitalListComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.textSearch = params['textSearch'] || '';
       this.search();
-      console.log('textSearch:::', this.textSearch);
     });
   }
 

@@ -67,7 +67,6 @@ export class SignUpHospitalComponent {
       // Biểu mẫu hợp lệ, có thể gọi API đăng nhập
       var loading = this.el.nativeElement.querySelector('#loading');
       this.renderer.removeClass(loading, 'd-none');
-      console.log(this.loginForm.value.email);
       this.apiService
         .signup(
           this.loginForm.value.name,
@@ -75,18 +74,16 @@ export class SignUpHospitalComponent {
           this.loginForm.value.password,
           this.loginForm.value.confirm
         )
-        .subscribe(
-          (response) => {
-            console.log('Đăng kí thành công. Token truy cập:', response.token);
+        .subscribe({
+          next: (response) => {
             this.showNotification('Đăng nhập thành công');
             this.router.navigate(['/']);
           },
-          (error) => {
-            console.error('Đăng kí thất bại:', error);
+          error: (error) => {
             this.showNotification(error.error.message);
             this.renderer.addClass(loading, 'd-none');
-          }
-        );
+          },
+        });
     } else {
       if (this.loginForm.hasError('required', 'name')) {
         this.isShowName = true;

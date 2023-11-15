@@ -8,7 +8,6 @@ export class AgePipe implements PipeTransform {
   transform(value: any): string {
     let today = moment();
     let birthdate = moment(value);
-    console.log(birthdate)
     return birthdate.isValid() ? today.diff(birthdate, 'years').toString() : '0';
   }
 }

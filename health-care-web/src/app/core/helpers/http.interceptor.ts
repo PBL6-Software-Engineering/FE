@@ -5,14 +5,11 @@ import {
   HttpEvent,
   HttpInterceptor,
   HTTP_INTERCEPTORS,
-  HttpHeaders,
   HttpResponse,
   HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { SpinnerService } from '../services/spinner.service';
-import { NavigationEnd, Router } from '@angular/router';
-
 const TOKEN_HEADER_KEY = 'Authorization';
 
 @Injectable()

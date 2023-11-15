@@ -46,7 +46,6 @@ export class SignInAdminComponent implements OnInit {
       // Biểu mẫu hợp lệ, có thể gọi API đăng nhập
       var loading = this.el.nativeElement.querySelector('#loading');
       this.renderer.removeClass(loading, 'd-none');
-      console.log(this.loginForm.value.email);
       this.apiService
         .loginAdmin(this.loginForm.value.email, this.loginForm.value.password)
         .subscribe({

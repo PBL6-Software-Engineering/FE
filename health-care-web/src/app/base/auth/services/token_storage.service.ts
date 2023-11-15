@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { prefixApi } from 'src/app/core/constants/api.constant';
+import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
 export class TokenStorageService {
   private $isLogin = new BehaviorSubject(this.hasToken());
-  private $user = new BehaviorSubject(localStorage.getItem('user'));
+  private $user = new BehaviorSubject(JSON.parse(localStorage.getItem('user') || '{}'));
   isLogin = this.$isLogin.asObservable();
   user = this.$user.asObservable();
 
@@ -39,9 +38,6 @@ export class TokenStorageService {
   }
 
   saveUser(user: any): void {
-    if(user.avatar && user.avatar.indexOf('http') === -1) {
-      user.avatar = `${prefixApi}/${user.avatar}`;
-    }
     localStorage.setItem('user', JSON.stringify(user));
     this.$user.next(user);
   }

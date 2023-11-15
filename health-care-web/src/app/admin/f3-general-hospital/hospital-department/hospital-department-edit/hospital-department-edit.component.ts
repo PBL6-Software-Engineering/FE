@@ -49,7 +49,6 @@ export class HospitalDepartmentEditComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.item && this.item.id_hospital_departments) {
-      console.log('this.item', this.item);
       if (this.item.time_advise) {
         this.item.hour = Math.floor(this.item.time_advise / 60);
         this.item.minute = this.item.time_advise % 60;

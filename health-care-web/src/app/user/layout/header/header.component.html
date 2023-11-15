@@ -100,23 +100,14 @@
         *ngIf="isLogin"
       />
 
-      <!-- Icon booking -->
-      <img
-        src="assets/media/icon/icon-myBooking.svg"
-        alt=""
-        class="cursor-pointer icon-booking mr-16"
-        (click)="isLogin = true"
-        *ngIf="isLogin"
-      />
-
       <!-- Avatar after login -->
       <img
-        [src]="user?.avatar || 'assets/media/image/default-user-image.png'"
+        [src]="user?.avatar"
         alt=""
         class="avatar-user"
         (click)="clickAvatarUser()"
         *ngIf="isLogin"
-        
+        onerror="this.src='assets/media/image/default-user-image.png'"
       />
 
       <app-header-info-user
