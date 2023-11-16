@@ -22,9 +22,12 @@ export class AppointmentService {
   getAppointmentHospital({
     startDate = '2023-11-06',
     endDate = '2023-11-12',
+    typeSort = 'time',
+    typeBook = '',
+    status = ''
   }): Observable<any> {
     return this.http.get<any>(
-      `${linkApi}/${this.model}/hospital?startDate=${startDate}&endDate=${endDate}`
+      `${linkApi}/${this.model}/hospital?startDate=${startDate}&endDate=${endDate}&typesort=${typeSort}&is_service=${typeBook}&status=${status}`
     );
   }
 
@@ -43,7 +46,7 @@ export class AppointmentService {
   specifyDoctor(id_work_schedule: any, id_doctor: any): Observable<any> {
     return this.http.post<any>(`${linkApi}/${this.model}/specify-doctor`, {
       id_work_schedule,
-      id_doctor
+      id_doctor,
     });
   }
 }
