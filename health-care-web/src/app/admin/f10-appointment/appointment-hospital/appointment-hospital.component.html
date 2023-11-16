@@ -19,7 +19,7 @@
   <div *ngIf="type === 'table'">
     <div class="card fw-bold">
       <div class="card-body">
-        <div class="mb-20">
+        <div class="row mb-20">
           <div class="col-sm-4">
             <input
               type="text"
@@ -27,6 +27,46 @@
               placeholder="Tìm kiếm"
               [(ngModel)]="textSearch"
             />
+          </div>
+
+          <div class="col-sm-8 row mb-20">
+            <div class="col-sm-3">
+              <select
+                class="form-select"
+                [(ngModel)]="typeBooking"
+                id="typeBooking"
+              >
+                <option [value]="null" disabled selected>
+                  Chọn loại lịch hẹn
+                </option>
+                <option value="">Tất cả</option>
+                <option value="advise">Dịch vụ</option>
+                <option value="service">Lịch tư vấn</option>
+              </select>
+            </div>
+            <div class="col-sm-3">
+              <select class="form-select" [(ngModel)]="status" id="status">
+                <option [value]="null" disabled selected>Trạng thái</option>
+                <option value="">Tất cả</option>
+                <option value="complete">Hoàn thành</option>
+                <option value="upcoming">Sắp đến</option>
+              </select>
+            </div>
+            <div class="col-sm-3">
+              <select class="form-select" [(ngModel)]="typeSort" id="typeSort">
+                <option [value]="null" disabled selected>Sắp xếp</option>
+                <option value="">Tất cả</option>
+                <option value="new">Mới nhất</option>
+                <option value="name">Tên</option>
+                <option value="price">Giá</option>
+                <option value="time">Thời gian đặt</option>
+              </select>
+            </div>
+            <div class="col-sm-2">
+              <button class="btn btn-primary-1" (click)="onLoadData()">
+                Lọc
+              </button>
+            </div>
           </div>
         </div>
 
@@ -301,7 +341,7 @@
                 <td>
                   <ng-select
                     [(ngModel)]="idDoctorSpecify"
-                    placeholder="'Chọn bác sĩ muốn chỉ định'"
+                    placeholder="Chọn bác sĩ muốn chỉ định"
                     *ngIf="!isEmptyDoctorSpecify && doctorsSpecify?.length"
                   >
                     <ng-option
@@ -312,8 +352,13 @@
                     </ng-option>
                   </ng-select>
 
+                  <div class="column-center" *ngIf="isGetDoctorSpecify">
+                    <div class="loader"></div>
+                    <span class="color-primary">Đang tải dữ liệu</span>
+                  </div>
+
                   <span
-                    *ngIf="isEmptyDoctorSpecify || doctorsSpecify?.length === 0"
+                    *ngIf="isEmptyDoctorSpecify && doctorsSpecify?.length === 0"
                   >
                     <span
                       *ngIf="!selectedItem?.doctor_name"

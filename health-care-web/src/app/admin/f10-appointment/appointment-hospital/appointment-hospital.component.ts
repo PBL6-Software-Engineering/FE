@@ -55,6 +55,7 @@ export class AppointmentHospitalComponent implements OnInit {
   lastTextSearch = '';
   isCancling = false;
   isSpecifying = false;
+  isGetDoctorSpecify = false;
   isErrorCancle = false;
 
   selectedItem: any;
@@ -62,6 +63,14 @@ export class AppointmentHospitalComponent implements OnInit {
   doctorsSpecify: any[] = [];
   isEmptyDoctorSpecify: boolean = false;
   idDoctorSpecify: any;
+
+  // FILTER
+  typeBooking: any = null; // 'advise' OR 'service' OR ''
+  typeSort: any = null; // new , name , price , time
+  sortlatest: any = null; // true , false
+  start_date: any = null;
+  end_date: any = null;
+  status: any = null; // '' OR complete OR upcoming
 
   constructor(
     private appoinrmentService: AppointmentService,
@@ -78,76 +87,78 @@ export class AppointmentHospitalComponent implements OnInit {
   onLoadData(): void {
     this.isLoading = true;
     this.spinnerService.show();
-    this.appoinrmentService
-      .getAppointmentHospital(this.getStartAndEndDateOfWeek())
-      .subscribe({
-        next: ({ data }) => {
-          this.dataSources = data;
-          this.appointmentsOfWeek = data;
+    const filter: any = this.getStartAndEndDateOfWeek();
+    filter['typeSort'] = this.typeSort || 'time';
+    filter['status'] = this.status || '';
+    filter['typeBook'] = this.typeBooking || '';
+    this.appoinrmentService.getAppointmentHospital(filter).subscribe({
+      next: ({ data }) => {
+        this.dataSources = data;
+        this.appointmentsOfWeek = data;
 
-          const eventData = this.appointmentsOfWeek.map((appointment) => {
-            return {
-              id: appointment.id,
-              title: appointment.user_name,
-              user_name: appointment.user_name,
-              user_address: appointment.user_address,
-              user_email: appointment.user_email,
-              user_phone: appointment.user_phone,
-              user_avatar: appointment.user_avatar,
-              user_date_of_birth: appointment.user_date_of_birth,
-              service_name: appointment.service_name,
-              start: new Date(
-                appointment.work_schedule_time.date +
-                  'T' +
-                  appointment.work_schedule_time.interval[0] +
-                  ':00'
-              ),
-              end: new Date(
-                appointment.work_schedule_time.date +
-                  'T' +
-                  appointment.work_schedule_time.interval[1] +
-                  ':00'
-              ),
-            };
-          });
-          this.calendarOptions = signal<CalendarOptions>({
-            locale: 'vi',
-            plugins: [
-              interactionPlugin,
-              dayGridPlugin,
-              timeGridPlugin,
-              listPlugin,
-            ],
-            headerToolbar: {
-              left: '',
-              center: 'title',
-              right: 'timeGridWeek,timeGridDay,listWeek',
-            },
-            buttonText: {
-              today: 'Hôm nay',
-              month: 'Tháng',
-              week: 'Tuần',
-              day: 'Ngày',
-              list: 'Lịch biểu',
-            },
-            initialView: 'timeGridWeek',
-            initialEvents: eventData,
-            weekends: true,
-            editable: true,
-            selectable: true,
-            selectMirror: true,
-            dayMaxEvents: true,
-            eventClick: this.handleEventClick.bind(this),
-            eventsSet: this.handleEvents.bind(this),
-          });
-          this.isLoading = false;
-          this.spinnerService.hide();
-        },
-        error: () => {
-          this.isLoading = false;
-          this.spinnerService.hide();
-        },
-      });
+        const eventData = this.appointmentsOfWeek.map((appointment) => {
+          return {
+            id: appointment.id,
+            title: appointment.user_name,
+            user_name: appointment.user_name,
+            user_address: appointment.user_address,
+            user_email: appointment.user_email,
+            user_phone: appointment.user_phone,
+            user_avatar: appointment.user_avatar,
+            user_date_of_birth: appointment.user_date_of_birth,
+            service_name: appointment.service_name,
+            start: new Date(
+              appointment.work_schedule_time.date +
+                'T' +
+                appointment.work_schedule_time.interval[0] +
+                ':00'
+            ),
+            end: new Date(
+              appointment.work_schedule_time.date +
+                'T' +
+                appointment.work_schedule_time.interval[1] +
+                ':00'
+            ),
+          };
+        });
+        this.calendarOptions = signal<CalendarOptions>({
+          locale: 'vi',
+          plugins: [
+            interactionPlugin,
+            dayGridPlugin,
+            timeGridPlugin,
+            listPlugin,
+          ],
+          headerToolbar: {
+            left: '',
+            center: 'title',
+            right: 'timeGridWeek,timeGridDay,listWeek',
+          },
+          buttonText: {
+            today: 'Hôm nay',
+            month: 'Tháng',
+            week: 'Tuần',
+            day: 'Ngày',
+            list: 'Lịch biểu',
+          },
+          initialView: 'timeGridWeek',
+          initialEvents: eventData,
+          weekends: true,
+          editable: true,
+          selectable: true,
+          selectMirror: true,
+          dayMaxEvents: true,
+          eventClick: this.handleEventClick.bind(this),
+          eventsSet: this.handleEvents.bind(this),
+        });
+        this.isLoading = false;
+        this.spinnerService.hide();
+      },
+      error: () => {
+        this.isLoading = false;
+        this.spinnerService.hide();
+      },
+    });
   }
 
   getStartAndEndDateOfWeek() {
@@ -263,19 +274,24 @@ export class AppointmentHospitalComponent implements OnInit {
   }
 
   getListDoctorSpecify(id_work_schedule: any): void {
-    console.log(this.selectedItem);
     if (id_work_schedule && this.selectedItem && this.selectedItem.service_id) {
       this.isEmptyDoctorSpecify = false;
-      this.idDoctorSpecify = this.selectedItem ? this.selectedItem.doctor_id : null;
+      this.isGetDoctorSpecify = true;
+      this.idDoctorSpecify = this.selectedItem
+        ? this.selectedItem.doctor_id
+        : null;
+      this.doctorsSpecify = [];
       this.appoinrmentService.getListDoctorSpecify(id_work_schedule).subscribe({
         next: ({ data }) => {
           this.doctorsSpecify = data;
-          if(data.length === 0) {
+          if (data.length === 0) {
             this.isEmptyDoctorSpecify = true;
           }
+          this.isGetDoctorSpecify = false;
         },
         error: () => {
           this.doctorsSpecify = [];
+          this.isGetDoctorSpecify = false;
         },
       });
     } else {

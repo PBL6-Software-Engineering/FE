@@ -21,7 +21,7 @@ export class UserProfileComponent implements OnInit {
     private toastrService: ToastrService
   ) {
     this.tokenStorageService.getUser().subscribe((user: any) => {
-      this.user = JSON.parse(user);
+      this.user = user;
     });
   }
   ngOnInit(): void {

@@ -18,7 +18,7 @@ const routes: Routes = [
     path: 'admin',
     canLoad: [CanLoadAdminGuard],
     resolve: {
-      // province: ProvinceResolve,
+      province: ProvinceResolve,
     },
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
@@ -26,11 +26,11 @@ const routes: Routes = [
   {
     path: '',
     resolve: {
-      // category: CategoryResolve,
-      // department: DepartmentResolve,
-      // articleOutstanding: ArticleOutstandingResolve,
-      // province: ProvinceResolve,
-      // hospitalOutStanding: ThreeHospitalOutstandingResolve,
+      category: CategoryResolve,
+      department: DepartmentResolve,
+      articleOutstanding: ArticleOutstandingResolve,
+      province: ProvinceResolve,
+      hospitalOutStanding: ThreeHospitalOutstandingResolve,
     },
     loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
     data: {

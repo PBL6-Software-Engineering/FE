@@ -37,7 +37,7 @@
     <div class="item row-between">
       <div>
         <div class="item-field">Họ và tên</div>
-        <div class="item-field-value">{{ user.name }}</div>
+        <div class="item-field-value">{{ user?.name }}</div>
       </div>
 
       <div>
@@ -54,30 +54,30 @@
     </div>
     <div class="item">
       <div class="item-field">Email</div>
-      <div class="item-field-value">{{ user.email }}</div>
+      <div class="item-field-value">{{ user?.email }}</div>
     </div>
     <div class="item">
       <div class="item-field">Ngày sinh</div>
-      <div class="item-field-value" *ngIf="user.date_of_birth; else noData">
-        {{ user.date_of_birth }}
+      <div class="item-field-value" *ngIf="user?.date_of_birth; else noData">
+        {{ user?.date_of_birth }}
       </div>
     </div>
     <div class="item">
       <div class="item-field">Giới tính</div>
-      <div class="item-field-value" *ngIf="user.gender; else noData">
-        {{ user.gender }}
+      <div class="item-field-value" *ngIf="user?.gender; else noData">
+        {{ user?.gender }}
       </div>
     </div>
     <div class="item">
       <div class="item-field">Địa chỉ</div>
-      <div class="item-field-value" *ngIf="user.address; else noData">
-        {{ user.address }}
+      <div class="item-field-value" *ngIf="user?.address; else noData">
+        {{ user?.address }}
       </div>
     </div>
     <div class="item">
       <div class="item-field">Số điện thoại</div>
-      <div class="item-field-value" *ngIf="user.phone; else noData">
-        {{ user.phone }}
+      <div class="item-field-value" *ngIf="user?.phone; else noData">
+        {{ user?.phone }}
       </div>
     </div>
   </div>
