@@ -32,6 +32,7 @@ export class CategoryService {
   create(obj: any): Observable<any> {
     const formData = new FormData();
     formData.append('name', obj.name);
+    formData.append('description_category', obj.description_category);
     formData.append('thumbnail', obj.thumbnail, obj.thumbnail.name);
     return this.http.post<any>(`${linkApi}/${this.model}/add`, formData);
   }
@@ -39,6 +40,7 @@ export class CategoryService {
   update(id: any, obj: any, isChangeFile: boolean = false): Observable<any> {
     const formData = new FormData();
     formData.append('name', obj.name);
+    formData.append('description_category', obj.description_category);
     if (isChangeFile) {
       formData.append('thumbnail', obj.thumbnail, obj.thumbnail.name);
     }

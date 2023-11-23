@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import _ from 'lodash';
 
 @Component({
   selector: 'app-show-error',
@@ -18,9 +17,9 @@ export class ShowErrorComponent {
   @Input() control: any = {};
 
   @Input() set validatesInput(items: any[]) {
-    if (_.isArray(items)) {
-      _.forEach(items, (item) => {
-        const index = _.findIndex(this.validates, { type: item.type });
+    if (items && items.length) {
+      items.forEach((item) => {
+        const index = this.validates.findIndex(validate => validate.type === item.type);
         if (index === -1) {
           this.validates.push(item);
         } else {

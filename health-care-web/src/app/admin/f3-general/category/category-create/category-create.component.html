@@ -31,12 +31,14 @@
       <br />
 
       <div class="text-center">
-        <img
-          [src]="srcThumbnail"
-          alt="Thumbnail"
-          class="border-radius-4 upload-image"
-          (error)="onErrorImage($event)"
-        />
+        <label for="thumbnailCreate">
+          <img
+            [src]="srcThumbnail"
+            alt="Thumbnail"
+            class="border-radius-4 upload-image"
+            (error)="onErrorImage($event)"
+          />
+        </label>
       </div>
 
       <input
@@ -44,11 +46,33 @@
         type="file"
         accept="image/*"
         (change)="onChangeFile($event)"
-        id="thumbnail"
+        id="thumbnailCreate"
         #inputFile
+        hidden
       />
 
       <app-show-error [control]="form.get('thumbnail')"></app-show-error>
+    </div>
+
+    <div class="mb-3">
+      <label for="name" class="form-label fw-bold">
+        Mô tả
+        <span class="text-danger">*</span>:
+      </label>
+
+      <textarea
+        name="description"
+        id="description"
+        rows="4"
+        placeholder="Nhập mô tả"
+        class="form-control"
+        formControlName="description_category"
+        required
+      ></textarea>
+
+      <app-show-error
+        [control]="form.get('description_category')"
+      ></app-show-error>
     </div>
 
     <div class="d-flex justify-content-end mt-30">
@@ -57,15 +81,17 @@
         class="btn btn-secondary mr-12"
         data-bs-dismiss="modal"
         #closeModal
+        (click)="resetForm()"
       >
         Huỷ
       </button>
       <button
         type="submit"
-        class="btn btn-primary"
+        class="btn btn-primary-1 w-150px column-center"
         (click)="focusInput.focus()"
+        [disabled]="isSaving"
       >
-        Lưu
+        <div class="loader" *ngIf="isSaving"></div>
       </button>
     </div>
   </form>

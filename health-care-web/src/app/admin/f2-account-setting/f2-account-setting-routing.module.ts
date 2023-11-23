@@ -1,11 +1,31 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { F2AccountSettingComponent } from './f2-account-setting.component';
+import { UpdatePasswordComponent } from './update-password/update-password.component';
+import { UpdateProfileHospitalComponent } from './update-profile-hospital/update-profile-hospital.component';
+import { UpdateProfileDoctorComponent } from './update-profile-doctor/update-profile-doctor.component';
+import { UpdateProfileAdminComponent } from './update-profile-admin/update-profile-admin.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: F2AccountSettingComponent,
+    path: 'update-password',
+    component: UpdatePasswordComponent,
+  },
+  {
+    path: 'update-info',
+    children: [
+      {
+        path: 'hospital',
+        component: UpdateProfileHospitalComponent,
+      },
+      {
+        path: 'doctor',
+        component: UpdateProfileDoctorComponent,
+      },
+      {
+        path: 'admin',
+        component: UpdateProfileAdminComponent,
+      },
+    ],
   },
 ];
 

@@ -10,7 +10,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DepartmentHospitalService } from 'src/app/admin/_services/department_hospital.service';
 
@@ -26,6 +25,7 @@ export class HospitalDepartmentEditComponent implements OnInit, OnChanges {
   @ViewChild('closeModal') closeModal!: ElementRef;
 
   form: FormGroup;
+  isSaving = false;
 
   constructor(
     private api: DepartmentHospitalService,
@@ -60,22 +60,25 @@ export class HospitalDepartmentEditComponent implements OnInit, OnChanges {
   ngOnInit(): void {}
 
   save(): void {
-    if (this.form.valid) {
+    if (this.form.valid && !this.isSaving) {
       const obj = {
         id_department: this.form.value.id_department,
         name: this.form.value.name,
         price: this.form.value.price,
         time_advise: this.form.value.hour * 60 + this.form.value.minute,
       };
+      this.isSaving = true;
       this.api.update(this.item.id_hospital_departments, obj).subscribe({
         next: (res) => {
           this.form.reset();
           this.toastrService.success('Sửa thành công!');
           this.closeModal.nativeElement.click();
           this.reloadData.emit();
+          this.isSaving = false;
         },
         error: (err) => {
           this.toastrService.error('Sửa thất bại!');
+          this.isSaving = false;
         },
       });
     } else {

@@ -7,7 +7,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CategoryService } from 'src/app/admin/_services/category.service';
 
@@ -19,18 +18,18 @@ import { CategoryService } from 'src/app/admin/_services/category.service';
 export class CategoryCreateComponent implements OnInit {
   form: FormGroup;
   srcThumbnail = '';
+  isSaving = false;
   @Output() reloadData = new EventEmitter();
   @ViewChild('closeModal') closeModal!: ElementRef;
   @ViewChild('inputFile') inputFile!: ElementRef;
 
   constructor(
     private api: CategoryService,
-    private toastrService: ToastrService,
-    private router: Router,
-    private el: ElementRef
+    private toastrService: ToastrService
   ) {
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required]),
+      description_category: new FormControl('', [Validators.required]),
       thumbnail: new FormControl(null, [Validators.required]),
     });
   }
@@ -51,16 +50,19 @@ export class CategoryCreateComponent implements OnInit {
   }
 
   save(): void {
-    if (this.form.valid) {
+    if (this.form.valid && !this.isSaving) {
+      this.isSaving = true;
       this.api.create(this.form.value).subscribe({
         next: (res) => {
           this.toastrService.success('Thêm thành công!');
           this.closeModal.nativeElement.click();
           this.reloadData.emit();
           this.resetForm();
+          this.isSaving = false;
         },
         error: (err) => {
           this.toastrService.error('Thêm thất bại!');
+          this.isSaving = false;
         },
       });
     } else {

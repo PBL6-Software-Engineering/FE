@@ -1,0 +1,170 @@
+<div class="right-content">
+  <div class="fw-bolder fs-5 mb-3">Cập nhật thông tin</div>
+  <form
+    (ngSubmit)="save()"
+    appFocusInvalidInput
+    #focusInput="focusInvalidInput"
+    [formGroup]="form"
+    #f="ngForm"
+  >
+    <div class="row">
+      <!-- Avatar + name -->
+      <div class="col-sm-6">
+        <div>
+          <label for="selectAvatar" class="fw-bold">Ảnh đại diện:</label>
+          <div class="row-center">
+            <label for="selectAvatar" class="position-relative cursor-pointer">
+              <img
+                [src]="srcAvatar"
+                alt="Ảnh đại diện"
+                class="border-radius-50 wh-80 avatar"
+                onerror="this.src = 'assets/media/image/avatar_hospital_default.jpg'"
+              />
+              <img
+                src="assets/media/icon/icon-camera.svg"
+                alt=""
+                class="icon-camera"
+              />
+            </label>
+          </div>
+
+          <input
+            type="file"
+            id="selectAvatar"
+            hidden
+            accept="image/*"
+            (change)="changeAvatar($event)"
+            #avatar
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6 mb-3">
+        <label for="name" class="form-label fw-bold">
+          Tên:
+          <span class="text-danger">*</span>
+        </label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          placeholder="Tên"
+          formControlName="name"
+          required
+        />
+        <app-show-error [control]="form.get('name')"></app-show-error>
+      </div>
+
+      <div class="col-sm-6 mb-3">
+        <label for="email" class="form-label fw-bold">
+          Email:
+          <span class="text-danger">*</span>
+        </label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          placeholder="Nhập email"
+          formControlName="email"
+          required
+        />
+        <app-show-error [control]="form.get('email')"></app-show-error>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6 mb-3">
+        <label for="phone" class="form-label fw-bold">
+          Số điện thoại:
+          <span class="text-danger">*</span>
+        </label>
+        <input
+          type="text"
+          class="form-control"
+          id="phone"
+          placeholder="Nhập số điện thoại"
+          formControlName="phone"
+          required
+        />
+        <app-show-error [control]="form.get('phone')"></app-show-error>
+      </div>
+
+      <div class="col-sm-6 mb-3">
+        <label for="dateOfBirthPicker" class="form-label fw-bold">
+          Ngày sinh:
+          <span class="text-danger">*</span>
+        </label>
+        <input
+          type="date"
+          class="form-control"
+          id="dateOfBirthPicker"
+          placeholder="Chọn ngày sinh"
+          formControlName="date_of_birth"
+          required
+        />
+
+        <app-show-error [control]="form.get('date_of_birth')"></app-show-error>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6 mb-3">
+        <label for="address" class="form-label fw-bold">
+          Địa chỉ:
+          <span class="text-danger">*</span>
+        </label>
+        <input
+          type="text"
+          class="form-control"
+          id="address"
+          placeholder="Nhập địa chỉ"
+          formControlName="address"
+          required
+        />
+        <app-show-error [control]="form.get('address')"></app-show-error>
+      </div>
+
+      <div class="col-sm-6 mb-3">
+        <label for="gender" class="form-label fw-bold">
+          Giới tính:
+          <span class="text-danger">*</span>
+        </label>
+        <select
+          name="gender"
+          id="gender"
+          formControlName="gender"
+          class="form-select"
+        >
+          <option value="" selected disabled>Chọn giới tính</option>
+          <option value="0">Nam</option>
+          <option value="1">Nữ</option>
+          <option value="2">Khác</option>
+        </select>
+
+        <app-show-error [control]="form.get('gender')"></app-show-error>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-end mt-30">
+      <button
+        class="btn btn-secondary mr-12"
+        type="button"
+        routerLink="/admin/general-hospital/service"
+      >
+        Huỷ
+      </button>
+
+      <button
+        type="submit"
+        class="btn btn-primary-1 column-center"
+        (click)="focusInput.focus()"
+        [disabled]="isSaving"
+      >
+        <div class="loader" *ngIf="isSaving"></div>
+        Lưu
+      </button>
+    </div>
+  </form>
+</div>

@@ -108,6 +108,10 @@ function processImageOfArray(array: any[]) {
     if (item.avatar_user && item.avatar_user.indexOf('http') === -1) {
       item.avatar_user = prefixApi + '/' + item.avatar_user;
     }
+
+    if (item.cover_hospital && item.cover_hospital.indexOf('http') === -1) {
+      item.cover_hospital = prefixApi + '/' + item.cover_hospital;
+    }
   });
 }
 
@@ -159,5 +163,8 @@ function processImageOfObject(item: any) {
 
   if (item.avatar_user && item.avatar_user.indexOf('http') === -1) {
     item.avatar_user = prefixApi + '/' + item.avatar_user;
+  }
+  if (item.cover_hospital && item.cover_hospital.indexOf('http') === -1) {
+    item.cover_hospital = prefixApi + '/' + item.cover_hospital;
   }
 }

@@ -17,16 +17,16 @@ export class HospitalService {
     sortLatest = true,
   }): Observable<any> {
     return this.http.get<any>(
-      `${linkApi}/${this.model}/all-doctor?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}&is_confirm=1`
+      `${linkApi}/${this.model}/all-doctor?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}&is_confirm=both&is_accept=both`
     );
   }
 
   getAll({
-    search= "",
-    paginate= 20, 
-    page= 1,
-    typesort= "name", 
-    sortlatest= true
+    search = '',
+    paginate = 20,
+    page = 1,
+    typesort = 'name',
+    sortlatest = true,
   }): Observable<any> {
     return this.http.get<any>(
       `${linkApi}/${this.model}/all-hospital?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortlatest}`
@@ -60,6 +60,10 @@ export class HospitalService {
     );
   }
 
+  getDoctorOfHospital(id_doctor: any): Observable<any> {
+    return this.http.get<any>(`${linkApi}/${this.model}/doctor/${id_doctor}`);
+  }
+
   changeConfirmDoctor(id_doctor: any, is_confirm: boolean): Observable<any> {
     return this.http.post<any>(
       `${linkApi}/${this.model}/change-confirm/${id_doctor}`,
@@ -71,29 +75,15 @@ export class HospitalService {
     return this.http.post<any>(`${linkApi}/${this.model}/add-doctor`, obj);
   }
 
+  updateDoctor(id_doctor: any, obj: any): Observable<any> {
+    return this.http.post<any>(
+      `${linkApi}/${this.model}/update-infor-extend/${id_doctor}`,
+      obj
+    );
+  }
+
   findById(id: any): Observable<any> {
     return this.http.get<any>(`${linkApi}/${this.model}/detail/${id}`);
-  }
-
-  create(obj: any): Observable<any> {
-    const formData = new FormData();
-    formData.append('name', obj.name);
-    formData.append('description', obj.description);
-    formData.append('thumbnail', obj.thumbnail, obj.thumbnail.name);
-    return this.http.post<any>(`${linkApi}/${this.model}/add`, formData);
-  }
-
-  update(id: any, obj: any, isChangeFile: boolean = false): Observable<any> {
-    const formData = new FormData();
-    formData.append('name', obj.name);
-    formData.append('description', obj.description);
-    if (isChangeFile) {
-      formData.append('thumbnail', obj.thumbnail, obj.thumbnail.name);
-    }
-    return this.http.post<any>(
-      `${linkApi}/${this.model}/update/${id}`,
-      formData
-    );
   }
 
   deleteById(id: any): Observable<any> {
@@ -101,11 +91,5 @@ export class HospitalService {
       `${linkApi}/${this.model}/change-confirm/${id}`,
       { is_confirm: 0 }
     );
-  }
-
-  deleteMany(ids: any[]): Observable<any> {
-    return this.http.delete<any>(`${linkApi}/${this.model}/deletes`, {
-      body: { list_id: ids },
-    });
   }
 }

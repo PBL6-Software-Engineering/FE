@@ -1,11 +1,6 @@
 import {
   Component,
-  ElementRef,
-  EventEmitter,
-  Input,
   OnInit,
-  Output,
-  ViewChild,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';

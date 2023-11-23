@@ -50,12 +50,14 @@
       <br />
 
       <div class="text-center">
-        <img
-          [src]="srcThumbnail"
-          alt="Thumbnail"
-          class="border-radius-4 upload-image"
-          (error)="onErrorImage($event)"
-        />
+        <label for="thumbnailEdit">
+          <img
+            [src]="srcThumbnail"
+            alt="Thumbnail"
+            class="border-radius-4 upload-image"
+            (error)="onErrorImage($event)"
+          />
+        </label>
       </div>
 
       <input
@@ -63,7 +65,9 @@
         type="file"
         accept="image/*"
         (change)="onChangeFile($event)"
-        id="thumbnail"
+        id="thumbnailEdit"
+        #inputFile
+        hidden
       />
 
       <app-show-error [control]="form.get('thumbnail')"></app-show-error>
@@ -75,15 +79,17 @@
         class="btn btn-secondary mr-12"
         data-bs-dismiss="modal"
         #closeModal
+        (click)="resetForm()"
       >
         Huỷ
       </button>
       <button
         type="submit"
-        class="btn btn-primary"
+        class="btn btn-primary-1 w-150px column-center"
         (click)="focusInput.focus()"
+        [disabled]="isSaving"
       >
-        Lưu
+        <div class="loader" *ngIf="isSaving"></div>
       </button>
     </div>
   </form>

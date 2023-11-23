@@ -1,0 +1,238 @@
+<div class="right-content">
+  <div class="fw-bolder fs-5 mb-3">Cập nhật thông tin</div>
+  <form
+    (ngSubmit)="save()"
+    appFocusInvalidInput
+    #focusInput="focusInvalidInput"
+    [formGroup]="form"
+    #f="ngForm"
+  >
+    <div class="row">
+      <!-- Avatar + name -->
+      <div class="col-sm-6">
+        <div>
+          <label for="selectAvatar" class="fw-bold">Ảnh đại diện:</label>
+          <div class="row-center">
+            <label for="selectAvatar" class="position-relative cursor-pointer">
+              <img
+                [src]="srcAvatar"
+                alt="Ảnh đại diện"
+                class="border-radius-50 wh-80 avatar"
+                onerror="this.src = 'assets/media/image/avatar_hospital_default.jpg'"
+              />
+              <img
+                src="assets/media/icon/icon-camera.svg"
+                alt=""
+                class="icon-camera"
+              />
+            </label>
+          </div>
+
+          <input
+            type="file"
+            id="selectAvatar"
+            hidden
+            accept="image/*"
+            (change)="changeAvatar($event)"
+            #avatar
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <label for="converHospital" class="fw-bold">Ảnh bìa:</label>
+        <div class="row-center">
+          <label for="converHospital" class="position-relative cursor-pointer">
+            <img
+              [src]="srcConver"
+              alt="Ảnh bìa"
+              class="h-80"
+              onerror="this.src = 'assets/media/image/conver-hospital-default.png'"
+            />
+            <img
+              src="assets/media/icon/icon-camera.svg"
+              alt=""
+              class="icon-camera"
+            />
+          </label>
+        </div>
+        <input
+          type="file"
+          id="converHospital"
+          hidden
+          accept="image/*"
+          (change)="changeConver($event)"
+          #avatar
+        />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6 mb-3">
+        <label for="name" class="form-label fw-bold">
+          Tên:
+          <span class="text-danger">*</span>
+        </label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          placeholder="Tên"
+          formControlName="name"
+          required
+        />
+        <app-show-error [control]="form.get('name')"></app-show-error>
+      </div>
+
+      <div class="col-sm-6 mb-3">
+        <label for="email" class="form-label fw-bold">
+          Email:
+          <span class="text-danger">*</span>
+        </label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          placeholder="Nhập email"
+          formControlName="email"
+          required
+        />
+        <app-show-error [control]="form.get('email')"></app-show-error>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6 mb-3">
+        <label for="phone" class="form-label fw-bold">
+          Số điện thoại:
+          <span class="text-danger">*</span>
+        </label>
+        <input
+          type="text"
+          class="form-control"
+          id="phone"
+          placeholder="Nhập số điện thoại"
+          formControlName="phone"
+          required
+        />
+        <app-show-error [control]="form.get('phone')"></app-show-error>
+      </div>
+
+      <div class="col-sm-6 mb-3">
+        <label for="username" class="form-label fw-bold">
+          Tên tài khoản:
+          <span class="text-danger">*</span>
+        </label>
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          placeholder="Nhập tên tài khoản"
+          formControlName="username"
+          required
+        />
+        <app-show-error [control]="form.get('username')"></app-show-error>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6 mb-3">
+        <label for="province_code" class="form-label fw-bold">
+          Chọn thành phố:
+          <span class="text-danger">*</span>
+        </label>
+
+        <ng-select
+          formControlName="province_code"
+          class="input-search"
+          placeholder="Chọn thành phố"
+          required="true"
+          id="province_code"
+        >
+          <ng-option
+            *ngFor="let province of provinces"
+            [value]="province.province_code"
+          >
+            {{ province.name }}
+          </ng-option>
+        </ng-select>
+      </div>
+
+      <div class="col-sm-6 mb-3">
+        <label for="address" class="form-label fw-bold">
+          Địa chỉ:
+          <span class="text-danger">*</span>
+        </label>
+        <input
+          type="text"
+          class="form-control"
+          id="address"
+          placeholder="Nhập địa chỉ"
+          formControlName="address"
+          required
+        />
+        <app-show-error [control]="form.get('address')"></app-show-error>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6 mb-3">
+        <label for="description" class="form-label fw-bold">
+          Mô tả:
+          <span class="text-danger">*</span>
+        </label>
+        <textarea
+          type="text"
+          class="form-control"
+          id="description"
+          placeholder="Mô tả"
+          formControlName="description"
+          required
+          rows="5"
+        ></textarea>
+        <app-show-error [control]="form.get('description')"></app-show-error>
+      </div>
+
+      <div class="col-sm-6 mb-3">
+        <label for="infrastructure" class="form-label fw-bold">
+          Cơ sở vật chất:
+          <span class="text-danger">*</span>
+        </label>
+        <textarea
+          type="text"
+          class="form-control"
+          id="infrastructure"
+          placeholder="Cơ sở vật chất"
+          formControlName="infrastructure"
+          required
+          rows="5"
+        ></textarea>
+        <span class="text-warning">
+          Hướng dẫn: Liệt kê cơ sở vật chất cách nhau bằng dấu ,
+        </span>
+        <app-show-error [control]="form.get('infrastructure')"></app-show-error>
+      </div>
+    </div>
+
+
+    <div class="d-flex justify-content-end mt-30">
+      <button
+        class="btn btn-secondary mr-12"
+        type="button"
+        routerLink="/admin/general-hospital/service"
+      >
+        Huỷ
+      </button>
+
+      <button
+        type="submit"
+        class="btn btn-primary-1 column-center"
+        (click)="focusInput.focus()"
+        [disabled]="isSaving"
+      >
+        <div class="loader" *ngIf="isSaving"></div>
+        Lưu
+      </button>
+    </div>
+  </form>
+</div>

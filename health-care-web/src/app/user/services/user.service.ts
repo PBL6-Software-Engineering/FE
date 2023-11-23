@@ -15,16 +15,15 @@ export class UserService {
     });
   }
 
-
   updateProfile(obj: any): Observable<any> {
     const form = new FormData();
-    form.set('date_of_birth', obj.date_of_birth);
-    form.set('phone', obj.phone);
-    form.set('gender', obj.gender);
-    form.set('address', obj.address);
-    form.set('email', obj.email);
-    form.set('name', obj.name);
-    form.set('username', obj.username);
+    for (const key of Object.keys(obj)) {
+      form.set(key, obj[key]);
+    }
     return this.http.post<any>(`${linkApi}/infor-user/update`, form);
+  }
+
+  changePassword(obj: any): Observable<any> {
+    return this.http.post<any>(`${linkApi}/user/change-password`, obj);
   }
 }

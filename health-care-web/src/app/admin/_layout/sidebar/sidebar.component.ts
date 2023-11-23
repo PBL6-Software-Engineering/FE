@@ -16,11 +16,21 @@ export class SidebarComponent implements OnInit {
     },
     {
       label: 'Thiết lập tài khoản',
-      routerLink: '/admin/account-setting',
+      routerLink: undefined,
+      subItems: [
+        {
+          label: 'Cập nhật thông tin',
+          routerLink: '/admin/account-setting/update-info/admin',
+        },
+        {
+          label: 'Đổi mật khẩu',
+          routerLink: '/admin/account-setting/update-password',
+        },
+      ],
     },
     {
       label: 'Quản lý chung',
-      routerLink: '',
+      routerLink: undefined,
       subItems: [
         { label: 'Danh mục', routerLink: '/admin/general/category' },
         { label: 'Chuyên khoa', routerLink: '/admin/general/department' },
@@ -34,14 +44,14 @@ export class SidebarComponent implements OnInit {
       label: 'Bệnh viện',
       routerLink: '/admin/hospital',
     },
-    {
-      label: 'Lịch làm việc',
-      routerLink: '/admin/working-time',
-    },
-    {
-      label: 'Lịch hẹn',
-      routerLink: '/admin/appointment',
-    },
+    // {
+    //   label: 'Lịch làm việc',
+    //   routerLink: '/admin/working-time',
+    // },
+    // {
+    //   label: 'Lịch hẹn',
+    //   routerLink: '/admin/appointment',
+    // },
     {
       label: 'Bài viết',
       routerLink: '/admin/article',
@@ -62,11 +72,21 @@ export class SidebarComponent implements OnInit {
     },
     {
       label: 'Thiết lập tài khoản',
-      routerLink: '/admin/account-setting',
+      routerLink: undefined,
+      subItems: [
+        {
+          label: 'Cập nhật thông tin',
+          routerLink: '/admin/account-setting/update-info/hospital',
+        },
+        {
+          label: 'Đổi mật khẩu',
+          routerLink: '/admin/account-setting/update-password',
+        },
+      ],
     },
     {
       label: 'Quản lý chung',
-      routerLink: '',
+      routerLink: undefined,
       subItems: [
         {
           label: 'Chuyên khoa',
@@ -110,11 +130,21 @@ export class SidebarComponent implements OnInit {
     },
     {
       label: 'Thiết lập tài khoản',
-      routerLink: '/admin/account-setting',
+      routerLink: undefined,
+      subItems: [
+        {
+          label: 'Cập nhật thông tin',
+          routerLink: '/admin/account-setting/update-info/doctor',
+        },
+        {
+          label: 'Đổi mật khẩu',
+          routerLink: '/admin/account-setting/update-password',
+        },
+      ],
     },
     {
       label: 'Quản lý chung',
-      routerLink: '',
+      routerLink: undefined,
       subItems: [
         {
           label: 'Chuyên khoa',
@@ -184,7 +214,7 @@ export class SidebarComponent implements OnInit {
       let isExist = false;
       const menuItem = this.menuItems[i];
       // kiểm tra menu level 1
-      if (menuItem.routerLink === item.routerLink) {
+      if (menuItem.routerLink === item.routerLink && menuItem.label === item.label) {
         isExist = true;
         menuItem.active = true;
         // nếu có menu level 2 thì mở hoặc đóng menu level 2
@@ -202,7 +232,7 @@ export class SidebarComponent implements OnInit {
       if (menuItem.subItems) {
         for (let j = 0; j < menuItem.subItems.length; j++) {
           const subItem = menuItem.subItems[j];
-          if (subItem.routerLink === item.routerLink) {
+          if (subItem.routerLink === item.routerLink && subItem.label === item.label) {
             isExist = true;
             subItem.active = true;
             menuItem.active = true;

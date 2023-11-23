@@ -94,9 +94,11 @@
       </button>
       <button
         type="submit"
-        class="btn btn-primary"
+        class="btn btn-primary-1 column-center"
         (click)="focusInput.focus()"
+        [disabled]="isSaving"
       >
+        <div class="loader" *ngIf="isSaving"></div>
         Lưu
       </button>
     </div>

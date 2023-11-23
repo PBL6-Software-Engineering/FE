@@ -11,7 +11,7 @@
           [src]="user?.avatar"
           alt=""
           class="border-radius-50 w-64"
-          (error)="user.avatar='assets/media/image/default-user-image.png'"
+          (error)="user.avatar = 'assets/media/image/avatar_user_default.png'"
         />
         <img
           src="assets/media/icon/icon-camera.svg"
@@ -24,7 +24,8 @@
         id="selectAvatar"
         hidden
         accept="image/*"
-        (change)="changeAvatar()"
+        (change)="changeAvatar($event)"
+        #avatar
       />
     </div>
     <div class="ml-30">
@@ -64,8 +65,11 @@
     </div>
     <div class="item">
       <div class="item-field">Giới tính</div>
-      <div class="item-field-value" *ngIf="user?.gender; else noData">
-        {{ user?.gender }}
+      <div
+        class="item-field-value"
+        *ngIf="user?.gender === 0 || user?.gender; else noData"
+      >
+        {{ user?.gender | gender }}
       </div>
     </div>
     <div class="item">
@@ -102,7 +106,24 @@
           Cập nhật thông tin
         </h6>
       </div>
-      <form class="modal-body pt-0" [formGroup]="form" (ngSubmit)="saveInfo()">
+      <form
+        class="modal-body pt-0"
+        [formGroup]="form"
+        (ngSubmit)="saveInfo()"
+        appFocusInvalidInput
+        #focusInput="focusInvalidInput"
+        #f="ngForm"
+      >
+        <div>
+          <h6 class="fs-14 my-3 fw-700">Họ và tên</h6>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Nhập tên của bạn"
+            formControlName="name"
+          />
+        </div>
+
         <div>
           <h6 class="fs-14 my-3 fw-700">Ngày sinh</h6>
           <input
@@ -173,15 +194,25 @@
             formControlName="phone"
           />
         </div>
+
         <div class="modal-footer mt-20" style="border-top: 0px">
           <button
             type="button"
             class="btn btn-secondary"
             data-bs-dismiss="modal"
+            #closeModal
           >
             Huỷ
           </button>
-          <button type="submit" class="btn btn-primary">Lưu</button>
+          <button
+            type="submit"
+            class="btn btn-primary-1 w-150px column-center"
+            (click)="focusInput.focus()"
+            [disabled]="isSaving"
+          >
+            <div class="loader" *ngIf="isSaving"></div>
+            Lưu
+          </button>
         </div>
       </form>
     </div>

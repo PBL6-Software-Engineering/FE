@@ -1,1 +1,413 @@
-<p>f6-doctor-edit works!</p>
+<div class="right-content">
+  <div class="fw-bolder fs-5 mb-3">Thêm bác sĩ</div>
+  <form
+    (ngSubmit)="save()"
+    appFocusInvalidInput
+    #focusInput="focusInvalidInput"
+    [formGroup]="form"
+    #f="ngForm"
+  >
+    <div class="row">
+      <div class="col-sm-6 mb-3">
+        <label for="name" class="form-label fw-bold">
+          Tên:
+          <span class="text-danger">*</span>
+        </label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          placeholder="Tên"
+          formControlName="name"
+          required
+        />
+        <app-show-error [control]="form.get('name')"></app-show-error>
+      </div>
+
+      <div class="col-sm-6 mb-3">
+        <label for="email" class="form-label fw-bold">
+          Email:
+          <span class="text-danger">*</span>
+        </label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          placeholder="Nhập email"
+          formControlName="email"
+          required
+        />
+        <app-show-error [control]="form.get('email')"></app-show-error>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6 mb-3">
+        <label for="id_department" class="form-label fw-bold">
+          Chọn chuyên khoa:
+          <span class="text-danger">*</span>
+        </label>
+
+        <ng-select
+          formControlName="id_department"
+          class="input-search"
+          placeholder="Chọn chuyên khoa"
+          required="true"
+          id="id_department"
+        >
+          <ng-option
+            *ngFor="let department of departmentsOfHospital"
+            [value]="department.id_department"
+          >
+            {{ department.name }}
+          </ng-option>
+        </ng-select>
+      </div>
+
+      <div class="col-sm-6 mb-3">
+        <label for="province_code" class="form-label fw-bold">
+          Chọn thành phố:
+          <span class="text-danger">*</span>
+        </label>
+
+        <ng-select
+          formControlName="province_code"
+          class="input-search"
+          placeholder="Chọn thành phố"
+          required="true"
+          id="province_code"
+        >
+          <ng-option
+            *ngFor="let province of provinces"
+            [value]="province.province_code"
+          >
+            {{ province.name }}
+          </ng-option>
+        </ng-select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6 mb-3">
+        <label
+          for="training_process"
+          class="form-label fw-bold column-center row-between"
+        >
+          <span>
+            Quá trình đào tạo:
+            <span class="text-danger">*</span>
+          </span>
+
+          <button
+            type="button"
+            class="btn btn-primary-1 ml-20"
+            (click)="addField('training_process')"
+          >
+            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+          </button>
+        </label>
+
+        <div formArrayName="training_process">
+          <div
+            class="mb-3"
+            *ngFor="
+              let trainingProcess of training_process.controls;
+              let i = index
+            "
+            [formGroupName]="i"
+          >
+            <fieldset>
+              <div class="row-between column-center mb-12">
+                <div class="fs-14 fw-bold">Quá trình {{ i + 1 }}</div>
+                <div>
+                  <button
+                    class="btn btn-danger"
+                    type="button"
+                    (click)="removeField('training_process', i)"
+                  >
+                    <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label class="col-sm-12">
+                  Tiêu đề chính
+                  <span class="text-danger">*</span>
+                </label>
+                <div class="col-sm-12">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Nhập tiêu đề chính"
+                    formControlName="title"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="row">
+                <label class="col-sm-12">
+                  Tiêu đề phụ
+                  <span class="text-danger">*</span>
+                </label>
+                <div class="col-sm-12">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Nhập tiêu đề phụ"
+                    formControlName="subtitle"
+                    required
+                  />
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 mb-3">
+        <label
+          for="prominent"
+          class="form-label fw-bold column-center row-between"
+        >
+          <span>Điểm nổi bật nhất: <span class="text-danger">*</span></span>
+
+          <button
+            type="button"
+            class="btn btn-primary-1 ml-20"
+            (click)="addField('prominent')"
+          >
+            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+          </button>
+        </label>
+
+        <div formArrayName="prominent">
+          <div
+            class="mb-3"
+            *ngFor="let trainingProcess of prominent.controls; let i = index"
+            [formGroupName]="i"
+          >
+            <fieldset>
+              <div class="row-between column-center mb-12">
+                <div class="fs-14 fw-bold">Điểm nổi bật {{ i + 1 }}</div>
+                <div>
+                  <button
+                    class="btn btn-danger"
+                    type="button"
+                    (click)="removeField('prominent', i)"
+                  >
+                    <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label class="col-sm-12">
+                  Tiêu đề chính
+                  <span class="text-danger">*</span>
+                </label>
+                <div class="col-sm-12">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Nhập tiêu đề chính"
+                    formControlName="title"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="row">
+                <label class="col-sm-12">
+                  Tiêu đề phụ
+                  <span class="text-danger">*</span>
+                </label>
+                <div class="col-sm-12">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Nhập tiêu đề phụ"
+                    formControlName="subtitle"
+                    required
+                  />
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6 mb-3">
+        <label
+          for="strengths"
+          class="form-label fw-bold column-center row-between"
+        >
+          <span>
+            Thế mạnh chuyên môn:
+            <span class="text-danger">*</span>
+          </span>
+
+          <button
+            type="button"
+            class="btn btn-primary-1 ml-20"
+            (click)="addField('strengths')"
+          >
+            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+          </button>
+        </label>
+
+        <div formArrayName="strengths">
+          <div
+            class="mb-3"
+            *ngFor="let trainingProcess of strengths.controls; let i = index"
+            [formGroupName]="i"
+          >
+            <fieldset>
+              <div class="row-between column-center mb-12">
+                <div class="fs-14 fw-bold">Thế mạnh {{ i + 1 }}</div>
+                <div>
+                  <button
+                    class="btn btn-danger"
+                    type="button"
+                    (click)="removeField('strengths', i)"
+                  >
+                    <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label class="col-sm-12">
+                  Tiêu đề chính
+                  <span class="text-danger">*</span>
+                </label>
+                <div class="col-sm-12">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Nhập tiêu đề chính"
+                    formControlName="title"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="row">
+                <label class="col-sm-12">
+                  Tiêu đề phụ
+                  <span class="text-danger">*</span>
+                </label>
+                <div class="col-sm-12">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Nhập tiêu đề phụ"
+                    formControlName="subtitle"
+                    required
+                  />
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 mb-3">
+        <label
+          for="work_experience"
+          class="form-label fw-bold column-center row-between"
+        >
+          <span>
+            Kinh nghiệm làm việc:
+            <span class="text-danger">*</span>
+          </span>
+
+          <button
+            type="button"
+            class="btn btn-primary-1 ml-20"
+            (click)="addField('work_experience')"
+          >
+            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+          </button>
+        </label>
+
+        <div formArrayName="work_experience">
+          <div
+            class="mb-3"
+            *ngFor="
+              let trainingProcess of work_experience.controls;
+              let i = index
+            "
+            [formGroupName]="i"
+          >
+            <fieldset>
+              <div class="row-between column-center mb-12">
+                <div class="fs-14 fw-bold">Kinh nghiệm {{ i + 1 }}</div>
+                <div>
+                  <button
+                    class="btn btn-danger"
+                    type="button"
+                    (click)="removeField('work_experience', i)"
+                  >
+                    <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label class="col-sm-12">
+                  Tiêu đề chính
+                  <span class="text-danger">*</span>
+                </label>
+                <div class="col-sm-12">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Nhập tiêu đề chính"
+                    formControlName="title"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="row">
+                <label class="col-sm-12">
+                  Tiêu đề phụ
+                  <span class="text-danger">*</span>
+                </label>
+                <div class="col-sm-12">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Nhập tiêu đề phụ"
+                    formControlName="subtitle"
+                    required
+                  />
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-end mt-30">
+      <button
+        class="btn btn-secondary mr-12"
+        type="button"
+        routerLink="/admin/general-hospital/service"
+      >
+        Huỷ
+      </button>
+
+      <button
+        type="submit"
+        class="btn btn-primary-1 column-center"
+        (click)="focusInput.focus()"
+        [disabled]="isSaving"
+      >
+        <div class="loader" *ngIf="isSaving"></div>
+        Lưu
+      </button>
+    </div>
+  </form>
+</div>

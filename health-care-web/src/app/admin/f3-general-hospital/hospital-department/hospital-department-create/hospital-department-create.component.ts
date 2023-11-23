@@ -23,6 +23,7 @@ export class HospitalDepartmentCreateComponent implements OnInit {
   @ViewChild('closeModal') closeModal!: ElementRef;
 
   form: FormGroup;
+  isSaving = false;
 
   constructor(
     private api: DepartmentHospitalService,
@@ -47,22 +48,25 @@ export class HospitalDepartmentCreateComponent implements OnInit {
   ngOnInit(): void {}
 
   save(): void {
-    if (this.form.valid) {
+    if (this.form.valid && !this.isSaving) {
       const obj = {
         id_department: this.form.value.id_department,
         name: this.form.value.name,
         price: +this.form.value.price,
         time_advise: +this.form.value.hour * 60 + +this.form.value.minute,
       };
+      this.isSaving = true;
       this.api.create(obj).subscribe({
         next: (res) => {
           this.toastrService.success('Thêm thành công!');
           this.closeModal.nativeElement.click();
           this.reloadData.emit();
           this.resetForm();
+          this.isSaving = false;
         },
         error: (err) => {
           this.toastrService.error('Thêm thất bại!');
+          this.isSaving = false;
         },
       });
     } else {

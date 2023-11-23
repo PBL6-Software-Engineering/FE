@@ -12,13 +12,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
 
-
 @NgModule({
   declarations: [
     F6DoctorListComponent,
     F6DoctorCreateComponent,
     F6DoctorEditComponent,
-    F6DoctorDetailComponent
+    F6DoctorDetailComponent,
   ],
   imports: [
     CommonModule,
@@ -28,7 +27,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ReactiveFormsModule,
     FormsModule,
     RouterModule,
-    NgSelectModule
-  ]
+    NgSelectModule,
+  ],
 })
-export class F6DoctorModule { }
+export class F6DoctorModule {}

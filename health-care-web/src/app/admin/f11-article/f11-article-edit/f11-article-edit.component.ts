@@ -1,10 +1,7 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   OnInit,
-  Output,
   ViewChild,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -25,6 +22,7 @@ export class F11ArticleEditComponent implements OnInit {
   id: any;
   categories: any[] = [];
   isChangeFile = false;
+  isSaving = false;
 
   constructor(
     private api: ArticleService,
@@ -60,14 +58,17 @@ export class F11ArticleEditComponent implements OnInit {
   }
 
   save(): void {
-    if (this.form.valid) {
+    if (this.form.valid && !this.isSaving) {
+      this.isSaving = true;
       this.api.update(this.id, this.form.value, this.isChangeFile).subscribe({
         next: (res) => {
           this.toastrService.success('Sửa thành công!');
           this.router.navigateByUrl('/admin/article');
+          this.isSaving = false;
         },
         error: (err) => {
           this.toastrService.error('Sửa thất bại!');
+          this.isSaving = false;
         },
       });
     } else {

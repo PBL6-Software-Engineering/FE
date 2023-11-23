@@ -23,9 +23,6 @@ export class F6DoctorListComponent implements OnInit, OnDestroy {
   isLoading: boolean = false;
   isErrorGetData: boolean = false;
 
-  isSelectAll = false;
-  idsSelected: Map<any, boolean> = new Map();
-
   currentPage = 1;
   totalPage = 0;
   totalElements = 0;
@@ -43,29 +40,6 @@ export class F6DoctorListComponent implements OnInit, OnDestroy {
   updateItem: any;
   hospital: any;
 
-  onCheckAllSelected() {
-    this.isSelectAll = !this.isSelectAll;
-    // check or uncheck all items
-    this.dataSources.forEach((item) => {
-      item.checked = this.isSelectAll;
-    });
-  }
-
-  onItemSelected(item: any) {
-    item.checked = !item.checked;
-    this.isSelectAll = this.dataSources.findIndex((t) => !t.checked) === -1;
-  }
-
-  getListIdSelect() {
-    const ids: any[] = [];
-    this.dataSources.forEach((item) => {
-      if (item.checked) {
-        ids.push(item.id_hospital_service);
-      }
-    });
-    return ids;
-  }
-
   constructor(
     private api: HospitalService,
     private toastr: ToastrService,
@@ -74,7 +48,6 @@ export class F6DoctorListComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.idsSelected = new Map();
     this.spinnerService.show();
     this.onLoadData();
   }
@@ -108,8 +81,8 @@ export class F6DoctorListComponent implements OnInit, OnDestroy {
           error: (err) => {
             this.isErrorGetData = true;
             this.toastr.error('Lỗi! Không thể tải dữ liệu');
-             this.isLoading = false;
-             this.spinnerService.hide();
+            this.isLoading = false;
+            this.spinnerService.hide();
           },
           complete: () => {
             this.isLoading = false;
@@ -133,37 +106,6 @@ export class F6DoctorListComponent implements OnInit, OnDestroy {
     );
   }
 
-  onDeleteMany() {
-    this.subscription.push(
-      this.api.deleteMany(this.getListIdSelect()).subscribe({
-        next: () => {
-          this.toastr.success('Xoá thành công!');
-          this.onLoadData();
-        },
-        error: (err) => {
-          this.toastr.error('Xoá thất bại!');
-        },
-      })
-    );
-    this.isSelectAll = false;
-  }
-
-  updateCheckedDataSources() {
-    if (this.dataSources.length === 0) {
-      this.isSelectAll = false;
-    } else {
-      // checked item when id exist in map
-      if (this.idsSelected.size > 0) {
-        this.dataSources.forEach((data: any) => {
-          if (this.idsSelected.get(data.id_hospital_service)) {
-            data.checked = true;
-          }
-        });
-      }
-      this.isSelectAll =
-        this.dataSources.findIndex((data: any) => !data.checked) === -1;
-    }
-  }
 
   onChangePage(page: number) {
     this.currentPage = page;
@@ -189,6 +131,6 @@ export class F6DoctorListComponent implements OnInit, OnDestroy {
   }
 
   onErrorImage(event: any): void {
-    event.target.src = 'assets/media/icon/icon-userDefault.svg';
+    event.target.src = 'assets/media/image/avatar_doctor_default.jpg';
   }
 }

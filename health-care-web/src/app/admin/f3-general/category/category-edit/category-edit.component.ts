@@ -10,7 +10,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CategoryService } from 'src/app/admin/_services/category.service';
 
@@ -23,19 +22,20 @@ export class CategoryEditComponent implements OnInit, OnChanges {
   form: FormGroup;
   srcThumbnail: string = '';
   isChangeFile = false;
+  isSaving = false;
+
   @Input() item: any;
   @Output() reloadData = new EventEmitter();
   @ViewChild('closeModal') closeModal!: ElementRef;
+  @ViewChild('inputFile') inputFile!: ElementRef;
 
   constructor(
     private api: CategoryService,
-    private toastrService: ToastrService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private el: ElementRef
+    private toastrService: ToastrService
   ) {
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required]),
+      description_category: new FormControl('', []),
       thumbnail: new FormControl(null, [Validators.required]),
     });
   }
@@ -47,12 +47,10 @@ export class CategoryEditComponent implements OnInit, OnChanges {
     }
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onChangeFile(event: any): void {
     const file: File = event.target.files[0];
-
     if (file) {
       this.form.patchValue({ thumbnail: file });
       const reader = new FileReader();
@@ -65,7 +63,8 @@ export class CategoryEditComponent implements OnInit, OnChanges {
   }
 
   save(): void {
-    if (this.form.valid) {
+    if (this.form.valid && !this.isSaving) {
+      this.isSaving = true;
       this.api
         .update(this.item.id, this.form.value, this.isChangeFile)
         .subscribe({
@@ -74,9 +73,11 @@ export class CategoryEditComponent implements OnInit, OnChanges {
             this.toastrService.success('Sửa thành công!');
             this.closeModal.nativeElement.click();
             this.reloadData.emit();
+            this.isSaving = false;
           },
           error: (err) => {
             this.toastrService.error('Sửa thất bại!');
+            this.isSaving = false;
           },
         });
     } else {
@@ -86,5 +87,11 @@ export class CategoryEditComponent implements OnInit, OnChanges {
 
   onErrorImage(event: any): void {
     event.target.src = 'assets/media/image/image.png';
+  }
+
+  resetForm(): void {
+    this.form.reset();
+    this.srcThumbnail = 'assets/media/image/image.png';
+    this.inputFile.nativeElement.value = '';
   }
 }

@@ -10,7 +10,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DepartmentService } from 'src/app/admin/_services/department.service';
 
@@ -23,16 +22,16 @@ export class DepartmentEditComponent implements OnInit, OnChanges {
   form: FormGroup;
   srcThumbnail: string = '';
   isChangeFile = false;
+  isSaving = false;
+
   @Input() item: any;
   @Output() reloadData = new EventEmitter();
   @ViewChild('closeModal') closeModal!: ElementRef;
+  @ViewChild('inputFile') inputFile!: ElementRef;
 
   constructor(
     private api: DepartmentService,
-    private toastrService: ToastrService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private el: ElementRef
+    private toastrService: ToastrService
   ) {
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required]),
@@ -48,17 +47,7 @@ export class DepartmentEditComponent implements OnInit, OnChanges {
     }
   }
 
-  ngOnInit(): void {
-    // this.route.params.subscribe((params) => {
-    //   if (params && params['id']) {
-    //     this.api.findById(params['id']).subscribe(({ data }) => {
-    //       if (data) {
-    //         this.form.patchValue(data);
-    //       }
-    //     });
-    //   }
-    // });
-  }
+  ngOnInit(): void {}
 
   onChangeFile(event: any): void {
     const file: File = event.target.files[0];
@@ -75,7 +64,8 @@ export class DepartmentEditComponent implements OnInit, OnChanges {
   }
 
   save(): void {
-    if (this.form.valid) {
+    if (this.form.valid && !this.isSaving) {
+      this.isSaving = true;
       this.api
         .update(this.item.id, this.form.value, this.isChangeFile)
         .subscribe({
@@ -84,9 +74,11 @@ export class DepartmentEditComponent implements OnInit, OnChanges {
             this.toastrService.success('Sửa thành công!');
             this.closeModal.nativeElement.click();
             this.reloadData.emit();
+            this.isSaving = false;
           },
           error: (err) => {
             this.toastrService.error('Sửa thất bại!');
+            this.isSaving = false;
           },
         });
     } else {
@@ -96,5 +88,11 @@ export class DepartmentEditComponent implements OnInit, OnChanges {
 
   onErrorImage(event: any): void {
     event.target.src = 'assets/media/image/image.png';
+  }
+
+  resetForm(): void {
+    this.form.reset();
+    this.srcThumbnail = 'assets/media/image/image.png';
+    this.inputFile.nativeElement.value = '';
   }
 }

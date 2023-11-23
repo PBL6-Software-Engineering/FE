@@ -13,6 +13,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { RouterModule } from '@angular/router';
 import { ClickOutsideDirective } from './directives/click_outside.directive';
 import { FilterPipe } from './pipes/filter.pipe';
+import { GenderPipe } from './pipes/gender.pipe';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { FilterPipe } from './pipes/filter.pipe';
     SpinnerComponent,
     ClickOutsideDirective,
     FilterPipe,
+    GenderPipe
   ],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
   exports: [
@@ -41,6 +43,7 @@ import { FilterPipe } from './pipes/filter.pipe';
     SpinnerComponent,
     ClickOutsideDirective,
     FilterPipe,
+    GenderPipe
   ],
 })
 export class CoreModule {}
