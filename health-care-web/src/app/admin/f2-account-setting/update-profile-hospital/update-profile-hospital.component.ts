@@ -32,7 +32,7 @@ export class UpdateProfileHospitalComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     const role = this.tokenService.getRole();
-    if (role === 'manager') {
+    if (['manager', 'supperadmin', 'admin'].includes(role)) {
       this.router.navigateByUrl('/account-setting/update-info/admin');
     }
     if (role === 'doctor') {

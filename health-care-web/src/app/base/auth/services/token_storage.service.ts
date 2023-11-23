@@ -5,7 +5,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class TokenStorageService {
   private $isLogin = new BehaviorSubject(this.hasToken());
-  private $user = new BehaviorSubject(JSON.parse(localStorage.getItem('user') || '{}'));
+  private $user = new BehaviorSubject(
+    JSON.parse(localStorage.getItem('user') || '{}')
+  );
   isLogin = this.$isLogin.asObservable();
   user = this.$user.asObservable();
 
@@ -28,7 +30,7 @@ export class TokenStorageService {
   }
 
   isAdmin(): any {
-    return ['manager', 'hospital', 'doctor'].includes(
+    return ['manager', 'hospital', 'doctor', 'supperadmin', 'admin'].includes(
       localStorage.getItem('role') || ''
     );
   }

@@ -134,7 +134,7 @@
                   <button
                     class="btn btn-sm btn-success ml-8"
                     [ngClass]="item?.is_show ? 'btn-success' : 'btn-warning'"
-                    *ngIf="role === 'hospital' || role === 'manager'"
+                    *ngIf="['manager', 'supperadmin', 'admin', 'hospital'].includes(role)"
                     (click)="itemSelected = item"
                     data-bs-toggle="modal"
                     data-bs-target="#changeShowModal"

@@ -40,7 +40,7 @@ export class AdminService {
 
   changePassword(obj: any): Observable<any> {
     const role = this.tokenService.getRole();
-    if (role === 'manager') {
+    if (['manager', 'admin', 'supperadmin'].includes(role)) {
       return this.http.post<any>(
         `${linkApi}/${this.model}/change-password`,
         obj
@@ -59,8 +59,7 @@ export class AdminService {
     for (const key of Object.keys(obj)) {
       formData.append(key, obj[key]);
     }
-    console.log('form data ', formData);
-    if (role === 'manager') {
+    if (['manager', 'admin', 'supperadmin'].includes(role)) {
       return this.http.post<any>(`${linkApi}/${this.model}/update`, formData);
     } else if (role === 'hospital') {
       return this.http.post<any>(`${linkApi}/infor-hospital/update`, formData);
@@ -74,7 +73,7 @@ export class AdminService {
 
   getProfile(): Observable<any> {
     const role = this.tokenService.getRole();
-    if (role === 'manager') {
+    if (['manager', 'admin', 'supperadmin'].includes(role)) {
       return this.http.get<any>(`${linkApi}/${this.model}/profile`);
     } else if (role === 'hospital') {
       return this.http.get<any>(`${linkApi}/infor-hospital/profile`);
