@@ -19,7 +19,7 @@ export class HttpSpinnerInterceptor implements HttpInterceptor {
 
   intercept(
     request: HttpRequest<any>,
-    next: HttpHandler
+    next: HttpHandler,
   ): Observable<HttpEvent<any>> {
     this.spinnerService.requestStarted();
     return this.handler(next, request);
@@ -27,7 +27,7 @@ export class HttpSpinnerInterceptor implements HttpInterceptor {
 
   handler(
     next: HttpHandler,
-    request: HttpRequest<any>
+    request: HttpRequest<any>,
   ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       tap(
@@ -39,8 +39,8 @@ export class HttpSpinnerInterceptor implements HttpInterceptor {
         (error: HttpErrorResponse) => {
           this.spinnerService.resetSpinner();
           throw error;
-        }
-      )
+        },
+      ),
     );
   }
 }

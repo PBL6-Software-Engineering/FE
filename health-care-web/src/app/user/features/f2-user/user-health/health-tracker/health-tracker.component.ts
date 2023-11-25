@@ -5,7 +5,7 @@ import { TokenStorageService } from 'src/app/base/auth/services/token_storage.se
 @Component({
   selector: 'app-health-tracker',
   templateUrl: './health-tracker.component.html',
-  styleUrls: ['./health-tracker.component.scss']
+  styleUrls: ['./health-tracker.component.scss'],
 })
 export class HealthTrackerComponent implements OnInit {
   dateRangeFlatPickr: any;
@@ -14,7 +14,7 @@ export class HealthTrackerComponent implements OnInit {
   user: any;
 
   constructor(private tokenStorageService: TokenStorageService) {
-    this.tokenStorageService.getUser().subscribe((user: any) => user = user);
+    this.tokenStorageService.getUser().subscribe((user: any) => (user = user));
   }
   ngOnInit(): void {
     this.dateRangeFlatPickr = flatpickr('#dateOfBirthPicker', {
@@ -23,7 +23,7 @@ export class HealthTrackerComponent implements OnInit {
       minDate: new Date('01/01/1900'),
       maxDate: new Date(),
     });
-  }  
+  }
 
   changeActivityMode(mode: string): void {
     this.activityMode = mode;
@@ -45,4 +45,4 @@ export class HealthTrackerComponent implements OnInit {
         break;
     }
   }
-} 
+}

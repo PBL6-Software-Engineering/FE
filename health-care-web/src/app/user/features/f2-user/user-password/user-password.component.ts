@@ -20,7 +20,7 @@ export class UserPasswordComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
   ) {}
 
   messagesValidatePass = [
@@ -48,7 +48,7 @@ export class UserPasswordComponent implements OnInit {
             Validators.maxLength(20),
           ]),
         },
-        this.comparePassword
+        this.comparePassword,
       ),
     });
   }

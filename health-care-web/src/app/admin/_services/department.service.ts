@@ -17,7 +17,7 @@ export class DepartmentService {
     sortLatest = true,
   }): Observable<any> {
     return this.http.get<any>(
-      `${linkApi}/${this.model}?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}`
+      `${linkApi}/${this.model}?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}`,
     );
   }
 
@@ -50,7 +50,7 @@ export class DepartmentService {
     }
     return this.http.post<any>(
       `${linkApi}/${this.model}/update/${id}`,
-      formData
+      formData,
     );
   }
 

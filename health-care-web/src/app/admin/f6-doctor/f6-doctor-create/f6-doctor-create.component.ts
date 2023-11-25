@@ -19,11 +19,11 @@ export class F6DoctorCreateComponent implements OnInit {
   isSaving: boolean = false;
 
   constructor(
-  private api: HospitalService,
+    private api: HospitalService,
     private departmentHospitalService: DepartmentHospitalService,
     private toastrService: ToastrService,
     private tokenStorageService: TokenStorageService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -104,7 +104,7 @@ export class F6DoctorCreateComponent implements OnInit {
   removeField(type: any, index: any): void {
     if (type === 'training_process') {
       const arrayRemove = this.training_process.controls.filter(
-        (item: any, i: any) => i !== index
+        (item: any, i: any) => i !== index,
       );
       this.form.setControl('training_process', new FormArray([]));
       if (arrayRemove && arrayRemove.length > -1) {
@@ -114,7 +114,7 @@ export class F6DoctorCreateComponent implements OnInit {
       }
     } else if (type === 'prominent') {
       const arrayRemove = this.prominent.controls.filter(
-        (item: any, i: any) => i !== index
+        (item: any, i: any) => i !== index,
       );
       this.form.setControl('prominent', new FormArray([]));
       if (arrayRemove && arrayRemove.length > -1) {
@@ -124,7 +124,7 @@ export class F6DoctorCreateComponent implements OnInit {
       }
     } else if (type === 'strengths') {
       const arrayRemove = this.strengths.controls.filter(
-        (item: any, i: any) => i !== index
+        (item: any, i: any) => i !== index,
       );
       this.form.setControl('strengths', new FormArray([]));
       if (arrayRemove && arrayRemove.length > -1) {
@@ -134,7 +134,7 @@ export class F6DoctorCreateComponent implements OnInit {
       }
     } else if (type === 'work_experience') {
       const arrayRemove = this.work_experience.controls.filter(
-        (item: any, i: any) => i !== index
+        (item: any, i: any) => i !== index,
       );
       this.form.setControl('work_experience', new FormArray([]));
       if (arrayRemove && arrayRemove.length > -1) {
@@ -168,6 +168,9 @@ export class F6DoctorCreateComponent implements OnInit {
   }
 
   getSubTitle(type: any, index: number) {
-    return this.form.get(`${type}`)?.get(`${index}`)?.get('subtitle') as FormArray;
+    return this.form
+      .get(`${type}`)
+      ?.get(`${index}`)
+      ?.get('subtitle') as FormArray;
   }
 }

@@ -17,7 +17,6 @@ import { HospitalListComponent } from './hospital-list/hospital-list.component';
 import { F1HomePageModule } from '../f1-home-page/f1-home-page.module';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
-
 @NgModule({
   declarations: [
     F4HospitalComponent,
@@ -38,7 +37,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     TagModule,
     NgxSpinnerModule,
     F1HomePageModule,
-    NgxSkeletonLoaderModule
+    NgxSkeletonLoaderModule,
   ],
 })
 export class F4HospitalModule {}

@@ -29,7 +29,7 @@ export class HospitalServiceEditComponent implements OnInit {
     private tokenStorageService: TokenStorageService,
     private router: Router,
     private route: ActivatedRoute,
-    private spinnerService: NgxSpinnerService
+    private spinnerService: NgxSpinnerService,
   ) {
     this.form = new FormGroup({
       id_hospital_department: new FormControl(null, [Validators.required]),
@@ -122,7 +122,7 @@ export class HospitalServiceEditComponent implements OnInit {
         },
         complete: () => {
           this.isSaving = false;
-        }
+        },
       });
     } else {
       this.toastrService.error('Vui lòng nhập đầy đủ thông tin');

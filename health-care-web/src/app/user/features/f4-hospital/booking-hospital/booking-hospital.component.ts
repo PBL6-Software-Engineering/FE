@@ -48,7 +48,7 @@ export class BookingHospitalComponent implements OnInit, OnChanges {
     private bookingService: BookingService,
     private spinnerService: NgxSpinnerService,
     private el: ElementRef,
-    private toastr: ToastrService
+    private toastr: ToastrService,
   ) {}
   ngOnChanges(changes: SimpleChanges): void {
     if (this.hospital && this.hospital.id_hospital) {
@@ -74,7 +74,7 @@ export class BookingHospitalComponent implements OnInit, OnChanges {
 
   onChangeDepartment() {
     this.doctors = this.doctorsOfHospital.filter(
-      (doctor) => doctor.name_department === this.department.name
+      (doctor) => doctor.name_department === this.department.name,
     );
   }
 

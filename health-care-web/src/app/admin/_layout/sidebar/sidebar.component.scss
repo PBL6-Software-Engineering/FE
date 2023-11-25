@@ -1,45 +1,45 @@
 * {
-    font-size: 15px;
+  font-size: 15px;
 }
 
 .sidebar-menu {
-    background-color: rgb(252, 252, 252);
-    height: 100%;
+  background-color: rgb(252, 252, 252);
+  height: 100%;
 }
 
 .brand-logo {
-    border-bottom: 1px solid #e4e8ec;
+  border-bottom: 1px solid #e4e8ec;
 }
 
 .sidebar-menu-item,
 .sidebar-menu-sub-item {
-    padding: 8px 16px;
-    cursor: pointer;
+  padding: 8px 16px;
+  cursor: pointer;
 
-    &:hover,
-    &.active {
-        &>.label-item {
-            color: #11B3CF;
-        }
+  &:hover,
+  &.active {
+    & > .label-item {
+      color: #11b3cf;
     }
+  }
 }
 
 .sidebar-menu-sub-item {
-    padding: 8px 24px;
-    list-style: circle inside;
+  padding: 8px 24px;
+  list-style: circle inside;
 }
 
 aside {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 250px;
-    max-width: 100%;
-    overflow: hidden;
-    z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 250px;
+  max-width: 100%;
+  overflow: hidden;
+  z-index: 10;
 
-    &:hover {
-        overflow: auto;
-    }
+  &:hover {
+    overflow: auto;
+  }
 }

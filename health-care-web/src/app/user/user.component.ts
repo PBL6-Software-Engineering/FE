@@ -18,27 +18,27 @@ export class UserComponent implements OnInit {
 
     localStorage.setItem(
       'categories',
-      JSON.stringify(category ? category.data || '[]' : '[]')
+      JSON.stringify(category ? category.data || '[]' : '[]'),
     );
     localStorage.setItem(
       'departments',
-      JSON.stringify(department ? department.data || '[]' : '[]')
+      JSON.stringify(department ? department.data || '[]' : '[]'),
     );
     localStorage.setItem(
       'articlesOutstanding',
       JSON.stringify(
-        articleOutstanding ? articleOutstanding.data.data || '[]' : '[]'
-      )
+        articleOutstanding ? articleOutstanding.data.data || '[]' : '[]',
+      ),
     );
     localStorage.setItem(
       'hospitalsOutStanding',
       JSON.stringify(
-        hospitalOutStanding ? hospitalOutStanding.data.data || '[]' : '[]'
-      )
+        hospitalOutStanding ? hospitalOutStanding.data.data || '[]' : '[]',
+      ),
     );
     localStorage.setItem(
       'provinces',
-      JSON.stringify(province ? province.provinces || '[]' : '[]')
+      JSON.stringify(province ? province.provinces || '[]' : '[]'),
     );
   }
 }

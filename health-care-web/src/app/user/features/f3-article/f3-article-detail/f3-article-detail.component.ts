@@ -28,7 +28,7 @@ export class F3ArticleDetailComponent implements AfterViewInit, OnInit {
     private el: ElementRef,
     private articleService: ArticleService,
     private expertService: ExpertService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {

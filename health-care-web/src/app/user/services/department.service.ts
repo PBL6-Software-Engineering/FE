@@ -14,10 +14,10 @@ export class DepartmentService {
     // paginate = "false",
     page = 1,
     sortlatest = true,
-    sortname = false
+    sortname = false,
   ): Observable<any> {
     return this.http.get<any>(
-      `${linkApi}/${this.model}?search=${search}&page=${page}&sortlatest=${sortlatest}&sortname=${sortname}`
+      `${linkApi}/${this.model}?search=${search}&page=${page}&sortlatest=${sortlatest}&sortname=${sortname}`,
     );
   }
 }

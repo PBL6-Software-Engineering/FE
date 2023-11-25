@@ -14,10 +14,10 @@ export class categoriesService {
     paginate = 20,
     page = 1,
     sortlatest = true,
-    sortname = true
+    sortname = true,
   ): Observable<any> {
     return this.http.get<any>(
-      `${linkApi}/${this.model}?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortlatest}&sortname=${sortname}`
+      `${linkApi}/${this.model}?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortlatest}&sortname=${sortname}`,
     );
   }
 }

@@ -15,7 +15,7 @@
   <div
     class="row"
     style="
-      background: url('assets/media/image/Bg.png') no-repeat;
+      background: url(&quot;assets/media/image/Bg.png&quot;) no-repeat;
       background-size: cover;
     "
   >
@@ -57,7 +57,7 @@
       <div class="row">
         <div
           class="col-md-4 col-lg-2 col-sm-6 cursor-pointer"
-          *ngFor="let category of categories | filter : ['name'] : textSearch"
+          *ngFor="let category of categories | filter: ['name'] : textSearch"
         >
           <div class="p-16" routerLink="/danh-muc/{{ category?.name }}">
             <div class="p-3 card-item">

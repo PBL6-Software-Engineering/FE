@@ -35,9 +35,6 @@ import { CarouselModule } from 'primeng/carousel';
     RouterModule,
     CarouselModule,
   ],
-  exports: [
-    BannerSearchComponent,
-    CarouselCategoryComponent
-  ]
+  exports: [BannerSearchComponent, CarouselCategoryComponent],
 })
 export class F1HomePageModule {}

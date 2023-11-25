@@ -25,7 +25,7 @@ import { CoreModule } from 'src/app/core/core.module';
     ReactiveFormsModule,
     RouterModule,
     NgxSpinnerModule,
-    CoreModule
+    CoreModule,
   ],
 })
 export class F4AccountUserModule {}

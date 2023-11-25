@@ -19,19 +19,19 @@ export class ArticleService {
   }): Observable<any> {
     if (['manager', 'admin', 'supperadmin'].includes(role)) {
       return this.http.get<any>(
-        `${linkApi}/${this.model}/admin?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}`
+        `${linkApi}/${this.model}/admin?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}`,
       );
     } else if (role === 'hospital') {
       return this.http.get<any>(
-        `${linkApi}/${this.model}/hospital?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}`
+        `${linkApi}/${this.model}/hospital?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}`,
       );
     } else if (role === 'doctor') {
       return this.http.get<any>(
-        `${linkApi}/${this.model}/doctor?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}`
+        `${linkApi}/${this.model}/doctor?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}`,
       );
     } else {
       return this.http.get<any>(
-        `${linkApi}/${this.model}?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}`
+        `${linkApi}/${this.model}?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}`,
       );
     }
   }
@@ -41,7 +41,7 @@ export class ArticleService {
       `${linkApi}/${this.model}/change-accept/${id_article}`,
       {
         is_accept: is_accept,
-      }
+      },
     );
   }
 
@@ -50,7 +50,7 @@ export class ArticleService {
       `${linkApi}/${this.model}/hide-show/${id_article}`,
       {
         is_show: is_show,
-      }
+      },
     );
   }
 
@@ -61,7 +61,7 @@ export class ArticleService {
     sort_search_number = true,
   }): Observable<any> {
     return this.http.get<any>(
-      `${linkApi}/${this.model}?search=${search}&page=${page}&paginate=${paginate}&sort_search_number=${sort_search_number}`
+      `${linkApi}/${this.model}?search=${search}&page=${page}&paginate=${paginate}&sort_search_number=${sort_search_number}`,
     );
   }
 
@@ -73,7 +73,7 @@ export class ArticleService {
     sort_search_number = true,
   }): Observable<any> {
     return this.http.get<any>(
-      `${linkApi}/${this.model}?&search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}&sort_search_number=${sort_search_number}`
+      `${linkApi}/${this.model}?&search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}&sort_search_number=${sort_search_number}`,
     );
   }
 
@@ -84,13 +84,13 @@ export class ArticleService {
     sort_search_number = true,
   }): Observable<any> {
     return this.http.get<any>(
-      `${linkApi}/${this.model}?page=${page}&paginate=${paginate}&name_category=${name_category}&sort_search_number=${sort_search_number}`
+      `${linkApi}/${this.model}?page=${page}&paginate=${paginate}&name_category=${name_category}&sort_search_number=${sort_search_number}`,
     );
   }
 
   getAll(): Observable<any> {
     return this.http.get<any>(
-      `${linkApi}/${this.model}/hospital?role=hospital`
+      `${linkApi}/${this.model}/hospital?role=hospital`,
     );
   }
 
@@ -117,7 +117,7 @@ export class ArticleService {
     }
     return this.http.post<any>(
       `${linkApi}/${this.model}/update/${id}`,
-      formData
+      formData,
     );
   }
 

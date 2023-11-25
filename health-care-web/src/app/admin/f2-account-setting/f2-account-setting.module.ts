@@ -11,14 +11,19 @@ import { UpdateProfileAdminComponent } from './update-profile-admin/update-profi
 import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
-  declarations: [UpdatePasswordComponent, UpdateProfileHospitalComponent, UpdateProfileDoctorComponent, UpdateProfileAdminComponent],
+  declarations: [
+    UpdatePasswordComponent,
+    UpdateProfileHospitalComponent,
+    UpdateProfileDoctorComponent,
+    UpdateProfileAdminComponent,
+  ],
   imports: [
     CommonModule,
     F2AccountSettingRoutingModule,
     CoreModule,
     FormsModule,
     ReactiveFormsModule,
-    NgSelectModule
+    NgSelectModule,
   ],
 })
 export class F2AccountSettingModule {}

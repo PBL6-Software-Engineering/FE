@@ -1,4 +1,9 @@
-import { ChangeDetectorRef, Component, ElementRef, signal } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  signal,
+} from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { UserWorkScheduleService } from 'src/app/user/services/user-work-schedule.service';
@@ -47,7 +52,7 @@ export class UserBookingComponent {
     private el: ElementRef,
     private spinner: NgxSpinnerService,
     private toastrService: ToastrService,
-    private changeDetector: ChangeDetectorRef
+    private changeDetector: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {
@@ -198,13 +203,13 @@ export class UserBookingComponent {
           appointment.work_schedule_time.date +
             'T' +
             appointment.work_schedule_time.interval[0] +
-            ':00'
+            ':00',
         ),
         end: new Date(
           appointment.work_schedule_time.date +
             'T' +
             appointment.work_schedule_time.interval[1] +
-            ':00'
+            ':00',
         ),
       };
     });

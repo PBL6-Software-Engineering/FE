@@ -23,7 +23,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     FormsModule,
     CoreModule,
     ReactiveFormsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
   ],
 })
 export class DepartmentModule {}

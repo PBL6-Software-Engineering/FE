@@ -28,7 +28,7 @@ export class UpdateProfileHospitalComponent implements OnInit {
     private adminService: AdminService,
     private toastrService: ToastrService,
     private tokenService: TokenStorageService,
-    private router: Router
+    private router: Router,
   ) {}
   ngOnInit(): void {
     const role = this.tokenService.getRole();

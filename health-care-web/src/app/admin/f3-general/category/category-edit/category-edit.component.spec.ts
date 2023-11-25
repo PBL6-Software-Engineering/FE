@@ -8,7 +8,7 @@ describe('CategoryEditComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CategoryEditComponent]
+      declarations: [CategoryEditComponent],
     });
     fixture = TestBed.createComponent(CategoryEditComponent);
     component = fixture.componentInstance;

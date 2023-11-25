@@ -13,7 +13,7 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private afAuth: AngularFireAuth,
-    private router: Router
+    private router: Router,
   ) {}
 
   forgotPass(email: string): Observable<any> {
@@ -38,7 +38,7 @@ export class AuthService {
     name: string,
     email: string,
     password: string,
-    confirm: string
+    confirm: string,
   ): Observable<any> {
     const requestBody = {
       name: name,

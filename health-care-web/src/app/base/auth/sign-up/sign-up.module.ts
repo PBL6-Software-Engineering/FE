@@ -9,16 +9,12 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    SignUpUserComponent,
-    SignUpHospitalComponent,
-    SignUpComponent
-  ],
+  declarations: [SignUpUserComponent, SignUpHospitalComponent, SignUpComponent],
   imports: [
     CommonModule,
     SignUpRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-  ]
+  ],
 })
-export class SignUpModule { }
+export class SignUpModule {}

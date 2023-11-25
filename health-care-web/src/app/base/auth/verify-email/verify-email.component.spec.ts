@@ -8,7 +8,7 @@ describe('VerifyEmailComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [VerifyEmailComponent]
+      declarations: [VerifyEmailComponent],
     });
     fixture = TestBed.createComponent(VerifyEmailComponent);
     component = fixture.componentInstance;

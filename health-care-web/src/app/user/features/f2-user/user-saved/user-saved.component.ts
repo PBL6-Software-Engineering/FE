@@ -3,15 +3,13 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-user-saved',
   templateUrl: './user-saved.component.html',
-  styleUrls: ['./user-saved.component.scss']
+  styleUrls: ['./user-saved.component.scss'],
 })
 export class UserSavedComponent implements OnInit {
   tab = 'articles';
   items: any[] = [];
   number = 0;
-  constructor() {
-
-  }
+  constructor() {}
   ngOnInit(): void {
     // for(let i = 0; i < 3; i++) {
     //   this.items.push({
@@ -26,7 +24,7 @@ export class UserSavedComponent implements OnInit {
     //   });
     // }
     this.number = this.items.length;
-  } 
+  }
 
   chooseTab(tab: string): void {
     this.tab = tab;

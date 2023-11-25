@@ -8,7 +8,7 @@ describe('UpdatePasswordComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [UpdatePasswordComponent]
+      declarations: [UpdatePasswordComponent],
     });
     fixture = TestBed.createComponent(UpdatePasswordComponent);
     component = fixture.componentInstance;

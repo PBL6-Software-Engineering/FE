@@ -18,7 +18,7 @@ export class ArticleTopicsComponent implements OnInit {
   isLoading = false;
   constructor(
     private articleService: ArticleService,
-    private spinnerService: NgxSpinnerService
+    private spinnerService: NgxSpinnerService,
   ) {}
 
   ngOnInit(): void {

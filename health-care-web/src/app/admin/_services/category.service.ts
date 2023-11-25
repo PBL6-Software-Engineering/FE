@@ -17,7 +17,7 @@ export class CategoryService {
     sortLatest = true,
   }): Observable<any> {
     return this.http.get<any>(
-      `${linkApi}/${this.model}?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}`
+      `${linkApi}/${this.model}?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}`,
     );
   }
 
@@ -46,7 +46,7 @@ export class CategoryService {
     }
     return this.http.post<any>(
       `${linkApi}/${this.model}/update/${id}`,
-      formData
+      formData,
     );
   }
 

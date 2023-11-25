@@ -16,11 +16,11 @@ import { TokenStorageService } from 'src/app/base/auth/services/token_storage.se
 export class CanAuth implements CanActivate {
   constructor(
     private tokenStorageService: TokenStorageService,
-    private router: Router
+    private router: Router,
   ) {}
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
+    state: RouterStateSnapshot,
   ):
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree>

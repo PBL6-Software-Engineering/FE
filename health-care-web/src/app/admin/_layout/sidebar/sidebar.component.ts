@@ -177,7 +177,7 @@ export class SidebarComponent implements OnInit {
   constructor(
     private router: Router,
     private tokenStorageService: TokenStorageService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
   ) {}
 
   ngOnInit(): void {
@@ -214,7 +214,10 @@ export class SidebarComponent implements OnInit {
       let isExist = false;
       const menuItem = this.menuItems[i];
       // kiểm tra menu level 1
-      if (menuItem.routerLink === item.routerLink && menuItem.label === item.label) {
+      if (
+        menuItem.routerLink === item.routerLink &&
+        menuItem.label === item.label
+      ) {
         isExist = true;
         menuItem.active = true;
         // nếu có menu level 2 thì mở hoặc đóng menu level 2
@@ -232,7 +235,10 @@ export class SidebarComponent implements OnInit {
       if (menuItem.subItems) {
         for (let j = 0; j < menuItem.subItems.length; j++) {
           const subItem = menuItem.subItems[j];
-          if (subItem.routerLink === item.routerLink && subItem.label === item.label) {
+          if (
+            subItem.routerLink === item.routerLink &&
+            subItem.label === item.label
+          ) {
             isExist = true;
             subItem.active = true;
             menuItem.active = true;

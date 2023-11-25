@@ -72,7 +72,7 @@ export class CategoryListComponent implements OnInit, OnDestroy {
     private el: ElementRef,
     private toastr: ToastrService,
     public cdr: ChangeDetectorRef,
-    private spinnerService: NgxSpinnerService
+    private spinnerService: NgxSpinnerService,
   ) {}
 
   ngOnInit() {
@@ -116,7 +116,7 @@ export class CategoryListComponent implements OnInit, OnDestroy {
             this.isLoading = false;
             this.spinnerService.hide();
           },
-        })
+        }),
     );
   }
 
@@ -130,7 +130,7 @@ export class CategoryListComponent implements OnInit, OnDestroy {
         error: (err) => {
           this.toastr.error('Xoá thất bại!');
         },
-      })
+      }),
     );
   }
 
@@ -144,7 +144,7 @@ export class CategoryListComponent implements OnInit, OnDestroy {
         error: (err) => {
           this.toastr.error('Xoá thất bại!');
         },
-      })
+      }),
     );
     this.isSelectAll = false;
   }

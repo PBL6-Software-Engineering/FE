@@ -18,7 +18,7 @@ export class ServiceHospitalService {
     id_hospital = '',
   }): Observable<any> {
     return this.http.get<any>(
-      `${linkApi}/${this.model}/hospital/${id_hospital}?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}`
+      `${linkApi}/${this.model}/hospital/${id_hospital}?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}`,
     );
   }
 

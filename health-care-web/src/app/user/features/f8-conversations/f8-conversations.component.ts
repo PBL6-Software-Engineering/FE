@@ -18,7 +18,7 @@ export class F8ConversationsComponent implements OnInit {
 
   constructor(
     private chatService: ChatService,
-    private spinnerService: NgxSpinnerService
+    private spinnerService: NgxSpinnerService,
   ) {}
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user') || '{id: guest}');
@@ -36,7 +36,7 @@ export class F8ConversationsComponent implements OnInit {
 
     this.chatService.getConversationSocket().subscribe((conversation: any) => {
       const index = this.conversations.findIndex(
-        (el) => el.conversationId == conversation.conversationId
+        (el) => el.conversationId == conversation.conversationId,
       );
       if (index === -1) {
         this.conversations.unshift(conversation);

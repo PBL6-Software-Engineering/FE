@@ -34,10 +34,10 @@ export class SubHeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.articles = JSON.parse(
-      localStorage.getItem('articlesOutstanding') || '[]'
+      localStorage.getItem('articlesOutstanding') || '[]',
     );
     this.hospitals = JSON.parse(
-      localStorage.getItem('hospitalsOutStanding') || '[]'
+      localStorage.getItem('hospitalsOutStanding') || '[]',
     );
     this.articles = this.articles.slice(0, 3);
     this.hospitals = this.hospitals.slice(0, 3);

@@ -71,7 +71,7 @@ export class F5HospitalListComponent implements OnInit, OnDestroy {
     private api: AdminService,
     private toastr: ToastrService,
     public cdr: ChangeDetectorRef,
-    private spinnerService: NgxSpinnerService
+    private spinnerService: NgxSpinnerService,
   ) {}
 
   ngOnInit() {
@@ -98,7 +98,7 @@ export class F5HospitalListComponent implements OnInit, OnDestroy {
           search: this.textSearch || '',
           sortlatest: true,
           role: 'hospital',
-          is_accept: 'both'
+          is_accept: 'both',
         })
         .subscribe({
           next: ({ data }) => {
@@ -118,7 +118,7 @@ export class F5HospitalListComponent implements OnInit, OnDestroy {
             this.isLoading = false;
             this.spinnerService.hide();
           },
-        })
+        }),
     );
   }
 
@@ -198,10 +198,7 @@ export class F5HospitalListComponent implements OnInit, OnDestroy {
   changeAccept() {
     this.subscription.push(
       this.api
-        .changeAccept(
-          this.itemSelected.id,
-          !this.itemSelected.is_accept
-        )
+        .changeAccept(this.itemSelected.id, !this.itemSelected.is_accept)
         .subscribe({
           next: () => {
             if (!this.itemSelected.is_accept) {
@@ -219,9 +216,7 @@ export class F5HospitalListComponent implements OnInit, OnDestroy {
           error: (err) => {
             this.toastr.error('Thay đổi trạng thái thất bại!');
           },
-        })
+        }),
     );
   }
 }
-
-

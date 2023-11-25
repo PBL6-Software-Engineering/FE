@@ -28,7 +28,7 @@ export class HospitalListComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {

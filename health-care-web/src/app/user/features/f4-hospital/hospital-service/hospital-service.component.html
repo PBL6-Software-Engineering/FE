@@ -4,11 +4,11 @@
       <div class="fw-bold">{{ service?.name }}</div>
       <div class="my-8">
         <span style="color: #595959">
-            <i class="fa fa-money" aria-hidden="true"></i>
-            Giá tiền:
-          </span>
+          <i class="fa fa-money" aria-hidden="true"></i>
+          Giá tiền:
+        </span>
         <span class="text-success">{{
-          service?.price_hospital_service | currency : "VND"
+          service?.price_hospital_service | currency: "VND"
         }}</span>
       </div>
     </div>
@@ -17,7 +17,9 @@
         <img [src]="hospital?.avatar" alt="" class="avatar-hospital" />
         <div class="ml-20">
           <div class="fw-bold">{{ hospital?.name }}</div>
-          <div class="fs-12" style="color: rgb(89, 89, 89);">{{ hospital?.address }}</div>
+          <div class="fs-12" style="color: rgb(89, 89, 89)">
+            {{ hospital?.address }}
+          </div>
         </div>
       </div>
 

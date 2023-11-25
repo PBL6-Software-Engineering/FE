@@ -11,26 +11,26 @@ const routes: Routes = [
     children: [
       {
         path: '404',
-        component: Error404Component
+        component: Error404Component,
       },
       {
         path: '500',
-        component: Error500Component
+        component: Error500Component,
       },
-      { 
-        path: '', 
-        component: Error404Component 
+      {
+        path: '',
+        component: Error404Component,
       },
-      { 
-        path: '**', 
-        component: Error404Component 
-      }
-    ]
-  }
+      {
+        path: '**',
+        component: Error404Component,
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ErrorRoutingModule { }
+export class ErrorRoutingModule {}

@@ -25,7 +25,7 @@ export class SignInAdminComponent implements OnInit {
     private router: Router,
     private afAuth: AngularFireAuth,
     private toastrService: ToastrService,
-    private tokenStorageService: TokenStorageService
+    private tokenStorageService: TokenStorageService,
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -49,8 +49,8 @@ export class SignInAdminComponent implements OnInit {
       this.apiService
         .loginAdmin(this.loginForm.value.email, this.loginForm.value.password)
         .subscribe({
-          next: ({data}) => {
-            this.tokenStorageService.saveToken(data.access_token, data.role); 
+          next: ({ data }) => {
+            this.tokenStorageService.saveToken(data.access_token, data.role);
             this.toastrService.success('Đăng nhập thành công');
             this.router.navigate(['/admin']);
           },

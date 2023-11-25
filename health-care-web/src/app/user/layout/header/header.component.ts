@@ -32,13 +32,13 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private tokenStorageService: TokenStorageService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
     // this.chooseTab();
     this.tokenStorageService.isLogin.subscribe(
-      (isLogin) => (this.isLogin = isLogin)
+      (isLogin) => (this.isLogin = isLogin),
     );
     this.tokenStorageService.getUser().subscribe((user: any) => {
       this.user = user || {};
@@ -58,7 +58,10 @@ export class HeaderComponent implements OnInit {
   chooseTab(tab: string = 'CATEGORY') {
     this.tabObj.tab = tab;
     this.isOpenSubMenuBar = true;
-    this.isOpenSubMenuBarMobile = this.isOpenHeaderInfo = this.isOpenConversation = false;
+    this.isOpenSubMenuBarMobile =
+      this.isOpenHeaderInfo =
+      this.isOpenConversation =
+        false;
     if (tab === 'CATEGORY') {
       this.tabObj.title = 'Chuyên mục sức khoẻ';
       this.tabObj.items = this.categories;

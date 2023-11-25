@@ -12,7 +12,10 @@ export class ExpertComponent {
   departments: any[];
   public total = 0;
 
-  constructor(private expertService: ExpertService, private el: ElementRef) {}
+  constructor(
+    private expertService: ExpertService,
+    private el: ElementRef,
+  ) {}
 
   selectDepartment = (event: Event) => {
     const clickedElement = event.target as HTMLElement;

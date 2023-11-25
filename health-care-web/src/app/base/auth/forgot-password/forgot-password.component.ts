@@ -17,7 +17,7 @@ export class ForgotPasswordComponent {
     private AuthService: AuthService,
     private el: ElementRef,
     private formBuilder: FormBuilder,
-    private renderer: Renderer2
+    private renderer: Renderer2,
   ) {
     this.forgotPassForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -59,7 +59,7 @@ export class ForgotPasswordComponent {
         (error) => {
           this.renderer.addClass(loading, 'd-none');
           this.showNotification(error.error.message);
-        }
+        },
       );
     } else {
       this.isShowEmail = true;

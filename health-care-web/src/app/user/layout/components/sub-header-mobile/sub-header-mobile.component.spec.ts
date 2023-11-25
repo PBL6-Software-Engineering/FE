@@ -8,7 +8,7 @@ describe('SubHeaderMobileComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SubHeaderMobileComponent]
+      declarations: [SubHeaderMobileComponent],
     });
     fixture = TestBed.createComponent(SubHeaderMobileComponent);
     component = fixture.componentInstance;

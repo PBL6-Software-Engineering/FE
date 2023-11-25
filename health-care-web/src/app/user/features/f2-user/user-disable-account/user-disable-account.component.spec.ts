@@ -8,7 +8,7 @@ describe('UserDisableAccountComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [UserDisableAccountComponent]
+      declarations: [UserDisableAccountComponent],
     });
     fixture = TestBed.createComponent(UserDisableAccountComponent);
     component = fixture.componentInstance;

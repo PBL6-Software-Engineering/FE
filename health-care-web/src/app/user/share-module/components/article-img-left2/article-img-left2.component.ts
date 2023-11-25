@@ -5,14 +5,14 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './article-img-left2.component.html',
   styleUrls: ['./article-img-left2.component.scss'],
 })
-export class ArticleImgLeft2Component implements OnInit{
+export class ArticleImgLeft2Component implements OnInit {
   @Input() article: any = {};
   constructor() {}
   ngOnInit(): void {
     if (this.article && this.article.content) {
       this.article.previewContent = this.article.content.replace(
         /<[^>]*>/g,
-        ''
+        '',
       );
     }
   }

@@ -75,7 +75,7 @@ export class HospitalServiceListComponent implements OnInit, OnDestroy {
     private toastr: ToastrService,
     public cdr: ChangeDetectorRef,
     private tokenStorageService: TokenStorageService,
-    private spinnerService: NgxSpinnerService
+    private spinnerService: NgxSpinnerService,
   ) {
     this.tokenStorageService
       .getUser()
@@ -118,14 +118,14 @@ export class HospitalServiceListComponent implements OnInit, OnDestroy {
           error: (err) => {
             this.isErrorGetData = true;
             this.toastr.error('Lỗi! Không thể tải dữ liệu');
-             this.isLoading = false;
-             this.spinnerService.hide();
+            this.isLoading = false;
+            this.spinnerService.hide();
           },
           complete: () => {
             this.isLoading = false;
             this.spinnerService.hide();
           },
-        })
+        }),
     );
   }
 
@@ -139,7 +139,7 @@ export class HospitalServiceListComponent implements OnInit, OnDestroy {
         error: (err) => {
           this.toastr.error('Xoá thất bại!');
         },
-      })
+      }),
     );
   }
 
@@ -153,7 +153,7 @@ export class HospitalServiceListComponent implements OnInit, OnDestroy {
         error: (err) => {
           this.toastr.error('Xoá thất bại!');
         },
-      })
+      }),
     );
     this.isSelectAll = false;
   }

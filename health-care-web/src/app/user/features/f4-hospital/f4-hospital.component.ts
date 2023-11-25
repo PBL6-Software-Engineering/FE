@@ -18,7 +18,7 @@ export class F4HospitalComponent implements OnInit {
   constructor(
     private hospitalService: HospitalService,
     private route: ActivatedRoute,
-    private chatService: ChatService
+    private chatService: ChatService,
   ) {}
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -54,7 +54,7 @@ export class F4HospitalComponent implements OnInit {
       this.chatService.setConversation({
         conversationId: `conversationId_${this.user.id}_${this.id}`,
         user: this.user,
-        admin: this.hospital
+        admin: this.hospital,
       });
     }
   }

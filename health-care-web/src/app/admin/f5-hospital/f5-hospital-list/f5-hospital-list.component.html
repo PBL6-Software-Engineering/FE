@@ -13,8 +13,7 @@
             (change)="search()"
           />
         </div>
-        <div>
-        </div>
+        <div></div>
       </div>
 
       <div class="wrapper-spinner" *ngIf="isLoading">
@@ -47,7 +46,6 @@
 
           <tbody>
             <tr *ngFor="let item of dataSources">
-
               <td class="text-center">
                 <img
                   [src]="item.avatar"
@@ -57,14 +55,10 @@
                 />
               </td>
 
-
               <td>
                 <span
                   class="text-hover-primary cursor-pointer"
-                  [routerLink]="[
-                    '/admin/doctor/detail',
-                    item.id_doctor
-                  ]"
+                  [routerLink]="['/admin/doctor/detail', item.id_doctor]"
                 >
                   {{ item?.name }}
                 </span>
@@ -84,7 +78,7 @@
 
               <td class="text-center">
                 <span class="text-hover-primary">
-                  {{ item?.created_at | date: 'dd/MM/yyyy' }}
+                  {{ item?.created_at | date: "dd/MM/yyyy" }}
                 </span>
               </td>
 
@@ -93,14 +87,24 @@
                 <div class="d-flex justify-content-center">
                   <button
                     class="btn btn-sm"
-                    [ngClass]="item?.is_accept ? 'btn-success' : 'btn-secondary'"
+                    [ngClass]="
+                      item?.is_accept ? 'btn-success' : 'btn-secondary'
+                    "
                     (click)="itemSelected = item"
                     data-bs-toggle="modal"
                     data-bs-target="#changeAcceptModal"
                   >
                     <!-- <i class="fa fa-check-circle-o fs-15" aria-hidden="true"></i> -->
-                    <i class="fa fa-lock fs-15" aria-hidden="true" *ngIf="item?.is_accept"></i>
-                    <i class="fa fa-unlock-alt fs-15" aria-hidden="true" *ngIf="!item?.is_accept"></i>
+                    <i
+                      class="fa fa-lock fs-15"
+                      aria-hidden="true"
+                      *ngIf="item?.is_accept"
+                    ></i>
+                    <i
+                      class="fa fa-unlock-alt fs-15"
+                      aria-hidden="true"
+                      *ngIf="!item?.is_accept"
+                    ></i>
                   </button>
                 </div>
               </td>
@@ -173,4 +177,3 @@
     </div>
   </div>
 </div>
-

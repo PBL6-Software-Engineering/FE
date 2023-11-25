@@ -14,7 +14,7 @@ export class ArticleImgLeftComponent implements OnChanges {
     if (this.article && this.article.content) {
       this.article.previewContent = this.article.content.replace(
         /<[^>]*>/g,
-        ''
+        '',
       );
     }
   }

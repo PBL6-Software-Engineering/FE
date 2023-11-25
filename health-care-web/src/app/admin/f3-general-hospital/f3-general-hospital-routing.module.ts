@@ -6,14 +6,14 @@ const routes: Routes = [
     path: 'department',
     loadChildren: () =>
       import('./hospital-department/hospital-department.module').then(
-        (m) => m.HospitalDepartmentModule
+        (m) => m.HospitalDepartmentModule,
       ),
   },
   {
     path: 'service',
     loadChildren: () =>
       import('./hospital-service/hospital-service.module').then(
-        (m) => m.HospitalServiceModule
+        (m) => m.HospitalServiceModule,
       ),
   },
 ];

@@ -9,7 +9,6 @@ export class HospitalInfoComponent implements OnInit {
   @Input() hospital: any;
 
   constructor() {}
-  
-  ngOnInit(): void {
-  }
+
+  ngOnInit(): void {}
 }

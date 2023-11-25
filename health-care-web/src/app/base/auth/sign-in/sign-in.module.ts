@@ -24,7 +24,7 @@ import { CoreModule } from 'src/app/core/core.module';
     SignInRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    CoreModule
+    CoreModule,
   ],
 })
 export class SignInModule {}

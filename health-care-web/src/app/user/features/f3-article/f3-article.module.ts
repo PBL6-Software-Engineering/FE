@@ -20,7 +20,7 @@ import { ShareModuleModule } from '../../share-module/share-module.module';
     NgxSkeletonLoaderModule,
     CoreModule,
     FormsModule,
-    ShareModuleModule
+    ShareModuleModule,
   ],
 })
 export class F3ArticleModule {}

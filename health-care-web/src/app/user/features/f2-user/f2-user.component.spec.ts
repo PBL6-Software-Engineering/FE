@@ -8,7 +8,7 @@ describe('F2UserComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [F2UserComponent]
+      declarations: [F2UserComponent],
     });
     fixture = TestBed.createComponent(F2UserComponent);
     component = fixture.componentInstance;

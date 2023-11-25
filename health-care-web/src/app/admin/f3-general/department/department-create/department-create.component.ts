@@ -26,7 +26,7 @@ export class DepartmentCreateComponent implements OnInit {
 
   constructor(
     private api: DepartmentService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
   ) {
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required]),

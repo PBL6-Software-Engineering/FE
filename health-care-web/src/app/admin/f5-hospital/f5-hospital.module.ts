@@ -11,13 +11,12 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-
 @NgModule({
   declarations: [
     F5HospitalEditComponent,
     F5HospitalCreateComponent,
     F5HospitalListComponent,
-    F5HospitalDetailComponent
+    F5HospitalDetailComponent,
   ],
   imports: [
     CommonModule,
@@ -26,7 +25,7 @@ import { RouterModule } from '@angular/router';
     NgxSpinnerModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
-  ]
+    RouterModule,
+  ],
 })
-export class F5HospitalModule { }
+export class F5HospitalModule {}

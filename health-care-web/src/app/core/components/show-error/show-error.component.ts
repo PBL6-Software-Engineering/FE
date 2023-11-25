@@ -19,7 +19,9 @@ export class ShowErrorComponent {
   @Input() set validatesInput(items: any[]) {
     if (items && items.length) {
       items.forEach((item) => {
-        const index = this.validates.findIndex(validate => validate.type === item.type);
+        const index = this.validates.findIndex(
+          (validate) => validate.type === item.type,
+        );
         if (index === -1) {
           this.validates.push(item);
         } else {

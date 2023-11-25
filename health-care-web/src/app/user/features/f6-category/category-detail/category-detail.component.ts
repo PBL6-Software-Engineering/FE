@@ -17,7 +17,7 @@ export class CategoryDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private articleService: ArticleService,
-    private expertService: ExpertService
+    private expertService: ExpertService,
   ) {}
 
   ngOnInit(): void {
@@ -31,7 +31,7 @@ export class CategoryDetailComponent implements OnInit {
       if (params['name']) {
         this.nameCategory = params['name'];
         this.category = this.categories.find(
-          (c: any) => c.name === this.nameCategory
+          (c: any) => c.name === this.nameCategory,
         );
 
         this.articleService

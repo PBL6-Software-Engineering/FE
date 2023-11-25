@@ -8,7 +8,7 @@ describe('F9ChatComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [F9ChatComponent]
+      declarations: [F9ChatComponent],
     });
     fixture = TestBed.createComponent(F9ChatComponent);
     component = fixture.componentInstance;

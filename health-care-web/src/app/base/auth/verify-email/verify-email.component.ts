@@ -8,7 +8,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class VerifyEmailComponent implements OnInit {
   email: string = '';
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+  ) {}
 
   goToSignIn() {
     this.router.navigate(['auth/sign-in']);

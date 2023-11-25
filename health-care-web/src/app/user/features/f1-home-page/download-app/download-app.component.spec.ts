@@ -8,7 +8,7 @@ describe('DownloadAppComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [DownloadAppComponent]
+      declarations: [DownloadAppComponent],
     });
     fixture = TestBed.createComponent(DownloadAppComponent);
     component = fixture.componentInstance;

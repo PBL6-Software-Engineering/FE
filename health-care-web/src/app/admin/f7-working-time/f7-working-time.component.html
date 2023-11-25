@@ -1,0 +1,172 @@
+<div class="right-content">
+  <div class="fw-bolder fs-5 mb-3">Quản lý lịch làm việc</div>
+
+  <div class="d-flex mb-12">
+    <label class="form-check-label fw-bold" for="status">Trạng thái: </label>
+    <div class="form-check form-switch ml-20">
+      <input
+        class="form-check-input cursor-pointer"
+        type="checkbox"
+        role="switch"
+        id="status"
+        [checked]="timeWorking.enable"
+        (change)="timeWorking.enable = timeWorking.enable ? false : true"
+      />
+    </div>
+  </div>
+
+  <div class="mb-12" *ngIf="!timeWorking.enable">
+    <span class="fw-bold">Mô tả lý do nghỉ:</span>
+    <textarea
+      type="text"
+      class="form-control mt-8"
+      id="note"
+      [(ngModel)]="timeWorking.note"
+      placeholder="Mô tả"
+      required
+      rows="5"
+    ></textarea>
+  </div>
+
+  <div class="my-12 row-between">
+    <span class="fw-bold">Cấu hình thời gian làm việc:</span>
+    <div class="column-center">
+      <label for="copyDay" class="mr-20">Sao chép</label>
+      <select
+        name="copyDay"
+        id="copyDay"
+        class="form-control mw-120"
+        [(ngModel)]="copyFrom"
+      >
+        <option *ngFor="let day of days" [value]="day.value">
+          {{ day.name }}
+        </option>
+      </select>
+
+      <label for="pasteDay" class="mx-20">Đến</label>
+      <select
+        name=""
+        id="pasteDay"
+        class="form-control mw-120"
+        [(ngModel)]="pasteTo"
+      >
+        <option value="all">Tất cả</option>
+        <option value="" *ngFor="let day of days" [value]="day.value">
+          {{ day.name }}
+        </option>
+      </select>
+
+      <div class="mx-20">
+        <button class="btn btn-primary-1" (click)="copyConfigurePaste()">
+          Kích hoạt
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-day" *ngFor="let day of days">
+    <div class="d-flex">
+      <div class="form-check form-check-sm form-check-custom form-check-solid">
+        <input
+          [(ngModel)]="timeWorking.times[day.value].enable"
+          class="form-check-input"
+          type="checkbox"
+          [id]="'enable' + day.value"
+        />
+      </div>
+      <label for="{{ 'enable' + day.value }}">{{ day.name }}</label>
+    </div>
+
+    <div
+      class="column-center ml-30 mb-8"
+      *ngFor="let key of ['morning', 'afternoon', 'night']"
+    >
+      <div class="col-sm-2 d-flex">
+        <div
+          class="form-check form-check-sm form-check-custom form-check-solid"
+        >
+          <input
+            [(ngModel)]="timeWorking.times[day.value][key].enable"
+            class="form-check-input"
+            type="checkbox"
+            [id]="'enable' + day.value + key"
+          />
+        </div>
+        <label for="{{ 'enable' + day.value + key }}">
+          <span *ngIf="key === 'morning'">Sáng</span>
+          <span *ngIf="key === 'afternoon'">Chiều</span>
+          <span *ngIf="key === 'night'">Tối</span>
+          :
+        </label>
+      </div>
+
+      <div class="col-sm-10 column-center">
+        <label class="mx-20" for="from">Từ:</label>
+        <input
+          type="number"
+          min="0"
+          max="23"
+          class="form-control mw-120"
+          placeholder="Giờ"
+          [(ngModel)]="timeWorking.times[day.value][key].fromHour"
+          [disabled]="
+            !timeWorking.times[day.value][key].enable ||
+            !timeWorking.times[day.value].enable
+          "
+        />
+        <span class="mx-10">:</span>
+        <input
+          type="number"
+          min="0"
+          max="59"
+          class="form-control mw-120"
+          [(ngModel)]="timeWorking.times[day.value][key].fromMinute"
+          placeholder="Phút"
+          [disabled]="
+            !timeWorking.times[day.value][key].enable ||
+            !timeWorking.times[day.value].enable
+          "
+        />
+
+        <label class="mx-20" for="to">Đến:</label>
+        <input
+          type="number"
+          min="0"
+          max="23"
+          class="form-control mw-120"
+          placeholder="Giờ"
+          [(ngModel)]="timeWorking.times[day.value][key].toHour"
+          [disabled]="
+            !timeWorking.times[day.value][key].enable ||
+            !timeWorking.times[day.value].enable
+          "
+        />
+        <span class="mx-10">:</span>
+        <input
+          type="number"
+          min="0"
+          max="59"
+          class="form-control mw-120"
+          [(ngModel)]="timeWorking.times[day.value][key].toMinute"
+          [disabled]="
+            !timeWorking.times[day.value][key].enable ||
+            !timeWorking.times[day.value].enable
+          "
+          placeholder="Phút"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-end mt-30">
+    <button
+      type="submit"
+      class="btn btn-primary-1 column-center"
+      [disabled]="isSaving"
+      (click)="save()"
+    >
+      <div class="loader" *ngIf="isSaving"></div>
+      Lưu
+    </button>
+  </div>
+</div>

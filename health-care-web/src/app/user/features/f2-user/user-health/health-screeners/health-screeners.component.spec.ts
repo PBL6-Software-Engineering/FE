@@ -8,7 +8,7 @@ describe('HealthScreenersComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [HealthScreenersComponent]
+      declarations: [HealthScreenersComponent],
     });
     fixture = TestBed.createComponent(HealthScreenersComponent);
     component = fixture.componentInstance;

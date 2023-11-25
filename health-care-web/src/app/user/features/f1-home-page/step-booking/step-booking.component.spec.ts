@@ -8,7 +8,7 @@ describe('StepBookingComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [StepBookingComponent]
+      declarations: [StepBookingComponent],
     });
     fixture = TestBed.createComponent(StepBookingComponent);
     component = fixture.componentInstance;

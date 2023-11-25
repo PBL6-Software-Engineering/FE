@@ -25,7 +25,7 @@ export class CategoryCreateComponent implements OnInit {
 
   constructor(
     private api: CategoryService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
   ) {
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required]),

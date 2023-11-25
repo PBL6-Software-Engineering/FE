@@ -4,7 +4,7 @@
       <h5 class="mb-20 fw-700">
         <span>{{ data.title }}</span>
       </h5>
-      <div *ngFor="let item of data.items | slice : 0 : 6" class="py-10">
+      <div *ngFor="let item of data.items | slice: 0 : 6" class="py-10">
         <div>
           <img
             [src]="item?.thumbnail"

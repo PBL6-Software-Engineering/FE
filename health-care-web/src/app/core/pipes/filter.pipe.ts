@@ -16,7 +16,7 @@ export class FilterPipe implements PipeTransform {
           (item[field].toLowerCase().indexOf(textFilter.toLowerCase()) !== -1 ||
             removeVietnameseTones(item[field])
               .toLowerCase()
-              .indexOf(removeVietnameseTones(textFilter).toLowerCase()) !== -1)
+              .indexOf(removeVietnameseTones(textFilter).toLowerCase()) !== -1),
       );
     });
   }
@@ -49,7 +49,7 @@ function removeVietnameseTones(str: any) {
   // Bỏ dấu câu, kí tự đặc biệt
   str = str.replace(
     /!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'|\"|\&|\#|\[|\]|~|\$|_|`|-|{|}|\||\\/g,
-    ' '
+    ' ',
   );
   return str;
 }

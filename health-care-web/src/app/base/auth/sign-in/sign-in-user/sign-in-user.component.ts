@@ -28,7 +28,7 @@ export class SignInUserComponent implements OnInit {
     private router: Router,
     private afAuth: AngularFireAuth,
     private toastrService: ToastrService,
-    private tokenStorageService: TokenStorageService
+    private tokenStorageService: TokenStorageService,
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],

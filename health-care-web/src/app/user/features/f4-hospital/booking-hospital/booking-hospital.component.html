@@ -8,14 +8,14 @@
   <ul class="row-between w-100 border-bottom">
     <li
       class="nav-tab w-50 text-center fs-12"
-      (click)="tab = 'doctor';"
+      (click)="tab = 'doctor'"
       [class.active]="tab === 'doctor'"
     >
       Bác sĩ
     </li>
     <li
       class="nav-tab w-50 text-center fs-12"
-      (click)="tab = 'service';"
+      (click)="tab = 'service'"
       [class.active]="tab === 'service'"
     >
       Dịch vụ
@@ -102,7 +102,7 @@
           >
             <div class="fs-14">{{ time?.name }}</div>
             <div class="fs-12 text-success">
-              {{ time?.time?.date | date : "dd/MM" }}
+              {{ time?.time?.date | date: "dd/MM" }}
             </div>
             <div class="fs-12">{{ time?.time?.space }} chỗ trống</div>
           </div>
@@ -118,7 +118,9 @@
         *ngIf="day?.morning?.enable"
       >
         Sáng
-        <span *ngIf="day?.morning?.divided_times">({{day?.morning?.divided_times?.length}})</span>
+        <span *ngIf="day?.morning?.divided_times"
+          >({{ day?.morning?.divided_times?.length }})</span
+        >
       </li>
       <li
         class="nav-tab w-50 text-center fs-12"
@@ -127,7 +129,9 @@
         *ngIf="day?.afternoon?.enable"
       >
         Chiều
-        <span *ngIf="day?.afternoon?.divided_times">({{day?.afternoon?.divided_times?.length}})</span>
+        <span *ngIf="day?.afternoon?.divided_times"
+          >({{ day?.afternoon?.divided_times?.length }})</span
+        >
       </li>
 
       <li
@@ -137,7 +141,9 @@
         *ngIf="day?.night?.enable"
       >
         Tối
-        <span *ngIf="day?.night?.divided_times">({{day?.night?.divided_times?.length}})</span>
+        <span *ngIf="day?.night?.divided_times"
+          >({{ day?.night?.divided_times?.length }})</span
+        >
       </li>
     </ul>
 
@@ -222,14 +228,14 @@
             Tên bác sĩ:
             <span class="text-success">{{ doctor?.name_doctor }}</span>
           </div>
-          <div>Giá tiền: {{ doctor?.price | currency : "VND" }}</div>
+          <div>Giá tiền: {{ doctor?.price | currency: "VND" }}</div>
         </div>
         <div *ngIf="tab === 'service'">
           <div>
             Tên dịch vụ: <span class="text-success">{{ service?.name }}</span>
           </div>
           <div>
-            Giá tiền: {{ service?.price_hospital_service | currency : "VND" }}
+            Giá tiền: {{ service?.price_hospital_service | currency: "VND" }}
           </div>
         </div>
 

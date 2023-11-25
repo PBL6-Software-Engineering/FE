@@ -16,11 +16,11 @@ export class HeaderInfoUserComponent {
   constructor(
     private tokenStorageService: TokenStorageService,
     private router: Router,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
   ) {
     this.tokenStorageService
       .getUser()
-      .subscribe((user: any) => this.user = user || {});
+      .subscribe((user: any) => (this.user = user || {}));
   }
 
   onCloseHeaderInfo(): void {

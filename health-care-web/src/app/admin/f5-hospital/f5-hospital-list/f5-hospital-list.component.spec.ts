@@ -8,7 +8,7 @@ describe('F5HospitalListComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [F5HospitalListComponent]
+      declarations: [F5HospitalListComponent],
     });
     fixture = TestBed.createComponent(F5HospitalListComponent);
     component = fixture.componentInstance;

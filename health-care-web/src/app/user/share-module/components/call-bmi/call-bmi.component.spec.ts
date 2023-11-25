@@ -8,7 +8,7 @@ describe('CallBmiComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CallBmiComponent]
+      declarations: [CallBmiComponent],
     });
     fixture = TestBed.createComponent(CallBmiComponent);
     component = fixture.componentInstance;

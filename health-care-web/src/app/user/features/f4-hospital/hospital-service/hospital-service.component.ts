@@ -11,6 +11,5 @@ export class HospitalServiceComponent implements OnInit {
   @Input() services: any[] = [];
 
   constructor(private hospitalService: HospitalService) {}
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }

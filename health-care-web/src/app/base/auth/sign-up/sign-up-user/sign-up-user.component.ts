@@ -22,7 +22,7 @@ export class SignUpUserComponent {
     private el: ElementRef,
     private renderer: Renderer2,
     private router: Router,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -58,7 +58,7 @@ export class SignUpUserComponent {
           this.loginForm.value.name,
           this.loginForm.value.email,
           this.loginForm.value.password,
-          this.loginForm.value.confirm
+          this.loginForm.value.confirm,
         )
         .subscribe({
           next: (response) => {

@@ -12,7 +12,7 @@ export class F2UserComponent {
   constructor(
     private tokenStorageService: TokenStorageService,
     private toastrService: ToastrService,
-    private router: Router
+    private router: Router,
   ) {}
 
   logout(): void {

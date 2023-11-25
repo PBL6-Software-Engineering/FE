@@ -22,13 +22,13 @@ const routes: Routes = [
         path: '**',
         pathMatch: 'full',
         component: SignUpUserComponent,
-      }
-    ]
-  }
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class SignUpRoutingModule { }
+export class SignUpRoutingModule {}

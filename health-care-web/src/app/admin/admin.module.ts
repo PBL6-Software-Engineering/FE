@@ -9,10 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from '../core/core.module';
 
 @NgModule({
-  declarations: [
-    AdminComponent,
-    SidebarComponent,
-  ],
+  declarations: [AdminComponent, SidebarComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

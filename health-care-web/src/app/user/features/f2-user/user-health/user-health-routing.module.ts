@@ -12,32 +12,32 @@ const routes: Routes = [
     children: [
       {
         path: 'trackers',
-        component: HealthTrackerComponent
+        component: HealthTrackerComponent,
       },
       {
         path: 'screeners',
-        component: HealthScreenersComponent
+        component: HealthScreenersComponent,
       },
       {
         path: 'parenting',
-        component: HealthParentingComponent
+        component: HealthParentingComponent,
       },
       {
         path: '',
         redirectTo: 'trackers',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: '**',
         redirectTo: 'trackers',
-        pathMatch: 'full'
-      }
-    ]
-  }
+        pathMatch: 'full',
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class UserHealthRoutingModule { }
+export class UserHealthRoutingModule {}

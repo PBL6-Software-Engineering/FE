@@ -13,7 +13,7 @@ export class AdminService {
   constructor(
     private http: HttpClient,
     private tokenService: TokenStorageService,
-    private router: Router
+    private router: Router,
   ) {}
 
   getAllUser({
@@ -25,7 +25,7 @@ export class AdminService {
     sortlatest = true,
   }): Observable<any> {
     return this.http.get<any>(
-      `${linkApi}/${this.model}/all-user?search=${search}&page=${page}&paginate=${paginate}&role=${role}&is_accept=${is_accept}&sortlatest=${sortlatest}`
+      `${linkApi}/${this.model}/all-user?search=${search}&page=${page}&paginate=${paginate}&role=${role}&is_accept=${is_accept}&sortlatest=${sortlatest}`,
     );
   }
 
@@ -34,7 +34,7 @@ export class AdminService {
       `${linkApi}/${this.model}/change-accept/${id_user}`,
       {
         is_accept: is_accept,
-      }
+      },
     );
   }
 
@@ -43,7 +43,7 @@ export class AdminService {
     if (['manager', 'admin', 'supperadmin'].includes(role)) {
       return this.http.post<any>(
         `${linkApi}/${this.model}/change-password`,
-        obj
+        obj,
       );
     } else if (role === 'hospital' || role === 'doctor') {
       return this.http.post<any>(`${linkApi}/user/change-password`, obj);

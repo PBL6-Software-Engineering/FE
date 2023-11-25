@@ -21,7 +21,7 @@ export class SignUpHospitalComponent {
     private formBuilder: FormBuilder,
     private el: ElementRef,
     private renderer: Renderer2,
-    private router: Router
+    private router: Router,
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -72,7 +72,7 @@ export class SignUpHospitalComponent {
           this.loginForm.value.name,
           this.loginForm.value.email,
           this.loginForm.value.password,
-          this.loginForm.value.confirm
+          this.loginForm.value.confirm,
         )
         .subscribe({
           next: (response) => {

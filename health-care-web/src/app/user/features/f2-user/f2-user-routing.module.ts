@@ -16,47 +16,50 @@ const routes: Routes = [
     children: [
       {
         path: 'profile',
-        component: UserProfileComponent
+        component: UserProfileComponent,
       },
       {
         path: 'health',
-        loadChildren: () => import('./user-health/user-health.module').then(m => m.UserHealthModule)
+        loadChildren: () =>
+          import('./user-health/user-health.module').then(
+            (m) => m.UserHealthModule,
+          ),
       },
       {
         path: 'saved',
-        component: UserSavedComponent
+        component: UserSavedComponent,
       },
       {
         path: 'booking',
-        component: UserBookingComponent
+        component: UserBookingComponent,
       },
       {
         path: 'subscriptions',
-        component: UserSubscriptionsComponent
+        component: UserSubscriptionsComponent,
       },
       {
         path: 'password',
-        component: UserPasswordComponent
+        component: UserPasswordComponent,
       },
       {
         path: 'disable-account',
-        component: UserDisableAccountComponent
+        component: UserDisableAccountComponent,
       },
       {
         path: 'help',
-        component: UserHelpComponent
+        component: UserHelpComponent,
       },
       {
         path: '**',
         redirectTo: 'profile',
-        pathMatch: 'full'
-      }
-    ]
-  }
+        pathMatch: 'full',
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class F2UserRoutingModule { }
+export class F2UserRoutingModule {}

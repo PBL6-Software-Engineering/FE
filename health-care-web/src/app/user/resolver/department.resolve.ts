@@ -14,12 +14,12 @@ import { Observable, retry } from 'rxjs';
 export class DepartmentResolve implements Resolve<any> {
   constructor(
     private departmentService: DepartmentService,
-    private router: Router
+    private router: Router,
   ) {}
 
   resolve(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
+    state: RouterStateSnapshot,
   ): Observable<any> {
     return this.departmentService.getAll();
   }

@@ -13,7 +13,7 @@ export class CarouselComponent {
 
   getArrayStep() {
     const numberStep = Math.ceil(
-      (this.items.length - this.numberItemShow) / this.numberItemShow
+      (this.items.length - this.numberItemShow) / this.numberItemShow,
     );
     return new Array(numberStep + 1);
   }

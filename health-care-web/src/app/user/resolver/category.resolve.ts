@@ -17,7 +17,7 @@ export class CategoryResolve implements Resolve<any> {
 
   resolve(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
+    state: RouterStateSnapshot,
   ): Observable<any> {
     return this.categoryService.getAll();
   }

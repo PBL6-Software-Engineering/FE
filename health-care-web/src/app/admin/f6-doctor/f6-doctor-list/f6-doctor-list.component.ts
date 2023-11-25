@@ -44,7 +44,7 @@ export class F6DoctorListComponent implements OnInit, OnDestroy {
     private api: HospitalService,
     private toastr: ToastrService,
     public cdr: ChangeDetectorRef,
-    private spinnerService: NgxSpinnerService
+    private spinnerService: NgxSpinnerService,
   ) {}
 
   ngOnInit() {
@@ -88,7 +88,7 @@ export class F6DoctorListComponent implements OnInit, OnDestroy {
             this.isLoading = false;
             this.spinnerService.hide();
           },
-        })
+        }),
     );
   }
 
@@ -102,10 +102,9 @@ export class F6DoctorListComponent implements OnInit, OnDestroy {
         error: (err) => {
           this.toastr.error('Xoá thất bại!');
         },
-      })
+      }),
     );
   }
-
 
   onChangePage(page: number) {
     this.currentPage = page;

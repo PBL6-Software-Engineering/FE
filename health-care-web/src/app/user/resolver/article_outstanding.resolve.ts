@@ -16,7 +16,7 @@ export class ArticleOutstandingResolve implements Resolve<any> {
 
   resolve(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
+    state: RouterStateSnapshot,
   ): Observable<any> {
     return this.articleService.getArticleOutStandingPublic({
       page: 1,

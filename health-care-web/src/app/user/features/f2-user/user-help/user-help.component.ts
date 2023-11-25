@@ -9,7 +9,10 @@ import { UserService } from '../../../services/user.service';
 export class UserHelpComponent implements OnInit {
   helps: any[] = [];
 
-  constructor(private eleRef: ElementRef, private userService: UserService) {}
+  constructor(
+    private eleRef: ElementRef,
+    private userService: UserService,
+  ) {}
 
   ngOnInit(): void {
     this.userService.getHelps().subscribe((helps) => {

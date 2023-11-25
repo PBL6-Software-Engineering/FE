@@ -29,7 +29,7 @@ export class HospitalDepartmentEditComponent implements OnInit, OnChanges {
 
   constructor(
     private api: DepartmentHospitalService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
   ) {
     this.form = new FormGroup({
       id_department: new FormControl(null, [Validators.required]),

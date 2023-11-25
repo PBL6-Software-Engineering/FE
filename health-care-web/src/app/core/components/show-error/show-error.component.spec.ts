@@ -8,7 +8,7 @@ describe('ShowErrorComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ShowErrorComponent]
+      declarations: [ShowErrorComponent],
     });
     fixture = TestBed.createComponent(ShowErrorComponent);
     component = fixture.componentInstance;

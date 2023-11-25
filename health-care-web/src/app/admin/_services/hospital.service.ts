@@ -17,7 +17,7 @@ export class HospitalService {
     sortLatest = true,
   }): Observable<any> {
     return this.http.get<any>(
-      `${linkApi}/${this.model}/all-doctor?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}&is_confirm=both&is_accept=both`
+      `${linkApi}/${this.model}/all-doctor?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}&is_confirm=both&is_accept=both`,
     );
   }
 
@@ -29,7 +29,7 @@ export class HospitalService {
     sortlatest = true,
   }): Observable<any> {
     return this.http.get<any>(
-      `${linkApi}/${this.model}/all-hospital?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortlatest}`
+      `${linkApi}/${this.model}/all-hospital?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortlatest}`,
     );
   }
 
@@ -44,19 +44,19 @@ export class HospitalService {
     sort_search_number = true,
   }): Observable<any> {
     return this.http.get<any>(
-      `${linkApi}/${this.model}/all-hospital?search=${search}&page=${page}&paginate=${paginate}&sort_search_number=${sort_search_number}`
+      `${linkApi}/${this.model}/all-hospital?search=${search}&page=${page}&paginate=${paginate}&sort_search_number=${sort_search_number}`,
     );
   }
 
   getHospitalService(id_hospital: any): Observable<any> {
     return this.http.get<any>(
-      `${linkApi}/hospital-service/hospital/${id_hospital}`
+      `${linkApi}/hospital-service/hospital/${id_hospital}`,
     );
   }
 
   getDoctorsOfHospital(id_hospital: any): Observable<any> {
     return this.http.get<any>(
-      `${linkApi}/${this.model}/doctors-home/${id_hospital}`
+      `${linkApi}/${this.model}/doctors-home/${id_hospital}`,
     );
   }
 
@@ -67,7 +67,7 @@ export class HospitalService {
   changeConfirmDoctor(id_doctor: any, is_confirm: boolean): Observable<any> {
     return this.http.post<any>(
       `${linkApi}/${this.model}/change-confirm/${id_doctor}`,
-      { is_confirm: is_confirm }
+      { is_confirm: is_confirm },
     );
   }
 
@@ -78,7 +78,7 @@ export class HospitalService {
   updateDoctor(id_doctor: any, obj: any): Observable<any> {
     return this.http.post<any>(
       `${linkApi}/${this.model}/update-infor-extend/${id_doctor}`,
-      obj
+      obj,
     );
   }
 
@@ -89,7 +89,7 @@ export class HospitalService {
   deleteById(id: any): Observable<any> {
     return this.http.post<any>(
       `${linkApi}/${this.model}/change-confirm/${id}`,
-      { is_confirm: 0 }
+      { is_confirm: 0 },
     );
   }
 }

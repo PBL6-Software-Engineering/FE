@@ -14,7 +14,7 @@ export class ArticleImgTopNoContentComponent {
     if (this.article && this.article.content) {
       this.article.previewContent = this.article.content.replace(
         /<[^>]*>/g,
-        ''
+        '',
       );
     }
   }

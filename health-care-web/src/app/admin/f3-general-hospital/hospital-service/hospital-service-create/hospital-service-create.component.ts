@@ -1,7 +1,4 @@
-import {
-  Component,
-  OnInit,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -25,7 +22,7 @@ export class HospitalServiceCreateComponent implements OnInit {
     private departmentHospitalService: DepartmentHospitalService,
     private toastrService: ToastrService,
     private tokenStorageService: TokenStorageService,
-    private router: Router
+    private router: Router,
   ) {
     this.form = new FormGroup({
       id_hospital_department: new FormControl(null, [Validators.required]),

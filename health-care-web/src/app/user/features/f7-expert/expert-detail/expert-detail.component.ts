@@ -16,7 +16,7 @@ export class ExpertDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private expertService: ExpertService,
-    private articleService: ArticleService
+    private articleService: ArticleService,
   ) {}
   ngOnInit(): void {
     this.route.params.subscribe((params) => {

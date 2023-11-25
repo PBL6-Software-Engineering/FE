@@ -71,7 +71,7 @@ export class F4AccountUserListComponent implements OnInit, OnDestroy {
     private api: AdminService,
     private toastr: ToastrService,
     public cdr: ChangeDetectorRef,
-    private spinnerService: NgxSpinnerService
+    private spinnerService: NgxSpinnerService,
   ) {}
 
   ngOnInit() {
@@ -118,7 +118,7 @@ export class F4AccountUserListComponent implements OnInit, OnDestroy {
             this.isLoading = false;
             this.spinnerService.hide();
           },
-        })
+        }),
     );
   }
 
@@ -215,9 +215,7 @@ export class F4AccountUserListComponent implements OnInit, OnDestroy {
           error: (err) => {
             this.toastr.error('Thay đổi trạng thái thất bại!');
           },
-        })
+        }),
     );
   }
 }
-
-

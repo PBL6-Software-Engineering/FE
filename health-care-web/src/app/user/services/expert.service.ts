@@ -14,10 +14,10 @@ export class ExpertService {
     paginate = 6,
     page = 1,
     sortlatest = true,
-    sortname = false
+    sortname = false,
   ): Observable<any> {
     return this.http.get<any>(
-      `${linkApi}/${this.model}/all-doctor-care?search=${search}&name_department=${name_department}&paginate=${paginate}&page=${page}&sortlatest=${sortlatest}&sortname=${sortname}`
+      `${linkApi}/${this.model}/all-doctor-care?search=${search}&name_department=${name_department}&paginate=${paginate}&page=${page}&sortlatest=${sortlatest}&sortname=${sortname}`,
     );
   }
   getDoctorById(id = 0): Observable<any> {

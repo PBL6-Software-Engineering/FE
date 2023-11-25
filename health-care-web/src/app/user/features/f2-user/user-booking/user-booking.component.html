@@ -269,7 +269,11 @@
         >
           Huỷ
         </button>
-        <button type="button" class="btn btn-danger column-center" (click)="deleteOne()">
+        <button
+          type="button"
+          class="btn btn-danger column-center"
+          (click)="deleteOne()"
+        >
           <div class="loader" *ngIf="isDeleting"></div>
           Xác nhận
         </button>
@@ -309,7 +313,12 @@
       <div class="modal-body">
         <div class="row">
           <div class="col-2">
-            <img [src]="itemSelected?.user_avatar" alt="" class="avatar-user" onerror="this.src='assets/media/image/avatar_user_default.png'" />
+            <img
+              [src]="itemSelected?.user_avatar"
+              alt=""
+              class="avatar-user"
+              onerror="this.src='assets/media/image/avatar_user_default.png'"
+            />
           </div>
           <div class="col-10">
             <table class="fs-16">
@@ -319,7 +328,9 @@
               </tr>
               <tr>
                 <th>Ngày sinh:</th>
-                <td>{{ itemSelected?.user_date_of_birth | date : "dd/MM/yyyy" }}</td>
+                <td>
+                  {{ itemSelected?.user_date_of_birth | date: "dd/MM/yyyy" }}
+                </td>
               </tr>
               <tr>
                 <th>Địa chỉ:</th>

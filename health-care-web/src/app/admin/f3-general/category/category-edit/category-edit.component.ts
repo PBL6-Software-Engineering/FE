@@ -31,7 +31,7 @@ export class CategoryEditComponent implements OnInit, OnChanges {
 
   constructor(
     private api: CategoryService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
   ) {
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required]),

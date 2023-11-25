@@ -70,7 +70,7 @@ export class HospitalDepartmentListComponent implements OnInit, OnDestroy {
     private toastr: ToastrService,
     public cdr: ChangeDetectorRef,
     private tokenStorageService: TokenStorageService,
-    private spinnerService: NgxSpinnerService
+    private spinnerService: NgxSpinnerService,
   ) {}
 
   ngOnInit() {
@@ -112,21 +112,21 @@ export class HospitalDepartmentListComponent implements OnInit, OnDestroy {
           error: (err) => {
             this.isErrorGetData = true;
             this.toastr.error('Lỗi! Không thể tải dữ liệu');
-             this.isLoading = false;
-             this.spinnerService.hide();
+            this.isLoading = false;
+            this.spinnerService.hide();
           },
           complete: () => {
             this.isLoading = false;
             this.spinnerService.hide();
           },
-        })
+        }),
     );
     this.subscription.push(
       this.departmentService
         .getDepartmentsNotCreatedByHospitalId(this.hospital.id)
         .subscribe(({ data }) => {
           this.departments = data;
-        })
+        }),
     );
   }
 
@@ -140,7 +140,7 @@ export class HospitalDepartmentListComponent implements OnInit, OnDestroy {
         error: (err) => {
           this.toastr.error('Xoá thất bại!');
         },
-      })
+      }),
     );
   }
 
@@ -154,7 +154,7 @@ export class HospitalDepartmentListComponent implements OnInit, OnDestroy {
         error: (err) => {
           this.toastr.error('Xoá thất bại!');
         },
-      })
+      }),
     );
     this.isSelectAll = false;
   }

@@ -16,7 +16,7 @@ export class ThreeHospitalOutstandingResolve implements Resolve<any> {
 
   resolve(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
+    state: RouterStateSnapshot,
   ): Observable<any> {
     return this.hospitalService.getThreeHospitals({});
   }

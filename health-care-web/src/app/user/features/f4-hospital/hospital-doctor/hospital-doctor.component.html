@@ -11,7 +11,7 @@
             Phí tư vấn ban đầu:
           </span>
           <span class="text-success ml-2">{{
-            doctor?.price | currency : "VND"
+            doctor?.price | currency: "VND"
           }}</span>
         </div>
       </div>
@@ -22,7 +22,9 @@
         <img [src]="hospital?.avatar" alt="" class="avatar-hospital" />
         <div class="ml-20">
           <div class="fw-bold">{{ hospital?.name }}</div>
-          <div class="fs-12" style="color: rgb(89, 89, 89)">{{ hospital?.address }}</div>
+          <div class="fs-12" style="color: rgb(89, 89, 89)">
+            {{ hospital?.address }}
+          </div>
         </div>
       </div>
 

@@ -9,6 +9,5 @@ export class HospitalDoctorComponent implements OnInit {
   @Input() hospital: any;
   @Input() doctors: any[] = [];
   constructor() {}
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }

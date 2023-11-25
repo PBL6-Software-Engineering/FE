@@ -133,7 +133,7 @@ export class F1DashboardComponent implements OnInit {
 
   drawOrderStatisticsChart(): void {
     const element = this.el.nativeElement.querySelector(
-      '#orderStatisticsChart'
+      '#orderStatisticsChart',
     );
     if (!element) {
       return;

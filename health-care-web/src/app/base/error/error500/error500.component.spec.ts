@@ -8,7 +8,7 @@ describe('Error500Component', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [Error500Component]
+      declarations: [Error500Component],
     });
     fixture = TestBed.createComponent(Error500Component);
     component = fixture.componentInstance;

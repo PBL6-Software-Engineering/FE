@@ -18,7 +18,7 @@ export class DepartmentHospitalService {
     id_hospital = 1,
   }): Observable<any> {
     return this.http.get<any>(
-      `${linkApi}/${this.model}/hospital/${id_hospital}?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}`
+      `${linkApi}/${this.model}/hospital/${id_hospital}?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}`,
     );
   }
 
@@ -28,19 +28,17 @@ export class DepartmentHospitalService {
 
   getDepartmentsNotCreatedByHospitalId(id: any): Observable<any> {
     return this.http.get<any>(
-      `${linkApi}/${this.model}/hospital?id_hospital${id}`
+      `${linkApi}/${this.model}/hospital?id_hospital${id}`,
     );
   }
 
   getDepartmentsOfHospital(id: any): Observable<any> {
-    return this.http.get<any>(
-      `${linkApi}/${this.model}/hospital/${id}`
-    );
+    return this.http.get<any>(`${linkApi}/${this.model}/hospital/${id}`);
   }
 
   getDoctorOfDepartment(id_hospital: any, id_department: any): Observable<any> {
     return this.http.get<any>(
-      `${linkApi}/infor-doctor/book-doctor/${id_hospital}/${id_department}`
+      `${linkApi}/infor-doctor/book-doctor/${id_hospital}/${id_department}`,
     );
   }
 

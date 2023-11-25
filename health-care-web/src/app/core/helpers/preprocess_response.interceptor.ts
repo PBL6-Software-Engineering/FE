@@ -17,14 +17,14 @@ export class PreprocessResponseInterceptor implements HttpInterceptor {
 
   intercept(
     request: HttpRequest<any>,
-    next: HttpHandler
+    next: HttpHandler,
   ): Observable<HttpEvent<any>> {
     return this.handler(next, request);
   }
 
   handler(
     next: HttpHandler,
-    request: HttpRequest<any>
+    request: HttpRequest<any>,
   ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       tap(
@@ -41,8 +41,8 @@ export class PreprocessResponseInterceptor implements HttpInterceptor {
         },
         (error: HttpErrorResponse) => {
           throw error;
-        }
-      )
+        },
+      ),
     );
   }
 }

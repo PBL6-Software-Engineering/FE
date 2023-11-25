@@ -89,7 +89,7 @@ const config: SocketIoConfig = {
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '255808396138-caffgiei9rvo2nve4l2206db309bvjbb.apps.googleusercontent.com'
+              '255808396138-caffgiei9rvo2nve4l2206db309bvjbb.apps.googleusercontent.com',
             ),
           },
         ],
