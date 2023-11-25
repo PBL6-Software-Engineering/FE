@@ -98,6 +98,7 @@
         class="w-24 h-24 mx-3 cursor-pointer"
         alt=""
         *ngIf="isLogin"
+        (click)="viewConversation()"
       />
 
       <!-- Avatar after login -->
@@ -110,10 +111,17 @@
         onerror="this.src='assets/media/image/avatar_user_default.png'"
       />
 
+      <!-- info user -->
       <app-header-info-user
         *ngIf="isOpenHeaderInfo"
         (closeHeaderInfo)="isOpenHeaderInfo = false"
       ></app-header-info-user>
+
+      <!-- conversations -->
+      <app-f8-conversations
+        *ngIf="isOpenConversation"
+        (close)="isOpenConversation = false"
+      ></app-f8-conversations>
     </div>
   </div>
 </header>

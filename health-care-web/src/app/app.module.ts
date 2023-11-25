@@ -18,6 +18,8 @@ import { QuillModule } from 'ngx-quill';
 import { spinnerInterceptorProviders } from './core/helpers/http.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { preprocessResponseProviders } from './core/helpers/preprocess_response.interceptor';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
 import {
   FacebookLoginProvider,
   GoogleLoginProvider,
@@ -34,6 +36,11 @@ export const firebaseConfig = {
   storageBucket: 'pbl6-8a7ac.appspot.com',
   messagingSenderId: '40680894288',
   appId: '1:40680894288:web:8f452aa8c6387c288c8655',
+};
+
+const config: SocketIoConfig = {
+  url: 'https://backend-chat-socket-production.up.railway.app/',
+  options: {},
 };
 
 @NgModule({
@@ -61,6 +68,7 @@ export const firebaseConfig = {
       color: '#11B3CF',
     }),
     NgProgressHttpModule,
+    SocketIoModule.forRoot(config),
   ],
   providers: [
     authInterceptorProviders,

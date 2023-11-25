@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HospitalService } from 'src/app/admin/_services/hospital.service';
+import { ChatService } from 'src/app/core/services/chat.service';
 
 @Component({
   selector: 'app-f4-hospital',
@@ -9,13 +10,15 @@ import { HospitalService } from 'src/app/admin/_services/hospital.service';
 })
 export class F4HospitalComponent implements OnInit {
   id: any;
+  user: any;
   hospital: any;
   tab = 'info';
   services: any[] = [];
   doctors: any[] = [];
   constructor(
     private hospitalService: HospitalService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private chatService: ChatService
   ) {}
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -40,7 +43,19 @@ export class F4HospitalComponent implements OnInit {
           });
       }
     });
+
+    this.user = JSON.parse(localStorage.getItem('user') || '{id: guest}');
   }
 
   chooseTab(tab: string): void {}
+
+  openChatbox(): void {
+    if (this.user && this.hospital) {
+      this.chatService.setConversation({
+        conversationId: `conversationId_${this.user.id}_${this.id}`,
+        user: this.user,
+        admin: this.hospital
+      });
+    }
+  }
 }

@@ -24,6 +24,7 @@ export class HeaderComponent implements OnInit {
   isOpenSubMenuBar: boolean = false;
   isOpenSubMenuBarMobile: boolean = false;
   isOpenHeaderInfo: boolean = false;
+  isOpenConversation: boolean = false;
   isLogin: any;
   user: any;
 
@@ -57,7 +58,7 @@ export class HeaderComponent implements OnInit {
   chooseTab(tab: string = 'CATEGORY') {
     this.tabObj.tab = tab;
     this.isOpenSubMenuBar = true;
-    this.isOpenSubMenuBarMobile = this.isOpenHeaderInfo = false;
+    this.isOpenSubMenuBarMobile = this.isOpenHeaderInfo = this.isOpenConversation = false;
     if (tab === 'CATEGORY') {
       this.tabObj.title = 'Chuyên mục sức khoẻ';
       this.tabObj.items = this.categories;
@@ -70,20 +71,32 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  openSubMenuBarMobile(): void {}
-
   login(): void {
     this.isLogin = true;
   }
 
   clickSubMenuBarMobile(): void {
     this.isOpenSubMenuBarMobile = !this.isOpenSubMenuBarMobile;
-    this.isOpenSubMenuBar = this.isOpenHeaderInfo = false;
+    this.isOpenSubMenuBar =
+      this.isOpenHeaderInfo =
+      this.isOpenConversation =
+        false;
   }
 
   clickAvatarUser(): void {
     this.isOpenHeaderInfo = !this.isOpenHeaderInfo;
-    this.isOpenSubMenuBar = this.isOpenSubMenuBarMobile = false;
+    this.isOpenSubMenuBar =
+      this.isOpenSubMenuBarMobile =
+      this.isOpenConversation =
+        false;
+  }
+
+  viewConversation(): void {
+    this.isOpenConversation = !this.isOpenConversation;
+    this.isOpenSubMenuBar =
+      this.isOpenSubMenuBarMobile =
+      this.isOpenHeaderInfo =
+        false;
   }
 
   searchArticle(): void {

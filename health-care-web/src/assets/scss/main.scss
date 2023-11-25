@@ -272,3 +272,22 @@ fieldset {
     border-style: groove;
     border-image: initial;
 }
+
+::-webkit-scrollbar {
+    width: 10px
+}
+
+::-webkit-scrollbar-track {
+    background-color: #fff
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    background-clip: content-box
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf
+}

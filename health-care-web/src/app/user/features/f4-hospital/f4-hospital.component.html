@@ -18,6 +18,12 @@
       <div class="info ml-30 mt-20">
         <div class="fs-22 fw-bold">{{ hospital?.name || 'Bệnh viện' }}</div>
         <div class="address">{{ hospital?.address || 'Việt Nam' }}</div>
+        <div class="mt-8">
+          <button class="btn btn-primary" (click)="openChatbox()">
+            <i class="fa fa-weixin" aria-hidden="true"></i>
+            Trò chuyện với chúng tôi
+          </button>
+        </div>
       </div>
     </div>
   </div>
