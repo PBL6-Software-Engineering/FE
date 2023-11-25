@@ -50,13 +50,13 @@
               alt="Image"
             />
             <div class="card-body">
-              <h5 class="card-title fs-16 fw-700">{{ article.title }}</h5>
+              <h5 class="card-title fs-16 fw-700 preview-content-2">
+                {{ article.title }}
+              </h5>
               <p class="card-text fs-14 preview-content-2">
                 {{ article.content }}
               </p>
-              <p
-                class="view-more column-center mt-12 color-primary"
-              >
+              <p class="view-more column-center mt-12 color-primary">
                 Xem thêm
                 <i aria-hidden="true" class="fa fa-chevron-right mx-6"></i>
               </p>
@@ -65,10 +65,7 @@
         </div>
       </div>
 
-      <div
-        class="row row-between"
-        *ngIf="data.tab === 'BOOKING_DOCTOR'"
-      >
+      <div class="row row-between" *ngIf="data.tab === 'BOOKING_DOCTOR'">
         <div class="col-4" *ngFor="let hospital of hospitals">
           <div
             class="card cursor-pointer"
@@ -78,9 +75,7 @@
             <div class="card-body">
               <h5 class="card-title fs-16 fw-700">{{ hospital.name }}</h5>
               <p class="card-text fs-14">{{ hospital.description }}</p>
-              <p
-                class="view-more column-center mt-12 color-primary"
-              >
+              <p class="view-more column-center mt-12 color-primary">
                 Xem thêm
                 <i aria-hidden="true" class="fa fa-chevron-right mx-6"></i>
               </p>

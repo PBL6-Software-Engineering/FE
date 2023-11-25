@@ -1,1 +1,163 @@
-<p>f12-chat works!</p>
+<div class="row chat-wrapper d-flex">
+  <!-- LIST CONVERSATION -->
+  <div class="col-md-3 conversation-wrapper">
+    <ul class="list-group">
+      <li
+        class="list-group-item list-group-item-action"
+        *ngFor="let conversation of conversations"
+        (click)="selectConversation(conversation)"
+      >
+        <div class="d-flex">
+          <div>
+            <img
+              [src]="conversation?.user?.avatar"
+              alt=""
+              class="wh-40 avatar"
+              onerror="this.src = 'assets/media/image/avatar_user_default.png'"
+            />
+          </div>
+          <div class="ml-12 w-100">
+            <h5 class="fs-12 fw-bold">{{ conversation?.user?.name }}</h5>
+            <p class="preview-content-1 last-message">
+              {{ conversation.lastMessage }}
+            </p>
+            <div
+              class="d-flex justify-content-end preview-content-1 last-message mt-6"
+            >
+              {{ conversation?.createdAt | timeAgo }}
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <div
+      *ngIf="conversations && conversations.length === 0"
+      class="text-warning my-30"
+    >
+      Không có hội thoại nào
+    </div>
+  </div>
+
+  <!-- MAIN CHAT -->
+  <div class="col-md-6 chat-wrapper-content position-relative p-0">
+    <div *ngIf="conversation.conversationId">
+      <!-- HEADER INFO -->
+      <div class="column-center chat-wrapper-content-header px-16">
+        <div>
+          <img
+            [src]="conversation?.user?.avatar"
+            alt=""
+            class="wh-40 avatar"
+            onerror="this.src = 'assets/media/image/avatar_user_default.png'"
+          />
+        </div>
+        <div class="ml-12">
+          <h5 class="fs-13 fw-bold">{{ conversation?.user?.name }}</h5>
+        </div>
+      </div>
+
+      <!-- MESSAGES -->
+      <div class="display-message px-12" (scroll)="onScrollMessages($event)">
+        <div class="wrapper-spinner" *ngIf="isGetMessages">
+          <ngx-spinner
+            bdColor="rgba(0,0,0,0)"
+            size="default"
+            color="#11B3CF"
+            type="ball-pulse-sync"
+            [fullScreen]="false"
+          >
+            <p class="color-primary">Đang tải dữ liệu</p>
+          </ngx-spinner>
+        </div>
+        <div *ngFor="let message of messages" class="message-wrapper">
+          <!-- admin send -->
+          <div *ngIf="message?.isAdminSend">
+            <div class="column-center justify-content-end">
+              <p class="message-content message-content-admin mr-8">
+                {{ message.message }}
+              </p>
+            </div>
+          </div>
+
+          <!-- user send -->
+          <div *ngIf="!message?.isAdminSend">
+            <div class="column-center justify-content-start">
+              <div>
+                <img
+                  [src]="conversation?.user?.avatar"
+                  alt=""
+                  class="wh-40 avatar"
+                  onerror="this.src = 'assets/media/image/avatar_user_default.png'"
+                />
+              </div>
+              <p class="message-content message-content-user ml-8">
+                {{ message.message }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div #scrollChat></div>
+      </div>
+
+      <!-- INPUT CHAT -->
+      <div class="input-chat-wrapper">
+        <input
+          type="text"
+          class="form-control input-chat"
+          placeholder="Nhập tin nhắn ở đây"
+          [(ngModel)]="message"
+          (keyup.enter)="sendMessage()"
+        />
+      </div>
+    </div>
+  </div>
+  <!-- END CHAT -->
+
+  <!-- INFO USER -->
+  <div class="col-md-3 chat-wrapper-content">
+    <p class="fw-bold pt-12">Thông tin người dùng</p>
+
+    <div *ngIf="conversation?.conversationId">
+      <div class="text-center pt-12">
+        <img
+          [src]="conversation?.user?.avatar"
+          alt=""
+          class="wh-60 avatar"
+          onerror="this.src='assets/media/image/avatar_user_default.png'"
+        />
+      </div>
+
+      <div class="pt-12 column-center fs-14">
+        <i class="fa fa-user-circle" aria-hidden="true"></i>
+        <span class="ml-12">{{
+          conversation?.user?.name || "Đang cập nhật"
+        }}</span>
+      </div>
+
+      <div class="pt-12 column-center fs-14">
+        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+        <span class="ml-12">{{
+          "daitoan2002@gmail.com" || "Đang cập nhật"
+        }}</span>
+      </div>
+
+      <div class="pt-12 column-center fs-14">
+        <i class="fa fa-home" aria-hidden="true"></i>
+        <span class="ml-12">{{
+          "387 âu cơ, Liên Chiểu, Đà Nẵng" || "Đang cập nhật"
+        }}</span>
+      </div>
+
+      <div class="pt-12 column-center fs-14">
+        <i class="fa fa-mobile ml-6" aria-hidden="true"></i>
+        <span class="ml-12">{{ "0967492536" || "Đang cập nhật" }}</span>
+      </div>
+
+      <div class="pt-12 column-center fs-14">
+        <i class="fa fa-transgender-alt ml-6" aria-hidden="true"></i>
+        <span class="ml-12">{{ "Nam" || "Đang cập nhật" }}</span>
+      </div>
+    </div>
+  </div>
+</div>

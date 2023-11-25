@@ -2,7 +2,6 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  HostListener,
   Input,
   OnInit,
   Output,
@@ -31,7 +30,7 @@ export class SubHeaderComponent implements OnInit {
   articles: any = [];
   hospitals: any[] = [];
 
-  constructor(private router: Router, private elementRef: ElementRef) {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.articles = JSON.parse(

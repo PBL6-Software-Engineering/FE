@@ -13,6 +13,8 @@ import { F2UserModule } from './features/f2-user/f2-user.module';
 import { CoreModule } from '../core/core.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { F8ConversationsComponent } from './features/f8-conversations/f8-conversations.component';
+import { F9ChatComponent } from './features/f9-chat/f9-chat.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SubHeaderComponent,
     HeaderInfoUserComponent,
     SubHeaderMobileComponent,
+    F8ConversationsComponent,
+    F9ChatComponent,
   ],
   imports: [
     CommonModule,

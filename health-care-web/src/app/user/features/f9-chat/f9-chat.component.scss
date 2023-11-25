@@ -1,17 +1,20 @@
 .chat-wrapper {
-    height: 100vh;
-    background-color: #fff;
-    margin-top: -30px;
-
     &-content {
+        background-color: #fff;
         border: 1px solid #e6e6e6;
-        overflow-y: auto !important;
-        height: 100vh;
+        width: 400px;
+        height: 500px;
+        font-size: 12px;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
 
         &-header {
-            padding-top: 12px;
-            padding-bottom: 12px;
+            padding-top: 8px;
+            padding-bottom: 8px;
             border-bottom: 1px solid #e6e6e6;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
         }
     }
 }
@@ -21,33 +24,11 @@
     object-fit: cover;
 }
 
-.last-message {
-    color: #5d5c5c;
-    font-size: 11px;
-}
-
-.list-group-item {
-    border-radius: 0 !important;
-    padding: 12px 8px;
-    cursor: pointer;
-}
-
-.conversation-wrapper {
-    border: 1px solid #e6e6e6;
-    overflow: hidden;
-    height: 100%;
-    padding-right: 0px !important;
-    height: 100vh;
-
-    &:hover {
-        overflow: auto;
-    }
-}
-
 .input-chat {
-    height: 60px;
+    height: 40px;
     border-radius: 0 !important;
     border: 1px solid #e6e6e6;
+    font-size: 12px;
 
     &-wrapper {
         position: absolute;
@@ -63,7 +44,7 @@
 }
 
 .display-message {
-    height: calc(100vh - 130px);
+    height: 400px;
     overflow-y: auto;
 }
 
