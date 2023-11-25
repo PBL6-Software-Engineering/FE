@@ -20,6 +20,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { preprocessResponseProviders } from './core/helpers/preprocess_response.interceptor';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
+import * as moment from 'moment';
+
 import {
   FacebookLoginProvider,
   GoogleLoginProvider,
@@ -93,6 +95,7 @@ const config: SocketIoConfig = {
         ],
       } as SocialAuthServiceConfig,
     },
+    { provide: 'moment', useValue: moment },
   ],
   bootstrap: [AppComponent],
 })
