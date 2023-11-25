@@ -6,6 +6,7 @@ import { CallBmiComponent } from './components/call-bmi/call-bmi.component';
 import { ArticleImgTopNoContentComponent } from './components/article-img-top-no-content/article-img-top-no-content.component';
 import { ArticleImgLeft2Component } from './components/article-img-left2/article-img-left2.component';
 import { ArticleImgRightComponent } from './components/article-img-right/article-img-right.component';
+import { CoreModule } from 'src/app/core/core.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { ArticleImgRightComponent } from './components/article-img-right/article
     ArticleImgLeft2Component,
     ArticleImgRightComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, CoreModule],
   exports: [
     ArticleImgTopComponent,
     ArticleImgLeftComponent,

@@ -17,8 +17,8 @@
           />
           <div class="ml-8">
             Tham vấn:
-            <span class="fw-700">{{ article?.name_user }}•</span>
-            <span class="ml-4">{{ article?.updated_at_article | date }}</span>
+            <span class="fw-700">{{ article?.name_use || 'Quản trị'  }}•</span>
+            <span class="ml-4">{{ article?.updated_at_article | timeAgo }}</span>
           </div>
         </div>
       </div>

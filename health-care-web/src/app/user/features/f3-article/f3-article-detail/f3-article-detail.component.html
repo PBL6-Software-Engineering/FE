@@ -207,7 +207,7 @@
               </p>
               <p>
                 <span class="fw-bold">Ngày cập nhật gần nhất: </span>
-                {{ article?.updated_at_article }}
+                {{ article?.updated_at_article | timeAgo }}
               </p>
             </div>
           </div>
@@ -259,7 +259,7 @@
                 <span class="fw-bold">{{ article?.name_user }}</span>
                 <br />
                 Ngày cập nhật:
-                {{ article?.updated_at_article }}
+                {{ article?.updated_at_article | timeAgo }}
               </p>
             </div>
             <div class="line mt-2"></div>
