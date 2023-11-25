@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 // import ApexCharts from 'apexcharts';
-import 'src/assets/js/dashboards-analytics';
+// import 'src/assets/js/dashboards-analytics';
 @Component({
   selector: 'app-f1-dashboard',
   templateUrl: './f1-dashboard.component.html',
