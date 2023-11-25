@@ -12,19 +12,19 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { authInterceptorProviders } from './core/helpers/auth.interceptor';
 
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+// import { AngularFireModule } from '@angular/fire/compat';
+// import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { QuillModule } from 'ngx-quill';
 import { spinnerInterceptorProviders } from './core/helpers/http.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { preprocessResponseProviders } from './core/helpers/preprocess_response.interceptor';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
-import {
-  FacebookLoginProvider,
-  GoogleLoginProvider,
-  SocialAuthServiceConfig,
-} from '@abacritt/angularx-social-login';
+// import {
+//   FacebookLoginProvider,
+//   GoogleLoginProvider,
+//   SocialAuthServiceConfig,
+// } from '@abacritt/angularx-social-login';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { NgProgressModule } from 'ngx-progressbar';
 import { NgProgressHttpModule } from 'ngx-progressbar/http';
