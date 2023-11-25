@@ -21,9 +21,7 @@
             <p class="preview-content-1 last-message">
               {{ conversation.lastMessage }}
             </p>
-            <div
-              class="d-flex justify-content-end preview-content-1 last-message mt-6"
-            >
+            <div class="flex-end preview-content-1 last-message mt-6">
               {{ conversation?.createdAt | timeAgo }}
             </div>
           </div>
@@ -72,7 +70,7 @@
         <div *ngFor="let message of messages" class="message-wrapper">
           <!-- admin send -->
           <div *ngIf="message?.isAdminSend">
-            <div class="column-center justify-content-end">
+            <div class="column-center flex-end">
               <p class="message-content message-content-admin mr-8">
                 {{ message.message }}
               </p>

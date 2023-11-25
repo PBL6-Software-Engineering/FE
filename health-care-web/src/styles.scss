@@ -19,36 +19,8 @@
 @import './assets/scss/component.scss';
 @import './assets/scss/flex.scss';
 @import './assets/scss/responsive.scss';
-@import './assets/scss/toggle.scss';
 @import './assets/scss/loading.scss';
 @import './assets/scss/text.scss';
-@import './assets/scss/toogle_switch.scss';
-
-.wrapper-spinner {
-    position: relative;
-    height: 96px;
-}
-
-.ngx-spinner-overlay {
-    .la-ball-pulse-sync {
-        top: 20% !important;
-    }
-}
-
-.ball-pulse-sync {
-    color: #11B3CF !important;
-}
-
-.page-link {
-    color: #11B3CF !important;
-}
-
-.active>.page-link {
-    background-color: #11B3CF !important;
-    border-color: #11B3CF !important;
-    color: white !important;
-}
-
-.ng-spinner {
-    display: none !important;
-}
+@import './assets/scss/scroll.scss';
+@import './assets/scss/border.scss';
+@import './assets/scss/spinner.scss';

@@ -23,3 +23,13 @@
     align-items: center;
     justify-content: center;
 }
+
+.flex-end {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.flex-start {
+    display: flex;
+    justify-content: flex-start;
+}

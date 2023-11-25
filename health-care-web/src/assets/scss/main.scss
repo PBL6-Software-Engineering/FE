@@ -44,7 +44,6 @@ hr {
 
 /* Thêm các quy tắc CSS cụ thể cho trang web của bạn sau đây */
 @for $i from 1 through 200 {
-
     .p {
         &-#{$i} {
             padding: #{$i}px;
@@ -155,7 +154,7 @@ hr {
     }
 }
 
-@for $i from 3 through 7 {
+@for $i from 4 through 7 {
     .fw-#{$i * 100} {
         font-weight: #{$i}00;
     }
@@ -170,24 +169,10 @@ hr {
         border-radius: 100%;
     }
 
-    &-3 {
-        border-radius: 3px;
-    }
-
-    &-4 {
-        border-radius: 4px;
-    }
-
-    &-5 {
-        border-radius: 5px;
-    }
-
-    &-6 {
-        border-radius: 6px;
-    }
-
-    &-8 {
-        border-radius: 8px;
+    @for $i from 1 through 10 {
+        &-#{$i} {
+            border-radius: #{$i}px;
+        }
     }
 }
 
@@ -195,17 +180,9 @@ hr {
     cursor: pointer;
 }
 
-.border-bottom {
-    border-bottom: 1px solid #e4e8ec;
-}
-
 .lh-1-6 {
     line-height: 1.6;
 }
-
-// .active {
-//     color: #11B3CF !important;
-// }
 
 .bg-active {
     background: #11B3CF !important;
@@ -225,10 +202,6 @@ hr {
 
 .bg-gray {
     background-color: #f1f7fa !important;
-}
-
-.text-left {
-    text-align: left;
 }
 
 .thumbnail {
@@ -273,21 +246,12 @@ fieldset {
     border-image: initial;
 }
 
-::-webkit-scrollbar {
-    width: 10px
+.page-link {
+    color: #11B3CF !important;
 }
 
-::-webkit-scrollbar-track {
-    background-color: #fff
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: #d6dee1;
-    border-radius: 10px;
-    border: 1px solid transparent;
-    background-clip: content-box
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background-color: #a8bbbf
+.active>.page-link {
+    background-color: #11B3CF !important;
+    border-color: #11B3CF !important;
+    color: white !important;
 }

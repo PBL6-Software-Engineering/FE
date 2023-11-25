@@ -24,7 +24,8 @@
               "lodash",
               "moment",
               "apexcharts",
-              "ng-inline-svg-2"
+              "ng-inline-svg-2",
+              "quill"
             ],
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",

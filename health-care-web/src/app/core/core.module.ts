@@ -4,7 +4,6 @@ import { ShowErrorComponent } from './components/show-error/show-error.component
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormDirective } from './directives/form.directive';
 import { FormControlPipe } from './pipes/form-control.pipe';
-import { CarouselComponent } from './components/carousel/carousel.component';
 import { PaginateComponent } from './components/paginate/paginate.component';
 import { ConvertToHourAndMinutePipe } from './pipes/convert-to-hour-and-minute.pipe';
 import { CurrencyDirective } from './directives/currency.directive';
@@ -22,7 +21,6 @@ import { TimeAgoPipe } from './pipes/time-ago.pipe';
     FormDirective,
     FormControlPipe,
     ConvertToHourAndMinutePipe,
-    CarouselComponent,
     PaginateComponent,
     CurrencyDirective,
     AgePipe,
@@ -38,7 +36,6 @@ import { TimeAgoPipe } from './pipes/time-ago.pipe';
     FormDirective,
     FormControlPipe,
     ConvertToHourAndMinutePipe,
-    CarouselComponent,
     PaginateComponent,
     CurrencyDirective,
     AgePipe,

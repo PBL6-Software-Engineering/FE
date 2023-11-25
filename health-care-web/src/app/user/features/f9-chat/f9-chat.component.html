@@ -41,7 +41,7 @@
     <div *ngFor="let message of messages" class="message-wrapper">
       <!-- user send -->
       <div *ngIf="message?.isUserSend">
-        <div class="column-center justify-content-end">
+        <div class="column-center flex-end">
           <p class="message-content message-content-admin mr-8">
             {{ message.message }}
           </p>

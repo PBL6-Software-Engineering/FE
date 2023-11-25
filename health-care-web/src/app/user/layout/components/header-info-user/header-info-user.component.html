@@ -4,7 +4,7 @@
       <img
         [src]="user?.avatar"
         alt=""
-        class="border-radius-50 w-64 h-64"
+        class="border-radius-50 wh-64"
         onerror="this.src = 'assets/media/image/avatar_user_default.png'"
       />
       <div
@@ -13,7 +13,7 @@
         (click)="onCloseHeaderInfo()"
       >
         <h6 class="fw-700">{{ user?.name }}</h6>
-        <p style="color: #595959" class="fs-14">
+        <p class="fs-14 color-sub">
           Xem hồ sơ của tôi
           <img src="assets/media/icon/arrow_right.svg" alt="" />
         </p>

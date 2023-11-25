@@ -1,0 +1,18 @@
+.ng-spinner {
+    display: none !important;
+}
+
+.wrapper-spinner {
+    position: relative;
+    height: 96px;
+}
+
+.ngx-spinner-overlay {
+    .la-ball-pulse-sync {
+        top: 20% !important;
+    }
+}
+
+.ball-pulse-sync {
+    color: #11B3CF !important;
+}

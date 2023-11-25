@@ -20,8 +20,6 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { preprocessResponseProviders } from './core/helpers/preprocess_response.interceptor';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
-import * as moment from 'moment';
-
 import {
   FacebookLoginProvider,
   GoogleLoginProvider,
@@ -30,6 +28,7 @@ import {
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { NgProgressModule } from 'ngx-progressbar';
 import { NgProgressHttpModule } from 'ngx-progressbar/http';
+import { linkSocket } from './core/constants/api.constant';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDyXcSL45y9ck5_wG1MTb2756cpUpyP2GE',
@@ -41,7 +40,7 @@ export const firebaseConfig = {
 };
 
 const config: SocketIoConfig = {
-  url: 'https://backend-chat-socket-production.up.railway.app/',
+  url: linkSocket,
   options: {},
 };
 
@@ -95,7 +94,6 @@ const config: SocketIoConfig = {
         ],
       } as SocialAuthServiceConfig,
     },
-    { provide: 'moment', useValue: moment },
   ],
   bootstrap: [AppComponent],
 })
