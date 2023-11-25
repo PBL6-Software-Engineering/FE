@@ -2,9 +2,9 @@
   "name": "health-care-web",
   "version": "0.0.0",
   "scripts": {
-    "ng": "node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build --prod",
-    "start": "ng serve",
-    "build": "ng build",
+    "ng": "ng",
+    "start": "ng serve --max_old_space_size=8192",
+    "build": "ng build --max_old_space_size=8192",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
