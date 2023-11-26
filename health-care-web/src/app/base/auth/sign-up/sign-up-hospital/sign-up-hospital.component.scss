@@ -25,7 +25,7 @@ hr {
 
 .inp {
     padding: 4px;
-    width: calc(100% - 25px);
+    width: calc(100% - 35px);
     border: none;
 
 }
@@ -38,13 +38,15 @@ hr {
 
 .icon {
     width: 25px;
+    margin-right: 10px;
+    font-size: 25px;
 }
 
 .icon:hover {
     opacity: 80%;
 }
 
-label{  
+label {
     padding-left: 10px;
 }
 
@@ -62,17 +64,17 @@ input[type="submit"] {
     width: 100%;
     padding-top: 5px;
     padding-bottom: 5px;
-    margin-top:10px;
-    margin-bottom:20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
 
 }
 
-#or{
+#or {
     font-size: 15px;
     padding-bottom: 10px;
 }
 
-#confirm-pass{
+#confirm-pass {
     margin-top: 14px;
 }
 
@@ -92,18 +94,30 @@ input[type="submit"]:hover {
     margin-right: 10px;
 }
 
-.warning{
-    color:chocolate;
+.warning {
+    color: chocolate;
 }
 
-#btn-login{
+.form-control {
+    // outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+.form-control:focus {
+    // outline: none;
+    border: none;
+    box-shadow: none;
+    background-color: rgba(79, 158, 234, 0.05);
+}
+
+#btn-login {
     color: white;
     background: linear-gradient(to right, #65d1df, #e341f5);
     width: 100%;
     padding-top: 5px;
     padding-bottom: 5px;
-    margin-top:10px;
-    margin-bottom:20px;
+    margin-top: 10px;
     border: none;
     border-radius: 10px;
 }
@@ -118,12 +132,30 @@ input[type="submit"]:hover {
     padding: 10px;
     opacity: 1;
     transition: opacity 2s ease;
-  }
+}
+
+
+.tags {
+    margin-top: 10px;
+
+}
+
+.tag {
+    background-color: #6aaba1;
+    color: white;
+    border-radius: 5px;
+    padding: 4px;
+    margin: 2px;
+}
+
+.badge {
+    margin-right: 5px;
+}
 
 @media screen and (min-height:666px) {
-    
+
     input[type="submit"] {
-        margin-top:20px;
+        margin-top: 20px;
 
     }
 }

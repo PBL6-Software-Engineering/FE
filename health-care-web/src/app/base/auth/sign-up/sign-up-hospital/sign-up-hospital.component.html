@@ -1,64 +1,142 @@
-<div id="radio-container">
-    <div class="conatiner">
-        <div class="col-2"></div>
-        <a [routerLink]="['/auth/sign-in']">
-            <div style="border-radius: 5px 0 0 5px;" class="btn col-5 border ">Đăng nhập</div>
-        </a>
-        <a [routerLink]="['/auth/sign-up']">
-            <div style="border-radius: 0 5px 5px 0;" class="btn col-5 bg-info  text-white">Đăng kí</div>
-        </a>
-        <div class="col-2"></div>
+<div style="padding: 20px 40px;width: 800px;">
+    <div id="radio-container">
+        <div class="conatiner">
+            <div class="col-2"></div>
+            <a [routerLink]="['/auth/sign-in']">
+                <div style="border-radius: 5px 0 0 5px" class="btn col-5 border">
+                    Đăng nhập
+                </div>
+            </a>
+            <a [routerLink]="['/auth/sign-up']">
+                <div style="border-radius: 0 5px 5px 0" class="btn col-5 bg-info text-white">
+                    Đăng kí
+                </div>
+            </a>
+            <div class="col-2"></div>
+        </div>
+    </div>
+    <h2 class="pb-5">Đăng kí bệnh viện</h2>
+    <form action="" method="" class="pb-10" [formGroup]="loginForm">
+        <div class="row">
+            <div class="col-6">
+                <div class="mb-3">
+                    <i class="fa fa-hospital-o icon" aria-hidden="true"></i>
 
-    </div>
-</div>
-<h2>Bác sĩ đăng kí</h2>
-<form action="" method=""  class="pb-50" style="padding-bottom: 83px;" [formGroup]="loginForm">
-    <p>Họ và tên</p>
-    <img class="icon" src="assets/media/icon/user.svg" alt="">
-    <input class="inp" type="text" placeholder="Họ và tên" name="name"  formControlName="name">
-    <div class="warning" *ngIf="isShowName&&nameControl&&nameControl.hasError('required')">
-        Bạn phải nhập tên.
-    </div>
-    <p>Email</p>
-    <img class="icon" src="assets/media/icon/email-outline.svg" alt="">
-    <input class="inp" type="email" placeholder="Email" name="email"  formControlName="email">
-    <div class="warning" *ngIf="isShowEmail&&emailControl&&emailControl.hasError('required')">
-        Bạn phải nhập email.
-    </div>
-    <div class="warning" *ngIf="isShowEmail&&emailControl&&emailControl.hasError('email')">
-        Hãy nhập email hợp lệ.
-      </div>
-    <hr>
-    <p>Mật khẩu</p>
-    <img class="icon" src="assets/media/icon/password-outline.svg" alt="">
-    <input class="inp passwordInp" type="password" placeholder="Nhập mật khẩu" name="password" formControlName="password">
-    <div class="warning" *ngIf="isShowPass&&passControl&&passControl.hasError('required')">
-        Bạn phải nhập mật khẩu.
-    </div>
-    <p id="confirm-pass">Xác nhận mật khẩu</p>
-    <img class="icon" src="assets/media/icon/password-outline.svg" alt="">
+                    <input class="inp" type="text" placeholder="Tên bệnh viện" name="name" formControlName="name" />
+                    <div class="warning" *ngIf="isShowName && nameControl && nameControl.hasError('required')">
+                        Bạn phải nhập tên.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <img class="icon" src="assets/media/icon/email-outline.svg" alt="" />
+                    <input class="inp" type="email" placeholder="Email" name="email" formControlName="email" />
+                    <div class="warning" *ngIf="isShowEmail && emailControl && emailControl.hasError('required')">
+                        Bạn phải nhập email.
+                    </div>
+                    <div class="warning" *ngIf="isShowEmail && emailControl && emailControl.hasError('email')">
+                        Hãy nhập email hợp lệ.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <i class="fa fa-phone icon" aria-hidden="true"></i>
+                    <input class="inp" type="text" placeholder="Số điện thoại" name="phone" formControlName="phone" />
+                    <div class="warning" *ngIf="isShowPhone && phoneControl && phoneControl.hasError('required')">
+                        Bạn phải nhập số điện thoại.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <i class="fa fa-location-arrow icon" aria-hidden="true"></i>
+                    <input class="inp" style="width: calc(100% - 120px);border-right: solid 1px rgba(0,0,0,0.4);"
+                        type="text" placeholder="Địa chỉ" name="address" formControlName="address" />
 
-    <input class="inp passwordInp" type="password" placeholder="Nhập mật khẩu" name="confirm" formControlName="confirm">
-    <div class="warning" *ngIf="isShowConfirm&&confirmControl&&confirmControl.hasError('required')">
-        Bạn phải xác nhập mật khẩu.
-    </div>
-    <hr>
-    <input type="checkbox" id="show" (click)="hideShowPass()">
-    <label for="show">Hiển thị mật khẩu</label>
-    <!-- <a href="" id="forgot-pass">Forgot password?</a> -->
-    <!-- <input type="submit" value="Sign up"> -->
-    <div class="btn btn-secondary d-flex justify-content-center" id="btn-login" (click)="signup()">
-        <div class="spinner-border spinner-border-sm text-primary d-none" id="loading" role="status" style="margin-top: 3px;margin-right: 5px;">
-            <span class="visually-hidden">Loading...</span>
-          </div>
-        <p>Đăng kí</p>  
-    </div>
-</form>
-<div class="container  position-absolute bottom-0 start-0 mb-30">
-    <p class="text-center" id="or">Hoặc đăng nhập bằng:</p>
-    <div id="social-media-container">
-        <img src="assets/media/icon/social-media/facebook1.svg" alt="" >
-        <img src="assets/media/icon/social-media/twitter.svg" alt="">
-        <img src="assets/media/icon/social-media/google-contained-fill.svg" alt="">
-    </div>
+                    <input class="inp" style="width: 85px;" type="text" placeholder="Mã tỉnh/TP" name="code"
+                        formControlName="code" />
+                    <div class="warning" *ngIf="isShowAddress && addressControl && addressControl.hasError('required')">
+                        Bạn phải nhập địa chỉ.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <i class="fa fa-map-marker icon" aria-hidden="true"></i>
+                    <input class="inp" style="width: calc((100% - 35px)/2);border-right: solid 1px rgba(0,0,0,0.4);"
+                        type="text" placeholder="Tọa độ x" name="xOr" formControlName="xOr" />
+
+                    <input class="inp" style="width: calc((100% - 35px)/2);" type="text" placeholder="Tọa độ y"
+                        name="yOr" formControlName="yOr" />
+                    <div class="warning"
+                        *ngIf="isShowOr && (xOrControl  && xOrControl.hasError('required')) || (yOrControl  && yOrControl.hasError('required'))">
+                        Bạn phải nhập tọa độ.
+                    </div>
+                </div>
+
+                <div class="mb-3 d-flex align-items-center">
+                    <i class="fa fa-pencil-square-o icon" aria-hidden="true"></i>
+                    <textarea class="inp" type="text" placeholder="Mô tả" name="description"
+                        formControlName="description" style="height: 100%;"></textarea>
+                    <div class="warning"
+                        *ngIf="isShowDescription && descriptionControl && descriptionControl.hasError('required')">
+                        Bạn phải nhập mô tả.
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+
+                <div class=" mb-3">
+                    <i class="fa fa-list icon" aria-hidden="true"></i>
+                    <input type="text" class="inp" style="width: auto;" placeholder="Nhập trang thiết bị"
+                        name="infrastructure" formControlName="infrastructure" (keydown.Enter)="addTag()" />
+                    <button class="btn btn-outline-secondary" type="button" (click)="addTag()">Thêm</button>
+                </div>
+
+                <div class="tags">
+                    <span *ngFor="let tag of tags" class="tag">
+                        {{ tag }}
+                        <button type="button" class="close btn" aria-label="Close" (click)="removeTag(tag)">
+                            <i class="fa fa-times-circle" aria-hidden="true"></i>
+                        </button>
+                    </span>
+                </div>
+                <div class="mb-3">
+                    <i class="fa fa-hospital-o icon" aria-hidden="true"></i>
+
+                    <input class="inp" type="text" placeholder="Tên đăng nhập" name="username"
+                        formControlName="username" />
+                    <div class="warning"
+                        *ngIf="isShowUsername && usernameControl && usernameControl.hasError('required')">
+                        Bạn phải nhập tên đăng nhập.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <img class="icon" src="assets/media/icon/password-outline.svg" alt="" />
+                    <input class="inp passwordInp" type="password" placeholder="Nhập mật khẩu" name="password"
+                        formControlName="password" />
+                    <div class="warning" *ngIf="isShowPass && passControl && passControl.hasError('required')">
+                        Bạn phải nhập mật khẩu.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <img class="icon" src="assets/media/icon/password-outline.svg" alt="" />
+
+                    <input class="inp passwordInp" type="password" placeholder="Nhập mật khẩu" name="confirm"
+                        formControlName="confirm" />
+                    <div class="warning" *ngIf="
+                                                        isShowConfirm && confirmControl && confirmControl.hasError('required')
+                                                      ">
+                        Bạn phải xác nhập mật khẩu.
+                    </div>
+                </div>
+                <hr />
+                <input type="checkbox" id="show" (click)="hideShowPass()" />
+                <label for="show">Hiển thị mật khẩu</label>
+            </div>
+        </div>
+        <!-- <a href="" id="forgot-pass">Forgot password?</a> -->
+        <!-- <input type="submit" value="Sign up"> -->
+        <div class="btn btn-secondary d-flex justify-content-center" id="btn-login" (click)="signup()">
+            <div class="spinner-border spinner-border-sm text-primary d-none" id="loading" role="status"
+                style="margin-top: 3px; margin-right: 5px">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p>Đăng kí</p>
+        </div>
+    </form>
 </div>

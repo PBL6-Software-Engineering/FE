@@ -1,4 +1,9 @@
-import { ChangeDetectorRef, Component, ElementRef, signal } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  signal,
+} from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { UserWorkScheduleService } from 'src/app/user/services/user-work-schedule.service';
@@ -173,6 +178,7 @@ export class UserBookingComponent {
           this.toastrService.success('Hủy lịch hẹn thành công');
         },
         error: () => {
+          this.isDeleting = false;
           this.toastrService.error('Hủy lịch hẹn thất bại');
         },
       });
