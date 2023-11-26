@@ -1,7 +1,7 @@
 <div class="card my-30 p-0" *ngFor="let doctor of doctors">
   <div class="card-body p-0">
     <div class="column-center px-12 py-20">
-      <img [src]="doctor?.avatar" alt="" class="avatar-doctor" />
+      <img [src]="doctor?.avatar" alt="Ảnh bác sĩ" class="avatar-doctor" onerror="this.src='assets/media/image/avatar_doctor_default.jpg'" />
       <div class="ml-20">
         <div class="fw-bold">{{ doctor?.name_doctor }}</div>
         <div class="fs-14 my-8">Khoa {{ doctor?.name_department }}</div>
@@ -19,17 +19,17 @@
 
     <div class="row-between info-hospital column-center p-12">
       <div class="column-center">
-        <img [src]="hospital?.avatar" alt="" class="avatar-hospital" />
+        <img [src]="hospital?.avatar" alt="Ảnh bệnh viện" class="avatar-hospital" />
         <div class="ml-20">
           <div class="fw-bold">{{ hospital?.name }}</div>
-          <div class="fs-12" style="color: rgb(89, 89, 89)">
+          <div class="fs-12 color-sub">
             {{ hospital?.address }}
           </div>
         </div>
       </div>
 
       <div>
-        <button class="btn btn-primary-1">Đặt lịch hẹn</button>
+        <button class="btn btn-primary-1" onerror="this.src='assets/media/image/avatar_hospital_default.jpg'" >Đặt lịch hẹn</button>
       </div>
     </div>
   </div>
