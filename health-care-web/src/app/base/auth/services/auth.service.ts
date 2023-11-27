@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import * as auth from 'firebase/auth';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Router } from '@angular/router';
 import { linkApi } from 'src/app/core/constants/api.constant';
 
 @Injectable({
@@ -12,8 +9,6 @@ import { linkApi } from 'src/app/core/constants/api.constant';
 export class AuthService {
   constructor(
     private http: HttpClient,
-    private afAuth: AngularFireAuth,
-    private router: Router,
   ) {}
 
   forgotPass(email: string): Observable<any> {
@@ -91,22 +86,5 @@ export class AuthService {
 
     console.log(requestBody);
     return this.http.post(`${linkApi}/infor-hospital/register`, requestBody);
-  }
-
-  googleAuth() {
-    this.authLogin(new auth.GoogleAuthProvider()).then((res: any) => {
-      this.router.navigate(['/']);
-    });
-  }
-
-  authLogin(provider: any) {
-    return this.afAuth
-      .signInWithPopup(provider)
-      .then((result) => {
-        this.router.navigate(['/']);
-      })
-      .catch((error) => {
-        window.alert(error);
-      });
   }
 }

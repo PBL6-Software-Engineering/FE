@@ -44,7 +44,7 @@
     "apexcharts": "^3.43.0",
     "bootstrap": "^5.0.2",
     "cleave.js": "^1.4.4",
-    "firebase": "^10.5.0",
+    "cypress": "^13.6.0",
     "flatpickr": "^4.6.13",
     "fullcalendar": "^6.1.9",
     "jquery": "^3.7.1",

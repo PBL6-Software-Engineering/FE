@@ -1,11 +1,8 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-// import 'firebase/auth';
-import * as auth from 'firebase/auth';
 import { ToastrService } from 'ngx-toastr';
 import { TokenStorageService } from '../../services/token_storage.service';
 
@@ -26,7 +23,6 @@ export class SignInUserComponent implements OnInit {
     private el: ElementRef,
     private renderer: Renderer2,
     private router: Router,
-    private afAuth: AngularFireAuth,
     private toastrService: ToastrService,
     private tokenStorageService: TokenStorageService,
   ) {
@@ -69,20 +65,6 @@ export class SignInUserComponent implements OnInit {
           },
         });
     }
-  }
-  googleLogin() {
-    // this.apiService.googleAuth();
-    this.afAuth
-      .signInWithPopup(new auth.GoogleAuthProvider())
-      .then((googleResponse) => {
-        // Successfully logged in
-        console.log(googleResponse);
-        // Add your logic here
-      })
-      .catch((err) => {
-        // this.showNotification(err.message);
-        console.log(err);
-      });
   }
 
   hideShowPass() {
