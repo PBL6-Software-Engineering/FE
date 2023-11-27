@@ -49,6 +49,50 @@ export class AuthService {
     return this.http.post(`${linkApi}/infor-user/register`, requestBody);
   }
 
+  signupHospital(
+    name: string,
+    username: string,
+    email: string,
+    password: string,
+    confirm: string,
+    phone: string,
+    province_code: number,
+    address: string,
+    infrastructure: string,
+    description: string,
+    location: string,
+  ): Observable<any> {
+    const requestBody = {
+      name: name,
+      username: username,
+      email: email,
+      password: password,
+      password_confirmation: confirm,
+      phone: phone,
+      province_code: province_code,
+      address: address,
+      infrastructure: infrastructure,
+      description: description,
+      location: location,
+    };
+    // const requestBody = {
+    //   name: "Bệnh viện AZKOKO",
+    //   username:""
+    //   email: "ZaKOKO@gmail.com",
+    //   password: "123456",
+    //   password_confirmation: "123456",
+    //   phone: "1023123209812",
+    //   province_code: "63",
+    //   address: "Đà Nẵng",
+    //   infrastructure: [],
+    //   description: "Một bệnh viện tốt",
+    //   location: [1,3],
+    // };
+
+    console.log(requestBody);
+    return this.http.post(`${linkApi}/infor-hospital/register`, requestBody);
+  }
+
   googleAuth() {
     this.authLogin(new auth.GoogleAuthProvider()).then((res: any) => {
       this.router.navigate(['/']);

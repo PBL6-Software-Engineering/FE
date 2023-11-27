@@ -178,6 +178,7 @@ export class UserBookingComponent {
           this.toastrService.success('Hủy lịch hẹn thành công');
         },
         error: () => {
+          this.isDeleting = false;
           this.toastrService.error('Hủy lịch hẹn thất bại');
         },
       });

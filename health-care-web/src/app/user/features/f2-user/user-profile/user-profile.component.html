@@ -11,7 +11,7 @@
           [src]="user?.avatar"
           alt=""
           class="border-radius-50 w-64"
-          (error)="user.avatar = 'assets/media/image/avatar_user_default.png'"
+          onerror="this.src = 'assets/media/image/avatar_user_default.png'"
         />
         <img
           src="assets/media/icon/icon-camera.svg"

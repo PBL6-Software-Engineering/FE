@@ -63,38 +63,30 @@
             <div class="blue-line-vertical me-2"></div>
             <span class="fs-18 fw-700">Hồ sơ chuyên gia</span>
           </div>
-          <p class="fs-16">
-            BS. Phùng Thị Phương Chi đã có hơn 20 năm kinh nghiệm trong nghề tại
-            Bệnh viện Ung Bướu TP. HCM. Thế mạnh của chị là khám, chẩn đoán,
-            điều trị phẫu thuật và hóa trị bệnh lý ung thư.
-          </p>
-          <p class="fs-16">
-            BS. Phùng Thị Phương Chi từng tham gia các khóa đào tạo trong và
-            ngoài nước. Chị là một trong những phẫu thuật viên đầu tiên thực
-            hiện phẫu thuật nội soi ung thư phụ khoa tại TP. HCM.
+          <div>
+            <p
+              class="fs-16"
+              *ngFor="let prominent of doctor?.infor_extend.prominent"
+            >
+              <span>{{ prominent.title }}</span
+              >:{{ prominent.subtitle }}
+            </p>
+          </div>
+          <p id="information">
+            {{
+              doctor?.infor_extend.information ||
+                "Thông tin bác sĩ chưa cập nhật"
+            }}
           </p>
           <h3 class="fs-18 fw-bold mt-3 mb-3">Đề tài nghiên cứu</h3>
 
-          <p class="mb-3">
-            <i class="fa fa-check-square-o" aria-hidden="true"></i>
-            <span class="fs-18 fw-700">Năm 1998:</span
-            ><span>Xác định nhu cầu của người nhiễm HIV/AIDS</span>
-          </p>
-          <p class="mb-3">
-            <i class="fa fa-check-square-o" aria-hidden="true"></i>
-            <span class="fs-18 fw-700">Năm 1998:</span
-            ><span>Xác định nhu cầu của người nhiễm HIV/AIDS</span>
-          </p>
-          <p class="mb-3">
-            <i class="fa fa-check-square-o" aria-hidden="true"></i>
-            <span class="fs-18 fw-700">Năm 1998:</span
-            ><span>Xác định nhu cầu của người nhiễm HIV/AIDS</span>
-          </p>
-          <p class="mb-3">
-            <i class="fa fa-check-square-o" aria-hidden="true"></i>
-            <span class="fs-18 fw-700">Năm 1998:</span
-            ><span>Xác định nhu cầu của người nhiễm HIV/AIDS</span>
-          </p>
+          <div *ngFor="let awardsRe of doctor?.infor_extend.awards_recognition">
+            <p class="mb-3">
+              <i class="fa fa-check-square-o" aria-hidden="true"></i>
+              <span class="fs-18 fw-700">Năm {{ awardsRe.subtitle[0] }}</span
+              ><span class="ps-2">{{ awardsRe.title }}</span>
+            </p>
+          </div>
           <div>
             <div style="height: 26px" class="d-flex align-items-center mb-3">
               <div class="blue-line-vertical me-2"></div>
@@ -103,7 +95,12 @@
             <div class="row">
               <div class="col-6">
                 <p class="fw-700 mb-2" style="color: #8c8c8c">BẰNG CẤP</p>
-                <div class="row">
+                <div
+                  class="row"
+                  *ngFor="
+                    let trainingPr of doctor?.infor_extend.training_process
+                  "
+                >
                   <div class="col-1">
                     <i
                       class="fa fa-circle fs-10"
@@ -112,27 +109,17 @@
                     ></i>
                   </div>
                   <div class="col">
-                    <p>Chuyên ngành Y khoa</p>
-                    <p>Trung tâm Đào tạo và Bồi dưỡng Cán bộ y tế</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-1">
-                    <i
-                      class="fa fa-circle fs-10"
-                      style="color: aquamarine"
-                      aria-hidden="true"
-                    ></i>
-                  </div>
-                  <div class="col">
-                    <p>Chuyên ngành Y khoa</p>
-                    <p>Trung tâm Đào tạo và Bồi dưỡng Cán bộ y tế</p>
+                    <p>{{ trainingPr.title }}</p>
+                    <p>{{ trainingPr.subtitle[1] }}</p>
                   </div>
                 </div>
               </div>
               <div class="col-6">
                 <p class="fw-700 mb-2" style="color: #8c8c8c">KINH NGHIỆM</p>
-                <div class="row">
+                <div
+                  class="row"
+                  *ngFor="let workEx of doctor?.infor_extend.work_experience"
+                >
                   <div class="col-1">
                     <i
                       class="fa fa-circle fs-10"
@@ -141,21 +128,8 @@
                     ></i>
                   </div>
                   <div class="col">
-                    <p>Chuyên ngành Y khoa</p>
-                    <p>Trung tâm Đào tạo và Bồi dưỡng Cán bộ y tế</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-1">
-                    <i
-                      class="fa fa-circle fs-10"
-                      style="color: aquamarine"
-                      aria-hidden="true"
-                    ></i>
-                  </div>
-                  <div class="col">
-                    <p>Chuyên ngành Y khoa</p>
-                    <p>Trung tâm Đào tạo và Bồi dưỡng Cán bộ y tế</p>
+                    <p>{{ workEx.title }}</p>
+                    <p>{{ workEx.subtitle }}</p>
                   </div>
                 </div>
               </div>

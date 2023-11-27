@@ -2,7 +2,7 @@ import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-sign-up-hospital',
   templateUrl: './sign-up-hospital.component.html',
@@ -14,7 +14,14 @@ export class SignUpHospitalComponent {
   isShowPass = false;
   isShowConfirm = false;
   isShowName = false;
+  isShowPhone = false;
+  isShowAddress = false;
+  isShowDescription = false;
+  isShowUsername = false;
+  isShowOr = false;
   message: string = '';
+  tagInput: string = '';
+  tags: string[] = [];
 
   constructor(
     private apiService: AuthService,
@@ -22,12 +29,21 @@ export class SignUpHospitalComponent {
     private el: ElementRef,
     private renderer: Renderer2,
     private router: Router,
+    private toastrService: ToastrService,
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
       confirm: ['', [Validators.required]],
       name: ['', [Validators.required]],
+      phone: ['', [Validators.required]],
+      address: ['', [Validators.required]],
+      infrastructure: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      username: ['', [Validators.required]],
+      code: ['', [Validators.required]],
+      xOr: ['', [Validators.required]],
+      yOr: ['', [Validators.required]],
     });
   }
 
@@ -46,7 +62,39 @@ export class SignUpHospitalComponent {
   get nameControl() {
     return this.loginForm.get('name');
   }
+  get usernameControl() {
+    return this.loginForm.get('username');
+  }
+  get phoneControl() {
+    return this.loginForm.get('phone');
+  }
 
+  get addressControl() {
+    return this.loginForm.get('address');
+  }
+  get descriptionControl() {
+    return this.loginForm.get('description');
+  }
+  get codeControl() {
+    return this.loginForm.get('code');
+  }
+  get xOrControl() {
+    return this.loginForm.get('xOr');
+  }
+  get yOrControl() {
+    return this.loginForm.get('yor');
+  }
+  addTag() {
+    this.tagInput = this.loginForm.get('infrastructure')?.value;
+    if (this.tagInput.trim() !== '' && !this.tags.includes(this.tagInput)) {
+      this.tags.push(this.tagInput.trim());
+      this.tagInput = '';
+    }
+  }
+
+  removeTag(tag: string) {
+    this.tags = this.tags.filter((t) => t !== tag);
+  }
   showNotification(message: string) {
     this.message = message;
     const notification = this.el.nativeElement.querySelector('#notification');
@@ -68,20 +116,31 @@ export class SignUpHospitalComponent {
       var loading = this.el.nativeElement.querySelector('#loading');
       this.renderer.removeClass(loading, 'd-none');
       this.apiService
-        .signup(
+        .signupHospital(
           this.loginForm.value.name,
+          this.loginForm.value.username,
           this.loginForm.value.email,
           this.loginForm.value.password,
           this.loginForm.value.confirm,
+          this.loginForm.value.phone,
+          this.loginForm.value.code,
+          this.loginForm.value.address,
+          JSON.stringify(this.tags),
+          this.loginForm.value.description,
+          JSON.stringify([
+            parseInt(this.loginForm.value.xOr),
+            parseInt(this.loginForm.value.yOr),
+          ]),
         )
         .subscribe({
           next: (response) => {
-            this.showNotification('Đăng nhập thành công');
+            this.toastrService.success('Đăng kí thành công');
             this.router.navigate(['/']);
           },
           error: (error) => {
-            this.showNotification(error.error.message);
+            this.toastrService.error('Đăng kí thất bại');
             this.renderer.addClass(loading, 'd-none');
+            console.log(error);
           },
         });
     } else {
@@ -99,6 +158,18 @@ export class SignUpHospitalComponent {
       }
       if (this.loginForm.hasError('required', 'confirm')) {
         this.isShowConfirm = true;
+      }
+      if (this.loginForm.hasError('required', 'address')) {
+        this.isShowAddress = true;
+      }
+      if (this.loginForm.hasError('required', 'phone')) {
+        this.isShowPhone = true;
+      }
+      if (this.loginForm.hasError('required', 'description')) {
+        this.isShowDescription = true;
+      }
+      if (this.loginForm.hasError('required', 'username')) {
+        this.isShowUsername = true;
       }
     }
   }

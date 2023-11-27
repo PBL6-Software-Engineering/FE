@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ArticleService } from 'src/app/admin/_services/article.service';
 import { ExpertService } from '../../../services/expert.service';
-
+import { ElementRef } from '@angular/core';
 @Component({
   selector: 'app-expert-detail',
   templateUrl: './expert-detail.component.html',
@@ -17,6 +17,7 @@ export class ExpertDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private expertService: ExpertService,
     private articleService: ArticleService,
+    private el: ElementRef,
   ) {}
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -24,6 +25,8 @@ export class ExpertDetailComponent implements OnInit {
         this.id = params['id'];
         this.expertService.getDoctorById(this.id).subscribe({
           next: ({ data }) => {
+            this.el.nativeElement.querySelector('#information').innerHTML =
+              data.infor_extend.information;
             this.doctor = data;
             this.articleService
               .getArticleOutStandingPublic({
