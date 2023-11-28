@@ -115,7 +115,10 @@
           formControlName="phone"
           required
         />
-        <app-show-error [control]="form.get('phone')"></app-show-error>
+        <app-show-error
+          [control]="form.get('phone')"
+          [validatesInput]="messagesValidatePass"
+        ></app-show-error>
       </div>
 
       <div class="col-sm-6 mb-3">

@@ -24,6 +24,10 @@ export class UpdateProfileHospitalComponent implements OnInit {
 
   provinces: any = [];
 
+  messagesValidatePass = [
+    { type: 'pattern', message: 'Số điện thoại không hợp lệ' },
+  ];
+
   constructor(
     private adminService: AdminService,
     private toastrService: ToastrService,
@@ -41,8 +45,11 @@ export class UpdateProfileHospitalComponent implements OnInit {
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required]),
       username: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required]),
-      phone: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      phone: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^(84|0[3|5|7|8|9])+([0-9]{8})$'),
+      ]),
       address: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
       location: new FormControl('99, 29', []),
