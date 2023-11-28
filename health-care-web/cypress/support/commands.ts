@@ -32,6 +32,7 @@ declare namespace Cypress {
   interface Chainable<Subject> {
     loginUser(): typeof loginUser;
     loginHospital(): typeof loginHospital;
+    loginAdmin(): typeof loginAdmin;
     changePassword(): typeof changePassword;
   }
 }
@@ -66,6 +67,20 @@ function loginHospital() {
   });
 }
 
+Cypress.Commands.add('loginAdmin' as any, loginAdmin);
+function loginAdmin() {
+  cy.request({
+    method: 'POST',
+    url: 'https://vanmanh.azurewebsites.net/api/admin/login',
+    body: {
+      email: 'vanmanh.dut@yopmail.com',
+      password: '123456',
+    },
+  }).then((res: any) => {
+    window.localStorage.setItem('token', res.body.data.access_token);
+    window.localStorage.setItem('role', res.body.data.role);
+  });
+}
 
 Cypress.Commands.add('changePassword' as any, changePassword);
 function changePassword(oldPass: any, newPass: any, confirmPass: any) {
