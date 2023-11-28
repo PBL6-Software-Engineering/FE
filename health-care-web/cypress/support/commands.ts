@@ -31,6 +31,8 @@
 declare namespace Cypress {
   interface Chainable<Subject> {
     loginUser(): typeof loginUser;
+    loginHospital(): typeof loginHospital;
+    changePassword(): typeof changePassword;
   }
 }
 
@@ -41,10 +43,39 @@ function loginUser() {
     url: 'https://vanmanh.azurewebsites.net/api/user/login',
     body: {
       email: 'khanhlinh999@yopmail.com',
+      password: 'abcd@123',
+    },
+  }).then((res: any) => {
+    window.localStorage.setItem('token', res.body.data.access_token);
+    window.localStorage.setItem('role', res.body.data.role);
+  });
+}
+
+Cypress.Commands.add('loginHospital' as any, loginHospital);
+function loginHospital() {
+  cy.request({
+    method: 'POST',
+    url: 'https://vanmanh.azurewebsites.net/api/user/login',
+    body: {
+      email: 'benhvienkimkhanh@yopmail.com',
       password: '123456',
     },
   }).then((res: any) => {
     window.localStorage.setItem('token', res.body.data.access_token);
     window.localStorage.setItem('role', res.body.data.role);
   });
+}
+
+
+Cypress.Commands.add('changePassword' as any, changePassword);
+function changePassword(oldPass: any, newPass: any, confirmPass: any) {
+  cy.request({
+    method: 'POST',
+    url: 'https://vanmanh.azurewebsites.net/api/user/change-password',
+    body: {
+      current_password: oldPass,
+      new_password: newPass,
+      new_password_confirmation: confirmPass,
+    },
+  }).then((res: any) => {});
 }

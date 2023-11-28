@@ -74,6 +74,12 @@ export class UserPasswordComponent implements OnInit {
   changePassword(): void {
     // call API here
     if (this.form.valid && !this.isSaving) {
+      if (this.form.value.oldPass === this.form.value.pwGroup.newPass) {
+        this.toastrService.error(
+          'Mật khẩu mới không được trùng với mật khẩu cũ!',
+        );
+        return;
+      }
       this.isSaving = true;
       const obj = {
         current_password: this.form.value.oldPass,
@@ -87,7 +93,14 @@ export class UserPasswordComponent implements OnInit {
           this.form.reset();
         },
         error: (err) => {
-          this.toastrService.error('Đổi mật khẩu thất bại!');
+          console.log(err);
+          const msg =
+            err.data && err.data.length
+              ? err.data[0]
+              : err.error && err.error.message
+                ? err.error.message
+                : err.message || 'Đổi mật khẩu thất bại!';
+          this.toastrService.error(msg);
           this.isSaving = false;
         },
       });

@@ -67,7 +67,17 @@ export class UpdateProfileHospitalComponent implements OnInit {
     this.provinces = JSON.parse(localStorage.getItem('provinces') || '[]');
   }
 
+  cleanForm() {
+    this.form.get('name').setValue(this.form.get('name').value.trim());
+    this.form.get('username').setValue(this.form.get('username').value.trim());
+    this.form.get('email').setValue(this.form.get('email').value.trim());
+    this.form.get('phone').setValue(this.form.get('phone').value.trim());
+    this.form.get('address').setValue(this.form.get('address').value.trim());
+    this.form.get('description').setValue(this.form.get('phone').value.trim());
+  }
+
   save() {
+    this.cleanForm();
     if (this.form.valid && !this.isSaving) {
       const obj = Object.assign({}, this.form.value);
       console.log(obj);
