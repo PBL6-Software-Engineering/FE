@@ -2,8 +2,6 @@ import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import * as auth from 'firebase/auth';
 import { ToastrService } from 'ngx-toastr';
 import { TokenStorageService } from '../../services/token_storage.service';
 
@@ -23,7 +21,6 @@ export class SignInAdminComponent implements OnInit {
     private el: ElementRef,
     private renderer: Renderer2,
     private router: Router,
-    private afAuth: AngularFireAuth,
     private toastrService: ToastrService,
     private tokenStorageService: TokenStorageService,
   ) {
@@ -61,6 +58,7 @@ export class SignInAdminComponent implements OnInit {
         });
     }
   }
+
   hideShowPass() {
     let passField = this.el.nativeElement.querySelector('#password');
     let toggleButton = this.el.nativeElement.querySelector('#toggleButton');
