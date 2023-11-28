@@ -7,8 +7,8 @@ import { Component, Input } from '@angular/core';
 })
 export class ShowErrorComponent {
   validates = [
-    { type: 'required', message: 'Trường này bắt buộc.' },
-    { type: 'passwordNotMatch', message: 'Mật khẩu không trùng khớp.' },
+    { type: 'required', message: 'Trường này bắt buộc' },
+    { type: 'passwordNotMatch', message: 'Mật khẩu không trùng khớp' },
     { type: 'pattern', message: 'Thông tin không đúng định dạng.' },
     { type: 'minlength', message: 'Thông tin quá ít kí tự' },
     { type: 'maxlength', message: 'Thông tin quá nhiều kí tự' },

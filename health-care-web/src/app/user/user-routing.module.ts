@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserComponent } from './user.component';
 import { F1HomePageComponent } from './features/f1-home-page/f1-home-page.component';
+import { CanLoadUserGuard } from '../core/guards/can-load-user-guard';
 const routes: Routes = [
   {
     path: '',
@@ -13,6 +14,7 @@ const routes: Routes = [
       },
       {
         path: 'user',
+        canLoad: [],
         loadChildren: () =>
           import('./features/f2-user/f2-user.module').then(
             (m) => m.F2UserModule,

@@ -9,7 +9,6 @@ import { TokenStorageService } from 'src/app/base/auth/services/token_storage.se
 export class CanLoadAdminGuard implements CanLoad {
   isAdmin = false;
   constructor(
-    private router: Router,
     private tokenStorageService: TokenStorageService,
   ) {}
   canLoad(
@@ -24,7 +23,6 @@ export class CanLoadAdminGuard implements CanLoad {
     if (this.tokenStorageService.isAdmin()) {
       return true;
     }
-    this.router.navigate(['/auth/sign-in/admin']);
     return false;
   }
 }

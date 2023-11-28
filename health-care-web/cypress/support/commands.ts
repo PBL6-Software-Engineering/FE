@@ -27,17 +27,24 @@
 // ***********************************************
 //
 //
-// -- This is a parent command --
-// Cypress.Commands.add("login", (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add("dismiss", { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+declare namespace Cypress {
+  interface Chainable<Subject> {
+    loginUser(): typeof loginUser;
+  }
+}
+
+Cypress.Commands.add('loginUser' as any, loginUser);
+function loginUser() {
+  cy.request({
+    method: 'POST',
+    url: 'https://vanmanh.azurewebsites.net/api/user/login',
+    body: {
+      email: 'khanhlinh999@yopmail.com',
+      password: '123456',
+    },
+  }).then((res: any) => {
+    window.localStorage.setItem('token', res.body.data.access_token);
+    window.localStorage.setItem('role', res.body.data.role);
+  });
+}

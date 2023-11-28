@@ -25,8 +25,8 @@ export class UpdatePasswordComponent implements OnInit {
   ) {}
 
   messagesValidatePass = [
-    { type: 'minlength', message: 'Mật khẩu chỉ từ 6-20 kí tự' },
-    { type: 'maxlength', message: 'Mật khẩu chỉ từ 6-20 kí tự' },
+    { type: 'minlength', message: 'Mật khẩu phải từ 8-20 kí tự' },
+    { type: 'maxlength', message: 'Mật khẩu phải từ 8-20 kí tự' },
   ];
 
   ngOnInit(): void {

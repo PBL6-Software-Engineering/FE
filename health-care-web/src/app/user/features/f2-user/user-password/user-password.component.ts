@@ -24,28 +24,37 @@ export class UserPasswordComponent implements OnInit {
   ) {}
 
   messagesValidatePass = [
-    { type: 'minlength', message: 'Mật khẩu chỉ từ 6-20 kí tự' },
-    { type: 'maxlength', message: 'Mật khẩu chỉ từ 6-20 kí tự' },
+    { type: 'minlength', message: 'Mật khẩu phải từ 8-20 kí tự' },
+    { type: 'maxlength', message: 'Mật khẩu phải từ 8-20 kí tự' },
+    {
+      type: 'pattern',
+      message:
+        'Mật khẩu có chiều dài từ 8-20 kí tự bao gồm ít nhất 1 chữ cái, 1 chữ số và 1 kí tự đặc biệt',
+    },
   ];
 
   ngOnInit(): void {
     this.form = new FormGroup({
       oldPass: new FormControl('', [
         Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(20),
+        // Mật khẩu có chiều dài từ 8-20 kí tự bao gồm ít nhất 1 chữ cái, 1 chữ số và 1 kí tự đặc biệt
+        Validators.pattern(
+          '^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,20}$',
+        ),
       ]),
       pwGroup: new FormGroup(
         {
           newPass: new FormControl('', [
             Validators.required,
-            Validators.minLength(6),
-            Validators.maxLength(20),
+            Validators.pattern(
+              '^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,20}$',
+            ),
           ]),
           confirmPass: new FormControl('', [
             Validators.required,
-            Validators.minLength(6),
-            Validators.maxLength(20),
+            Validators.pattern(
+              '^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,20}$',
+            ),
           ]),
         },
         this.comparePassword,

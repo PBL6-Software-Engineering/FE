@@ -5,7 +5,7 @@
       <div class="col-sm-12 col-md-7 border-bottom">
         <app-article-img-top
           [article]="articleTop"
-          routerLink="/bai-viet/{{ articleTop.id_article }}"
+          routerLink="/bai-viet/{{ articleTop?.id_article }}"
         ></app-article-img-top>
       </div>
       <div class="col-sm-12 col-md-5 border-bottom">
@@ -15,7 +15,7 @@
         >
           <app-article-img-left
             [article]="article"
-            routerLink="/bai-viet/{{ article.id_article }}"
+            routerLink="/bai-viet/{{ article?.id_article }}"
           ></app-article-img-left>
         </div>
         <!-- <div class="border-bottom pb-12">

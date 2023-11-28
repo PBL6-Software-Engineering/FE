@@ -35,6 +35,12 @@ export class TokenStorageService {
     );
   }
 
+  isUser(): any {
+    return ['user'].includes(
+      localStorage.getItem('role') || '',
+    );
+  }
+
   private hasToken(): boolean {
     return !!localStorage.getItem('token');
   }
