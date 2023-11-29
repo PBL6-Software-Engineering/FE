@@ -44,7 +44,7 @@ function loginUser() {
     url: 'https://vanmanh.azurewebsites.net/api/user/login',
     body: {
       email: 'khanhlinh999@yopmail.com',
-      password: 'abcd@123',
+      password: 'abcd@1234',
     },
   }).then((res: any) => {
     window.localStorage.setItem('token', res.body.data.access_token);

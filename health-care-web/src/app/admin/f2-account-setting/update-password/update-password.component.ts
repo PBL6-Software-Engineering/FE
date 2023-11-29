@@ -66,6 +66,10 @@ export class UpdatePasswordComponent implements OnInit {
   changePassword(): void {
     // call API here
     if (this.form.valid && !this.isSaving) {
+      if(this.form.value.oldPass === this.form.value.pwGroup.newPass) {
+        this.toastrService.error('Mật khẩu mới không được trùng với mật khẩu cũ!');
+        return;
+      }
       this.isSaving = true;
       const obj = {
         current_password: this.form.value.oldPass,

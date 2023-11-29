@@ -63,7 +63,20 @@ export class DepartmentEditComponent implements OnInit, OnChanges {
     }
   }
 
+  cleanForm() {
+    if (this.form.get('name')) {
+      this.form.get('name')?.setValue(this.form.get('name')?.value.trim());
+    }
+
+    if (this.form.get('description')) {
+      this.form
+        .get('description')
+        ?.setValue(this.form.get('description')?.value.trim());
+    }
+  }
+
   save(): void {
+    this.cleanForm();
     if (this.form.valid && !this.isSaving) {
       this.isSaving = true;
       this.api

@@ -50,7 +50,20 @@ export class DepartmentCreateComponent implements OnInit {
     }
   }
 
+  cleanForm() {
+    if (this.form.get('name')) {
+      this.form.get('name')?.setValue(this.form.get('name')?.value.trim());
+    }
+
+    if (this.form.get('description')) {
+      this.form
+        .get('description')
+        ?.setValue(this.form.get('description')?.value.trim());
+    }
+  }
+
   save(): void {
+    this.cleanForm();
     if (this.form.valid && !this.isSaving) {
       this.isSaving = true;
       this.api.create(this.form.value).subscribe({
@@ -62,7 +75,12 @@ export class DepartmentCreateComponent implements OnInit {
           this.isSaving = false;
         },
         error: (err) => {
-          this.toastrService.error('Thêm thất bại!');
+          console.log('err', err);
+          const msg =
+            err.error && err.error.data && err.error.data.length
+              ? err.error.data[0]
+              : err.message || 'Thêm thất bại!';
+          this.toastrService.error(msg);
           this.isSaving = false;
         },
       });

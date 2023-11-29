@@ -8,14 +8,14 @@
     #f="ngForm"
   >
     <div class="mb-3">
-      <label for="name" class="form-label fw-bold">
+      <label for="name-edit" class="form-label fw-bold">
         Tên chuyên khoa
         <span class="text-danger">*</span>:
       </label>
       <input
         type="text"
         class="form-control"
-        id="name"
+        id="name-edit"
         placeholder="Nhập tên chuyên khoa"
         formControlName="name"
         required
@@ -24,14 +24,14 @@
     </div>
 
     <div class="mb-3">
-      <label for="name" class="form-label fw-bold">
+      <label for="description-edit" class="form-label fw-bold">
         Mô tả
         <span class="text-danger">*</span>:
       </label>
 
       <textarea
         name="description"
-        id="description"
+        id="description-edit"
         rows="4"
         placeholder="Nhập mô tả"
         class="form-control"
@@ -88,6 +88,7 @@
         class="btn btn-primary-1 w-150px column-center"
         (click)="focusInput.focus()"
         [disabled]="isSaving"
+        id="btn-edit"
       >
         <div class="loader" *ngIf="isSaving"></div>
         Lưu
