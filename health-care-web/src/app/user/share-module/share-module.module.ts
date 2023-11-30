@@ -8,6 +8,8 @@ import { ArticleImgLeft2Component } from './components/article-img-left2/article
 import { ArticleImgRightComponent } from './components/article-img-right/article-img-right.component';
 import { CoreModule } from 'src/app/core/core.module';
 import { RouterModule } from '@angular/router';
+import { CardLoaderArticleComponent } from './components/card-loader-article/card-loader-article.component';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @NgModule({
   declarations: [
@@ -17,8 +19,9 @@ import { RouterModule } from '@angular/router';
     ArticleImgTopNoContentComponent,
     ArticleImgLeft2Component,
     ArticleImgRightComponent,
+    CardLoaderArticleComponent,
   ],
-  imports: [CommonModule, CoreModule, RouterModule],
+  imports: [CommonModule, CoreModule, RouterModule, NgxSkeletonLoaderModule],
   exports: [
     ArticleImgTopComponent,
     ArticleImgLeftComponent,
@@ -26,6 +29,7 @@ import { RouterModule } from '@angular/router';
     ArticleImgLeft2Component,
     ArticleImgTopNoContentComponent,
     ArticleImgRightComponent,
+    CardLoaderArticleComponent
   ],
 })
 export class ShareModuleModule {}

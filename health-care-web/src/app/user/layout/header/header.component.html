@@ -83,8 +83,8 @@
       <!-- Icon login -->
       <img
         src="assets/media/image/icon-login.png"
-        alt=""
-        class="cursor-pointer d-none icon-login w-24 h-24"
+        alt="LOgin"
+        class="cursor-pointer d-none icon-login wh-24"
         (click)="isLogin = true"
         *ngIf="!isLogin"
       />
@@ -92,8 +92,8 @@
       <!-- Icon messenger -->
       <img
         src="assets/media/image/messenger.png"
-        class="w-24 h-24 mx-3 cursor-pointer"
-        alt=""
+        class="wh-24 mx-3 cursor-pointer"
+        alt="Tin nhắn"
         *ngIf="isLogin"
         (click)="viewConversation()"
       />
@@ -101,8 +101,8 @@
       <!-- Avatar after login -->
       <img
         [src]="user?.avatar"
-        alt=""
-        class="avatar-user"
+        alt="Ảnh đại diện"
+        class="avatar avatar-user wh-40 pl-8"
         (click)="clickAvatarUser()"
         *ngIf="isLogin"
         id="open-header-info"

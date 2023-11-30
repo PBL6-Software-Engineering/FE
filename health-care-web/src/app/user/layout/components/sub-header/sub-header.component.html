@@ -26,8 +26,8 @@
       </div>
     </div>
     <div class="col-9 pl-20 position-relative">
-      <h6 class="fw-700 mb-20">
-        Tâm điểm
+      <h6 class="mb-20">
+        <span class="fw-700">Tâm điểm</span>
 
         <span
           *ngIf="data.tab === 'BOOKING_DOCTOR'"
@@ -38,15 +38,30 @@
           <i class="fa fa-chevron-right mx-6" aria-hidden="true"></i>
           Tất cả bệnh viện
         </span>
+
+        <span
+          *ngIf="data.tab === 'CATEGORY' || data.tab === 'SOCIAL'"
+          class="color-primary cursor-pointer"
+          routerLink="/bai-viet"
+          (click)="onCloseSubHeader()"
+        >
+          <i class="fa fa-chevron-right mx-6" aria-hidden="true"></i>
+          Tất cả bài viết
+        </span>
       </h6>
       <div
         class="row row-between"
         *ngIf="data.tab === 'CATEGORY' || data.tab === 'SOCIAL'"
       >
+        <div *ngIf="articles && articles.length === 0" class="row">
+          <div *ngFor="let i of [1, 2, 3]" class="col-4">
+            <app-card-loader-article></app-card-loader-article>
+          </div>
+        </div>
         <div class="col-4" *ngFor="let article of articles">
           <div
             class="card cursor-pointer"
-            (click)="viewArticle(article?.id_article)"
+            (click)="viewArticle(article?.id_article, article?.name_category)"
           >
             <img
               [src]="article?.thumbnail_article"

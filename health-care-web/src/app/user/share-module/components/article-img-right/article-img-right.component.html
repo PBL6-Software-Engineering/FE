@@ -1,18 +1,18 @@
 <div
   class="py-10 cursor-pointer article-wrapper"
   *ngIf="article?.id_article"
-  routerLink="/bai-viet/{{ article?.id_article }}"
+  routerLink="/bai-viet/{{ article?.id_article }}/{{ article?.name_category }}"
 >
   <div class="row">
     <div class="col-8">
-      <h4 style="color: rgb(32, 149, 196)" class="fs-14 fw-700 mt-8">
+      <h4 style="color: #fc7419" class="fs-14 fw-700 mt-8">
         {{ article?.name_category }}
       </h4>
-      <h3 class="fs-18 fw-700 my-8 title">
+      <h3 class="fs-16 fw-700 my-8 title">
         {{ article?.title }}
       </h3>
       <div class="column-center row-between fs-14">
-        <div class="column-center">
+        <div class="column-center fs-14">
           <img
             [src]="article?.avatar_user"
             alt="Bác sĩ"

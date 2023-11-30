@@ -1,7 +1,7 @@
 <div
   class="py-10 cursor-pointer article-wrapper"
   *ngIf="article?.id_article"
-  routerLink="/bai-viet/{{ article?.id_article }}"
+  routerLink="/bai-viet/{{ article?.id_article }}/{{ article?.name_category }}"
 >
   <div class="row">
     <div class="col-4 my-0">
@@ -12,10 +12,10 @@
       />
     </div>
     <div class="col-8">
-      <h4 style="color: rgb(32, 149, 196)" class="fs-14 fw-700">
+      <h4 style="color: #fc7419" class="fs-14 fw-700">
         {{ article?.name_category }}
       </h4>
-      <h3 class="fs-18 fw-700 my-8 title">
+      <h3 class="fs-16 fw-700 my-8 title">
         {{ article?.title }}
       </h3>
       <p class="article-sub-content mb-8 fs-14">
@@ -30,7 +30,7 @@
             class="wh-36 avatar"
             onerror="this.src='assets/media/image/avatar_doctor_default.jpg'"
           />
-          <div class="ml-12">
+          <div class="ml-12 fs-14">
             Tham vấn:
             <span class="fw-700">{{ article?.name_user || "Quản trị" }}</span>
             <div class="color-sub mt-1">
