@@ -41,7 +41,7 @@ export class F6DoctorCreateComponent implements OnInit {
 
   buildForm() {
     this.form = new FormGroup({
-      email: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
       name: new FormControl('', [Validators.required]),
       id_department: new FormControl(null, [Validators.required]),
       province_code: new FormControl(null, [Validators.required]),
