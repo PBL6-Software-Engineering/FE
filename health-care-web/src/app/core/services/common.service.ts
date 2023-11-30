@@ -10,20 +10,14 @@ export class CommonService {
   constructor(private http: HttpClient) {}
 
   getProvinces(): Observable<any> {
-    return this.http.get<any>(`${linkApi}/province`).pipe(
-      shareReplay(1),
-    );
+    return this.http.get<any>(`${linkApi}/province`).pipe(shareReplay(1));
   }
 
   getCategories(): Observable<any> {
-    return this.http.get<any>(`${linkApi}/category`).pipe(
-      shareReplay(1),
-    );
+    return this.http.get<any>(`${linkApi}/category`).pipe(shareReplay(1));
   }
 
   getDepartments(): Observable<any> {
-    return this.http.get<any>(`${linkApi}/department`).pipe(
-      shareReplay(1),
-    );
+    return this.http.get<any>(`${linkApi}/department`).pipe(shareReplay(1));
   }
 }

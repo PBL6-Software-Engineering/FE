@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { helps } from './data';
 import { HttpClient } from '@angular/common/http';
 import { linkApi } from 'src/app/core/constants/api.constant';
 @Injectable({
@@ -8,12 +7,6 @@ import { linkApi } from 'src/app/core/constants/api.constant';
 })
 export class UserService {
   constructor(private http: HttpClient) {}
-
-  getHelps(): Observable<any[]> {
-    return new Observable<any[]>((observer) => {
-      observer.next(helps);
-    });
-  }
 
   updateProfile(obj: any): Observable<any> {
     const form = new FormData();

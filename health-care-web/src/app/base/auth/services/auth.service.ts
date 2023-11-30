@@ -7,9 +7,7 @@ import { linkApi } from 'src/app/core/constants/api.constant';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(
-    private http: HttpClient,
-  ) {}
+  constructor(private http: HttpClient) {}
 
   forgotPass(email: string): Observable<any> {
     const requestBody = { email: email };

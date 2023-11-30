@@ -1,85 +1,3 @@
-<!-- Modal -->
-<div
-  class="modal fade"
-  id="exampleModal"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-body p-32">
-        <div class="column-center row-between mb-4">
-          <div class="col-5">
-            <span class="fs-16 fw-bold">Chia sẻ</span>
-          </div>
-          <div class="column-center row-between col-7">
-            <a
-              ><img
-                id="btn-share"
-                class="wh-32"
-                src="assets/media/icon/social-media/Facebook.svg"
-                alt=""
-            /></a>
-            <a
-              ><img
-                id="btn-bookmark"
-                class="wh-32"
-                src="assets/media/icon/social-media/zalo.png"
-                alt=""
-            /></a>
-            <a
-              ><img
-                id="btn-question"
-                class="wh-32"
-                src="assets/media/icon/social-media/twitter.svg"
-                alt=""
-            /></a>
-            <a
-              ><img
-                id="btn-question"
-                class="wh-32"
-                src="assets/media/icon/social-media/square-whatsapp.svg"
-                alt=""
-            /></a>
-            <a>
-              <img
-                id="btn-question"
-                class="wh-32"
-                src="assets/media/icon/social-media/Linkedin.svg"
-                alt=""
-              />
-            </a>
-          </div>
-        </div>
-        <div>
-          <p style="color: #595959">Sao chép đường dẫn</p>
-          <div
-            class="column-center p-6"
-            style="border: 1px solid rgba(0, 0, 0, 0.3)"
-          >
-            <div
-              style="
-                width: 70%;
-                overflow: hidden;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-                display: inline-block;
-              "
-            >
-              https://hellobacsi.com/ung-thu-ung-buou/ung-thu-xuong/nguyen-nhan-ung-thu-xuong-la-do-dau/
-            </div>
-            <div class="btn border-0">
-              <span class="ps-3 fw-bold" style="color: #2d87f3">
-                Sao chép
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 <div class="container pt-3">
   <div class="row">
     <div class="col-1 d-flex align-items-end flex-column mt-90">
@@ -128,7 +46,7 @@
           </a>
 
           <div class="line-vertical ms-2"></div>
-          <span class="ms-3">{{ article?.name_category }}</span>
+          <span class="ms-3">{{ name_category }}</span>
           <img
             class="wh-24 ms-3 me-3 wh-16 p-3"
             src="assets/media/icon/ios-arrow-24-filled.svg"
@@ -136,7 +54,9 @@
           />
         </div>
       </div>
-      <div class="row">
+
+      <!-- MAIN CONTENT -->
+      <div class="row" *ngIf="!isLoading">
         <div class="col-9" id="content-container">
           <button
             type="button"
@@ -294,6 +214,97 @@
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END MAIN CONTENT -->
+      <div class="row" *ngIf="isLoading">
+        <div class="col-9">
+          <div class="item">
+            <ngx-skeleton-loader count="10"></ngx-skeleton-loader>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body p-32">
+        <div class="column-center row-between mb-4">
+          <div class="col-5">
+            <span class="fs-16 fw-bold">Chia sẻ</span>
+          </div>
+          <div class="column-center row-between col-7">
+            <a
+              ><img
+                id="btn-share"
+                class="wh-32"
+                src="assets/media/icon/social-media/Facebook.svg"
+                alt=""
+            /></a>
+            <a
+              ><img
+                id="btn-bookmark"
+                class="wh-32"
+                src="assets/media/icon/social-media/zalo.png"
+                alt=""
+            /></a>
+            <a
+              ><img
+                id="btn-question"
+                class="wh-32"
+                src="assets/media/icon/social-media/twitter.svg"
+                alt=""
+            /></a>
+            <a
+              ><img
+                id="btn-question"
+                class="wh-32"
+                src="assets/media/icon/social-media/square-whatsapp.svg"
+                alt=""
+            /></a>
+            <a>
+              <img
+                id="btn-question"
+                class="wh-32"
+                src="assets/media/icon/social-media/Linkedin.svg"
+                alt=""
+              />
+            </a>
+          </div>
+        </div>
+        <div>
+          <p style="color: #595959">Sao chép đường dẫn</p>
+          <div
+            class="column-center p-6"
+            style="border: 1px solid rgba(0, 0, 0, 0.3)"
+          >
+            <div
+              style="
+                width: 70%;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                display: inline-block;
+              "
+            >
+              https://hellobacsi.com/ung-thu-ung-buou/ung-thu-xuong/nguyen-nhan-ung-thu-xuong-la-do-dau/
+            </div>
+            <div class="btn border-0">
+              <span class="ps-3 fw-bold" style="color: #2d87f3">
+                Sao chép
+              </span>
             </div>
           </div>
         </div>

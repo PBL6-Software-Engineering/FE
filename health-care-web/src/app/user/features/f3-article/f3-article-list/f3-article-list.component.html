@@ -1,82 +1,86 @@
 <div class="py-30 container">
   <div class="row">
-    <div class="col-sm-8">
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Tìm kiếm với tên bài viết"
-        [(ngModel)]="textSearch"
-      />
-    </div>
+    <div class="col-sm-9 m-auto">
+      <div class="row">
+        <div class="col-sm-8">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Tìm kiếm với tên bài viết"
+            [(ngModel)]="textSearch"
+          />
+        </div>
 
-    <div class="col-sm-2">
-      <button
-        class="btn btn-primary-1"
-        [routerLink]="['/bai-viet/tim-kiem', textSearch || '']"
+        <div class="col-sm-2">
+          <button
+            class="btn btn-primary-1"
+            [routerLink]="['/bai-viet/tim-kiem', textSearch || '']"
+          >
+            Tìm kiếm
+          </button>
+        </div>
+      </div>
+
+      <div class="card mt-30 p-10" *ngFor="let item of dataSources">
+        <app-article-img-left [article]="item"></app-article-img-left>
+      </div>
+
+      <app-paginate
+        *ngIf="dataSources && dataSources.length > 0"
+        [currentPage]="currentPage"
+        [numberElementOfPage]="numberElementOfPage"
+        [totalPage]="totalPage"
+        [totalElements]="totalElements"
+        (changePage)="onChangePage($event)"
+      ></app-paginate>
+
+      <!-- Error data -->
+      <div
+        class="text-center text-danger mt-30"
+        *ngIf="dataSources?.length == 0 && isError"
       >
-        Tìm kiếm
-      </button>
-    </div>
-  </div>
+        Lỗi không lấy được dữ liệu
+      </div>
 
-  <div class="card mt-30 p-10" *ngFor="let item of dataSources">
-    <app-article-img-left [article]="item"></app-article-img-left>
-  </div>
-
-  <app-paginate
-    *ngIf="dataSources && dataSources.length > 0"
-    [currentPage]="currentPage"
-    [numberElementOfPage]="numberElementOfPage"
-    [totalPage]="totalPage"
-    [totalElements]="totalElements"
-    (changePage)="onChangePage($event)"
-  ></app-paginate>
-
-  <!-- Error data -->
-  <div
-    class="text-center text-danger mt-30"
-    *ngIf="dataSources?.length == 0 && isError"
-  >
-    Lỗi không lấy được dữ liệu
-  </div>
-
-  <!-- Loading spinner -->
-  <div class="wrapper-spinner" *ngIf="isLoading">
-    <ngx-spinner
-      bdColor="rgba(0,0,0,0)"
-      size="default"
-      color="#2095c4"
-      type="ball-pulse-sync"
-      [fullScreen]="false"
-    >
-      <p class="color-primary fs-20 fw-bold mt-30">
-        Đang tìm kiếm danh sách bài viết
-      </p>
-    </ngx-spinner>
-  </div>
-
-  <div *ngIf="isLoading">
-    <div class="card p-10 mt-30" *ngFor="let i of [1, 2, 3, 4, 5]">
-      <div class="d-flex">
-        <ngx-skeleton-loader
-          appearance="circle"
-          [theme]="{ width: '80px', height: '80px' }"
+      <!-- Loading spinner -->
+      <div class="wrapper-spinner" *ngIf="isLoading">
+        <ngx-spinner
+          bdColor="rgba(0,0,0,0)"
+          size="default"
+          color="#2095c4"
+          type="ball-pulse-sync"
+          [fullScreen]="false"
         >
-        </ngx-skeleton-loader>
+          <p class="color-primary fs-20 fw-bold mt-30">
+            Đang tìm kiếm danh sách bài viết
+          </p>
+        </ngx-spinner>
+      </div>
 
-        <div class="w-100 pl-20">
-          <ngx-skeleton-loader
-            [theme]="{
-              width: '80%',
-              'border-radius': '0',
-              height: '15px',
-              'margin-bottom': '10px',
-              'margin-top': '20px'
-            }"
-          ></ngx-skeleton-loader>
-          <ngx-skeleton-loader
-            [theme]="{ width: '60%', 'border-radius': '0', height: '15px' }"
-          ></ngx-skeleton-loader>
+      <div *ngIf="isLoading">
+        <div class="card p-10 mt-30" *ngFor="let i of [1, 2, 3, 4, 5]">
+          <div class="d-flex">
+            <ngx-skeleton-loader
+              appearance="circle"
+              [theme]="{ width: '80px', height: '80px' }"
+            >
+            </ngx-skeleton-loader>
+
+            <div class="w-100 pl-20">
+              <ngx-skeleton-loader
+                [theme]="{
+                  width: '80%',
+                  'border-radius': '0',
+                  height: '15px',
+                  'margin-bottom': '10px',
+                  'margin-top': '20px'
+                }"
+              ></ngx-skeleton-loader>
+              <ngx-skeleton-loader
+                [theme]="{ width: '60%', 'border-radius': '0', height: '15px' }"
+              ></ngx-skeleton-loader>
+            </div>
+          </div>
         </div>
       </div>
     </div>

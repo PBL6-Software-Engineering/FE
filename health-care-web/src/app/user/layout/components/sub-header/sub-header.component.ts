@@ -31,8 +31,7 @@ export class SubHeaderComponent implements OnInit {
 
   constructor(private router: Router) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onCloseSubHeader(): void {
     this.closeSubHeader.emit();
@@ -51,8 +50,8 @@ export class SubHeaderComponent implements OnInit {
     this.onCloseSubHeader();
   }
 
-  viewArticle(id: any): void {
-    this.router.navigateByUrl(`/bai-viet/${id}`);
+  viewArticle(id: any, name_category: any): void {
+    this.router.navigateByUrl(`/bai-viet/${id}/${name_category}`);
     this.onCloseSubHeader();
   }
 

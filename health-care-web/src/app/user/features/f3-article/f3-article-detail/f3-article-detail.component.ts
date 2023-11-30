@@ -20,9 +20,12 @@ declare var $: any;
 export class F3ArticleDetailComponent implements AfterViewInit, OnInit {
   isBookmark: boolean = false;
   id: any;
+  name_category: any;
   article: any;
   relativeArticles: any[] = [];
   doctor: any;
+  isLoading = false;
+  isError = false;
 
   constructor(
     private el: ElementRef,
@@ -35,9 +38,13 @@ export class F3ArticleDetailComponent implements AfterViewInit, OnInit {
     this.route.params.subscribe((params) => {
       if (params['id']) {
         this.id = params['id'];
+        this.name_category = params['name_category'];
+        this.isLoading = true;
+        this.isError = false;
         this.articleService.findById(this.id).subscribe({
           next: ({ data }) => {
             this.article = data;
+            this.name_category = this.article.name_category;
             if (this.article.id_user) {
               this.expertService.getDoctorById(this.article.id_user).subscribe({
                 next: ({ data }) => {
@@ -48,23 +55,18 @@ export class F3ArticleDetailComponent implements AfterViewInit, OnInit {
                 },
               });
             }
-            this.articleService
-              .getArticleByCategory({
-                page: 1,
-                paginate: 3,
-                name_category: this.article.name_category,
-                sort_search_number: true,
-              })
-              .subscribe({
-                next: ({ data }) => {
-                  this.relativeArticles = data.data;
-                },
-                error: (err) => {
-                  console.log('Error', err);
-                },
-              });
+            this.isLoading = false;
+            this.isError = false;
+          },
+          error: (err) => {
+            this.isError = true;
+            this.isLoading = false;
           },
         });
+
+        if (this.name_category) {
+          this.getArticleByCategory(this.article.name_category);
+        }
       }
     });
   }
@@ -72,5 +74,23 @@ export class F3ArticleDetailComponent implements AfterViewInit, OnInit {
   ngAfterViewInit() {
     // Kích hoạt Popover
     $(this.el.nativeElement).find('[data-bs-toggle="popover"]').popover();
+  }
+
+  getArticleByCategory(name_category: any) {
+    this.articleService
+      .getArticleByCategory({
+        page: 1,
+        paginate: 3,
+        name_category: this.article.name_category,
+        sort_search_number: true,
+      })
+      .subscribe({
+        next: ({ data }) => {
+          this.relativeArticles = data.data;
+        },
+        error: (err) => {
+          console.log('Error', err);
+        },
+      });
   }
 }

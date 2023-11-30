@@ -8,6 +8,5 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ArticleImgLeft2Component implements OnInit {
   @Input() article: any = {};
   constructor() {}
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }
