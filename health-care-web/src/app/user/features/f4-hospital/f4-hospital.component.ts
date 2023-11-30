@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HospitalService } from 'src/app/admin/_services/hospital.service';
 import { ChatService } from 'src/app/core/services/chat.service';
+import { HospitalService } from '../../services/hospital.service';
 
 @Component({
   selector: 'app-f4-hospital',

@@ -112,6 +112,10 @@ function processImageOfArray(array: any[]) {
     if (item.cover_hospital && item.cover_hospital.indexOf('http') === -1) {
       item.cover_hospital = prefixApi + '/' + item.cover_hospital;
     }
+
+    if (item.content) {
+      item.preview_content = item.content.replace(/<[^>]*>/g, ' ');
+    }
   });
 }
 
@@ -166,5 +170,8 @@ function processImageOfObject(item: any) {
   }
   if (item.cover_hospital && item.cover_hospital.indexOf('http') === -1) {
     item.cover_hospital = prefixApi + '/' + item.cover_hospital;
+  }
+  if (item.content) {
+    item.preview_content = item.content.replace(/<[^>]*>/g, ' ');
   }
 }

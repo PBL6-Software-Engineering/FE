@@ -44,7 +44,7 @@ export class HospitalListComponent implements OnInit {
     this.spinner.show();
     this.dataSources = [];
     this.hospitalService
-      .getAll({
+      .paginate({
         page: this.currentPage,
         paginate: 15,
         search: this.textSearch,

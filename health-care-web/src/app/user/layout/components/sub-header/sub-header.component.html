@@ -4,11 +4,15 @@
       <h5 class="mb-20 fw-700">
         <span>{{ data.title }}</span>
       </h5>
-      <div *ngFor="let item of data.items | slice: 0 : 6" class="py-10">
+      <div
+        *ngFor="let item of data.items | slice: 0 : 6"
+        class="py-10 color-primary-hover"
+        (click)="viewItem(item)"
+      >
         <div>
           <img
             [src]="item?.thumbnail"
-            alt=""
+            alt="Ảnh"
             class="icon-sub-header border-radius-4 wh-32"
           />
           <span class="ml-8">{{ item?.name }}</span>
@@ -51,12 +55,12 @@
             />
             <div class="card-body">
               <h5 class="card-title fs-16 fw-700 preview-content-2">
-                {{ article.title }}
+                {{ article?.title }}
               </h5>
               <p class="card-text fs-14 preview-content-2">
-                {{ article.content }}
+                {{ article?.preview_content }}
               </p>
-              <p class="view-more column-center mt-12 color-primary">
+              <p class="column-center mt-12 color-primary">
                 Xem thêm
                 <i aria-hidden="true" class="fa fa-chevron-right mx-6"></i>
               </p>
@@ -75,7 +79,7 @@
             <div class="card-body">
               <h5 class="card-title fs-16 fw-700">{{ hospital.name }}</h5>
               <p class="card-text fs-14">{{ hospital.description }}</p>
-              <p class="view-more column-center mt-12 color-primary">
+              <p class="column-center mt-12 color-primary">
                 Xem thêm
                 <i aria-hidden="true" class="fa fa-chevron-right mx-6"></i>
               </p>

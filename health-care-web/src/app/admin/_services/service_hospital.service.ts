@@ -17,12 +17,11 @@ export class ServiceHospitalService {
     sortLatest = true,
     id_hospital = '',
   }): Observable<any> {
-    return this.http.get<any>(
-      `${linkApi}/${this.model}/hospital/${id_hospital}?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}`,
-    );
-  }
-
-  getAll(): Observable<any> {
+    if (page) {
+      return this.http.get<any>(
+        `${linkApi}/${this.model}/hospital/${id_hospital}?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}`,
+      );
+    }
     return this.http.get<any>(`${linkApi}/${this.model}`);
   }
 

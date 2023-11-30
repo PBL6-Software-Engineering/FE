@@ -32,7 +32,7 @@ export class F9ArticleCreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.categoryService.getAll().subscribe(({ data }) => {
+    this.categoryService.paginate({}).subscribe(({ data }) => {
       this.categories = data;
     });
   }

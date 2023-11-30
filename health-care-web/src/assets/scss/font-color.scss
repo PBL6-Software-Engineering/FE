@@ -110,7 +110,15 @@ $color-brown800: #8b4e13;
 $color-white: #fff;
 
 .color-primary {
-    color: #11B3CF !important;
+    color: #2095c4 !important;
+}
+
+.color-primary-hover {
+    cursor: pointer;
+
+    &:hover {
+        color: #2095c4 !important;
+    }
 }
 
 .color-link {

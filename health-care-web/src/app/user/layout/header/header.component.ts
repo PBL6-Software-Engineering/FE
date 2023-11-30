@@ -1,6 +1,9 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { TokenStorageService } from 'src/app/base/auth/services/token_storage.service';
 import { Router } from '@angular/router';
+import { forkJoin } from 'rxjs';
+import { HospitalService } from '../../services/hospital.service';
+import { ArticleService } from '../../services/article.service';
 
 @Component({
   selector: 'app-header',
@@ -19,8 +22,12 @@ export class HeaderComponent implements OnInit {
   }
 
   tabObj: any = {};
+
   categories: any[] = [];
   departments: any[] = [];
+  hospitals: any[] = [];
+  articles: any[] = [];
+  
   isOpenSubMenuBar: boolean = false;
   isOpenSubMenuBarMobile: boolean = false;
   isOpenHeaderInfo: boolean = false;
@@ -33,15 +40,17 @@ export class HeaderComponent implements OnInit {
   constructor(
     private tokenStorageService: TokenStorageService,
     private router: Router,
+    private articleService: ArticleService,
+    private hospitalService: HospitalService,
   ) {}
 
   ngOnInit(): void {
-    // this.chooseTab();
     this.tokenStorageService.isLogin.subscribe(
       (isLogin) => (this.isLogin = isLogin),
     );
     this.tokenStorageService.getUser().subscribe((user: any) => {
       this.user = user || {};
+      this.isLogin = user.id ? true : false;
     });
 
     const categoriesStorage = localStorage.getItem('categories');
@@ -53,6 +62,14 @@ export class HeaderComponent implements OnInit {
     if (departmentsStorage) {
       this.departments = JSON.parse(departmentsStorage);
     }
+
+    forkJoin([
+      this.articleService.getArticleOutStandingPublic({ paginate: 3 }),
+      this.hospitalService.paginate({ paginate: 3 }),
+    ]).subscribe(([article, hospital]) => {
+      this.articles = article.data?.data;
+      this.hospitals = hospital.data?.data;
+    });
   }
 
   chooseTab(tab: string = 'CATEGORY') {

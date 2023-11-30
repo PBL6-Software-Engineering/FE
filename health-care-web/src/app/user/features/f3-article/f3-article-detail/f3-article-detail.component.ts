@@ -8,8 +8,8 @@ import {
 } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
-import { ArticleService } from 'src/app/admin/_services/article.service';
 import { ExpertService } from '../../../services/expert.service';
+import { ArticleService } from 'src/app/user/services/article.service';
 declare var $: any;
 @Component({
   selector: 'app-f3-article-detail',

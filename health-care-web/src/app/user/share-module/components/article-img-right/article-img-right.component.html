@@ -1,26 +1,30 @@
-<div class="py-10 cursor-pointer">
+<div
+  class="py-10 cursor-pointer article-wrapper"
+  *ngIf="article?.id_article"
+  routerLink="/bai-viet/{{ article?.id_article }}"
+>
   <div class="row">
     <div class="col-8">
       <h4 style="color: rgb(32, 149, 196)" class="fs-14 fw-700 mt-8">
         {{ article?.name_category }}
       </h4>
-      <h3 class="fs-18 fw-700 my-8">
+      <h3 class="fs-18 fw-700 my-8 title">
         {{ article?.title }}
       </h3>
       <div class="column-center row-between fs-14">
         <div class="column-center">
           <img
             [src]="article?.avatar_user"
-            alt=""
-            class="wh-36 border-radius-50"
+            alt="Bác sĩ"
+            class="wh-36 avatar"
             onerror="this.src='assets/media/image/avatar_doctor_default.jpg'"
           />
-          <div class="ml-8">
+          <div class="ml-12">
             Tham vấn:
             <span class="fw-700">{{ article?.name_use || "Quản trị" }}•</span>
-            <span class="ml-4">{{
-              article?.updated_at_article | timeAgo
-            }}</span>
+            <span class="color-sub mt-1">
+              {{ article?.updated_at_article | timeAgo }}
+            </span>
           </div>
         </div>
       </div>
@@ -28,7 +32,7 @@
     <div class="col-4 mx-center text-center">
       <img
         [src]="article?.thumbnail_article"
-        alt=""
+        alt="Ảnh bài viết"
         class="article-image"
         style="min-height: 50%"
       />

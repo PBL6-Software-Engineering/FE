@@ -7,7 +7,6 @@ import {
   Output,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { isObject } from 'lodash';
 
 @Component({
   selector: 'app-sub-header',
@@ -27,24 +26,12 @@ export class SubHeaderComponent implements OnInit {
   };
   @Output() closeSubHeader = new EventEmitter();
 
-  articles: any = [];
-  hospitals: any[] = [];
+  @Input() articles: any = [];
+  @Input() hospitals: any[] = [];
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.articles = JSON.parse(
-      localStorage.getItem('articlesOutstanding') || '[]',
-    );
-    this.hospitals = JSON.parse(
-      localStorage.getItem('hospitalsOutStanding') || '[]',
-    );
-    this.articles = this.articles.slice(0, 3);
-    this.hospitals = this.hospitals.slice(0, 3);
-
-    this.articles.forEach((article: any) => {
-      article.content = article.content.replace(/<[^>]*>/g, '');
-    });
   }
 
   onCloseSubHeader(): void {
@@ -71,6 +58,17 @@ export class SubHeaderComponent implements OnInit {
 
   viewHospital(id: any): void {
     this.router.navigateByUrl(`/benh-vien/chi-tiet/${id}`);
+    this.onCloseSubHeader();
+  }
+
+  viewItem(item: any): void {
+    if (this.data.tab === 'CATEGORY') {
+      this.router.navigateByUrl(`/danh-muc/${item?.name}`);
+    } else if (this.data.tab === 'BOOKING_DOCTOR') {
+      this.router.navigateByUrl(`/chuyen-khoa/${item?.name}`);
+    } else if (this.data.tab === 'SOCIAL') {
+      this.router.navigateByUrl(`/danh-muc/${item?.name}`);
+    }
     this.onCloseSubHeader();
   }
 }

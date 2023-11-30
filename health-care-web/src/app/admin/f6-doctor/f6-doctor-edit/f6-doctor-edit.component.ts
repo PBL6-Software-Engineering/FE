@@ -44,7 +44,7 @@ export class F6DoctorEditComponent implements OnInit {
     this.route.params.subscribe((params) => {
       if (params['id']) {
         this.idDoctor = params['id'];
-        this.api.getDoctorOfHospital(this.idDoctor).subscribe({
+        this.api.getDoctor(this.idDoctor).subscribe({
           next: ({ data }) => {
             this.doctor = data;
             this.patchValue();
