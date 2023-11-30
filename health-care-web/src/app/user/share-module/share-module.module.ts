@@ -7,6 +7,7 @@ import { ArticleImgTopNoContentComponent } from './components/article-img-top-no
 import { ArticleImgLeft2Component } from './components/article-img-left2/article-img-left2.component';
 import { ArticleImgRightComponent } from './components/article-img-right/article-img-right.component';
 import { CoreModule } from 'src/app/core/core.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { CoreModule } from 'src/app/core/core.module';
     ArticleImgLeft2Component,
     ArticleImgRightComponent,
   ],
-  imports: [CommonModule, CoreModule],
+  imports: [CommonModule, CoreModule, RouterModule],
   exports: [
     ArticleImgTopComponent,
     ArticleImgLeftComponent,

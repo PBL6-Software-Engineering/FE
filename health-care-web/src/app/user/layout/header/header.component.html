@@ -130,6 +130,8 @@
     *ngIf="isOpenSubMenuBar"
     [data]="tabObj"
     (closeSubHeader)="this.isOpenSubMenuBar = false"
+    [hospitals]="hospitals"
+    [articles]="articles"
   ></app-sub-header>
 
   <!-- Sub header mobile -->

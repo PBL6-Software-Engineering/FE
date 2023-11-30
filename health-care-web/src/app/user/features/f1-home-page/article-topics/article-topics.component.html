@@ -9,7 +9,11 @@
         >
           <div class="column-center">
             <h1 class="fs-22 fw-700 m-0">{{ articleObj?.category }}</h1>
-            <div class="color-primary fw-700 ml-20">
+            <div
+              class="fw-700 ml-20 cursor-pointer"
+              routerLink="/danh-muc/{{ articleObj?.category }}"
+              style="color: rgb(32, 149, 196)"
+            >
               Xem thêm
               <img src="assets/media/icon/arrow_right.svg" alt="" />
             </div>
@@ -32,7 +36,7 @@
         <ngx-spinner
           bdColor="rgba(0,0,0,0)"
           size="default"
-          color="#11B3CF"
+          color="#2095c4"
           type="ball-pulse-sync"
           [fullScreen]="false"
         >

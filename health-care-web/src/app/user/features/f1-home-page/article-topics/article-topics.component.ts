@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { forkJoin } from 'rxjs';
-import { ArticleService } from 'src/app/admin/_services/article.service';
+import { ArticleService } from 'src/app/user/services/article.service';
 
 @Component({
   selector: 'app-article-topics',

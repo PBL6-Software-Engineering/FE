@@ -5,19 +5,23 @@ import {
   RouterStateSnapshot,
   ActivatedRouteSnapshot,
 } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 import { CommonService } from 'src/app/core/services/common.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProvinceResolve implements Resolve<any> {
+export class CommonDataResolve implements Resolve<any> {
   constructor(private commonService: CommonService) {}
 
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): Observable<any> {
-    return this.commonService.getProvinces();
+    return forkJoin([
+        this.commonService.getProvinces(),
+        this.commonService.getCategories(),
+        this.commonService.getDepartments(),
+    ]);
   }
 }

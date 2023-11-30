@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ArticleService } from 'src/app/user/services/article.service';
 
 @Component({
   selector: 'app-featured-news',
@@ -9,13 +10,15 @@ export class FeaturedNewsComponent implements OnInit {
   articles: any[] = [];
   articleTop: any;
 
-  constructor() {}
+  constructor(private articleService: ArticleService) {}
 
   ngOnInit(): void {
-    const articlesOutstanding = localStorage.getItem('articlesOutstanding');
-    if (articlesOutstanding) {
-      this.articles = JSON.parse(articlesOutstanding);
-      this.articleTop = this.articles[0];
-    }
+    this.articleService
+      .getArticleOutStandingPublic({ paginate: 5 })
+      .subscribe(({ data }) => {
+        this.articles = data.data;
+        this.articleTop = this.articles[0];
+        this.articles.splice(0, 1);
+      });
   }
 }

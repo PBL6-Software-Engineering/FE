@@ -27,7 +27,7 @@
 .card-img-top {
     height: 200px;
     width: 100%;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 .card-title {
@@ -43,10 +43,6 @@
     color: rgb(89, 89, 89);
     line-height: 1.6;
     min-height: 46px;
-}
-
-.view-more {
-    color: rgb(45, 135, 243);
 }
 
 .card {

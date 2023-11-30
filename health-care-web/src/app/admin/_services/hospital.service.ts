@@ -10,18 +10,7 @@ export class HospitalService {
   model = 'infor-hospital';
   constructor(private http: HttpClient) {}
 
-  getDoctors({
-    page = 1,
-    paginate = 20,
-    search = '',
-    sortLatest = true,
-  }): Observable<any> {
-    return this.http.get<any>(
-      `${linkApi}/${this.model}/all-doctor?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}&is_confirm=both&is_accept=both`,
-    );
-  }
-
-  getAll({
+  paginate({
     search = '',
     paginate = 20,
     page = 1,
@@ -33,42 +22,30 @@ export class HospitalService {
     );
   }
 
-  viewProfileHospital(id: any): Observable<any> {
-    return this.http.get<any>(`${linkApi}/${this.model}/view-profile/${id}`);
+  findById(id: any): Observable<any> {
+    return this.http.get<any>(`${linkApi}/${this.model}/detail/${id}`);
   }
 
-  getThreeHospitals({
-    search = '',
+  deleteById(id: any): Observable<any> {
+    return this.http.post<any>(
+      `${linkApi}/${this.model}/change-confirm/${id}`,
+      { is_confirm: 0 },
+    );
+  }
+
+  getDoctors({
     page = 1,
-    paginate = 3,
-    sort_search_number = true,
+    paginate = 20,
+    search = '',
+    sortLatest = true,
   }): Observable<any> {
     return this.http.get<any>(
-      `${linkApi}/${this.model}/all-hospital?search=${search}&page=${page}&paginate=${paginate}&sort_search_number=${sort_search_number}`,
+      `${linkApi}/${this.model}/all-doctor?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}&is_confirm=both&is_accept=both`,
     );
   }
 
-  getHospitalService(id_hospital: any): Observable<any> {
-    return this.http.get<any>(
-      `${linkApi}/hospital-service/hospital/${id_hospital}`,
-    );
-  }
-
-  getDoctorsOfHospital(id_hospital: any): Observable<any> {
-    return this.http.get<any>(
-      `${linkApi}/${this.model}/doctors-home/${id_hospital}`,
-    );
-  }
-
-  getDoctorOfHospital(id_doctor: any): Observable<any> {
+  getDoctor(id_doctor: any): Observable<any> {
     return this.http.get<any>(`${linkApi}/${this.model}/doctor/${id_doctor}`);
-  }
-
-  changeConfirmDoctor(id_doctor: any, is_confirm: boolean): Observable<any> {
-    return this.http.post<any>(
-      `${linkApi}/${this.model}/change-confirm/${id_doctor}`,
-      { is_confirm: is_confirm },
-    );
   }
 
   addDoctor(obj: any): Observable<any> {
@@ -82,14 +59,10 @@ export class HospitalService {
     );
   }
 
-  findById(id: any): Observable<any> {
-    return this.http.get<any>(`${linkApi}/${this.model}/detail/${id}`);
-  }
-
-  deleteById(id: any): Observable<any> {
+  changeConfirmDoctor(id_doctor: any, is_confirm: boolean): Observable<any> {
     return this.http.post<any>(
-      `${linkApi}/${this.model}/change-confirm/${id}`,
-      { is_confirm: 0 },
+      `${linkApi}/${this.model}/change-confirm/${id_doctor}`,
+      { is_confirm: is_confirm },
     );
   }
 }

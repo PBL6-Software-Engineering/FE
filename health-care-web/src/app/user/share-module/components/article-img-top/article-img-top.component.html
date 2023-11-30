@@ -1,21 +1,29 @@
-<div class="cursor-pointer">
-  <img [src]="article?.thumbnail_article" alt="" class="article-image" />
+<div
+  class="cursor-pointer article-wrapper"
+  *ngIf="article?.id_article"
+  routerLink="/bai-viet/{{ article?.id_article }}"
+>
+  <img
+    [src]="article?.thumbnail_article"
+    alt="Ảnh bài viết"
+    class="article-image"
+  />
 
   <h4 style="color: #fc7419" class="fs-18 fw-700 my-12">
     {{ article?.name_category }}
   </h4>
-  <h3 class="fs-20 fw-700">
+  <h3 class="fs-20 fw-700 title">
     {{ article?.title }}
   </h3>
   <p class="my-12 preview-content-3">
-    {{ article?.previewContent }}
+    {{ article?.preview_content }}
   </p>
   <div class="column-center my-12">
     <div>
       <img
         [src]="article?.avatar_user"
-        alt="Lỗi"
-        class="wh-36 border-radius-50 mr-12"
+        alt="Bác sĩ"
+        class="wh-36 avatar mr-12"
         onerror="this.src='assets/media/image/avatar_doctor_default.jpg'"
       />
     </div>
@@ -25,6 +33,8 @@
       <span class="fw-700">{{ article?.name_user || "Quản trị" }}</span>
       •
     </div>
-    <div class="ml-4">{{ article?.updated_at_article | timeAgo }}</div>
+    <div class="color-sub ml-4">
+      {{ article?.updated_at_article | timeAgo }}
+    </div>
   </div>
 </div>

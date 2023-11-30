@@ -6,7 +6,7 @@ import {
   HttpInterceptor,
   HTTP_INTERCEPTORS,
 } from '@angular/common/http';
-import { Observable, filter, map } from 'rxjs';
+import { Observable } from 'rxjs';
 import { TokenStorageService } from 'src/app/base/auth/services/token_storage.service';
 // import { TokenStorageService } from '../services/token-storage.service';
 

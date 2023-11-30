@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ArticleService } from 'src/app/admin/_services/article.service';
 import { ExpertService } from '../../../services/expert.service';
 import { ElementRef } from '@angular/core';
+import { ArticleService } from 'src/app/user/services/article.service';
 @Component({
   selector: 'app-expert-detail',
   templateUrl: './expert-detail.component.html',
