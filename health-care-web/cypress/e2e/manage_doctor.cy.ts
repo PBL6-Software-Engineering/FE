@@ -8,18 +8,18 @@ describe('Test update info hospital', () => {
   });
 
   it('Thêm Bác sĩ 1: Tên bị để trống', () => {
-    cy.visit('/admin/doctor');
+    cy.visit('/admin/doctor/create');
     cy.wait(5000);
 
-    cy.get('#btn-add-doctor').click();
-    cy.wait(100);
+    // cy.get('#btn-add-doctor').click();
+    // cy.wait(100);
     cy.get('#email').type('thaovy@yopmail.com');
     cy.wait(100);
     cy.get('ng-select[formControlName="id_department"]').click();
-    cy.get('ng-option').eq(1).should('be.visible').click();
+    cy.get('.ng-option').eq(1).should('be.visible').click();
     cy.wait(100);
     cy.get('ng-select[formControlName="province_code"]').click();
-    cy.get('ng-option').eq(1).click();
+    cy.get('.ng-option').eq(1).click();
     cy.wait(100);
     // Add training process
     cy.get('[formArrayName="training_process"] .btn-primary-1').click();

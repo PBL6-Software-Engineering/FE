@@ -49,6 +49,7 @@ function loginUser() {
   }).then((res: any) => {
     window.localStorage.setItem('token', res.body.data.access_token);
     window.localStorage.setItem('role', res.body.data.role);
+    window.localStorage.setItem('user', JSON.stringify(res.body.data));
   });
 }
 
@@ -64,6 +65,7 @@ function loginHospital() {
   }).then((res: any) => {
     window.localStorage.setItem('token', res.body.data.access_token);
     window.localStorage.setItem('role', res.body.data.role);
+    window.localStorage.setItem('user', JSON.stringify(res.body.data));
   });
 }
 
@@ -79,6 +81,7 @@ function loginAdmin() {
   }).then((res: any) => {
     window.localStorage.setItem('token', res.body.data.access_token);
     window.localStorage.setItem('role', res.body.data.role);
+    window.localStorage.setItem('user', JSON.stringify(res.body.data));
   });
 }
 

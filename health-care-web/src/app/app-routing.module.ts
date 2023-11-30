@@ -16,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    canLoad: [CanLoadAdminGuard],
+    canLoad: [],
     resolve: {
       // province: ProvinceResolve,
     },

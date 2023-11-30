@@ -1,10 +1,8 @@
 import {
   ChangeDetectorRef,
   Component,
-  ElementRef,
   OnDestroy,
   OnInit,
-  ViewChild,
 } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';

@@ -27,15 +27,21 @@ export class F6DoctorCreateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.tokenStorageService.getUser().subscribe((user: any) => {
-      this.hospital = user;
-      this.departmentHospitalService
-        .getDepartmentsOfHospital(this.hospital.id)
-        .subscribe(({ data }) => {
-          this.departmentsOfHospital = data;
-        });
-    });
+    // this.tokenStorageService.getUser().subscribe((user: any) => {
+    //   this.hospital = user;
+    //   this.departmentHospitalService
+    //     .getDepartmentsOfHospital(this.hospital.id)
+    //     .subscribe(({ data }) => {
+    //       this.departmentsOfHospital = data;
+    //     });
+    // });
+    this.hospital = JSON.parse(localStorage.getItem('user') || '[]');
     this.provinces = JSON.parse(localStorage.getItem('provinces') || '[]');
+    this.departmentHospitalService
+      .getDepartmentsOfHospital(this.hospital.id)
+      .subscribe(({ data }) => {
+        this.departmentsOfHospital = data;
+      });
     this.buildForm();
   }
 

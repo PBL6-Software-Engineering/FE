@@ -8,9 +8,7 @@ import { TokenStorageService } from 'src/app/base/auth/services/token_storage.se
 })
 export class CanLoadAdminGuard implements CanLoad {
   isAdmin = false;
-  constructor(
-    private tokenStorageService: TokenStorageService,
-  ) {}
+  constructor(private tokenStorageService: TokenStorageService) {}
   canLoad(
     route: Route,
     segments: UrlSegment[],
@@ -24,5 +22,6 @@ export class CanLoadAdminGuard implements CanLoad {
       return true;
     }
     return false;
+    // return true;
   }
 }
