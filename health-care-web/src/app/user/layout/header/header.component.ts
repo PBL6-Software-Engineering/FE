@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
   departments: any[] = [];
   hospitals: any[] = [];
   articles: any[] = [];
-  
+
   isOpenSubMenuBar: boolean = false;
   isOpenSubMenuBarMobile: boolean = false;
   isOpenHeaderInfo: boolean = false;

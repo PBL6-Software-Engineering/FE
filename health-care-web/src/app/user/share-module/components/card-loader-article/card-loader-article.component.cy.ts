@@ -1,7 +1,7 @@
-import { CardLoaderArticleComponent } from './card-loader-article.component'
+import { CardLoaderArticleComponent } from './card-loader-article.component';
 
 describe('CardLoaderArticleComponent', () => {
   it('should mount', () => {
-    cy.mount(CardLoaderArticleComponent)
-  })
-})
+    cy.mount(CardLoaderArticleComponent);
+  });
+});

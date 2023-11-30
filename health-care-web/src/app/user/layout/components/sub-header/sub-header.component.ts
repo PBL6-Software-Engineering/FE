@@ -31,8 +31,7 @@ export class SubHeaderComponent implements OnInit {
 
   constructor(private router: Router) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onCloseSubHeader(): void {
     this.closeSubHeader.emit();

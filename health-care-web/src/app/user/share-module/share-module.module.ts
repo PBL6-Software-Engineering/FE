@@ -29,7 +29,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     ArticleImgLeft2Component,
     ArticleImgTopNoContentComponent,
     ArticleImgRightComponent,
-    CardLoaderArticleComponent
+    CardLoaderArticleComponent,
   ],
 })
 export class ShareModuleModule {}

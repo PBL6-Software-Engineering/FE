@@ -19,9 +19,9 @@ export class CommonDataResolve implements Resolve<any> {
     state: RouterStateSnapshot,
   ): Observable<any> {
     return forkJoin([
-        this.commonService.getProvinces(),
-        this.commonService.getCategories(),
-        this.commonService.getDepartments(),
+      this.commonService.getProvinces(),
+      this.commonService.getCategories(),
+      this.commonService.getDepartments(),
     ]);
   }
 }

@@ -64,7 +64,7 @@ export class F3ArticleDetailComponent implements AfterViewInit, OnInit {
           },
         });
 
-        if(this.name_category) {
+        if (this.name_category) {
           this.getArticleByCategory(this.article.name_category);
         }
       }
