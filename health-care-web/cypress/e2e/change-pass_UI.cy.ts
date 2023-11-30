@@ -5,6 +5,9 @@ describe('Test change password FULL', () => {
 
   beforeEach(() => {});
 
+  // next: lấy thằng liền kề
+  // children: lấy con
+  // parent: cha
   it('Test case 1: Test giao diện "Thay đổi mật khẩu"', () => {
     cy.visit('/user/password');
     cy.get('form').within(() => {
@@ -48,8 +51,8 @@ describe('Test change password FULL', () => {
 
   it('Test case 2: "Mật khẩu cũ" trống, các input khác đúng định dạng', () => {
     cy.visit('/user/password');
-    cy.get('#new-password-input').type('abcd@1234');
-    cy.wait(100);
+    cy.get('#new-password-input').type('abcd@1234'); // nhập abcd
+    cy.wait(100); // wait 0.1
     cy.get('#confirm-password-input').type('abcd@1234');
     cy.wait(100);
     cy.get('button[type="submit"]').click();
