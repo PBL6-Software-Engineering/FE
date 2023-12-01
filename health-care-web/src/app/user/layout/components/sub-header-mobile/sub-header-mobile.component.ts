@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class SubHeaderMobileComponent {
   @Input() data: any;
-  @Output() closeSubHeader = new EventEmitter();
+  @Output() closeSubHeaderMobile = new EventEmitter();
 
   news: any = [];
 
@@ -31,5 +31,9 @@ export class SubHeaderMobileComponent {
         'https://cdn.hellobacsi.com/wp-content/uploads/2022/11/noshave_2.png',
       title: 'Tháng Nâng cao nhận thức về Sức khỏe nam giới',
     });
+  }
+
+  onCloseSubHeader() {
+    this.closeSubHeaderMobile.emit();
   }
 }

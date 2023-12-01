@@ -16,7 +16,7 @@ header {
 }
 
 .input-search {
-    min-width: 350px;
+    width: 350px;
 }
 
 .btn {
@@ -27,7 +27,7 @@ header {
     }
 
     &-book {
-        min-width: 165px;
+        width: 165px;
     }
 }
 
@@ -36,11 +36,13 @@ header {
     font-weight: 700;
 }
 
-.sub-header {
-    position: absolute;
-    top: $header-height;
+.sub-header-wrapper {
     background-color: white;
     width: 100%;
+    z-index: 10;
+    box-shadow: 0 10px 16px rgba(0, 0, 0, .04), 0 2px 8px rgba(0, 0, 0, .04), 0 0 1px rgba(0, 0, 0, .04);
+    position: relative;
+    top: $header-height;
 }
 
 .avatar-user {
@@ -55,6 +57,13 @@ header {
 @media screen and (max-width: 992px) {
     .icon-menu-search {
         display: block;
+    }
+}
+
+@media screen and (max-width: 672px) {
+
+    .input-search {
+        width: 280px;
     }
 }
 
@@ -77,5 +86,9 @@ header {
 
     header {
         padding: 0 10px;
+    }
+
+    .input-search {
+        width: 200px;
     }
 }

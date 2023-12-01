@@ -1,112 +1,115 @@
-<div class="sub-header">
-  <div class="row">
-    <div class="col-3 left-content pr-20">
-      <h5 class="mb-20 fw-700">
-        <span>{{ data.title }}</span>
-      </h5>
-      <div
-        *ngFor="let item of data.items | slice: 0 : 6"
-        class="py-10 color-primary-hover"
-        (click)="viewItem(item)"
-      >
-        <div>
-          <img
-            [src]="item?.thumbnail"
-            alt="Ảnh"
-            class="icon-sub-header border-radius-4 wh-32"
-          />
-          <span class="ml-8">{{ item?.name }}</span>
-        </div>
-      </div>
-
+<div class="row sub-header">
+  <div class="col-3 left-content pr-20">
+    <h5 class="mb-20 fw-700">
+      <span>{{ data.title }}</span>
+    </h5>
+    <div
+      *ngFor="let item of data.items | slice: 0 : 6"
+      class="py-10 color-primary-hover"
+      (click)="viewItem(item)"
+    >
       <div>
-        <button class="btn btn-outline-primary w-100 my-10" (click)="viewAll()">
-          Xem tất cả
-        </button>
+        <img
+          [src]="item?.thumbnail"
+          alt="Ảnh"
+          class="icon-sub-header border-radius-4 wh-32"
+        />
+        <span class="ml-8">{{ item?.name }}</span>
       </div>
     </div>
-    <div class="col-9 pl-20 position-relative">
-      <h6 class="mb-20">
-        <span class="fw-700">Tâm điểm</span>
 
-        <span
-          *ngIf="data.tab === 'BOOKING_DOCTOR'"
-          class="color-primary cursor-pointer"
-          routerLink="/benh-vien"
-          (click)="onCloseSubHeader()"
-        >
-          <i class="fa fa-chevron-right mx-6" aria-hidden="true"></i>
-          Tất cả bệnh viện
-        </span>
+    <div>
+      <button class="btn btn-outline-primary w-100 my-10" (click)="viewAll()">
+        Xem tất cả
+      </button>
+    </div>
+  </div>
+  <div class="col-9 pl-20 position-relative">
+    <h6 class="mb-20">
+      <span class="fw-700">Tâm điểm</span>
 
-        <span
-          *ngIf="data.tab === 'CATEGORY' || data.tab === 'SOCIAL'"
-          class="color-primary cursor-pointer"
-          routerLink="/bai-viet"
-          (click)="onCloseSubHeader()"
-        >
-          <i class="fa fa-chevron-right mx-6" aria-hidden="true"></i>
-          Tất cả bài viết
-        </span>
-      </h6>
-      <div
-        class="row row-between"
-        *ngIf="data.tab === 'CATEGORY' || data.tab === 'SOCIAL'"
-      >
-        <div *ngIf="articles && articles.length === 0" class="row">
-          <div *ngFor="let i of [1, 2, 3]" class="col-4">
-            <app-card-loader-article></app-card-loader-article>
-          </div>
-        </div>
-        <div class="col-4" *ngFor="let article of articles">
-          <div
-            class="card cursor-pointer"
-            (click)="viewArticle(article?.id_article, article?.name_category)"
-          >
-            <img
-              [src]="article?.thumbnail_article"
-              class="card-img-top"
-              alt="Image"
-            />
-            <div class="card-body">
-              <h5 class="card-title fs-16 fw-700 preview-content-2">
-                {{ article?.title }}
-              </h5>
-              <p class="card-text fs-14 preview-content-2">
-                {{ article?.preview_content }}
-              </p>
-              <p class="column-center mt-12 color-primary">
-                Xem thêm
-                <i aria-hidden="true" class="fa fa-chevron-right mx-6"></i>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row row-between" *ngIf="data.tab === 'BOOKING_DOCTOR'">
-        <div class="col-4" *ngFor="let hospital of hospitals">
-          <div
-            class="card cursor-pointer"
-            (click)="viewHospital(hospital?.id_hospital)"
-          >
-            <img [src]="hospital.avatar" class="card-img-top" alt="Image" />
-            <div class="card-body">
-              <h5 class="card-title fs-16 fw-700">{{ hospital.name }}</h5>
-              <p class="card-text fs-14">{{ hospital.description }}</p>
-              <p class="column-center mt-12 color-primary">
-                Xem thêm
-                <i aria-hidden="true" class="fa fa-chevron-right mx-6"></i>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
       <span
-        class="fs-30 icon-close position-absolute"
+        *ngIf="data.tab === 'BOOKING_DOCTOR'"
+        class="color-primary cursor-pointer"
+        routerLink="/benh-vien"
         (click)="onCloseSubHeader()"
-        >&times;
+      >
+        <i class="fa fa-chevron-right mx-6" aria-hidden="true"></i>
+        Tất cả bệnh viện
       </span>
+
+      <span
+        *ngIf="data.tab === 'CATEGORY' || data.tab === 'SOCIAL'"
+        class="color-primary cursor-pointer"
+        routerLink="/bai-viet"
+        (click)="onCloseSubHeader()"
+      >
+        <i class="fa fa-chevron-right mx-6" aria-hidden="true"></i>
+        Tất cả bài viết
+      </span>
+    </h6>
+    <div
+      class="row row-between"
+      *ngIf="data.tab === 'CATEGORY' || data.tab === 'SOCIAL'"
+    >
+      <div *ngIf="articles && articles.length === 0" class="row">
+        <div *ngFor="let i of [1, 2, 3]" class="col-4">
+          <app-card-loader-article></app-card-loader-article>
+        </div>
+      </div>
+      <div class="col-4" *ngFor="let article of articles">
+        <div
+          class="card cursor-pointer"
+          (click)="viewArticle(article?.id_article, article?.name_category)"
+        >
+          <img
+            [src]="article?.thumbnail_article"
+            class="card-img-top"
+            alt="Image"
+          />
+          <div class="card-body">
+            <h5 class="card-title fs-16 fw-700 preview-content-2">
+              {{ article?.title }}
+            </h5>
+            <p class="card-text fs-14 preview-content-2">
+              {{ article?.preview_content }}
+            </p>
+            <p class="column-center mt-12 color-primary">
+              Xem thêm
+              <i aria-hidden="true" class="fa fa-chevron-right mx-6"></i>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <div class="row row-between" *ngIf="data.tab === 'BOOKING_DOCTOR'">
+      <div *ngIf="hospitals && hospitals.length === 0" class="row">
+        <div *ngFor="let i of [1, 2, 3]" class="col-4">
+          <app-card-loader-article></app-card-loader-article>
+        </div>
+      </div>
+      <div class="col-4" *ngFor="let hospital of hospitals">
+        <div
+          class="card cursor-pointer"
+          (click)="viewHospital(hospital?.id_hospital)"
+        >
+          <img [src]="hospital.avatar" class="card-img-top" alt="Image" />
+          <div class="card-body">
+            <h5 class="card-title fs-16 fw-700">{{ hospital.name }}</h5>
+            <p class="card-text fs-14">{{ hospital.description }}</p>
+            <p class="column-center mt-12 color-primary">
+              Xem thêm
+              <i aria-hidden="true" class="fa fa-chevron-right mx-6"></i>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span
+      class="fs-30 icon-close position-absolute"
+      (click)="onCloseSubHeader()"
+      >&times;
+    </span>
   </div>
 </div>

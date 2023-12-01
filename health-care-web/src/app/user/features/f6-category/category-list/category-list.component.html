@@ -4,8 +4,8 @@
 
     <div class="col-11">
       <div class="row">
-        <div class="col-12 pb-3 column-center cursor-pointer" routerLink="/">
-          <i class="fa fa-home fs-16"></i>
+        <div class="col-12 pb-3 column-center cursor-pointer">
+          <i routerLink="/" class="fa fa-home fs-16"></i>
           <div class="line-vertical ms-2 me-2"></div>
           <span class="fs-16">Tất cả danh mục</span>
         </div>
@@ -20,43 +20,26 @@
     "
   >
     <div class="container">
-      <p
-        style="
-          color: #284a75;
-          font-weight: bold;
-          text-align: center;
-          font-size: 30px;
-        "
-        class="mt-20"
-      >
+      <p class="mt-20 fw-bold fs-20 text-center color-primary">
         Tất cả danh mục sức khoẻ
       </p>
-      <div class="row p-16">
-        <div
-          class="p-0 position-relative"
-          style="box-shadow: 1px 4px rgba(0, 0, 0, 0.1)"
-        >
-          <img
-            src="assets/media/icon/search.svg"
-            alt=""
-            class="wh-26 position-absolute"
-            style="
-              transform: translateX(10px);
-              top: 50%;
-              transform: translateY(-50%);
-              left: 10px;
-            "
-          />
-          <input
-            class="py-2 ps-5 pe-4 form-control"
-            type="text"
-            [(ngModel)]="textSearch"
-          />
-        </div>
+      <div class="position-relative my-20">
+        <img
+          src="assets/media/icon/icon_search.svg"
+          alt="Icon"
+          class="position-absolute-left-12 cursor-pointer"
+        />
+        <input
+          type="text"
+          class="form-control pl-40 input-search"
+          placeholder="Tìm kiếm danh mục"
+          [(ngModel)]="textSearch"
+        />
       </div>
+
       <div class="row">
         <div
-          class="col-md-4 col-lg-2 col-sm-6 cursor-pointer"
+          class="col-md-4 col-lg-2 col-sm-6 cursor-pointer color-primary-hover"
           *ngFor="let category of categories | filter: ['name'] : textSearch"
         >
           <div class="p-16" routerLink="/danh-muc/{{ category?.name }}">
@@ -65,7 +48,7 @@
                 <img
                   class="image-item border-radius-4"
                   [src]="category?.thumbnail"
-                  alt=""
+                  alt="Ảnh danh mục"
                 />
               </div>
               <p class="text-center fw-bold fs-13 mt-6 preview-content-2">
