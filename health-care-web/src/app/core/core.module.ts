@@ -14,6 +14,7 @@ import { ClickOutsideDirective } from './directives/click_outside.directive';
 import { FilterPipe } from './pipes/filter.pipe';
 import { GenderPipe } from './pipes/gender.pipe';
 import { TimeAgoPipe } from './pipes/time-ago.pipe';
+import { NoDataComponent } from './components/no-data/no-data.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { TimeAgoPipe } from './pipes/time-ago.pipe';
     FilterPipe,
     GenderPipe,
     TimeAgoPipe,
+    NoDataComponent,
   ],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
   exports: [
@@ -44,6 +46,7 @@ import { TimeAgoPipe } from './pipes/time-ago.pipe';
     FilterPipe,
     GenderPipe,
     TimeAgoPipe,
+    NoDataComponent,
   ],
 })
 export class CoreModule {}

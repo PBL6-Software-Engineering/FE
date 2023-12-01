@@ -21,7 +21,7 @@ export class F3ArticleListComponent implements OnInit {
   numberElementOfPage = 0;
 
   textSearch = '';
-  lastTextSearch = '';
+  oldTextSearch = '';
   isSearching = false;
 
   constructor(
@@ -34,6 +34,7 @@ export class F3ArticleListComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
+      this.oldTextSearch = this.textSearch;
       this.textSearch = params['textSearch'] || '';
       this.search();
     });
@@ -75,5 +76,9 @@ export class F3ArticleListComponent implements OnInit {
   onChangePage(page: number) {
     this.currentPage = page;
     this.search();
+  }
+
+  searchArticle() {
+    this.router.navigate(['/bai-viet/tim-kiem', this.textSearch || '']);
   }
 }

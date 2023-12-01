@@ -1,21 +1,19 @@
 <div class="py-30 container">
   <div class="row">
-    <div class="col-sm-9">
+    <div class="col-sm-9 m-auto">
       <div class="row">
-        <div class="col-sm-8">
+        <div class="col-8">
           <input
             type="text"
             class="form-control"
             placeholder="Tìm kiếm với tên bệnh viện"
             [(ngModel)]="textSearch"
+            (keydown.enter)="searchHospital()"
           />
         </div>
 
-        <div class="col-sm-2">
-          <button
-            class="btn btn-primary-1"
-            [routerLink]="['/benh-vien/tim-kiem', textSearch || '']"
-          >
+        <div class="col-4">
+          <button class="btn btn-primary-1" (click)="searchHospital()">
             Tìm kiếm
           </button>
         </div>
@@ -117,4 +115,9 @@
       </div>
     </div>
   </div>
+
+  <app-no-data
+    [keyword]="oldTextSearch"
+    *ngIf="dataSources && dataSources.length === 0"
+  ></app-no-data>
 </div>

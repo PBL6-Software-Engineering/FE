@@ -20,7 +20,7 @@ export class HospitalListComponent implements OnInit {
   numberElementOfPage = 0;
 
   textSearch = '';
-  lastTextSearch = '';
+  oldTextSearch = '';
   isSearching = false;
 
   constructor(
@@ -34,6 +34,7 @@ export class HospitalListComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.textSearch = params['textSearch'] || '';
+      this.oldTextSearch = this.textSearch;
       this.search();
     });
   }
@@ -74,5 +75,9 @@ export class HospitalListComponent implements OnInit {
   onChangePage(page: number) {
     this.currentPage = page;
     this.search();
+  }
+
+  searchHospital() {
+    this.router.navigate(['/benh-vien/tim-kiem', this.textSearch || '']);
   }
 }
