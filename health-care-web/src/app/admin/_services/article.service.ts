@@ -55,7 +55,7 @@ export class ArticleService {
   }
 
   findById(id: any): Observable<any> {
-    return this.http.get<any>(`${linkApi}/${this.model}/detail/${id}`);
+    return this.http.get<any>(`${linkApi}/${this.model}/detail-private/${id}`);
   }
 
   create(obj: any): Observable<any> {
