@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { linkApi } from '../../core/constants/api.constant';
@@ -19,15 +19,10 @@ export class AppointmentService {
     );
   }
 
-  getAppointmentHospital({
-    startDate = '2023-11-06',
-    endDate = '2023-11-12',
-    typeSort = 'time',
-    typeBook = '',
-    status = '',
-  }): Observable<any> {
+  getAppointmentHospital(query: any): Observable<any> {
+    const queryParams = new HttpParams({ fromObject: query });
     return this.http.get<any>(
-      `${linkApi}/${this.model}/hospital?startDate=${startDate}&endDate=${endDate}&typesort=${typeSort}&is_service=${typeBook}&status=${status}`,
+      `${linkApi}/${this.model}/hospital?${queryParams}`,
     );
   }
 
@@ -48,5 +43,21 @@ export class AppointmentService {
       id_work_schedule,
       id_doctor,
     });
+  }
+
+  confirmAppointment(id_appointment: any, is_confirm: any): Observable<any> {
+    return this.http.post<any>(
+      `${linkApi}/${this.model}/change-confirm/${id_appointment}`,
+      {
+        is_confirm: is_confirm,
+      },
+    );
+  }
+
+  changeInfoPatient(id_appointment: any, data: any): Observable<any> {
+    return this.http.post<any>(
+      `${linkApi}/${this.model}/update-infor-patient/${id_appointment}`,
+      data,
+    );
   }
 }

@@ -27,13 +27,19 @@ export class ArticleTopicsComponent implements OnInit {
       this.isLoading = true;
       this.spinnerService.show();
       forkJoin([
-        this.articleService.getArticleByCategory({
+        this.articleService.getArticles({
+          paginate: 3,
+          page: 1,
           name_category: categories[0].name,
         }),
-        this.articleService.getArticleByCategory({
+        this.articleService.getArticles({
+          paginate: 3,
+          page: 1,
           name_category: categories[1].name,
         }),
-        this.articleService.getArticleByCategory({
+        this.articleService.getArticles({
+          paginate: 3,
+          page: 1,
           name_category: categories[2].name,
         }),
       ]).subscribe((results: any[]) => {

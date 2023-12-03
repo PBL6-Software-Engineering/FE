@@ -59,13 +59,13 @@
               <tbody>
                 <!-- <div class="d-flex py-20 border-bottom" > -->
                 <tr class="inner-box" *ngFor="let item of items; let i = index">
-                  <th scope="row" class="text-center">
+                  <td scope="row" class="text-center fw-bold">
                     <span class="fs-30">{{ item.day }}</span>
                     <p>{{ item.month }}</p>
-                  </th>
+                  </td>
 
                   <td>
-                    <h5 class="color-primary">
+                    <h5 class="color-primary fs-16">
                       {{ item?.service_name || "Lịch tư vấn" }}
                     </h5>
                     <div class="my-8 fs-14">

@@ -64,8 +64,8 @@ export class HeaderComponent implements OnInit {
     }
 
     forkJoin([
-      this.articleService.getArticleOutStandingPublic({ paginate: 3 }),
-      this.hospitalService.paginate({ paginate: 3 }),
+      this.articleService.getArticles({ paginate: 3, page: 1 }),
+      this.hospitalService.paginate({ paginate: 3, page: 1 }),
     ]).subscribe(([article, hospital]) => {
       this.articles = article.data?.data;
       this.hospitals = hospital.data?.data;

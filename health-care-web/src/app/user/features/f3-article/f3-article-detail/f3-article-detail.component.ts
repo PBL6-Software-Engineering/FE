@@ -24,7 +24,7 @@ export class F3ArticleDetailComponent implements AfterViewInit, OnInit {
   article: any;
   relativeArticles: any[] = [];
   doctor: any;
-  isLoading = false;
+  isLoading = true;
   isError = false;
 
   constructor(
@@ -65,7 +65,7 @@ export class F3ArticleDetailComponent implements AfterViewInit, OnInit {
         });
 
         if (this.name_category) {
-          this.getArticleByCategory(this.article.name_category);
+          this.getArticleByCategory(this.name_category);
         }
       }
     });
@@ -78,11 +78,12 @@ export class F3ArticleDetailComponent implements AfterViewInit, OnInit {
 
   getArticleByCategory(name_category: any) {
     this.articleService
-      .getArticleByCategory({
+      .getArticles({
         page: 1,
         paginate: 3,
-        name_category: this.article.name_category,
-        sort_search_number: true,
+        name_category: name_category,
+        typesort: 'search_number',
+        sortlatest: true,
       })
       .subscribe({
         next: ({ data }) => {

@@ -54,7 +54,9 @@
     >
       <div *ngIf="articles && articles.length === 0" class="row">
         <div *ngFor="let i of [1, 2, 3]" class="col-4">
-          <app-card-loader-article></app-card-loader-article>
+          <app-card-loader-article-img-top
+            [isDisplayAuthor]="false"
+          ></app-card-loader-article-img-top>
         </div>
       </div>
       <div class="col-4" *ngFor="let article of articles">
@@ -86,7 +88,9 @@
     <div class="row row-between" *ngIf="data.tab === 'BOOKING_DOCTOR'">
       <div *ngIf="hospitals && hospitals.length === 0" class="row">
         <div *ngFor="let i of [1, 2, 3]" class="col-4">
-          <app-card-loader-article></app-card-loader-article>
+          <app-card-loader-article-img-top
+            [isDisplayAuthor]="false"
+          ></app-card-loader-article-img-top>
         </div>
       </div>
       <div class="col-4" *ngFor="let hospital of hospitals">

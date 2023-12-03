@@ -34,16 +34,10 @@
         </div>
       </div>
 
-      <div class="wrapper-spinner" *ngIf="isLoading">
-        <ngx-spinner
-          bdColor="rgba(0,0,0,0)"
-          size="default"
-          color="#2095c4"
-          type="ball-pulse-sync"
-          [fullScreen]="false"
-        >
-          <p class="color-primary">Đang tải dữ liệu</p>
-        </ngx-spinner>
+      <div *ngIf="isLoading">
+        <div *ngFor="let i of [1, 2, 3, 4, 5]">
+          <app-card-loader-article-img-left></app-card-loader-article-img-left>
+        </div>
       </div>
     </div>
 

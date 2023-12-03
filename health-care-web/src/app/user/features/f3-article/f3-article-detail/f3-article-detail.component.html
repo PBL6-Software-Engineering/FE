@@ -56,7 +56,7 @@
       </div>
 
       <!-- MAIN CONTENT -->
-      <div class="row" *ngIf="!isLoading">
+      <div class="row mt-20 mb-100" *ngIf="!isLoading">
         <div class="col-9" id="content-container">
           <button
             type="button"
@@ -88,12 +88,15 @@
               class="w-100"
             ></div>
           </div>
+
           <div
-            class="border-radius-5 mt-3 mb-3 p-10"
+            class="border-radius-5 my-3 p-12"
             style="background-color: rgb(255, 248, 226)"
           >
-            <img src="assets/media/icon/danger-triangle-bold.svg" alt="" />
-            <span class="fw-bold">Miễn trừ trách nhiệm</span>
+            <div class="column-center">
+              <img src="assets/media/icon/danger-triangle-bold.svg" alt="" />
+              <div class="fw-bold ml-12">Miễn trừ trách nhiệm</div>
+            </div>
             <p>
               Các bài viết của Elister chỉ có tính chất tham khảo, không thay
               thế cho việc chẩn đoán hoặc điều trị y khoa.
@@ -168,7 +171,7 @@
                 onerror="this.src='assets/media/image/avatar_doctor_default.jpg'"
               />
             </div>
-            <p class="Info-check text-center mt-3">Thông tin kiểm chứng bởi:</p>
+            <p class="Info-check text-center mt-3">Thông tin kiểm chứng bởi</p>
             <p class="checker-Name text-center mt-2 color-primary">
               {{ article?.name_user }}
             </p>
@@ -219,13 +222,87 @@
         </div>
       </div>
       <!-- END MAIN CONTENT -->
-      <div class="row" *ngIf="isLoading">
+
+      <!-- Skeleton loader -->
+      <div class="row mt-20 mb-100" *ngIf="isLoading">
         <div class="col-9">
-          <div class="item">
-            <ngx-skeleton-loader count="10"></ngx-skeleton-loader>
+          <div class="item w-100">
+            <ngx-skeleton-loader></ngx-skeleton-loader>
+            <div>
+              <ngx-skeleton-loader
+                [theme]="{ width: '20%', 'border-radius': '0', height: '15px' }"
+              ></ngx-skeleton-loader>
+            </div>
+
+            <div class="mt-20">
+              <ngx-skeleton-loader
+                [theme]="{ width: '70%', 'border-radius': '0', height: '15px' }"
+              ></ngx-skeleton-loader>
+            </div>
+
+            <ngx-skeleton-loader count="3"></ngx-skeleton-loader>
+
+            <div class="mt-20">
+              <ngx-skeleton-loader
+                [theme]="{ width: '80%', 'border-radius': '0', height: '15px' }"
+              ></ngx-skeleton-loader>
+            </div>
+
+            <ngx-skeleton-loader count="2"></ngx-skeleton-loader>
+
+            <div>
+              <ngx-skeleton-loader
+                [theme]="{ width: '50%', 'border-radius': '0', height: '15px' }"
+              ></ngx-skeleton-loader>
+            </div>
+
+            <ngx-skeleton-loader count="2"></ngx-skeleton-loader>
+
+            <div
+              class="border-radius-5 my-3 p-12"
+              style="background-color: rgb(255, 248, 226)"
+            >
+              <div class="column-center">
+                <img src="assets/media/icon/danger-triangle-bold.svg" alt="" />
+                <div class="fw-bold ml-12">Miễn trừ trách nhiệm</div>
+              </div>
+              <p>
+                Các bài viết của Elister chỉ có tính chất tham khảo, không thay
+                thế cho việc chẩn đoán hoặc điều trị y khoa.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="col-3 d-flex flex-column"
+          style="
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #595959;
+            font-size: 0.75rem;
+          "
+        >
+          <div class="mb-auto">
+            <div class="avatar d-flex justify-content-center mt-3">
+              <img
+                class="img-Avatar"
+                src="assets/media/image/avatar_doctor_default.jpg"
+                alt="Ảnh bác sĩ"
+              />
+            </div>
+            <p class="Info-check text-center mt-3">Thông tin kiểm chứng bởi</p>
+            <p class="checker-Name text-center mt-2 color-primary">
+              <ngx-skeleton-loader
+                [theme]="{ width: '70%', 'border-radius': '0', height: '15px' }"
+              ></ngx-skeleton-loader>
+            </p>
+            <div class="article-Info">
+              <ngx-skeleton-loader count="2"></ngx-skeleton-loader>
+            </div>
           </div>
         </div>
       </div>
+      <!-- Skeleton loader -->
     </div>
   </div>
 </div>

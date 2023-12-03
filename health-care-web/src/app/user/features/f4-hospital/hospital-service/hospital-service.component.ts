@@ -1,15 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { HospitalService } from 'src/app/admin/_services/hospital.service';
-
+import { Component, Input } from '@angular/core';
 @Component({
   selector: 'app-hospital-service',
   templateUrl: './hospital-service.component.html',
   styleUrls: ['./hospital-service.component.scss'],
 })
-export class HospitalServiceComponent implements OnInit {
+export class HospitalServiceComponent {
   @Input() hospital: any;
-  @Input() services: any[] = [];
+  @Input() services: any[];
 
   constructor() {}
-  ngOnInit(): void {}
 }

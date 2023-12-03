@@ -9,6 +9,7 @@ import { HospitalService } from '../../services/hospital.service';
   styleUrls: ['./f4-hospital.component.scss'],
 })
 export class F4HospitalComponent implements OnInit {
+  step = 1;
   id: any;
   user: any;
   hospital: any;
@@ -29,13 +30,11 @@ export class F4HospitalComponent implements OnInit {
           .subscribe(({ data }) => {
             this.hospital = data;
           });
-
         this.hospitalService
           .getHospitalService(this.id)
           .subscribe(({ data }) => {
             this.services = data;
           });
-
         this.hospitalService
           .getDoctorsOfHospital(this.id)
           .subscribe(({ data }) => {
@@ -43,7 +42,6 @@ export class F4HospitalComponent implements OnInit {
           });
       }
     });
-
     this.user = JSON.parse(localStorage.getItem('user') || '{id: guest}');
   }
 
@@ -57,5 +55,12 @@ export class F4HospitalComponent implements OnInit {
         admin: this.hospital,
       });
     }
+  }
+
+  dataBooking: any;
+  openConfirmBooking(data: any): void {
+    console.log('data booking', data);
+    this.step = 2;
+    this.dataBooking = data;
   }
 }
