@@ -36,12 +36,15 @@ export class F9ArticleEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.categoryService.paginate({}).subscribe(({ data }) => {
-      this.categories = data;
+      this.categories = data.data;
+      console.log(this.categories);
     });
+
     this.route.params.subscribe((params) => {
       if (params['id']) {
         this.id = params['id'];
         this.api.findById(params['id']).subscribe(({ data }) => {
+          console.log(data);
           this.form.patchValue({ thumbnail: data.thumbnail_article });
           this.form.patchValue({ title: data.title });
           this.form.patchValue({ content: data.content });
