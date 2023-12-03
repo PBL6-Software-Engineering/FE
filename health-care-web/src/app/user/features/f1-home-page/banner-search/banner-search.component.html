@@ -12,7 +12,7 @@
         class="w-200 input-search"
         placeholder="Chọn tỉnh, thành phố"
       >
-        <ng-option *ngFor="let province of provinces" [value]="province.name">
+        <ng-option *ngFor="let province of provinces" [value]="province?.name">
           {{ province.name }}
         </ng-option>
       </ng-select>

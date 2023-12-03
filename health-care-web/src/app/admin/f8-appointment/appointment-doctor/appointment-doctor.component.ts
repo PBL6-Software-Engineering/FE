@@ -49,7 +49,7 @@ export class AppointmentDoctorComponent implements OnInit {
       .getAppointmentDoctor(this.getStatrtAndEndDate(new Date()))
       .subscribe({
         next: ({ data }) => {
-          this.appointments = data;
+          this.appointments = data.data;
           const eventData = this.appointments.map((appointment) => {
             return {
               id: appointment.id,

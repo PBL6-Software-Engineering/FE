@@ -8,8 +8,9 @@ import { ArticleImgLeft2Component } from './components/article-img-left2/article
 import { ArticleImgRightComponent } from './components/article-img-right/article-img-right.component';
 import { CoreModule } from 'src/app/core/core.module';
 import { RouterModule } from '@angular/router';
-import { CardLoaderArticleComponent } from './components/card-loader-article/card-loader-article.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { CardLoaderArticleImgTopComponent } from './components/card-loader-article-img-top/card-loader-article-img-top.component';
+import { CardLoaderArticleImgLeftComponent } from './components/card-loader-article-img-left/card-loader-article-img-left.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     ArticleImgTopNoContentComponent,
     ArticleImgLeft2Component,
     ArticleImgRightComponent,
-    CardLoaderArticleComponent,
+    CardLoaderArticleImgTopComponent,
+    CardLoaderArticleImgLeftComponent,
   ],
   imports: [CommonModule, CoreModule, RouterModule, NgxSkeletonLoaderModule],
   exports: [
@@ -29,7 +31,8 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     ArticleImgLeft2Component,
     ArticleImgTopNoContentComponent,
     ArticleImgRightComponent,
-    CardLoaderArticleComponent,
+    CardLoaderArticleImgLeftComponent,
+    CardLoaderArticleImgTopComponent,
   ],
 })
 export class ShareModuleModule {}

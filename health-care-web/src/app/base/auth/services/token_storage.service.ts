@@ -22,6 +22,7 @@ export class TokenStorageService {
   removeToken(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
+    localStorage.removeItem('user');
     this.$isLogin.next(false);
   }
 

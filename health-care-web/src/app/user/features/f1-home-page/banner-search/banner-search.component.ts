@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CommonService } from 'src/app/core/services/common.service';
 
 @Component({
   selector: 'app-banner-search',
@@ -10,15 +9,11 @@ export class BannerSearchComponent {
   province: any;
   provinces: any[] = [];
 
-  constructor(private commonService: CommonService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.getProvinces();
-  }
-
-  getProvinces() {
-    this.commonService.getProvinces().subscribe((data) => {
-      this.provinces = data.provinces;
-    });
+    console.log('provinces', this.provinces);
+    this.provinces = JSON.parse(localStorage.getItem('provinces') || '[]');
+    console.log('provinces', this.provinces);
   }
 }

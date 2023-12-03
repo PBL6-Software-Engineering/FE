@@ -13,12 +13,10 @@ export class FeaturedNewsComponent implements OnInit {
   constructor(private articleService: ArticleService) {}
 
   ngOnInit(): void {
-    this.articleService
-      .getArticleOutStandingPublic({ paginate: 5 })
-      .subscribe(({ data }) => {
-        this.articles = data.data;
-        this.articleTop = this.articles[0];
-        this.articles.splice(0, 1);
-      });
+    this.articleService.getArticles({ paginate: 5 }).subscribe(({ data }) => {
+      this.articles = data.data;
+      this.articleTop = this.articles[0];
+      this.articles.splice(0, 1);
+    });
   }
 }

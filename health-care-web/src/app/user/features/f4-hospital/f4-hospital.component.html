@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="step === 1">
   <div class="header">
     <div class="banner">
       <img
@@ -56,7 +56,7 @@
           >
             Bác sĩ
             <span *ngIf="doctors && doctors.length"
-              >({{ services.length }})</span
+              >({{ doctors.length }})</span
             >
           </li>
         </ul>
@@ -85,8 +85,17 @@
           [hospital]="hospital"
           [doctorsOfHospital]="doctors"
           [services]="services"
+          (confirmBooking)="openConfirmBooking($event)"
         ></app-booking-hospital>
       </div>
     </div>
   </div>
+</div>
+
+<div class="container" *ngIf="step === 2">
+  <app-confirm-booking
+    (goToStep1)="step = 1"
+    [dataBooking]="dataBooking"
+    [hospital]="hospital"
+  ></app-confirm-booking>
 </div>

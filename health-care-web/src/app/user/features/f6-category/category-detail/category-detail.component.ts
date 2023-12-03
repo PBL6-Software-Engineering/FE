@@ -35,7 +35,7 @@ export class CategoryDetailComponent implements OnInit {
         );
 
         this.articleService
-          .getArticleByCategory({
+          .getArticles({
             page: 1,
             name_category: this.nameCategory,
             paginate: 15,

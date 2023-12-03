@@ -29,12 +29,12 @@ export class ExpertDetailComponent implements OnInit {
               data.infor_extend.information;
             this.doctor = data;
             this.articleService
-              .getArticleOutStandingPublic({
+              .getArticles({
                 page: 1,
                 paginate: 20,
                 search: this.doctor.name,
-                sortLatest: true,
-                sort_search_number: true,
+                typesort: 'search_number',
+                sortlatest: true,
               })
               .subscribe({
                 next: ({ data }) => {

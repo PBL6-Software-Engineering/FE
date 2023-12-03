@@ -1,13 +1,13 @@
 import {
   Component,
-  ElementRef,
+  EventEmitter,
   Input,
   OnChanges,
   OnInit,
+  Output,
   SimpleChanges,
 } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ToastrService } from 'ngx-toastr';
 import { BookingService } from 'src/app/admin/_services/booking.service';
 import { DepartmentHospitalService } from 'src/app/admin/_services/department_hospital.service';
 
@@ -20,6 +20,7 @@ export class BookingHospitalComponent implements OnInit, OnChanges {
   @Input() hospital: any;
   @Input() doctorsOfHospital: any[] = [];
   @Input() services: any[] = [];
+  @Output() confirmBooking = new EventEmitter<any>();
 
   tab: any = 'doctor';
   typeTimeWorking: any = 'doctor';
@@ -47,8 +48,6 @@ export class BookingHospitalComponent implements OnInit, OnChanges {
     private departmentHospitalService: DepartmentHospitalService,
     private bookingService: BookingService,
     private spinnerService: NgxSpinnerService,
-    private el: ElementRef,
-    private toastr: ToastrService,
   ) {}
   ngOnChanges(changes: SimpleChanges): void {
     if (this.hospital && this.hospital.id_hospital) {
@@ -179,55 +178,18 @@ export class BookingHospitalComponent implements OnInit, OnChanges {
     this.times = timesOrder;
   }
 
-  bookDoctor(): void {
-    this.bookingService
-      .bookDoctor(this.doctor.id_doctor, {
+  onConfirmBook(): void {
+    let dataBooking: any = {
+      time: {
         date: this.day.date,
         interval: this.diviseTime,
-      })
-      .subscribe({
-        next: (res) => {
-          this.isBooking = false;
-          this.isErrorBooking = false;
-          this.el.nativeElement.querySelector('#closeModalBooking').click();
-          this.toastr.success('Đặt lịch hẹn thành công!');
-        },
-        error: (err) => {
-          this.isBooking = false;
-          this.isErrorBooking = true;
-          this.toastr.error('Đặt lịch hẹn thất bại!');
-        },
-      });
-  }
-
-  bookService(): void {
-    this.bookingService
-      .bookService(this.service.id_hospital_service, {
-        date: this.day.date,
-        interval: this.diviseTime,
-      })
-      .subscribe({
-        next: (res) => {
-          this.isBooking = false;
-          this.isErrorBooking = false;
-          this.el.nativeElement.querySelector('#closeModalBooking').click();
-          this.toastr.success('Đặt lịch hẹn thành công!');
-        },
-        error: (err) => {
-          this.isBooking = false;
-          this.isErrorBooking = true;
-          this.toastr.error('Đặt lịch hẹn thất bại!');
-        },
-      });
-  }
-
-  book(): void {
-    this.isBooking = true;
-    this.isErrorBooking = false;
+      },
+    };
     if (this.tab === 'doctor') {
-      this.bookDoctor();
+      dataBooking.doctor = this.doctor;
     } else {
-      this.bookService();
+      dataBooking.hospitalService = this.service;
     }
+    this.confirmBooking.emit(dataBooking);
   }
 }
