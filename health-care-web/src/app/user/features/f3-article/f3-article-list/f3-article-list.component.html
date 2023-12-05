@@ -85,7 +85,7 @@
   </div>
 
   <app-no-data
-    *ngIf="dataSources && dataSources.length === 0"
+    *ngIf="dataSources && dataSources.length === 0 && !isLoading"
     [keyword]="oldTextSearch"
   ></app-no-data>
 </div>

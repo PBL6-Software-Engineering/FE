@@ -10,16 +10,16 @@ export class UserComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    const [province, category, department] =
-      this.route.snapshot.data['commonData'];
-    localStorage.setItem(
-      'provinces',
-      JSON.stringify(province.provinces || '[]'),
-    );
-    localStorage.setItem('categories', JSON.stringify(category.data || '[]'));
-    localStorage.setItem(
-      'departments',
-      JSON.stringify(department.data || '[]'),
-    );
+    // const [province, category, department] =
+    //   this.route.snapshot.data['commonData'];
+    // localStorage.setItem(
+    //   'provinces',
+    //   JSON.stringify(province.provinces || '[]'),
+    // );
+    // localStorage.setItem('categories', JSON.stringify(category.data || '[]'));
+    // localStorage.setItem(
+    //   'departments',
+    //   JSON.stringify(department.data || '[]'),
+    // );
   }
 }

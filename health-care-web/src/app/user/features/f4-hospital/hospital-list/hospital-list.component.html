@@ -118,6 +118,6 @@
 
   <app-no-data
     [keyword]="oldTextSearch"
-    *ngIf="dataSources && dataSources.length === 0"
+    *ngIf="dataSources && dataSources.length === 0 && !isLoading"
   ></app-no-data>
 </div>
