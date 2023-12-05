@@ -23,7 +23,7 @@ const routes: Routes = [
   {
     path: '',
     resolve: {
-      // commonData: CommonDataResolve,
+      commonData: CommonDataResolve,
     },
     loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
     data: {
