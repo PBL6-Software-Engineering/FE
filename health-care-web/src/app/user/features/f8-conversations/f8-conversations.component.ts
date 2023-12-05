@@ -22,11 +22,15 @@ export class F8ConversationsComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user') || '{id: guest}');
+    console.log('this.user', this.user);
     if (this.user && this.user.id) {
       this.isLoadConversation = true;
       this.spinnerService.show();
       this.chatService
-        .getConversations(this.user.id, 'user')
+        .getConversations(
+          this.user.id,
+          localStorage.getItem('role') === 'user' ? 'user' : 'admin',
+        )
         .subscribe(({ data }) => {
           this.conversations = data;
           this.isLoadConversation = false;
@@ -50,6 +54,7 @@ export class F8ConversationsComponent implements OnInit {
 
   setConversation(item: any) {
     this.chatService.setConversation(item);
+    console.log('item', item);
     this.onClose();
   }
 }
