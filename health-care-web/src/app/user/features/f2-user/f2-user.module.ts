@@ -14,6 +14,7 @@ import { CoreModule } from 'src/app/core/core.module';
 import { CalendarComponent } from './calendar/calendar.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { UserRatingComponent } from './user-rating/user-rating.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     UserDisableAccountComponent,
     UserHelpComponent,
     CalendarComponent,
+    UserRatingComponent,
   ],
   imports: [
     CommonModule,

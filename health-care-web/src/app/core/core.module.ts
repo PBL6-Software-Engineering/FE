@@ -15,6 +15,7 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { GenderPipe } from './pipes/gender.pipe';
 import { TimeAgoPipe } from './pipes/time-ago.pipe';
 import { NoDataComponent } from './components/no-data/no-data.component';
+import { RatingStarsComponent } from './components/rating-stars/rating-stars.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { NoDataComponent } from './components/no-data/no-data.component';
     GenderPipe,
     TimeAgoPipe,
     NoDataComponent,
+    RatingStarsComponent,
   ],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
   exports: [
@@ -47,6 +49,7 @@ import { NoDataComponent } from './components/no-data/no-data.component';
     GenderPipe,
     TimeAgoPipe,
     NoDataComponent,
+    RatingStarsComponent,
   ],
 })
 export class CoreModule {}

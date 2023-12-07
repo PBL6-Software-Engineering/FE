@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BookingService } from 'src/app/admin/_services/booking.service';
+import { TokenStorageService } from 'src/app/base/auth/services/token_storage.service';
 
 @Component({
   selector: 'app-confirm-booking',
@@ -14,12 +15,15 @@ export class ConfirmBookingComponent implements OnInit {
   @Input() hospital: any;
   @Output() goToStep1 = new EventEmitter<any>();
   isBooking: boolean = false;
+  isLogin: boolean = false;
+  user: any;
 
   form: any;
   constructor(
     private bookingService: BookingService,
     private toastr: ToastrService,
     private router: Router,
+    private tokenStorage: TokenStorageService,
   ) {}
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -38,6 +42,13 @@ export class ConfirmBookingComponent implements OnInit {
       health_condition: new FormControl('', [Validators.required]),
     });
     window.scrollTo(0, 0);
+
+    this.tokenStorage.getUser().subscribe((user: any) => {
+      if (user) {
+        this.isLogin = true;
+        this.user = user;
+      }
+    });
   }
 
   confirmBooking(): void {
@@ -99,5 +110,19 @@ export class ConfirmBookingComponent implements OnInit {
         this.toastr.error('Đặt lịch hẹn thất bại!');
       },
     });
+  }
+
+  autoFillInfoLogin() {
+    if (this.user) {
+      const obj = {
+        name_patient: this.user.name,
+        gender_patient: this.user.gender,
+        email_patient: this.user.email,
+        phone_patient: this.user.phone,
+        address_patient: this.user.address,
+        date_of_birth_patient: this.user.date_of_birth,
+      };
+      this.form.patchValue(obj);
+    }
   }
 }

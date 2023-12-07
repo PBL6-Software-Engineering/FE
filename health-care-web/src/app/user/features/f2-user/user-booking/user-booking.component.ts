@@ -58,7 +58,6 @@ export class UserBookingComponent {
   ngOnInit(): void {
     this.getWaitBooking();
     this.getDoneBooking();
-    this.getHistoryBooking();
   }
 
   chooseTab(tab: string): void {
@@ -67,8 +66,6 @@ export class UserBookingComponent {
       this.items = this.itemsWait;
     } else if (tab == 'doneBooking') {
       this.items = this.itemsDone;
-    } else {
-      this.items = this.itemHistory;
     }
     this.patchDataCalendar();
   }
@@ -121,29 +118,6 @@ export class UserBookingComponent {
         });
         this.itemsDone = data.data;
         this.doneNumber = this.itemsDone.length;
-      },
-      error: (err) => {
-        console.log('Error', err);
-      },
-    });
-  }
-
-  getHistoryBooking(): void {
-    // call API here
-    this.workSchedule.getWorkSchedule({}).subscribe({
-      next: ({ data }) => {
-        data.data.forEach((el: any) => {
-          el.selected = false;
-          if (el.work_schedule_time.date) {
-            const myDate = new Date(el.work_schedule_time.date);
-            el.day = myDate.getDate();
-            const options = { month: 'long' } as Intl.DateTimeFormatOptions;
-            const month = new Intl.DateTimeFormat('vi', options).format(myDate);
-            el.year = myDate.getFullYear();
-            el.month = month;
-          }
-        });
-        this.itemHistory = data.data;
       },
       error: (err) => {
         console.log('Error', err);
@@ -250,5 +224,9 @@ export class UserBookingComponent {
   handleEvents(events: EventApi[]) {
     this.currentEvents.set(events);
     this.changeDetector.detectChanges(); // workaround for pressionChangedAfterItHasBeenCheckedError
+  }
+
+  updateRating(rating: any) {
+    this.itemSelected.rating = rating;
   }
 }

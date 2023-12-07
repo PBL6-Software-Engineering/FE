@@ -35,43 +35,28 @@
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-              <a
-                class="btn nav-link dropdown-toggle"
-                (click)="chooseTab('CATEGORY')"
-              >
-                Chuyên mục
-              </a>
-            </li>
-            <!-- <li class="nav-item dropdown">
-            <a
-              class="btn nav-link dropdown-toggle"
-              (click)="chooseTab('HEALTH_CHECK')"
+            <li
+              class="nav-item"
+              (click)="chooseTab('CATEGORY')"
+              #toggleSubHeader1
             >
-              Kiểm tra sức khoẻ
-            </a>
-          </li> -->
-            <li class="nav-item dropdown">
-              <a
-                class="btn nav-link dropdown-toggle"
-                (click)="chooseTab('BOOKING_DOCTOR')"
-              >
-                Đặt lịch với bác sĩ
-              </a>
+              Chuyên mục
+              <i class="fa fa-caret-down ml-6" aria-hidden="true"></i>
             </li>
-            <li class="nav-item dropdown">
-              <a
-                class="btn nav-link dropdown-toggle"
-                (click)="chooseTab('SOCIAL')"
-              >
-                Cộng đồng
-              </a>
+
+            <li
+              class="nav-item"
+              (click)="chooseTab('BOOKING_DOCTOR')"
+              #toggleSubHeader2
+            >
+              Đặt lịch với bác sĩ
+              <i class="fa fa-caret-down ml-6" aria-hidden="true"></i>
             </li>
           </ul>
         </div>
       </nav>
 
-      <div class="position-relative d-flex align-items-center">
+      <div class="position-relative column-center ml-16">
         <!-- Button login -->
         <a
           class="btn btn-outline-gray btn-login"
@@ -93,7 +78,7 @@
         <!-- Icon messenger -->
         <img
           src="assets/media/image/messenger.png"
-          class="wh-24 mx-3 cursor-pointer"
+          class="wh-24 mx-24 cursor-pointer"
           alt="Tin nhắn"
           *ngIf="isLogin"
           (click)="viewConversation()"
@@ -124,22 +109,22 @@
       </div>
     </div>
   </header>
+</div>
 
-  <div class="sub-header-wrapper">
-    <!-- Sub header -->
-    <app-sub-header
-      *ngIf="isOpenSubMenuBar"
-      [data]="tabObj"
-      (closeSubHeader)="this.isOpenSubMenuBar = false"
-      [hospitals]="hospitals"
-      [articles]="articles"
-    ></app-sub-header>
+<div class="sub-header" #subHeader>
+  <!-- Sub header -->
+  <app-sub-header
+    *ngIf="isOpenSubMenuBar"
+    [data]="tabObj"
+    (closeSubHeader)="this.isOpenSubMenuBar = false"
+    [hospitals]="hospitals"
+    [articles]="articles"
+  ></app-sub-header>
 
-    <!-- Sub header mobile -->
-    <app-sub-header-mobile
-      *ngIf="isOpenSubMenuBarMobile"
-      [data]="tabObj"
-      (closeSubHeaderMobile)="this.isOpenSubMenuBarMobile = false"
-    ></app-sub-header-mobile>
-  </div>
+  <!-- Sub header mobile -->
+  <app-sub-header-mobile
+    *ngIf="isOpenSubMenuBarMobile"
+    [data]="tabObj"
+    (closeSubHeaderMobile)="this.isOpenSubMenuBarMobile = false"
+  ></app-sub-header-mobile>
 </div>

@@ -31,9 +31,15 @@ header {
     }
 }
 
-.nav-link {
+.navbar {
+    height: 70px;
+}
+
+.nav-item {
+    cursor: pointer;
     color: #1b3250 !important;
     font-weight: 700;
+    margin-left: 30px;
 }
 
 .sub-header-wrapper {

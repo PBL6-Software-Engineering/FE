@@ -33,15 +33,9 @@ export class HospitalService {
     );
   }
 
-  getDoctors({
-    page = 1,
-    paginate = 20,
-    search = '',
-    sortLatest = true,
-  }): Observable<any> {
-    return this.http.get<any>(
-      `${linkApi}/${this.model}/all-doctor?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}&is_confirm=both&is_accept=both`,
-    );
+  getDoctors(filter: any): Observable<any> {
+    const query = new URLSearchParams(filter);
+    return this.http.get<any>(`${linkApi}/${this.model}/all-doctor?${query}`);
   }
 
   getDoctor(id_doctor: any): Observable<any> {

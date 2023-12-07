@@ -15,7 +15,7 @@ const routes: Routes = [
     path: 'admin',
     canLoad: [CanLoadAdminGuard],
     resolve: {
-      province: ProvinceResolve,
+      // province: ProvinceResolve,
     },
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),

@@ -24,4 +24,15 @@ export class BookingService {
   bookService(data: any): Observable<any> {
     return this.http.post<any>(`${linkApi}/work-schedule/add-service`, data);
   }
+
+  addRating(data: any): Observable<any> {
+    return this.http.post<any>(`${linkApi}/rating/add`, data);
+  }
+
+  updateRating(id_work_schedule: any, data: any): Observable<any> {
+    return this.http.post<any>(
+      `${linkApi}/rating/update/${id_work_schedule}`,
+      data,
+    );
+  }
 }

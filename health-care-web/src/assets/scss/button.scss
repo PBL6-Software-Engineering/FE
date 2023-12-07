@@ -5,8 +5,8 @@
     font-weight: 600;
 
     &-primary-1 {
-        background-color: #2095c4;
-        color: white;
+        background-color: #2095c4 !important;
+        color: white !important;
 
         &:hover,
         &:active,
@@ -18,26 +18,26 @@
 
     &-outline {
         &-gray {
-            border: 1px solid rgb(210, 214, 220);
-            background: white;
+            border: 1px solid rgb(210, 214, 220) !important;
+            background: white !important;
             font-weight: 600;
 
             &:hover {
-                background-color: $color-neutral50;
+                background-color: $color-neutral50 !important;
             }
         }
 
         &-primary {
-            border: 1px solid $color-primaryBase;
-            background: white;
-            color: $color-primaryBase;
+            border: 1px solid $color-primaryBase !important;
+            background: white !important;
+            color: $color-primaryBase !important;
             font-weight: 600;
 
             &:hover,
             &:focus,
             &:active {
                 background-color: $color-primaryBase !important;
-                color: white;
+                color: white !important;
                 border: 1px solid $color-primaryBase !important;
                 outline: $color-primaryBase !important;
             }
@@ -45,14 +45,14 @@
     }
 
     &-blue {
-        border: 1px solid $color-primaryBase;
-        background: $color-primaryBase;
-        color: white;
+        border: 1px solid $color-primaryBase !important;
+        background: $color-primaryBase !important;
+        color: white !important;
         font-weight: 600;
 
         &:hover {
-            background-color: $color-blue700;
-            color: white;
+            background-color: $color-blue700 !important;
+            color: white !important;
         }
     }
 

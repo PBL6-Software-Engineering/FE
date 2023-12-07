@@ -88,7 +88,7 @@ export class F6DoctorCreateComponent implements OnInit {
   addField(type: any): void {
     const fg = new FormGroup({
       title: new FormControl('', [Validators.required]),
-      subtitle: new FormArray([new FormControl('', [])], [Validators.required]),
+      subtitle: new FormArray([new FormControl('')], [Validators.required]),
     });
     if (type === 'training_process') {
       this.training_process?.push(fg);
@@ -148,9 +148,6 @@ export class F6DoctorCreateComponent implements OnInit {
   get training_process(): FormArray {
     return this.form.get('training_process') as FormArray;
   }
-  get subtitle_training_process(): FormArray {
-    return this.form.get('training_process') as FormArray;
-  }
   get strengths(): FormArray {
     return this.form.get('strengths') as FormArray;
   }
@@ -161,10 +158,10 @@ export class F6DoctorCreateComponent implements OnInit {
     return this.form.get('work_experience') as FormArray;
   }
   get awards_recognition(): FormArray {
-    return this.form.get('work_experience') as FormArray;
+    return this.form.get('awards_recognition') as FormArray;
   }
   get research_work(): FormArray {
-    return this.form.get('work_experience') as FormArray;
+    return this.form.get('research_work') as FormArray;
   }
 
   getSubTitle(type: any, index: number) {
