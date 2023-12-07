@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 export class UserComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
-  ngOnInit(): void {
+ngOnInit(): void {
     const [province, category, department] =
       this.route.snapshot.data['commonData'];
     localStorage.setItem(

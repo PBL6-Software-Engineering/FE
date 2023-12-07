@@ -1,6 +1,15 @@
 .sub-header {
     padding: 30px 5%;
     min-height: 474px;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100vw;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    z-index: 100;
 }
 
 .icon-sub-header {

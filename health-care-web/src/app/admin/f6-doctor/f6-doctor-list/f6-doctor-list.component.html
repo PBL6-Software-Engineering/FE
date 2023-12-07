@@ -171,15 +171,17 @@
           type="button"
           class="btn btn-secondary w-150px mr-10"
           data-bs-dismiss="modal"
+          id="dismissDeleteModal"
         >
           Hủy
         </button>
         <button
           type="button"
-          class="btn btn-danger w-150px"
-          data-bs-dismiss="modal"
+          class="btn btn-danger w-150px column-center"
           (click)="onDeleteOne()"
+          [disabled]="isDeleting"
         >
+        <div class="loader" *ngIf="isDeleting"></div>
           Xóa
         </button>
       </div>

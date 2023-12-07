@@ -1,4 +1,11 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { TokenStorageService } from 'src/app/base/auth/services/token_storage.service';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
@@ -37,12 +44,41 @@ export class HeaderComponent implements OnInit {
 
   textSearch: string = '';
 
+  /**
+   * This is the toogle button elemenbt, look at HTML and see its defination
+   */
+  @ViewChild('toggleSubHeader1') toggleSubHeader1: ElementRef;
+  @ViewChild('toggleSubHeader2') toggleSubHeader2: ElementRef;
+  @ViewChild('subHeader') menu: ElementRef;
+
   constructor(
     private tokenStorageService: TokenStorageService,
     private router: Router,
     private articleService: ArticleService,
     private hospitalService: HospitalService,
-  ) {}
+    private renderer: Renderer2,
+  ) {
+    /**
+     * This events get called by all clicks on the page
+     */
+    this.renderer.listen('window', 'click', (e: Event) => {
+      /**
+       * Only run when toggleButton is not clicked
+       * If we don't check this, all clicks (even on the toggle button) gets into this
+       * section which in the result we might never see the menu open!
+       * And the menu itself is checked here, and it's where we check just outside of
+       * the menu and button the condition abbove must close the menu
+       */
+      if (
+        e.target !== this.toggleSubHeader1.nativeElement &&
+        e.target !== this.toggleSubHeader2.nativeElement &&
+        e.target !== this.menu.nativeElement &&
+        !this.menu.nativeElement.contains(e.target)
+      ) {
+        this.isOpenSubMenuBar = false;
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.tokenStorageService.isLogin.subscribe(
