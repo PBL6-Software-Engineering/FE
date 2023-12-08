@@ -13,12 +13,11 @@
     "e2e": "ng e2e",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "check": "prettier --check .",
     "prettier": "prettier --write \"src/**/*.{html,css,ts}"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run prettier && git add -A ."
+      "pre-commit": "npm run prettier"
     }
   },
   "private": true,
@@ -89,7 +88,6 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "lint-staged": "^15.2.0",
     "prettier": "3.1.0",
     "tslib": "^2.6.2",
     "typescript": "~5.1.3"
