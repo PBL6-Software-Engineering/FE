@@ -1,7 +1,7 @@
-import { RatingStarsComponent } from './rating-stars.component'
+import { RatingStarsComponent } from './rating-stars.component';
 
 describe('RatingStarsComponent', () => {
   it('should mount', () => {
-    cy.mount(RatingStarsComponent)
-  })
-})
+    cy.mount(RatingStarsComponent);
+  });
+});
