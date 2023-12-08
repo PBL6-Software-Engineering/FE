@@ -21,7 +21,12 @@
   <div class="mt-3 mh-20">
     <span [ngStyle]="{ color: getColorDescRating() }" class="fs-14 fw-bold">
       {{ descriptionsRating[rating] }}
-      <i class="fa fa-pencil cursor-pointer ml-4" aria-hidden="true" *ngIf="isCanEdit" (click)="onEditRating()"></i>
+      <i
+        class="fa fa-pencil cursor-pointer ml-4"
+        aria-hidden="true"
+        *ngIf="isCanEdit"
+        (click)="onEditRating()"
+      ></i>
     </span>
   </div>
 </div>
