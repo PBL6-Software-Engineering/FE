@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     path: '',
     component: AuthComponent,
-    canActivate: [CanAuth],
+    // canActivate: [CanAuth],
     children: [
       // {
       //   path: 'forgot-password',

@@ -6,10 +6,9 @@
   color: #cecece;
 }
 
-
 /* this code is lifted from InHuOfficial */
 .hide-visually,
-.star-rating>input {
+.star-rating > input {
   border: 0;
   padding: 0;
   margin: 0;
@@ -46,32 +45,32 @@
   display: inline-block;
 }
 
-.star-rating input:checked~label>span.star,
-.star-rating>label:hover~input~label>span.star {
+.star-rating input:checked ~ label > span.star,
+.star-rating > label:hover ~ input ~ label > span.star {
   -webkit-text-stroke: 2px #000;
   color: #fff;
 }
 
 .star-rating span.star,
-.star-rating:hover>input+label>span.star,
-.star-rating>input:checked+label>span.star,
-.star-rating>input~label:hover>span.star {
+.star-rating:hover > input + label > span.star,
+.star-rating > input:checked + label > span.star,
+.star-rating > input ~ label:hover > span.star {
   color: gold;
-  -webkit-text-stroke: 2px #8A7500;
+  -webkit-text-stroke: 2px #8a7500;
 }
 
-.star-rating>input~label:hover>span.star {
-  -webkit-text-stroke: 2px #A36A00;
+.star-rating > input ~ label:hover > span.star {
+  -webkit-text-stroke: 2px #a36a00;
   color: orange;
 }
 
-.star-rating>input:checked+label>span.star {
+.star-rating > input:checked + label > span.star {
   animation: shake 820ms cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
   transform: rotateZ(0);
 }
 
-.star-rating>input:checked+label>span.star::before {
-  content: '★';
+.star-rating > input:checked + label > span.star::before {
+  content: "★";
   pointer-events: none;
   position: absolute;
   top: 0;
@@ -86,7 +85,6 @@
 }
 
 @keyframes shake {
-
   10%,
   90% {
     transform: rotateZ(-1deg);

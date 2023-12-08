@@ -47,7 +47,7 @@ export class F6DoctorListComponent implements OnInit, OnDestroy {
     private toastr: ToastrService,
     public cdr: ChangeDetectorRef,
     private spinnerService: NgxSpinnerService,
-    private el: ElementRef
+    private el: ElementRef,
   ) {}
 
   ngOnInit() {

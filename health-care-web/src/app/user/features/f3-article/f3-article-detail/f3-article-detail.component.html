@@ -57,7 +57,7 @@
 
       <!-- MAIN CONTENT -->
       <div class="row mt-20 mb-100" *ngIf="!isLoading">
-        <div class="col-9" id="content-container">
+        <div class="col--md-9 col-lg-9" id="content-container">
           <button
             type="button"
             style="border: 1px solid rgba(0, 0, 0, 0.3); border-radius: 2rem"
@@ -134,28 +134,9 @@
               </p>
             </div>
           </div>
-
-          <div class="line my-5"></div>
-          <div>
-            <p class="fw-bold mb-4" style="color: #595959">
-              BÀI VIẾT LIÊN QUAN
-            </p>
-
-            <ng-container *ngIf="relativeArticles[0]">
-              <a routerLink="bai-viet/{{ relativeArticles[0]?.id_article }}">
-                <p class="fw-bold mb-3">{{ relativeArticles[0]?.title }}</p>
-              </a>
-            </ng-container>
-
-            <ng-container *ngIf="relativeArticles[1]">
-              <a routerLink="bai-viet/{{ relativeArticles[1]?.id_article }}">
-                <p class="fw-bold mb-3">{{ relativeArticles[1]?.title }}</p>
-              </a>
-            </ng-container>
-          </div>
         </div>
         <div
-          class="col-3 d-flex flex-column"
+          class="col--md-3 col-lg-3 d-flex flex-column"
           style="
             border: 1px solid rgba(0, 0, 0, 0.1);
             color: #595959;
@@ -163,7 +144,7 @@
           "
         >
           <div class="mb-auto">
-            <div class="avatar d-flex justify-content-center mt-3">
+            <div class="d-flex justify-content-center mt-3">
               <img
                 class="img-Avatar"
                 [src]="doctor?.avatar"
@@ -185,16 +166,19 @@
                 {{ article?.updated_at_article | timeAgo }}
               </p>
             </div>
-            <div class="line mt-2"></div>
+            <div class="line mt-2 mb-3"></div>
           </div>
 
           <div>
             <div>
-              <img
-                src="assets/media/image/Promote.png"
-                alt=""
-                class="w-100 border-radius-5"
-              />
+              <div class="row-center">
+                <img
+                  id="banner-img"
+                  src="assets/media/image/Promote.png"
+                  alt=""
+                  class="w-100 border-radius-5 row-center"
+                />
+              </div>
               <div
                 class="mt-4 mb-5 p-10"
                 style="border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 5px"
@@ -219,6 +203,22 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="line my-5"></div>
+        <div>
+          <p class="fw-bold mb-4" style="color: #595959">BÀI VIẾT LIÊN QUAN</p>
+
+          <ng-container *ngIf="relativeArticles[0]">
+            <a routerLink="bai-viet/{{ relativeArticles[0]?.id_article }}">
+              <p class="fw-bold mb-3">{{ relativeArticles[0]?.title }}</p>
+            </a>
+          </ng-container>
+
+          <ng-container *ngIf="relativeArticles[1]">
+            <a routerLink="bai-viet/{{ relativeArticles[1]?.id_article }}">
+              <p class="fw-bold mb-3">{{ relativeArticles[1]?.title }}</p>
+            </a>
+          </ng-container>
         </div>
       </div>
       <!-- END MAIN CONTENT -->
@@ -275,7 +275,7 @@
         </div>
 
         <div
-          class="col-3 d-flex flex-column"
+          class="col-3-md d-flex flex-column"
           style="
             border: 1px solid rgba(0, 0, 0, 0.1);
             color: #595959;

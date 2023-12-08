@@ -26,30 +26,34 @@
     style="padding-bottom: 83px"
     [formGroup]="loginForm"
   >
-    <p>Họ và tên</p>
-    <img class="icon" src="assets/media/icon/user.svg" alt="" />
-    <input
-      class="inp"
-      type="text"
-      placeholder="Họ và tên"
-      name="name"
-      formControlName="name"
-    />
+    <!-- <p>Họ và tên</p> -->
+    <div class="border mb-2">
+      <img class="icon" src="assets/media/icon/user.svg" alt="" />
+      <input
+        class="inp"
+        type="text"
+        placeholder="Họ và tên"
+        name="name"
+        formControlName="name"
+      />
+    </div>
     <div
       class="warning"
       *ngIf="isShowName && nameControl && nameControl.hasError('required')"
     >
       Bạn phải nhập tên.
     </div>
-    <p>Email</p>
-    <img class="icon" src="assets/media/icon/email-outline.svg" alt="" />
-    <input
-      class="inp"
-      type="email"
-      placeholder="Email"
-      name="email"
-      formControlName="email"
-    />
+    <!-- <p>Email</p> -->
+    <div class="border mb-2">
+      <img class="icon" src="assets/media/icon/email-outline.svg" alt="" />
+      <input
+        class="inp"
+        type="email"
+        placeholder="Email"
+        name="email"
+        formControlName="email"
+      />
+    </div>
     <div
       class="warning"
       *ngIf="isShowEmail && emailControl && emailControl.hasError('required')"
@@ -63,31 +67,34 @@
       Hãy nhập email hợp lệ.
     </div>
     <hr />
-    <p>Mật khẩu</p>
-    <img class="icon" src="assets/media/icon/password-outline.svg" alt="" />
-    <input
-      class="inp passwordInp"
-      type="password"
-      placeholder="Nhập mật khẩu"
-      name="password"
-      formControlName="password"
-    />
+    <!-- <p>Mật khẩu</p> -->
+    <div class="border mb-2">
+      <img class="icon" src="assets/media/icon/password-outline.svg" alt="" />
+      <input
+        class="inp passwordInp"
+        type="password"
+        placeholder="Nhập mật khẩu"
+        name="password"
+        formControlName="password"
+      />
+    </div>
     <div
       class="warning"
       *ngIf="isShowPass && passControl && passControl.hasError('required')"
     >
       Bạn phải nhập mật khẩu.
     </div>
-    <p id="confirm-pass">Xác nhận mật khẩu</p>
-    <img class="icon" src="assets/media/icon/password-outline.svg" alt="" />
-
-    <input
-      class="inp passwordInp"
-      type="password"
-      placeholder="Nhập mật khẩu"
-      name="confirm"
-      formControlName="confirm"
-    />
+    <!-- <p id="confirm-pass">Xác nhận mật khẩu</p> -->
+    <div class="border mb-2">
+      <img class="icon" src="assets/media/icon/password-outline.svg" alt="" />
+      <input
+        class="inp passwordInp"
+        type="password"
+        placeholder="Nhập mật khẩu"
+        name="confirm"
+        formControlName="confirm"
+      />
+    </div>
     <div
       class="warning"
       *ngIf="
