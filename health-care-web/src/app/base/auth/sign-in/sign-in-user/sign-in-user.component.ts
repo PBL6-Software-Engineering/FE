@@ -49,7 +49,6 @@ export class SignInUserComponent implements OnInit {
         .login(this.loginForm.value.email, this.loginForm.value.password)
         .subscribe({
           next: ({ data }) => {
-            console.log('data user after login', data);
             this.tokenStorageService.saveToken(data.access_token, data.role);
             this.tokenStorageService.saveUser(data);
             this.toastrService.success('Đăng nhập thành công');

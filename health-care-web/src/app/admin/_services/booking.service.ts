@@ -29,9 +29,9 @@ export class BookingService {
     return this.http.post<any>(`${linkApi}/rating/add`, data);
   }
 
-  updateRating(id_work_schedule: any, data: any): Observable<any> {
+  updateRating(id_rating: any, data: any): Observable<any> {
     return this.http.post<any>(
-      `${linkApi}/rating/update/${id_work_schedule}`,
+      `${linkApi}/rating/update/${id_rating}`,
       data,
     );
   }

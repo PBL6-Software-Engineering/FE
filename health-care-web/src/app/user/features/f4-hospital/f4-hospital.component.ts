@@ -59,7 +59,6 @@ export class F4HospitalComponent implements OnInit {
 
   dataBooking: any;
   openConfirmBooking(data: any): void {
-    console.log('data booking', data);
     this.step = 2;
     this.dataBooking = data;
   }

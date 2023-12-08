@@ -109,6 +109,8 @@
                         <app-rating-stars
                           [rating]="item?.rating?.number_rating"
                           [readOnly]="true"
+                          [isCanEdit]="true"
+                          (editRating)="openEditRating(item)"
                         ></app-rating-stars>
                       </ng-container>
 
@@ -117,7 +119,7 @@
                           class="color-warning-text fs-14 cursor-pointer"
                           data-bs-toggle="modal"
                           data-bs-target="#ratingModal"
-                          (click)="itemSelected = item"
+                          (click)="openEditRating(item)"
                         >
                           Bấm vào đây để đánh giá
                         </span>
@@ -386,6 +388,13 @@
   </div>
 </div>
 
+<!-- trigger rating  -->
+<button
+  data-bs-toggle="modal"
+  data-bs-target="#ratingModal"
+  id="btnOpenModalRating"
+  hidden
+></button>
 <!-- Modal rating -->
 <div
   class="modal fade"

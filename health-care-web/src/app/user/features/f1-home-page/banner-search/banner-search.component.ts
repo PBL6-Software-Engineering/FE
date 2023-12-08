@@ -12,8 +12,6 @@ export class BannerSearchComponent {
   constructor() {}
 
   ngOnInit(): void {
-    console.log('provinces', this.provinces);
     this.provinces = JSON.parse(localStorage.getItem('provinces') || '[]');
-    console.log('provinces', this.provinces);
   }
 }

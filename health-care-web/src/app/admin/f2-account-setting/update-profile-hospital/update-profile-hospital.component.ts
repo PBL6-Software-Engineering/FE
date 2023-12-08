@@ -70,7 +70,6 @@ export class UpdateProfileHospitalComponent implements OnInit {
   save() {
     if (this.form.valid && !this.isSaving) {
       const obj = Object.assign({}, this.form.value);
-      console.log(obj);
       if (!this.isChangeFileAvatar) {
         delete obj.avatar;
       }
@@ -83,7 +82,6 @@ export class UpdateProfileHospitalComponent implements OnInit {
       this.isSaving = true;
       this.adminService.updateProfile(obj).subscribe({
         next: ({ data }) => {
-          console.log(data);
           this.isSaving = false;
           this.toastrService.success('Cập nhật thông tin thành công');
         },

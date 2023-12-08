@@ -140,7 +140,6 @@ export class SignUpHospitalComponent {
           error: (error) => {
             this.toastrService.error('Đăng kí thất bại');
             this.renderer.addClass(loading, 'd-none');
-            console.log(error);
           },
         });
     } else {

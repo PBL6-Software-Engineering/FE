@@ -17,7 +17,9 @@ export class RatingStarsComponent implements OnInit {
   @Input() rating: number = 0;
   @Input() readOnly: boolean = false;
   @Input() fontSize: any = '20';
+  @Input() isCanEdit: boolean = false;
   @Output() ratingChange = new EventEmitter<number>();
+  @Output() editRating = new EventEmitter<any>();
 
   descriptionsRating = ['', 'Rất tệ', 'Tệ', 'Bình thường', 'Tốt', 'Tuyệt vời'];
 
@@ -28,7 +30,6 @@ export class RatingStarsComponent implements OnInit {
   onClickStar(value: any): void {
     if (!this.readOnly) {
       this.rating = value;
-      console.log('rating', this.rating);
       this.ratingChange.emit(this.rating);
     }
   }
@@ -58,5 +59,9 @@ export class RatingStarsComponent implements OnInit {
   ];
   getColorDescRating() {
     return this.colors[this.rating - 1];
+  }
+
+  onEditRating() {
+    this.editRating.emit();
   }
 }

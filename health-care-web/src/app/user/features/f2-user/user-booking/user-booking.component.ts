@@ -34,8 +34,6 @@ export class UserBookingComponent {
   isDeleting = false;
   itemSelected: any;
 
-  isSelectAll = false;
-
   calendarVisible = signal(true);
   currentEvents = signal<EventApi[]>([]);
   calendarOptions = signal<CalendarOptions>({
@@ -125,23 +123,6 @@ export class UserBookingComponent {
     });
   }
 
-  isAllSelected(): boolean {
-    return this.items.every((item) => item.selected);
-  }
-
-  toggleSelectAll(): void {
-    const allSelected = this.isAllSelected();
-    this.items.forEach((item) => (item.selected = !allSelected));
-  }
-
-  onCheckAllSelected() {
-    this.isSelectAll = !this.isSelectAll;
-    // check or uncheck all items
-    this.items.forEach((item) => {
-      item.checked = this.isSelectAll;
-    });
-  }
-
   deleteOne(): void {
     if (this.itemSelected && this.itemSelected.id) {
       this.isDeleting = true;
@@ -217,7 +198,6 @@ export class UserBookingComponent {
 
   handleEventClick(clickInfo: EventClickArg) {
     this.itemSelected = clickInfo.event.extendedProps;
-    console.log(this.itemSelected);
     this.el.nativeElement.querySelector('#btnOpenModalShowInfo').click();
   }
 
@@ -228,5 +208,10 @@ export class UserBookingComponent {
 
   updateRating(rating: any) {
     this.itemSelected.rating = rating;
+  }
+
+  openEditRating(item: any) {
+    this.itemSelected = item;
+    this.el.nativeElement.querySelector('#btnOpenModalRating').click();
   }
 }

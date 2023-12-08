@@ -68,21 +68,6 @@ export class AuthService {
       description: description,
       location: location,
     };
-    // const requestBody = {
-    //   name: "Bệnh viện AZKOKO",
-    //   username:""
-    //   email: "ZaKOKO@gmail.com",
-    //   password: "123456",
-    //   password_confirmation: "123456",
-    //   phone: "1023123209812",
-    //   province_code: "63",
-    //   address: "Đà Nẵng",
-    //   infrastructure: [],
-    //   description: "Một bệnh viện tốt",
-    //   location: [1,3],
-    // };
-
-    console.log(requestBody);
     return this.http.post(`${linkApi}/infor-hospital/register`, requestBody);
   }
 }

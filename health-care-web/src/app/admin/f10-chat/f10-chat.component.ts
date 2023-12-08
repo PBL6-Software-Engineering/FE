@@ -75,7 +75,6 @@ export class F10ChatComponent implements OnInit, AfterViewInit {
   }
 
   getMessages() {
-    console.log(this.messages.length, this.totalMessage);
     if (this.messages.length < this.totalMessage) {
       this.isGetMessages = true;
       this.spinnerService.show();

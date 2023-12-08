@@ -2,12 +2,12 @@
   <div id="radio-container">
     <div class="conatiner">
       <div class="col-2"></div>
-      <a [routerLink]="['/auth/sign-in']">
+      <a routerLink="/auth/sign-in">
         <div style="border-radius: 5px 0 0 5px" class="btn col-5 border">
           Đăng nhập
         </div>
       </a>
-      <a [routerLink]="['/auth/sign-up']">
+      <a routerLink="/auth/sign-up">
         <div
           style="border-radius: 0 5px 5px 0"
           class="btn col-5 bg-info text-white"
@@ -90,7 +90,7 @@
       <input
         class="inp passwordInp"
         type="password"
-        placeholder="Nhập mật khẩu"
+        placeholder="Xác nhận mật khẩu"
         name="confirm"
         formControlName="confirm"
       />
