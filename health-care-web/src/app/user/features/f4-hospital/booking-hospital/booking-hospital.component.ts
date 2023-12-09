@@ -20,6 +20,10 @@ export class BookingHospitalComponent implements OnInit, OnChanges {
   @Input() hospital: any;
   @Input() doctorsOfHospital: any[] = [];
   @Input() services: any[] = [];
+
+  @Input() service: any;
+  @Input() doctor: any;
+
   @Output() confirmBooking = new EventEmitter<any>();
 
   tab: any = 'doctor';
@@ -35,8 +39,6 @@ export class BookingHospitalComponent implements OnInit, OnChanges {
   responsiveOptions: any[] = [];
 
   department: any;
-  doctor: any;
-  service: any;
 
   times: any;
   day: any;
@@ -51,16 +53,25 @@ export class BookingHospitalComponent implements OnInit, OnChanges {
   ) {}
   ngOnChanges(changes: SimpleChanges): void {
     if (this.hospital && this.hospital.id_hospital) {
-      if (this.hospital && this.hospital.id_hospital) {
-        this.departmentHospitalService
-          .getDepartmentsOfHospital(this.hospital.id_hospital)
-          .subscribe(({ data }) => {
-            this.departmentsOfHospital = data;
-          });
-      }
+      this.departmentHospitalService
+        .getDepartmentsOfHospital(this.hospital.id_hospital)
+        .subscribe(({ data }) => {
+          this.departmentsOfHospital = data;
+        });
     }
     this.doctors = this.doctorsOfHospital;
+
+    if (changes['service'] && changes['service'].currentValue) {
+      this.tab = 'service';
+      this.getTimeWorkService();
+    }
+
+    if (changes['doctor'] && changes['doctor'].currentValue) {
+      this.tab = 'doctor';
+      this.getTimeWorkDoctor();
+    }
   }
+
   ngOnInit(): void {
     if (this.hospital && this.hospital.id_hospital) {
       this.departmentHospitalService
@@ -87,6 +98,11 @@ export class BookingHospitalComponent implements OnInit, OnChanges {
     this.diviseTime = [];
     this.dayName = '';
     this.spinnerService.show();
+
+    this.department = this.departmentsOfHospital.find(
+      (department) => department.name === this.doctor.name_department,
+    );
+
     this.bookingService.getTimeWorkDoctor(this.doctor.id_doctor).subscribe({
       next: ({ data }) => {
         this.isGetTime = false;

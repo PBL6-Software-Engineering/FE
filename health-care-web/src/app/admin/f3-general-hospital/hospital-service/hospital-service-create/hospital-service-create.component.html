@@ -104,79 +104,87 @@
       </div>
     </div>
 
-    <div class="mb-3 row">
-      <label
-        for="about_service"
-        class="form-label fw-bold mb-2 align-top col-sm-3"
-      >
-        Mô tả về dịch vụ:
-        <span class="text-danger">*</span>
-      </label>
+    <div>
+      <div class="mb-3 row">
+        <label
+          for="about_service"
+          class="form-label fw-bold mb-2 align-top col-sm-3"
+        >
+          Mô tả về dịch vụ:
+          <span class="text-danger">*</span>
+        </label>
 
-      <quill-editor
-        formControlName="about_service"
-        placeholder="Mô tả về dịch vụ"
-        id="about_service"
-        class="col-sm-9"
-      ></quill-editor>
-    </div>
+        <quill-editor
+          formControlName="about_service"
+          placeholder="Mô tả về dịch vụ"
+          id="about_service"
+          class="col-sm-9"
+        ></quill-editor>
+      </div>
 
-    <div class="row mb-3">
-      <div class="col-sm-3"></div>
-      <div class="col-sm-9">
-        <app-show-error [control]="form.get('about_service')"></app-show-error>
+      <div class="row mb-3">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-9">
+          <app-show-error
+            [control]="form.get('about_service')"
+          ></app-show-error>
+        </div>
       </div>
     </div>
 
-    <div class="mb-3 row">
-      <label
-        for="prepare_process"
-        class="form-label fw-bold mb-2 col-sm-3 align-top"
-      >
-        Quá trình chuẩn bị:
-        <span class="text-danger">*</span>
-      </label>
+    <div>
+      <div class="mb-3 row">
+        <label
+          for="prepare_process"
+          class="form-label fw-bold mb-2 col-sm-3 align-top"
+        >
+          Quá trình chuẩn bị:
+          <span class="text-danger">*</span>
+        </label>
 
-      <quill-editor
-        formControlName="prepare_process"
-        placeholder="Quá trình chuẩn bị"
-        id="prepare_process"
-        class="col-sm-9"
-      ></quill-editor>
-    </div>
+        <quill-editor
+          formControlName="prepare_process"
+          placeholder="Quá trình chuẩn bị"
+          id="prepare_process"
+          class="col-sm-9"
+        ></quill-editor>
+      </div>
 
-    <div class="row mb-3">
-      <div class="col-sm-3"></div>
-      <div class="col-sm-9">
-        <app-show-error
-          [control]="form.get('prepare_process')"
-        ></app-show-error>
+      <div class="row mb-3">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-9">
+          <app-show-error
+            [control]="form.get('prepare_process')"
+          ></app-show-error>
+        </div>
       </div>
     </div>
 
-    <div class="mb-3 row">
-      <label
-        for="service_details"
-        class="form-label fw-bold mb-2 col-sm-3 align-top"
-      >
-        Chi tiết dịch vụ:
-        <span class="text-danger">*</span>
-      </label>
+    <div>
+      <div class="mb-3 row">
+        <label
+          for="service_details"
+          class="form-label fw-bold mb-2 col-sm-3 align-top"
+        >
+          Chi tiết dịch vụ:
+          <span class="text-danger">*</span>
+        </label>
 
-      <quill-editor
-        formControlName="service_details"
-        placeholder="Chi tiết dịch vụ"
-        id="service_details"
-        class="col-sm-9"
-      ></quill-editor>
-    </div>
+        <quill-editor
+          formControlName="service_details"
+          placeholder="Chi tiết dịch vụ"
+          id="service_details"
+          class="col-sm-9"
+        ></quill-editor>
+      </div>
 
-    <div class="row mb-3">
-      <div class="col-sm-3"></div>
-      <div class="col-sm-9">
-        <app-show-error
-          [control]="form.get('service_details')"
-        ></app-show-error>
+      <div class="row mb-3">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-9">
+          <app-show-error
+            [control]="form.get('service_details')"
+          ></app-show-error>
+        </div>
       </div>
     </div>
 

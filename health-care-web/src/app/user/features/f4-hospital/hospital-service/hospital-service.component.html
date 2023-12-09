@@ -12,6 +12,12 @@
             service?.price_hospital_service | currency: "VND"
           }}</span>
         </div>
+        <div *ngIf="service?.cout_rating > 0">
+          <span class="fw-bold">Đánh giá:</span> {{ service?.number_rating }}/5
+          <span class="color-sub">
+            ({{ service?.cout_rating }} lượt đánh giá)</span
+          >
+        </div>
       </div>
       <div class="row-between info-hospital column-center p-12">
         <div class="column-center">

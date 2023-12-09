@@ -221,14 +221,18 @@
     </li>
   </ol>
 </div>
-<!-- <div>
+<div>
   <span class="title">Cơ sở vật chất</span>
-  <ol>
+  <ol *ngIf="checkIsArray(hospital?.infrastructure)">
     <li *ngFor="let item of hospital?.infrastructure">
       {{ item }}
     </li>
   </ol>
-</div> -->
+
+  <span *ngIf="!checkIsArray(hospital?.infrastructure)">
+    {{ hospital?.infrastructure }}
+  </span>
+</div>
 
 <div>
   <span class="title">Hướng dẫn khám bệnh</span>

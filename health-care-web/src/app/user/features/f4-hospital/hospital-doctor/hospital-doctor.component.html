@@ -8,8 +8,10 @@
           class="avatar-doctor"
           onerror="this.src='assets/media/image/avatar_doctor_default.jpg'"
         />
-        <div class="ml-20">
-          <div class="fw-bold">{{ doctor?.name_doctor }}</div>
+        <div class="ml-20" routerLink="/chuyen-gia/{{ doctor?.id_doctor }}">
+          <div class="fw-bold color-primary-hover">
+            {{ doctor?.name_doctor }}
+          </div>
           <div class="fs-14 my-8">Khoa {{ doctor?.name_department }}</div>
           <div>
             <span style="color: #595959">
@@ -19,6 +21,14 @@
             <span class="text-success ml-2">{{
               doctor?.price | currency: "VND"
             }}</span>
+          </div>
+
+          <div *ngIf="doctor?.cout_rating > 0">
+            <span class="fw-bold">Đánh giá:</span>
+            {{ doctor?.number_rating }}/5
+            <span class="color-sub">
+              ({{ doctor?.cout_rating }} lượt đánh giá)</span
+            >
           </div>
         </div>
       </div>

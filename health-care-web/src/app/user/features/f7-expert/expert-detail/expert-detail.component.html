@@ -9,13 +9,7 @@
             class="col-12 pb-3 column-center"
             style="font-size: 0.875rem; color: #595959"
           >
-            <a routerLink="/">
-              <img
-                class="wh-24 border-radius-100 p-3"
-                src="assets/media/icon/home-smile.svg"
-                alt=""
-                style="background-color: rgba(0, 0, 0, 0.1)"
-            /></a>
+            <i routerLink="/" class="fa fa-home fs-16 cursor-pointer"></i>
             <div class="line-vertical ms-2 me-2"></div>
             <span style="color: #262626">Sức khỏe răng miệng</span>
             <i class="fa fa-angle-right ms-2 me-2" aria-hidden="true"></i>
@@ -83,7 +77,8 @@
           <div *ngFor="let awardsRe of doctor?.infor_extend.awards_recognition">
             <p class="mb-3">
               <i class="fa fa-check-square-o" aria-hidden="true"></i>
-              <span class="fs-18 fw-700">Năm {{ awardsRe.subtitle[0] }}</span
+              <span class="fs-18 fw-700 mx-3"
+                >Năm {{ awardsRe.subtitle[0] }}</span
               ><span class="ps-2">{{ awardsRe.title }}</span>
             </p>
           </div>
@@ -104,7 +99,7 @@
                   <div class="col-1">
                     <i
                       class="fa fa-circle fs-10"
-                      style="color: aquamarine"
+                      style="color: #2095c4"
                       aria-hidden="true"
                     ></i>
                   </div>
@@ -123,7 +118,7 @@
                   <div class="col-1">
                     <i
                       class="fa fa-circle fs-10"
-                      style="color: aquamarine"
+                      style="color: #2095c4"
                       aria-hidden="true"
                     ></i>
                   </div>
