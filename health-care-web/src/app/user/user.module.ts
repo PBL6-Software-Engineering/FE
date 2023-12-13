@@ -15,6 +15,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { F8ConversationsComponent } from './features/f8-conversations/f8-conversations.component';
 import { F9ChatComponent } from './features/f9-chat/f9-chat.component';
+import { ShareModuleModule } from './share-module/share-module.module';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { F9ChatComponent } from './features/f9-chat/f9-chat.component';
     FormsModule,
     ReactiveFormsModule,
     NgxSpinnerModule,
+    ShareModuleModule,
   ],
 })
 export class UserModule {}

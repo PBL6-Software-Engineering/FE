@@ -75,7 +75,6 @@ export class UpdateProfileAdminComponent implements OnInit {
       this.isSaving = true;
       this.adminService.updateProfile(obj).subscribe({
         next: ({ data }) => {
-          console.log(data);
           this.isSaving = false;
           this.toastrService.success('Cập nhật thông tin thành công');
         },

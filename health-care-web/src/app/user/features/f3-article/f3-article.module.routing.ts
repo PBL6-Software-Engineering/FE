@@ -13,7 +13,7 @@ const routes: Routes = [
     component: F3ArticleListComponent,
   },
   {
-    path: ':id',
+    path: ':id/:name_category',
     component: F3ArticleDetailComponent,
   },
 ];

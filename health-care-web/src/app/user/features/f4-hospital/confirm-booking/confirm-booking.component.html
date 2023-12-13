@@ -1,0 +1,202 @@
+<div class="container px-100 py-30 confirm-booking-container">
+  <div>
+    <button type="button" class="btn btn-primary-1" (click)="onGoToStep1()">
+      Quay lại
+    </button>
+  </div>
+  <h3 class="text-center fw-bold">Xác nhận đặt lịch hẹn</h3>
+  <table class="table mt-20">
+    <tr>
+      <th>Bệnh viện:</th>
+      <td>{{ hospital?.name }}</td>
+    </tr>
+    <tr>
+      <th>Địa chỉ bệnh viện:</th>
+      <td>{{ hospital?.address }}</td>
+    </tr>
+    <tr *ngIf="dataBooking?.doctor">
+      <th>Bác sĩ:</th>
+      <td>{{ dataBooking?.doctor?.name_doctor }}</td>
+    </tr>
+    <tr *ngIf="dataBooking?.hospitalService">
+      <th>Dịch vụ:</th>
+      <td>{{ dataBooking?.hospitalService?.name }}</td>
+    </tr>
+    <tr>
+      <th>Lịch khám:</th>
+      <td>
+        {{ dataBooking?.time?.interval[0] }} -
+        {{ dataBooking?.time?.interval[1] }},
+        {{ dataBooking?.time?.date | date: "dd/MM/yyyy" }}
+      </td>
+    </tr>
+  </table>
+
+  <h4 class="fw-bold text-center my-12">Thông tin bệnh nhân</h4>
+  <div class="text-danger">
+    (*) Vui lòng cung cấp đầy đủ các thông tin của người đến khám theo mẫu bên
+    dưới. Việc cung cấp đầy đủ thông tin sẽ giúp Quý khách tiết kiệm được thời
+    gian làm hồ sơ khách hàng tại bệnh viện.
+  </div>
+
+  <div class="d-flex flex-end mb-24">
+    <button type="button" class="btn btn-success" (click)="autoFillInfoLogin()">
+      Tự động điền thông tin đăng nhập
+    </button>
+  </div>
+  <form
+    [formGroup]="form"
+    appFocusInvalidInput
+    #focusInput="focusInvalidInput"
+    [formGroup]="form"
+    #f="ngForm"
+    (ngSubmit)="confirmBooking()"
+  >
+    <div class="row">
+      <div class="col-sm-6">
+        <label for="name_patient" class="fw-bold">
+          Tên bệnh nhân:
+          <span class="text-danger">*</span>
+        </label>
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="name_patient"
+            id="name_patient"
+            placeholder="Nhập tên bệnh nhân"
+          />
+          <app-show-error [control]="form.get('name_patient')"></app-show-error>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <label for="phone_patient" class="fw-bold">
+          Số điện thoại:
+          <span class="text-danger">*</span>
+        </label>
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="phone_patient"
+            id="phone_patient"
+            placeholder="Nhập số điện thoại liên hệ"
+          />
+          <app-show-error
+            [control]="form.get('phone_patient')"
+          ></app-show-error>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <label for="date_of_birth_patient" class="fw-bold">
+          Ngày sinh:
+          <span class="text-danger">*</span>
+        </label>
+        <div class="form-group">
+          <input
+            type="date"
+            class="form-control"
+            formControlName="date_of_birth_patient"
+            id="date_of_birth_patient"
+          />
+          <app-show-error
+            [control]="form.get('date_of_birth_patient')"
+          ></app-show-error>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <label for="gender_patient" class="fw-bold">
+          Giới tính:
+          <span class="text-danger">*</span>
+        </label>
+        <div class="form-group">
+          <select
+            name="gender_patient"
+            class="form-control"
+            formControlName="gender_patient"
+            id="gender_patient"
+          >
+            <option value="" selected disabled>Chọn giới tính</option>
+            <option value="0">Nam</option>
+            <option value="1">Nữ</option>
+            <option value="2">Khác</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <label for="email_patient" class="fw-bold"> Email: </label>
+        <div class="form-group">
+          <input
+            type="email"
+            class="form-control"
+            formControlName="email_patient"
+            id="email_patient"
+            placeholder="Nhập email"
+          />
+          <app-show-error
+            [control]="form.get('email_patient')"
+          ></app-show-error>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <label for="address_patient" class="fw-bold"> Địa chỉ liên hệ: </label>
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="address_patient"
+            id="address_patient"
+            placeholder="Nhập địa chỉ liên hệ"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <label for="health_condition" class="fw-bold">
+          Vấn đề sức khoẻ: <span class="text-danger">*</span>
+        </label>
+        <div class="form-group">
+          <textarea
+            type="text"
+            class="form-control"
+            formControlName="health_condition"
+            id="health_condition"
+            placeholder="Mô tả vấn đề sức khoẻ của bạn"
+            rows="3"
+          ></textarea>
+          <app-show-error
+            [control]="form.get('health_condition')"
+          ></app-show-error>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex-end mt-30">
+      <button
+        class="btn btn-secondary mr-12"
+        type="button"
+        (click)="onGoToStep1()"
+      >
+        Huỷ
+      </button>
+
+      <button
+        type="submit"
+        class="btn btn-primary-1 column-center"
+        (click)="focusInput.focus()"
+        [disabled]="isBooking"
+      >
+        <div class="loader" *ngIf="isBooking"></div>
+        Xác nhận đặt lịch
+      </button>
+    </div>
+  </form>
+</div>

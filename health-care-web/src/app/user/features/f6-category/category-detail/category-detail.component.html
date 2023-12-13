@@ -9,13 +9,9 @@
             class="col-12 pb-3 d-flex align-items-center"
             style="font-size: 0.875rem; color: #595959"
           >
-            <a href="./"
-              ><img
-                class="side-item-img wh-24 p-3 border-radius-100"
-                [src]="category?.thumbnail"
-                alt=""
-                style="background-color: rgba(0, 0, 0, 0.1)"
-            /></a>
+            <a routerLink="/">
+              <a> <i class="fa fa-home fs-16"></i></a>
+            </a>
             <div class="line-vertical ms-2 me-2"></div>
             <span style="color: #262626">{{ nameCategory }}</span>
           </div>
@@ -60,7 +56,9 @@
               <div class="col-sm-12 col-md-6 border-bottom">
                 <app-article-img-top
                   [article]="articles[0]"
-                  routerLink="/bai-viet/{{ articles[0]?.id_article }}"
+                  routerLink="/bai-viet/{{ articles[0]?.id_article }}/{{
+                    articles[0]?.name_category
+                  }}"
                 ></app-article-img-top>
               </div>
               <div class="col-sm-12 col-md-6 border-bottom">
@@ -71,7 +69,9 @@
                   >
                     <div class="pb-10">
                       <app-article-img-top-no-content
-                        routerLink="/bai-viet/{{ article?.id_article }}"
+                        routerLink="/bai-viet/{{ article?.id_article }}/{{
+                          article?.name_category
+                        }}"
                         [article]="article"
                       ></app-article-img-top-no-content>
                     </div>

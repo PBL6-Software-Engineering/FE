@@ -199,7 +199,6 @@ export class F7WorkingTimeComponent implements OnInit {
   }
 
   formatTimeWorkingBeforeSave() {
-    console.log('this.timeWorking', Object.assign({}, this.timeWorking));
     this.days.forEach((day) => {
       ['morning', 'afternoon', 'night'].forEach((time) => {
         const obj = this.timeWorking.times[day.value][time];

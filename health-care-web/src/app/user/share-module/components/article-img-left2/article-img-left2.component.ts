@@ -8,12 +8,5 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ArticleImgLeft2Component implements OnInit {
   @Input() article: any = {};
   constructor() {}
-  ngOnInit(): void {
-    if (this.article && this.article.content) {
-      this.article.previewContent = this.article.content.replace(
-        /<[^>]*>/g,
-        '',
-      );
-    }
-  }
+  ngOnInit(): void {}
 }

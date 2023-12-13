@@ -16,13 +16,13 @@ export class CategoryService {
     search = '',
     sortLatest = true,
   }): Observable<any> {
-    return this.http.get<any>(
-      `${linkApi}/${this.model}?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}`,
-    );
-  }
-
-  getAll(): Observable<any> {
-    return this.http.get<any>(`${linkApi}/${this.model}`);
+    if (page) {
+      return this.http.get<any>(
+        `${linkApi}/${this.model}?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}`,
+      );
+    } else {
+      return this.http.get<any>(`${linkApi}/${this.model}`);
+    }
   }
 
   findById(id: any): Observable<any> {

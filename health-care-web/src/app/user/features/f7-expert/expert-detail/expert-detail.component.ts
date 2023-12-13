@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ArticleService } from 'src/app/admin/_services/article.service';
 import { ExpertService } from '../../../services/expert.service';
 import { ElementRef } from '@angular/core';
+import { ArticleService } from 'src/app/user/services/article.service';
 @Component({
   selector: 'app-expert-detail',
   templateUrl: './expert-detail.component.html',
@@ -29,12 +29,12 @@ export class ExpertDetailComponent implements OnInit {
               data.infor_extend.information;
             this.doctor = data;
             this.articleService
-              .getArticleOutStandingPublic({
+              .getArticles({
                 page: 1,
                 paginate: 20,
                 search: this.doctor.name,
-                sortLatest: true,
-                sort_search_number: true,
+                typesort: 'search_number',
+                sortlatest: true,
               })
               .subscribe({
                 next: ({ data }) => {

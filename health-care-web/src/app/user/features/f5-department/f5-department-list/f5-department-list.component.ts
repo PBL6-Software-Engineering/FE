@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DepartmentService } from 'src/app/admin/_services/department.service';
+import { CommonService } from 'src/app/core/services/common.service';
 
 @Component({
   selector: 'app-f5-department-list',
@@ -9,13 +9,13 @@ import { DepartmentService } from 'src/app/admin/_services/department.service';
 export class F5DepartmentListComponent implements OnInit {
   departments: any[] = [];
   textSearch: string = '';
-  constructor(private departmentService: DepartmentService) {}
+  constructor(private commonService: CommonService) {}
   ngOnInit(): void {
     const departmentsStorage = localStorage.getItem('departments');
     if (departmentsStorage) {
       this.departments = JSON.parse(departmentsStorage);
     } else {
-      this.departmentService.getAll().subscribe(({ data }) => {
+      this.commonService.getDepartments().subscribe(({ data }) => {
         this.departments = data;
         localStorage.setItem('departments', JSON.stringify(data));
       });

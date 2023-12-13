@@ -1,27 +1,26 @@
 <div>
   <div class="container mt-30">
-    <h1 class="fs-22 fw-700 mb-30">Tin tức nổi bật trong tuần</h1>
-    <div class="row">
+    <h1 class="fs-22 fw-700 mb-30">Tin tức nổi bật</h1>
+
+    <div class="row" *ngIf="articleTop">
       <div class="col-sm-12 col-md-7 border-bottom">
-        <app-article-img-top
-          [article]="articleTop"
-          routerLink="/bai-viet/{{ articleTop.id_article }}"
-        ></app-article-img-top>
+        <app-article-img-top [article]="articleTop"></app-article-img-top>
       </div>
       <div class="col-sm-12 col-md-5 border-bottom">
-        <div
-          class="border-bottom pb-12"
-          *ngFor="let article of articles | slice: 1 : 4"
-        >
-          <app-article-img-left
-            [article]="article"
-            routerLink="/bai-viet/{{ article.id_article }}"
-          ></app-article-img-left>
+        <div class="border-bottom pb-12" *ngFor="let article of articles">
+          <app-article-img-left [article]="article"></app-article-img-left>
         </div>
-        <!-- <div class="border-bottom pb-12">
-          <app-article-img-left [article]="articleLeft"></app-article-img-left>
-        </div>
-        <app-article-img-left [article]="articleLeft"></app-article-img-left> -->
+      </div>
+    </div>
+
+    <div class="row" *ngIf="!articleTop">
+      <div class="col-sm-12 col-md-7 border-bottom">
+        <app-card-loader-article-img-top></app-card-loader-article-img-top>
+      </div>
+      <div class="col-sm-12 col-md-5 border-bottom">
+        <app-card-loader-article-img-left></app-card-loader-article-img-left>
+        <hr />
+        <app-card-loader-article-img-left></app-card-loader-article-img-left>
       </div>
     </div>
   </div>

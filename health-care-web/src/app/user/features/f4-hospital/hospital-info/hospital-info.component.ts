@@ -11,4 +11,11 @@ export class HospitalInfoComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  checkIsArray(value: any) {
+    if (Array.isArray(value)) {
+      return true;
+    }
+    return false;
+  }
 }

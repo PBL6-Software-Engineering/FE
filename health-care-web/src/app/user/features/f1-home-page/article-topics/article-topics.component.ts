@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { forkJoin } from 'rxjs';
-import { ArticleService } from 'src/app/admin/_services/article.service';
+import { ArticleService } from 'src/app/user/services/article.service';
 
 @Component({
   selector: 'app-article-topics',
@@ -27,13 +27,19 @@ export class ArticleTopicsComponent implements OnInit {
       this.isLoading = true;
       this.spinnerService.show();
       forkJoin([
-        this.articleService.getArticleByCategory({
+        this.articleService.getArticles({
+          paginate: 3,
+          page: 1,
           name_category: categories[0].name,
         }),
-        this.articleService.getArticleByCategory({
+        this.articleService.getArticles({
+          paginate: 3,
+          page: 1,
           name_category: categories[1].name,
         }),
-        this.articleService.getArticleByCategory({
+        this.articleService.getArticles({
+          paginate: 3,
+          page: 1,
           name_category: categories[2].name,
         }),
       ]).subscribe((results: any[]) => {

@@ -1,135 +1,124 @@
-<header class="px-20 row-between column-center position-fixed w-100 top-0">
-  <div class="column-center gap-3">
-    <img
-      src="assets/media/icon/hamburgerMenuNewWithSearch.svg"
-      alt=""
-      width="24px"
-      height="24px"
-      class="cursor-pointer icon-menu-search"
-      (click)="clickSubMenuBarMobile()"
-    />
-    <img
-      src="assets/media/logo/logo.svg"
-      alt="Logo"
-      id="logo-main"
-      routerLink="/"
-    />
-    <div class="position-relative">
+<div class="position-relative">
+  <header class="px-20 row-between column-center position-fixed w-100 top-0">
+    <div class="column-center gap-3">
       <img
-        src="assets/media/icon/icon_search.svg"
-        alt="Icon"
-        class="position-absolute-left-8 cursor-pointer"
+        src="assets/media/icon/hamburgerMenuNewWithSearch.svg"
+        alt=""
+        width="24px"
+        height="24px"
+        class="cursor-pointer icon-menu-search"
+        (click)="clickSubMenuBarMobile()"
       />
-      <input
-        type="text"
-        class="form-control pl-40 input-search"
-        placeholder="Tìm kiếm bài viết"
-        [(ngModel)]="textSearch"
-        (keyup.enter)="searchArticle()"
+      <img
+        src="assets/media/logo/logo.svg"
+        alt="Logo"
+        id="logo-main"
+        routerLink="/"
       />
+      <div class="position-relative">
+        <img
+          src="assets/media/icon/icon_search.svg"
+          alt="Icon"
+          class="position-absolute-left-8 cursor-pointer"
+        />
+        <input
+          type="text"
+          class="form-control pl-40 input-search"
+          placeholder="Tìm kiếm bài viết"
+          [(ngModel)]="textSearch"
+          (keyup.enter)="searchArticle()"
+        />
+      </div>
     </div>
-  </div>
 
-  <div class="d-flex flex-end">
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav">
-          <li class="nav-item dropdown">
-            <a
-              class="btn nav-link dropdown-toggle"
+    <div class="d-flex flex-end">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+            <li
+              class="nav-item"
               (click)="chooseTab('CATEGORY')"
+              #toggleSubHeader1
             >
               Chuyên mục
-            </a>
-          </li>
-          <!-- <li class="nav-item dropdown">
-            <a
-              class="btn nav-link dropdown-toggle"
-              (click)="chooseTab('HEALTH_CHECK')"
-            >
-              Kiểm tra sức khoẻ
-            </a>
-          </li> -->
-          <li class="nav-item dropdown">
-            <a
-              class="btn nav-link dropdown-toggle"
+              <i class="fa fa-caret-down ml-6" aria-hidden="true"></i>
+            </li>
+
+            <li
+              class="nav-item"
               (click)="chooseTab('BOOKING_DOCTOR')"
+              #toggleSubHeader2
             >
               Đặt lịch với bác sĩ
-            </a>
-          </li>
-          <li class="nav-item dropdown">
-            <a
-              class="btn nav-link dropdown-toggle"
-              (click)="chooseTab('SOCIAL')"
-            >
-              Cộng đồng
-            </a>
-          </li>
-        </ul>
+              <i class="fa fa-caret-down ml-6" aria-hidden="true"></i>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="position-relative column-center ml-16">
+        <!-- Button login -->
+        <a
+          class="btn btn-outline-gray btn-login"
+          routerLink="/auth/sign-in"
+          *ngIf="!isLogin"
+        >
+          Đăng nhập
+        </a>
+
+        <!-- Icon login -->
+        <img
+          src="assets/media/image/icon-login.png"
+          alt="LOgin"
+          class="cursor-pointer d-none icon-login wh-24"
+          (click)="isLogin = true"
+          *ngIf="!isLogin"
+        />
+
+        <!-- Icon messenger -->
+        <img
+          src="assets/media/image/messenger.png"
+          class="wh-24 mx-24 cursor-pointer"
+          alt="Tin nhắn"
+          *ngIf="isLogin"
+          (click)="viewConversation()"
+        />
+
+        <!-- Avatar after login -->
+        <img
+          [src]="user?.avatar"
+          alt="Ảnh đại diện"
+          class="avatar avatar-user wh-40 ml-8"
+          (click)="clickAvatarUser()"
+          *ngIf="isLogin"
+          id="open-header-info"
+          onerror="this.src='assets/media/image/avatar_user_default.png'"
+        />
+
+        <!-- info user -->
+        <app-header-info-user
+          *ngIf="isOpenHeaderInfo"
+          (closeHeaderInfo)="isOpenHeaderInfo = false"
+        ></app-header-info-user>
+
+        <!-- conversations -->
+        <app-f8-conversations
+          *ngIf="isOpenConversation"
+          (close)="isOpenConversation = false"
+        ></app-f8-conversations>
       </div>
-    </nav>
-
-    <div class="position-relative d-flex align-items-center">
-      <!-- Button login -->
-      <a
-        class="btn btn-outline-gray btn-login"
-        routerLink="/auth/sign-in"
-        *ngIf="!isLogin"
-      >
-        Đăng nhập
-      </a>
-
-      <!-- Icon login -->
-      <img
-        src="assets/media/image/icon-login.png"
-        alt=""
-        class="cursor-pointer d-none icon-login w-24 h-24"
-        (click)="isLogin = true"
-        *ngIf="!isLogin"
-      />
-
-      <!-- Icon messenger -->
-      <img
-        src="assets/media/image/messenger.png"
-        class="w-24 h-24 mx-3 cursor-pointer"
-        alt=""
-        *ngIf="isLogin"
-        (click)="viewConversation()"
-      />
-
-      <!-- Avatar after login -->
-      <img
-        [src]="user?.avatar"
-        alt=""
-        class="avatar-user"
-        (click)="clickAvatarUser()"
-        *ngIf="isLogin"
-        id="open-header-info"
-        onerror="this.src='assets/media/image/avatar_user_default.png'"
-      />
-
-      <!-- info user -->
-      <app-header-info-user
-        *ngIf="isOpenHeaderInfo"
-        (closeHeaderInfo)="isOpenHeaderInfo = false"
-      ></app-header-info-user>
-
-      <!-- conversations -->
-      <app-f8-conversations
-        *ngIf="isOpenConversation"
-        (close)="isOpenConversation = false"
-      ></app-f8-conversations>
     </div>
-  </div>
-</header>
+  </header>
+</div>
 
-<div class="sub-header">
+<div class="sub-header" #subHeader>
   <!-- Sub header -->
   <app-sub-header
     *ngIf="isOpenSubMenuBar"
     [data]="tabObj"
     (closeSubHeader)="this.isOpenSubMenuBar = false"
+    [hospitals]="hospitals"
+    [articles]="articles"
   ></app-sub-header>
 
   <!-- Sub header mobile -->
@@ -137,6 +126,5 @@
     *ngIf="isOpenSubMenuBarMobile"
     [data]="tabObj"
     (closeSubHeaderMobile)="this.isOpenSubMenuBarMobile = false"
-    class="app-sub-header-mobile"
   ></app-sub-header-mobile>
 </div>

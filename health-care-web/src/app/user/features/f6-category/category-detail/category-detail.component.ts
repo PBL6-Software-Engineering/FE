@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ArticleService } from 'src/app/admin/_services/article.service';
 import { ExpertService } from '../../../services/expert.service';
+import { ArticleService } from 'src/app/user/services/article.service';
 
 @Component({
   selector: 'app-category-detail',
@@ -35,7 +35,7 @@ export class CategoryDetailComponent implements OnInit {
         );
 
         this.articleService
-          .getArticleByCategory({
+          .getArticles({
             page: 1,
             name_category: this.nameCategory,
             paginate: 15,

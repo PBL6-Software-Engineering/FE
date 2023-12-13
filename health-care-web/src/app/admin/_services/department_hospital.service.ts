@@ -17,13 +17,13 @@ export class DepartmentHospitalService {
     sortLatest = true,
     id_hospital = 1,
   }): Observable<any> {
-    return this.http.get<any>(
-      `${linkApi}/${this.model}/hospital/${id_hospital}?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}`,
-    );
-  }
-
-  getAll(): Observable<any> {
-    return this.http.get<any>(`${linkApi}/${this.model}`);
+    if (page) {
+      return this.http.get<any>(
+        `${linkApi}/${this.model}/hospital/${id_hospital}?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}`,
+      );
+    } else {
+      return this.http.get<any>(`${linkApi}/${this.model}`);
+    }
   }
 
   getDepartmentsNotCreatedByHospitalId(id: any): Observable<any> {

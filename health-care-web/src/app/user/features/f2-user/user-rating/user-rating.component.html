@@ -1,0 +1,55 @@
+<div class="modal-content">
+  <div class="modal-header justify-content-center">
+    <h1 class="modal-title fs-5 fw-700 color-primary" id="ratingModalLabel">
+      Đánh giá lịch hẹn
+    </h1>
+  </div>
+  <div class="modal-body">
+    <div class="mb-20">
+      <div>
+        <span class="fw-bold">Tên dịch vụ:</span>
+        {{ workSchedule?.service_name || "Lịch tư vấn" }}
+      </div>
+      <div>
+        <span class="fw-bold">Bác sĩ:</span>
+        {{ workSchedule?.doctor_name || "Đang cập nhật" }}
+      </div>
+    </div>
+
+    <div>
+      <app-rating-stars
+        [rating]="number_rating"
+        [fontSize]="30"
+        (ratingChange)="onRatingChange($event)"
+      ></app-rating-stars>
+      <textarea
+        name="detail_rating"
+        id="detail_rating"
+        class="form-control my-20"
+        [(ngModel)]="detail_rating"
+        rows="5"
+        placeholder="Nhận xét của bạn về lịch khám"
+      >
+      </textarea>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-primary btn-secondary"
+      data-bs-dismiss="modal"
+      id="dismissRating"
+    >
+      Đóng
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary-1 column-center"
+      (click)="saveRating()"
+      [disabled]="isSaving"
+    >
+      <div class="loader" *ngIf="isSaving"></div>
+      Lưu đánh giá
+    </button>
+  </div>
+</div>

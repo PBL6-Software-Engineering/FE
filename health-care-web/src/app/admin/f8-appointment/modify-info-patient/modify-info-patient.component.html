@@ -1,0 +1,389 @@
+<div class="right-content fs-14">
+  <div class="fw-bolder fs-5 mb-3 text-center">Thông tin chi tiết lịch hẹn</div>
+
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="fw-bold">Thông tin lịch hẹn:</div>
+    </div>
+
+    <div class="col-sm-8">
+      <div class="row">
+        <div class="fw-bold col-sm-3">Tên dịch vụ:</div>
+        <div class="col-sm-9">
+          <span *ngIf="selectedItem?.service_id">{{
+            selectedItem?.service_name
+          }}</span>
+          <span *ngIf="!selectedItem?.service_id">Lịch tư vấn</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="fw-bold col-sm-3">Bác sĩ:</div>
+        <div class="col-sm-9">
+          <span *ngIf="selectedItem?.doctor_name">{{
+            selectedItem?.doctor_name
+          }}</span>
+          <span *ngIf="!selectedItem?.doctor_name" class="color-warning-text">
+            Chưa chỉ định bác sĩ
+          </span>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="selectedItem?.service_id">
+        <div class="fw-bold col-sm-3">Chỉ định bác sĩ:</div>
+        <div class="col-sm-6">
+          <ng-select
+            [(ngModel)]="idDoctor"
+            placeholder="Chọn bác sĩ muốn chỉ định"
+            (change)="specifyDoctor()"
+          >
+            <ng-option
+              *ngFor="let doctor of doctors"
+              [value]="doctor?.id_doctor"
+            >
+              {{ doctor?.name }}
+            </ng-option>
+          </ng-select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="fw-bold col-sm-3">Chuyên khoa:</div>
+        <div class="col-sm-9">
+          {{ selectedItem?.department_name }}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="fw-bold col-sm-3">Thời gian tư vấn:</div>
+        <div class="col-sm-9">
+          {{ selectedItem?.work_schedule_time?.interval[0] }} -
+          {{ selectedItem?.work_schedule_time?.interval[1] }},
+          {{ selectedItem?.work_schedule_time?.date | date: "dd/MM/yyyy" }}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="fw-bold col-sm-3">Trạng thái xác nhận:</div>
+        <div class="col-sm-9">
+          <span
+            *ngIf="selectedItem?.work_schedule_is_confirm === 0"
+            class="color-warning-text"
+          >
+            Chưa xác nhận
+          </span>
+          <span
+            *ngIf="selectedItem?.work_schedule_is_confirm === 1"
+            class="text-success"
+          >
+            Đã xác nhận
+          </span>
+
+          <!-- Confirm -->
+          <button
+            class="btn btn-sm ml-2"
+            data-bs-toggle="modal"
+            data-bs-target="#confirmBooking"
+            [ngClass]="
+              selectedItem?.work_schedule_is_confirm === 0
+                ? 'btn-success'
+                : 'btn-warning'
+            "
+          >
+            <i class="fa fa-check-circle-o fs-15" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="row mt-12">
+    <!-- INFO USER BOOKING -->
+    <div class="col-sm-4">
+      <div class="fw-bold">
+        Thông tin người đặt hẹn:
+        <span
+          *ngIf="!selectedItem?.user_id"
+          class="color-warning-text text-center"
+        >
+          Không có thông tin
+        </span>
+      </div>
+      <table class="table fs-14" *ngIf="selectedItem?.user_id">
+        <tr>
+          <th>Tên</th>
+          <td>{{ selectedItem?.user_name }}</td>
+        </tr>
+        <tr>
+          <th>Số điện thoại</th>
+          <td>{{ selectedItem?.user_phone }}</td>
+        </tr>
+        <tr>
+          <th>Email</th>
+          <td>{{ selectedItem?.user_email }}</td>
+        </tr>
+        <tr>
+          <th>Địa chỉ</th>
+          <td>{{ selectedItem?.user_address }}</td>
+        </tr>
+        <tr>
+          <th>Ngày sinh</th>
+          <td>{{ selectedItem?.user_date_of_birth }}</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="col-sm-8">
+      <div class="fw-bold">Thông tin người bệnh nhân:</div>
+      <form
+        [formGroup]="form"
+        (ngSubmit)="changeInfoPatient()"
+        appFocusInvalidInput
+        #focusInput="focusInvalidInput"
+        [formGroup]="form"
+        #f="ngForm"
+      >
+        <div class="mt-12">
+          <div class="row column-center">
+            <div class="col-sm-3">
+              Tên
+              <span class="text-danger">(*)</span>
+            </div>
+            <div class="col-sm-9">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="name_patient"
+                placeholder="Nhập tên"
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-9">
+              <app-show-error
+                [control]="form.get('name_patient')"
+              ></app-show-error>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12">
+          <div class="row column-center">
+            <div class="col-sm-3">
+              Email
+              <span class="text-danger">(*)</span>
+            </div>
+            <div class="col-sm-9">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="email_patient"
+                placeholder="Nhập email"
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-9">
+              <app-show-error
+                [control]="form.get('email_patient')"
+              ></app-show-error>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12">
+          <div class="row column-center">
+            <div class="col-sm-3">
+              Số điện thoại
+              <span class="text-danger">(*)</span>
+            </div>
+            <div class="col-sm-9">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="phone_patient"
+                placeholder="Nhập số điện thoại"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-9">
+              <app-show-error
+                [control]="form.get('phone_patient')"
+              ></app-show-error>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12">
+          <div class="row column-center">
+            <div class="col-sm-3">Địa chỉ</div>
+            <div class="col-sm-9">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="address_patient"
+                placeholder="Nhập số địa chỉ"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12">
+          <div class="row column-center">
+            <div class="col-sm-3">
+              Ngày sinh
+              <span class="text-danger">(*)</span>
+            </div>
+            <div class="col-sm-9">
+              <input
+                type="date"
+                class="form-control"
+                formControlName="date_of_birth_patient"
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-9">
+              <app-show-error
+                [control]="form.get('date_of_birth_patient')"
+              ></app-show-error>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12">
+          <div class="row">
+            <label for="gender_patient" class="col-sm-3">
+              Giới tính
+              <span class="text-danger">(*)</span>
+            </label>
+            <div class="form-group col-sm-9">
+              <select
+                name="gender_patient"
+                class="form-control"
+                formControlName="gender_patient"
+                id="gender_patient"
+              >
+                <option value="" selected disabled>Chọn giới tính</option>
+                <option value="0">Nam</option>
+                <option value="1">Nữ</option>
+                <option value="2">Khác</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-9">
+              <app-show-error
+                [control]="form.get('gender_patient')"
+              ></app-show-error>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12">
+          <div class="row">
+            <div class="col-sm-3">
+              Bệnh trạng
+              <span class="text-danger">(*)</span>
+            </div>
+            <div class="col-sm-9">
+              <textarea
+                class="form-control"
+                formControlName="health_condition"
+                rows="3"
+                placeholder="Bệnh trạng của bệnh nhân"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-9">
+              <app-show-error
+                [control]="form.get('health_condition')"
+              ></app-show-error>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex-end mt-30">
+          <button
+            class="btn btn-secondary mr-12"
+            type="button"
+            routerLink="/admin/article"
+          >
+            Huỷ
+          </button>
+
+          <button
+            type="submit"
+            class="btn btn-primary-1 column-center"
+            (click)="focusInput.focus()"
+            [disabled]="isChangeInfo"
+          >
+            <div class="loader" *ngIf="isChangeInfo"></div>
+            Lưu
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal confirm booking -->
+<div
+  class="modal fade"
+  id="confirmBooking"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="confirmBookingLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <h5 class="text-center my-20 fw-bold">
+        <span *ngIf="selectedItem?.work_schedule_is_confirm">
+          Huỷ xác nhận lịch hẹn với
+        </span>
+        <span *ngIf="!selectedItem?.work_schedule_is_confirm">
+          Xác nhận lịch hẹn với
+        </span>
+        <span class="color-warning-text fw-normal">{{
+          selectedItem?.name_patient
+        }}</span>
+        ?
+      </h5>
+
+      <div class="modal-footer row-center">
+        <button
+          type="button"
+          class="btn btn-secondary w-150px mr-10"
+          data-bs-dismiss="modal"
+          id="dismissConfirmBooking"
+        >
+          Hủy
+        </button>
+        <button
+          type="button"
+          class="btn btn-success w-150px column-center"
+          (click)="confirmAppointment()"
+        >
+          <div class="loader" *ngIf="isConfirm"></div>
+          Xác nhận
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

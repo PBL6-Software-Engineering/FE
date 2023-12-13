@@ -34,8 +34,6 @@ export class UserBookingComponent {
   isDeleting = false;
   itemSelected: any;
 
-  isSelectAll = false;
-
   calendarVisible = signal(true);
   currentEvents = signal<EventApi[]>([]);
   calendarOptions = signal<CalendarOptions>({
@@ -58,7 +56,6 @@ export class UserBookingComponent {
   ngOnInit(): void {
     this.getWaitBooking();
     this.getDoneBooking();
-    this.getHistoryBooking();
   }
 
   chooseTab(tab: string): void {
@@ -67,8 +64,6 @@ export class UserBookingComponent {
       this.items = this.itemsWait;
     } else if (tab == 'doneBooking') {
       this.items = this.itemsDone;
-    } else {
-      this.items = this.itemHistory;
     }
     this.patchDataCalendar();
   }
@@ -125,46 +120,6 @@ export class UserBookingComponent {
       error: (err) => {
         console.log('Error', err);
       },
-    });
-  }
-
-  getHistoryBooking(): void {
-    // call API here
-    this.workSchedule.getWorkSchedule({}).subscribe({
-      next: ({ data }) => {
-        data.data.forEach((el: any) => {
-          el.selected = false;
-          if (el.work_schedule_time.date) {
-            const myDate = new Date(el.work_schedule_time.date);
-            el.day = myDate.getDate();
-            const options = { month: 'long' } as Intl.DateTimeFormatOptions;
-            const month = new Intl.DateTimeFormat('vi', options).format(myDate);
-            el.year = myDate.getFullYear();
-            el.month = month;
-          }
-        });
-        this.itemHistory = data.data;
-      },
-      error: (err) => {
-        console.log('Error', err);
-      },
-    });
-  }
-
-  isAllSelected(): boolean {
-    return this.items.every((item) => item.selected);
-  }
-
-  toggleSelectAll(): void {
-    const allSelected = this.isAllSelected();
-    this.items.forEach((item) => (item.selected = !allSelected));
-  }
-
-  onCheckAllSelected() {
-    this.isSelectAll = !this.isSelectAll;
-    // check or uncheck all items
-    this.items.forEach((item) => {
-      item.checked = this.isSelectAll;
     });
   }
 
@@ -243,12 +198,20 @@ export class UserBookingComponent {
 
   handleEventClick(clickInfo: EventClickArg) {
     this.itemSelected = clickInfo.event.extendedProps;
-    console.log(this.itemSelected);
     this.el.nativeElement.querySelector('#btnOpenModalShowInfo').click();
   }
 
   handleEvents(events: EventApi[]) {
     this.currentEvents.set(events);
     this.changeDetector.detectChanges(); // workaround for pressionChangedAfterItHasBeenCheckedError
+  }
+
+  updateRating(rating: any) {
+    this.itemSelected.rating = rating;
+  }
+
+  openEditRating(item: any) {
+    this.itemSelected = item;
+    this.el.nativeElement.querySelector('#btnOpenModalRating').click();
   }
 }

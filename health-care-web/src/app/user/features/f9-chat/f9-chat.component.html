@@ -5,14 +5,25 @@
     <div class="column-center">
       <div>
         <img
-          [src]="conversation?.admin?.avatar"
+          [src]="
+            user?.role === 'user'
+              ? conversation?.admin?.avatar
+              : conversation?.user?.avatar
+          "
           alt=""
           class="wh-40 avatar"
-          onerror="this.src='assets/media/images/avatar_hospital_default.jpg'"
+          onerror="this.src='assets/media/images/avatar_user_default.jpg'"
         />
       </div>
       <div class="ml-12">
-        <h5 class="fs-13 fw-bold">{{ conversation?.admin?.name }}</h5>
+        <h5 class="fs-13 fw-bold">
+          <span *ngIf="conversation?.admin?.id == user?.id">{{
+            conversation?.user?.name || "Người tư vấn"
+          }}</span>
+          <span *ngIf="conversation?.admin?.id != user?.id">{{
+            conversation?.admin?.name || "Khách"
+          }}</span>
+        </h5>
       </div>
     </div>
 
@@ -31,7 +42,7 @@
       <ngx-spinner
         bdColor="rgba(0,0,0,0)"
         size="default"
-        color="#11B3CF"
+        color="#2095c4"
         type="ball-pulse-sync"
         [fullScreen]="false"
       >
@@ -39,8 +50,14 @@
       </ngx-spinner>
     </div>
     <div *ngFor="let message of messages" class="message-wrapper">
-      <!-- user send -->
-      <div *ngIf="message?.isUserSend">
+      <!-- current login send -->
+      <div
+        *ngIf="
+          (user?.role !== 'user' && message.isAdminSend) ||
+            (user?.role === 'user' && message.isUserSend);
+          else anotherSend
+        "
+      >
         <div class="column-center flex-end">
           <p class="message-content message-content-admin mr-8">
             {{ message.message }}
@@ -48,22 +65,26 @@
         </div>
       </div>
 
-      <!-- admin send -->
-      <div *ngIf="!message?.isUserSend">
+      <!-- another send -->
+      <ng-template #anotherSend>
         <div class="column-center justify-content-start">
           <div>
             <img
-              [src]="conversation?.admin?.avatar"
+              [src]="
+                user?.role === 'user'
+                  ? conversation?.admin?.avatar
+                  : conversation?.user?.avatar
+              "
               alt=""
               class="wh-40 avatar"
-              onerror="this.src='assets/media/images/avatar_hospital_default.jpg'"
+              onerror="this.src='assets/media/images/avatar_user_default.jpg'"
             />
           </div>
           <p class="message-content message-content-user ml-8">
             {{ message.message }}
           </p>
         </div>
-      </div>
+      </ng-template>
     </div>
 
     <div #scrollChat></div>

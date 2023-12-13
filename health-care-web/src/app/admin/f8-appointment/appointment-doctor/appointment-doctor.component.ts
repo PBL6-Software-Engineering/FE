@@ -12,6 +12,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import { AppointmentService } from '../../_services/appointment.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { getStartAndEndDateOfWeek } from 'src/app/core/libs/date';
 
 @Component({
   selector: 'app-appointment-doctor',
@@ -46,7 +47,7 @@ export class AppointmentDoctorComponent implements OnInit {
     this.snipperService.show();
 
     this.appointmentService
-      .getAppointmentDoctor(this.getStatrtAndEndDate(new Date()))
+      .getAppointmentDoctor(getStartAndEndDateOfWeek())
       .subscribe({
         next: ({ data }) => {
           this.appointments = data;
@@ -135,14 +136,5 @@ export class AppointmentDoctorComponent implements OnInit {
   handleEvents(events: EventApi[]) {
     this.currentEvents.set(events);
     this.changeDetector.detectChanges(); // workaround for pressionChangedAfterItHasBeenCheckedError
-  }
-
-  getStatrtAndEndDate(date: Date) {
-    const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-    const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-    return {
-      startDate: firstDay.toISOString().split('T')[0],
-      endDate: lastDay.toISOString().split('T')[0],
-    };
   }
 }

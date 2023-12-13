@@ -29,13 +29,13 @@
   >
     Hoàn thành ({{ doneNumber }})
   </li>
-  <li
+  <!-- <li
     class="nav-tab"
     (click)="chooseTab('historyBooking')"
     [class.active]="tab === 'historyBooking'"
   >
     Lịch sử đặt chỗ
-  </li>
+  </li> -->
 </ul>
 
 <div *ngIf="items.length > 0">
@@ -51,7 +51,12 @@
                 <tr>
                   <th class="text-center">Thời gian</th>
                   <th>Thông tin</th>
-                  <th class="text-center">Địa điểm</th>
+
+                  <th class="text-center">
+                    <span *ngIf="tab === 'waitBooking'">Địa điểm</span>
+                    <span *ngIf="tab === 'doneBooking'">Đánh giá</span>
+                  </th>
+
                   <th class="text-center">Hành động</th>
                 </tr>
               </thead>
@@ -59,13 +64,13 @@
               <tbody>
                 <!-- <div class="d-flex py-20 border-bottom" > -->
                 <tr class="inner-box" *ngFor="let item of items; let i = index">
-                  <th scope="row" class="text-center">
+                  <td scope="row" class="text-center fw-bold">
                     <span class="fs-30">{{ item.day }}</span>
                     <p>{{ item.month }}</p>
-                  </th>
+                  </td>
 
                   <td>
-                    <h5 class="color-primary">
+                    <h5 class="color-primary fs-16">
                       {{ item?.service_name || "Lịch tư vấn" }}
                     </h5>
                     <div class="my-8 fs-14">
@@ -91,17 +96,42 @@
                       {{ item?.work_schedule_time?.interval[1] }}
                     </div>
                   </td>
-                  <td>
-                    <div class="text-center">
+                  <td class="text-center">
+                    <ng-container
+                      class="text-center"
+                      *ngIf="tab === 'waitBooking'"
+                    >
                       <span>{{ item?.hospital_address }}</span>
-                    </div>
+                    </ng-container>
+
+                    <ng-container *ngIf="tab === 'doneBooking'">
+                      <ng-container *ngIf="item?.rating">
+                        <app-rating-stars
+                          [rating]="item?.rating?.number_rating"
+                          [readOnly]="true"
+                          [isCanEdit]="true"
+                          (editRating)="openEditRating(item)"
+                        ></app-rating-stars>
+                      </ng-container>
+
+                      <ng-container *ngIf="!item?.rating">
+                        <span
+                          class="color-warning-text fs-14 cursor-pointer"
+                          data-bs-toggle="modal"
+                          data-bs-target="#ratingModal"
+                          (click)="openEditRating(item)"
+                        >
+                          Bấm vào đây để đánh giá
+                        </span>
+                      </ng-container>
+                    </ng-container>
                   </td>
                   <!-- Button trigger modal -->
                   <td class="text-center">
                     <button
                       type="button"
                       id="{{ item.id }}"
-                      class="btn btn-primary-1 text-white"
+                      class="btn btn-sm btn-primary-1 text-white"
                       data-bs-toggle="modal"
                       data-bs-target="#detailModal"
                       (click)="itemSelected = item"
@@ -112,7 +142,7 @@
                     <button
                       type="button"
                       *ngIf="tab === 'waitBooking'"
-                      class="btn btn-danger ml-12"
+                      class="btn btn-sm btn-danger ml-12"
                       data-bs-toggle="modal"
                       data-bs-target="#deleteOne"
                       (click)="itemSelected = item"
@@ -145,12 +175,13 @@
     </div>
   </div>
 </div>
+
 <div *ngIf="isLoading">
   <div class="wrapper-spinner" *ngIf="isLoading">
     <ngx-spinner
       bdColor="rgba(0,0,0,0)"
       size="default"
-      color="#11B3CF"
+      color="#2095c4"
       type="ball-pulse-sync"
       [fullScreen]="false"
     >
@@ -158,6 +189,7 @@
     </ngx-spinner>
   </div>
 </div>
+
 <div class="text-center" *ngIf="items.length === 0 && !isLoading">
   <img src="assets/media/icon/calendarEmpty.svg" alt="" />
   <div *ngIf="tab === 'waitBooking'">
@@ -316,7 +348,7 @@
             <img
               [src]="itemSelected?.user_avatar"
               alt=""
-              class="avatar-user"
+              class="avatar wh-80"
               onerror="this.src='assets/media/image/avatar_user_default.png'"
             />
           </div>
@@ -353,5 +385,28 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- trigger rating  -->
+<button
+  data-bs-toggle="modal"
+  data-bs-target="#ratingModal"
+  id="btnOpenModalRating"
+  hidden
+></button>
+<!-- Modal rating -->
+<div
+  class="modal fade"
+  id="ratingModal"
+  tabindex="-1"
+  aria-labelledby="ratingModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <app-user-rating
+      [workSchedule]="itemSelected"
+      (onRatingSuccess)="updateRating($event)"
+    ></app-user-rating>
   </div>
 </div>

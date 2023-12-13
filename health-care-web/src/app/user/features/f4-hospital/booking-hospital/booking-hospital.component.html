@@ -154,7 +154,7 @@
     >
       <div class="row gx-5">
         <div
-          class="col-6 my-3 text-center divise-time"
+          class="col-6 mt-3 text-center divise-time"
           *ngFor="let divise_time of day[session].divided_times"
           (click)="diviseTime = divise_time"
         >
@@ -172,6 +172,7 @@
         [disabled]="!diviseTime"
         data-bs-toggle="modal"
         data-bs-target="#confirmBooking"
+        (click)="onConfirmBook()"
       >
         Đặt lịch hẹn
       </button>
@@ -197,7 +198,7 @@
     <ngx-spinner
       bdColor="rgba(0,0,0,0)"
       size="default"
-      color="#11B3CF"
+      color="#2095c4"
       type="ball-pulse-sync"
       [fullScreen]="false"
       class="ball-pulse-sync"
@@ -208,7 +209,7 @@
 </div>
 
 <!-- Xác nhận đặt lịch hẹn -->
-<div
+<!-- <div
   class="modal fade"
   id="confirmBooking"
   tabindex="-1"
@@ -269,4 +270,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

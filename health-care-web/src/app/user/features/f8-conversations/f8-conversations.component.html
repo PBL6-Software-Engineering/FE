@@ -9,7 +9,11 @@
       <div class="d-flex">
         <div>
           <img
-            [src]="conversation?.admin?.avatar"
+            [src]="
+              user?.role === 'user'
+                ? conversation?.admin?.avatar
+                : conversation?.user?.avatar
+            "
             alt=""
             class="wh-40 avatar"
             onerror="this.src='assets/media/image/avatar_user_default.png'"
@@ -17,7 +21,12 @@
         </div>
         <div class="ml-12 w-100">
           <h5 class="fs-12 fw-bold">
-            {{ conversation?.admin?.name || "Người tư vấn" }}
+            <span *ngIf="user?.role === 'user'">{{
+              conversation?.admin?.name || "Người tư vấn"
+            }}</span>
+            <span *ngIf="user?.role !== 'user'">{{
+              conversation?.user?.name || "Khách"
+            }}</span>
           </h5>
           <p class="preview-content-1 last-message">
             {{ conversation.lastMessage }}
@@ -34,7 +43,7 @@
     <ngx-spinner
       bdColor="rgba(0,0,0,0)"
       size="default"
-      color="#11B3CF"
+      color="#2095c4"
       type="ball-pulse-sync"
       [fullScreen]="false"
     >

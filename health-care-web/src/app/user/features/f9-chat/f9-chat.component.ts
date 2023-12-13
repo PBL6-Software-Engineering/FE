@@ -34,7 +34,10 @@ export class F9ChatComponent implements OnInit, AfterViewInit {
     this.messages = [];
     this.user = JSON.parse(localStorage.getItem('user') || '{}');
     this.chatService.getMessageSocket().subscribe((msg: any) => {
-      if (msg?.userId == this.user?.id && msg.isAdminSend) {
+      if (
+        (this.user.role === 'user' && msg.isAdminSend) ||
+        (this.user.role !== 'user' && msg.isUserSend)
+      ) {
         this.messages.push(msg);
         this.totalMessage++;
         this.scrollToBottom();
@@ -45,8 +48,10 @@ export class F9ChatComponent implements OnInit, AfterViewInit {
       if (conversation.conversationId) {
         this.conversation = conversation;
         this.isOpenChat = true;
-        this.scrollToBottom();
         this.getMessages();
+        setTimeout(() => {
+          this.scrollToBottom();
+        }, 1500);
       } else {
         this.isOpenChat = false;
       }
@@ -68,8 +73,14 @@ export class F9ChatComponent implements OnInit, AfterViewInit {
         user: this.conversation.user,
         conversationId: this.conversation.conversationId,
         message: this.message,
-        isUserSend: true,
+        isUserSend: false,
+        isAdminSend: false,
       };
+      if (this.user.role === 'user') {
+        msg.isUserSend = true;
+      } else {
+        msg.isAdminSend = true;
+      }
       this.message = '';
       this.messages.push(msg);
       this.scrollToBottom();

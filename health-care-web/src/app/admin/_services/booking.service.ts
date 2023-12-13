@@ -17,17 +17,19 @@ export class BookingService {
     return this.http.get<any>(`${linkApi}/time-work/service/${id_service}`);
   }
 
-  bookDoctor(id_doctor: any, time: any): Observable<any> {
-    return this.http.post<any>(`${linkApi}/work-schedule/add-advise`, {
-      id_doctor,
-      time,
-    });
+  bookDoctor(data: any): Observable<any> {
+    return this.http.post<any>(`${linkApi}/work-schedule/add-advise`, data);
   }
 
-  bookService(id_hospital_service: any, time: any): Observable<any> {
-    return this.http.post<any>(`${linkApi}/work-schedule/add-service`, {
-      id_hospital_service,
-      time,
-    });
+  bookService(data: any): Observable<any> {
+    return this.http.post<any>(`${linkApi}/work-schedule/add-service`, data);
+  }
+
+  addRating(data: any): Observable<any> {
+    return this.http.post<any>(`${linkApi}/rating/add`, data);
+  }
+
+  updateRating(id_rating: any, data: any): Observable<any> {
+    return this.http.post<any>(`${linkApi}/rating/update/${id_rating}`, data);
   }
 }

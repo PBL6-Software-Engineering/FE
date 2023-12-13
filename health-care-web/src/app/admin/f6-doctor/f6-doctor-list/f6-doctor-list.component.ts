@@ -40,11 +40,14 @@ export class F6DoctorListComponent implements OnInit, OnDestroy {
   updateItem: any;
   hospital: any;
 
+  isDeleting = false;
+
   constructor(
     private api: HospitalService,
     private toastr: ToastrService,
     public cdr: ChangeDetectorRef,
     private spinnerService: NgxSpinnerService,
+    private el: ElementRef,
   ) {}
 
   ngOnInit() {
@@ -67,8 +70,9 @@ export class F6DoctorListComponent implements OnInit, OnDestroy {
         .getDoctors({
           page: isResetPage ? 1 : this.currentPage,
           paginate: 20,
+          is_confirm: 1,
           search: this.textSearch || '',
-          sortLatest: true,
+          sortlatest: true,
         })
         .subscribe({
           next: ({ data }) => {
@@ -93,14 +97,18 @@ export class F6DoctorListComponent implements OnInit, OnDestroy {
   }
 
   onDeleteOne() {
+    this.isDeleting = true;
     this.subscription.push(
       this.api.deleteById(this.deleteItem.id_doctor).subscribe({
         next: () => {
           this.toastr.success('Xoá thành công!');
           this.onLoadData();
+          this.el.nativeElement.querySelector('#dismissDeleteModal').click();
+          this.isDeleting = false;
         },
         error: (err) => {
           this.toastr.error('Xoá thất bại!');
+          this.isDeleting = false;
         },
       }),
     );

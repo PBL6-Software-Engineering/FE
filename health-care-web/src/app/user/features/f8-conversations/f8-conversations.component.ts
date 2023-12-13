@@ -1,7 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ChatService } from 'src/app/core/services/chat.service';
-import { SpinnerService } from 'src/app/core/services/spinner.service';
 
 @Component({
   selector: 'app-f8-conversations',
@@ -26,7 +25,10 @@ export class F8ConversationsComponent implements OnInit {
       this.isLoadConversation = true;
       this.spinnerService.show();
       this.chatService
-        .getConversations(this.user.id, 'user')
+        .getConversations(
+          this.user.id,
+          localStorage.getItem('role') === 'user' ? 'user' : 'admin',
+        )
         .subscribe(({ data }) => {
           this.conversations = data;
           this.isLoadConversation = false;

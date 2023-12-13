@@ -49,7 +49,7 @@ const config: SocketIoConfig = {
     NgxSpinnerModule.forRoot({ type: 'ball-pulse-sync' }),
     NgxSkeletonLoaderModule.forRoot(),
     NgProgressModule.withConfig({
-      color: '#11B3CF',
+      color: '#2095c4',
     }),
     NgProgressHttpModule,
     SocketIoModule.forRoot(config),

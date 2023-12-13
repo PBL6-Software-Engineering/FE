@@ -1,3 +1,312 @@
+<div class="container pt-3">
+  <div class="row">
+    <div class="col-1 d-flex align-items-end flex-column mt-90">
+      <button
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        class="border-0 bg-white"
+      >
+        <img
+          id="btn-share"
+          class="wh-24 mb-4"
+          src="assets/media/icon/share-solid.svg"
+          alt=""
+        />
+      </button>
+      <img
+        id="btn-bookmark"
+        class="wh-24 mb-4"
+        [src]="
+          isBookmark
+            ? 'assets/media/icon/bookmark-fill.svg'
+            : 'assets/media/icon/bookmark-line.svg'
+        "
+        alt=""
+      />
+      <img
+        id="btn-question"
+        class="wh-24"
+        src="assets/media/icon/ask-question.svg"
+        alt=""
+      />
+    </div>
+    <div class="col-11">
+      <div class="row">
+        <div
+          class="col-12 pb-3 column-center"
+          style="font-size: 0.875rem; color: #595959"
+        >
+          <a
+            routerLink="/"
+            class="wh-30 border-radius-100 column-center row-center"
+            style="background-color: rgba(0, 0, 0, 0.1)"
+          >
+            <i class="fa fa-home fs-20" routerLink="/" aria-hidden="true"></i>
+          </a>
+
+          <div class="line-vertical ms-2"></div>
+          <span class="ms-3">{{ name_category }}</span>
+          <img
+            class="wh-24 ms-3 me-3 wh-16 p-3"
+            src="assets/media/icon/ios-arrow-24-filled.svg"
+            alt=""
+          />
+        </div>
+      </div>
+
+      <!-- MAIN CONTENT -->
+      <div class="row mt-20 mb-100" *ngIf="!isLoading">
+        <div class="col--md-9 col-lg-9" id="content-container">
+          <button
+            type="button"
+            style="border: 1px solid rgba(0, 0, 0, 0.3); border-radius: 2rem"
+            class="btn my-12"
+            data-bs-container="body"
+            data-bs-toggle="popover"
+            data-bs-placement="bottom"
+            data-bs-content="Đây là bài viết có thể hiện quan điểm hoặc góc nhìn cá nhân về một chủ đề cụ thể."
+            data-bs-title="Góc nhìn"
+          >
+            <span class="mr-10">Góc nhìn</span>
+            <img src="assets/media/icon/notice.svg" alt="" class="wh-16" />
+          </button>
+          <div>
+            <h1 class="fw-bold mb-2">{{ article?.title }}</h1>
+
+            <p class="column-center my-8">
+              <img
+                src="assets/media/icon/eye-solid.svg"
+                alt=""
+                class="wh-14 mr-10"
+              />{{ article?.search_number_article || 0 }} lượt xem
+            </p>
+
+            <div
+              [innerHTML]="article?.content"
+              id="content"
+              class="w-100"
+            ></div>
+          </div>
+
+          <div
+            class="border-radius-5 my-3 p-12"
+            style="background-color: rgb(255, 248, 226)"
+          >
+            <div class="column-center">
+              <img src="assets/media/icon/danger-triangle-bold.svg" alt="" />
+              <div class="fw-bold ml-12">Miễn trừ trách nhiệm</div>
+            </div>
+            <p>
+              Các bài viết của Elister chỉ có tính chất tham khảo, không thay
+              thế cho việc chẩn đoán hoặc điều trị y khoa.
+            </p>
+          </div>
+
+          <div class="">
+            <button
+              class="btn w-100 p-0"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseExample"
+              aria-expanded="false"
+              aria-controls="collapseExample"
+            >
+              <div
+                class="border-radius-5 p-10"
+                style="border: 1px solid rgba(0, 0, 0, 0.1)"
+              >
+                <img class="me-2" src="assets/media/icon/plus.svg" alt="" />
+                <span class="fw-bold">Lịch sử phiên bản</span>
+              </div>
+            </button>
+          </div>
+          <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+              <p class="fw-bold mb-3">{{ article?.title }}</p>
+              <p>
+                <span class="fw-bold mb-2"> Ngày tạo: </span>
+                {{ article?.created_at_article }}
+              </p>
+              <p>
+                <span class="fw-bold">Ngày cập nhật gần nhất: </span>
+                {{ article?.updated_at_article | timeAgo }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="col--md-3 col-lg-3 d-flex flex-column"
+          style="
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #595959;
+            font-size: 0.75rem;
+          "
+        >
+          <div class="mb-auto">
+            <div class="d-flex justify-content-center mt-3">
+              <img
+                class="img-Avatar"
+                [src]="doctor?.avatar"
+                alt="Ảnh bác sĩ"
+                onerror="this.src='assets/media/image/avatar_doctor_default.jpg'"
+              />
+            </div>
+            <p class="Info-check text-center mt-3">Thông tin kiểm chứng bởi</p>
+            <p class="checker-Name text-center mt-2 color-primary">
+              {{ article?.name_user }}
+            </p>
+            <div class="line mt-2"></div>
+            <div class="article-Info">
+              <p class="text-center mt-1">
+                Tác giả:
+                <span class="fw-bold">{{ article?.name_user }}</span>
+                <br />
+                Ngày cập nhật:
+                {{ article?.updated_at_article | timeAgo }}
+              </p>
+            </div>
+            <div class="line mt-2 mb-3"></div>
+          </div>
+
+          <div>
+            <div>
+              <div class="row-center">
+                <img
+                  id="banner-img"
+                  src="assets/media/image/Promote.png"
+                  alt=""
+                  class="w-100 border-radius-5 row-center"
+                />
+              </div>
+              <div
+                class="mt-4 mb-5 p-10"
+                style="border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 5px"
+              >
+                <p class="text-center">Bài viết này có hữu ích với bạn?</p>
+                <div class="row-center">
+                  <div class="btn border-0 bg-white">
+                    <img
+                      src="assets/media/icon/check-box.svg"
+                      class="wh-48"
+                      alt=""
+                    />
+                  </div>
+                  <div class="btn border-0 bg-white">
+                    <img
+                      src="assets/media/icon/x-fill.svg"
+                      class="wh-48"
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="line my-5"></div>
+        <div>
+          <p class="fw-bold mb-4" style="color: #595959">BÀI VIẾT LIÊN QUAN</p>
+
+          <ng-container *ngIf="relativeArticles[0]">
+            <a routerLink="bai-viet/{{ relativeArticles[0]?.id_article }}">
+              <p class="fw-bold mb-3">{{ relativeArticles[0]?.title }}</p>
+            </a>
+          </ng-container>
+
+          <ng-container *ngIf="relativeArticles[1]">
+            <a routerLink="bai-viet/{{ relativeArticles[1]?.id_article }}">
+              <p class="fw-bold mb-3">{{ relativeArticles[1]?.title }}</p>
+            </a>
+          </ng-container>
+        </div>
+      </div>
+      <!-- END MAIN CONTENT -->
+
+      <!-- Skeleton loader -->
+      <div class="row mt-20 mb-100" *ngIf="isLoading">
+        <div class="col-9">
+          <div class="item w-100">
+            <ngx-skeleton-loader></ngx-skeleton-loader>
+            <div>
+              <ngx-skeleton-loader
+                [theme]="{ width: '20%', 'border-radius': '0', height: '15px' }"
+              ></ngx-skeleton-loader>
+            </div>
+
+            <div class="mt-20">
+              <ngx-skeleton-loader
+                [theme]="{ width: '70%', 'border-radius': '0', height: '15px' }"
+              ></ngx-skeleton-loader>
+            </div>
+
+            <ngx-skeleton-loader count="3"></ngx-skeleton-loader>
+
+            <div class="mt-20">
+              <ngx-skeleton-loader
+                [theme]="{ width: '80%', 'border-radius': '0', height: '15px' }"
+              ></ngx-skeleton-loader>
+            </div>
+
+            <ngx-skeleton-loader count="2"></ngx-skeleton-loader>
+
+            <div>
+              <ngx-skeleton-loader
+                [theme]="{ width: '50%', 'border-radius': '0', height: '15px' }"
+              ></ngx-skeleton-loader>
+            </div>
+
+            <ngx-skeleton-loader count="2"></ngx-skeleton-loader>
+
+            <div
+              class="border-radius-5 my-3 p-12"
+              style="background-color: rgb(255, 248, 226)"
+            >
+              <div class="column-center">
+                <img src="assets/media/icon/danger-triangle-bold.svg" alt="" />
+                <div class="fw-bold ml-12">Miễn trừ trách nhiệm</div>
+              </div>
+              <p>
+                Các bài viết của Elister chỉ có tính chất tham khảo, không thay
+                thế cho việc chẩn đoán hoặc điều trị y khoa.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="col-3-md d-flex flex-column"
+          style="
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #595959;
+            font-size: 0.75rem;
+          "
+        >
+          <div class="mb-auto">
+            <div class="avatar d-flex justify-content-center mt-3">
+              <img
+                class="img-Avatar"
+                src="assets/media/image/avatar_doctor_default.jpg"
+                alt="Ảnh bác sĩ"
+              />
+            </div>
+            <p class="Info-check text-center mt-3">Thông tin kiểm chứng bởi</p>
+            <p class="checker-Name text-center mt-2 color-primary">
+              <ngx-skeleton-loader
+                [theme]="{ width: '70%', 'border-radius': '0', height: '15px' }"
+              ></ngx-skeleton-loader>
+            </p>
+            <div class="article-Info">
+              <ngx-skeleton-loader count="2"></ngx-skeleton-loader>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Skeleton loader -->
+    </div>
+  </div>
+</div>
+
 <!-- Modal -->
 <div
   class="modal fade"
@@ -73,227 +382,6 @@
               <span class="ps-3 fw-bold" style="color: #2d87f3">
                 Sao chép
               </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="container pt-3">
-  <div class="row">
-    <div class="col-1 d-flex align-items-end flex-column mt-90">
-      <button
-        type="button"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-        class="border-0 bg-white"
-      >
-        <img
-          id="btn-share"
-          class="wh-24 mb-4"
-          src="assets/media/icon/share-solid.svg"
-          alt=""
-        />
-      </button>
-      <img
-        id="btn-bookmark"
-        class="wh-24 mb-4"
-        [src]="
-          isBookmark
-            ? 'assets/media/icon/bookmark-fill.svg'
-            : 'assets/media/icon/bookmark-line.svg'
-        "
-        alt=""
-      />
-      <img
-        id="btn-question"
-        class="wh-24"
-        src="assets/media/icon/ask-question.svg"
-        alt=""
-      />
-    </div>
-    <div class="col-11">
-      <div class="row">
-        <div
-          class="col-12 pb-3 column-center"
-          style="font-size: 0.875rem; color: #595959"
-        >
-          <a
-            routerLink="/"
-            class="wh-30 border-radius-100 column-center row-center"
-            style="background-color: rgba(0, 0, 0, 0.1)"
-          >
-            <i class="fa fa-home fs-20" routerLink="/" aria-hidden="true"></i>
-          </a>
-
-          <div class="line-vertical ms-2"></div>
-          <span class="ms-3">{{ article?.name_category }}</span>
-          <img
-            class="wh-24 ms-3 me-3 wh-16 p-3"
-            src="assets/media/icon/ios-arrow-24-filled.svg"
-            alt=""
-          />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-9" id="content-container">
-          <button
-            type="button"
-            style="border: 1px solid rgba(0, 0, 0, 0.3); border-radius: 2rem"
-            class="btn my-12"
-            data-bs-container="body"
-            data-bs-toggle="popover"
-            data-bs-placement="bottom"
-            data-bs-content="Đây là bài viết có thể hiện quan điểm hoặc góc nhìn cá nhân về một chủ đề cụ thể."
-            data-bs-title="Góc nhìn"
-          >
-            <span class="mr-10">Góc nhìn</span>
-            <img src="assets/media/icon/notice.svg" alt="" class="wh-16" />
-          </button>
-          <div>
-            <h1 class="fw-bold mb-2">{{ article?.title }}</h1>
-
-            <p class="column-center my-8">
-              <img
-                src="assets/media/icon/eye-solid.svg"
-                alt=""
-                class="wh-14 mr-10"
-              />{{ article?.search_number_article || 0 }} lượt xem
-            </p>
-
-            <div
-              [innerHTML]="article?.content"
-              id="content"
-              class="w-100"
-            ></div>
-          </div>
-          <div
-            class="border-radius-5 mt-3 mb-3 p-10"
-            style="background-color: rgb(255, 248, 226)"
-          >
-            <img src="assets/media/icon/danger-triangle-bold.svg" alt="" />
-            <span class="fw-bold">Miễn trừ trách nhiệm</span>
-            <p>
-              Các bài viết của Elister chỉ có tính chất tham khảo, không thay
-              thế cho việc chẩn đoán hoặc điều trị y khoa.
-            </p>
-          </div>
-
-          <div class="">
-            <button
-              class="btn w-100 p-0"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseExample"
-              aria-expanded="false"
-              aria-controls="collapseExample"
-            >
-              <div
-                class="border-radius-5 p-10"
-                style="border: 1px solid rgba(0, 0, 0, 0.1)"
-              >
-                <img class="me-2" src="assets/media/icon/plus.svg" alt="" />
-                <span class="fw-bold">Lịch sử phiên bản</span>
-              </div>
-            </button>
-          </div>
-          <div class="collapse" id="collapseExample">
-            <div class="card card-body">
-              <p class="fw-bold mb-3">{{ article?.title }}</p>
-              <p>
-                <span class="fw-bold mb-2"> Ngày tạo: </span>
-                {{ article?.created_at_article }}
-              </p>
-              <p>
-                <span class="fw-bold">Ngày cập nhật gần nhất: </span>
-                {{ article?.updated_at_article | timeAgo }}
-              </p>
-            </div>
-          </div>
-
-          <div class="line my-5"></div>
-          <div>
-            <p class="fw-bold mb-4" style="color: #595959">
-              BÀI VIẾT LIÊN QUAN
-            </p>
-
-            <ng-container *ngIf="relativeArticles[0]">
-              <a routerLink="bai-viet/{{ relativeArticles[0]?.id_article }}">
-                <p class="fw-bold mb-3">{{ relativeArticles[0]?.title }}</p>
-              </a>
-            </ng-container>
-
-            <ng-container *ngIf="relativeArticles[1]">
-              <a routerLink="bai-viet/{{ relativeArticles[1]?.id_article }}">
-                <p class="fw-bold mb-3">{{ relativeArticles[1]?.title }}</p>
-              </a>
-            </ng-container>
-          </div>
-        </div>
-        <div
-          class="col-3 d-flex flex-column"
-          style="
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            color: #595959;
-            font-size: 0.75rem;
-          "
-        >
-          <div class="mb-auto">
-            <div class="avatar d-flex justify-content-center mt-3">
-              <img
-                class="img-Avatar"
-                [src]="doctor?.avatar"
-                alt="Ảnh bác sĩ"
-                onerror="this.src='assets/media/image/avatar_doctor_default.jpg'"
-              />
-            </div>
-            <p class="Info-check text-center mt-3">Thông tin kiểm chứng bởi:</p>
-            <p class="checker-Name text-center mt-2 color-primary">
-              {{ article?.name_user }}
-            </p>
-            <div class="line mt-2"></div>
-            <div class="article-Info">
-              <p class="text-center mt-1">
-                Tác giả:
-                <span class="fw-bold">{{ article?.name_user }}</span>
-                <br />
-                Ngày cập nhật:
-                {{ article?.updated_at_article | timeAgo }}
-              </p>
-            </div>
-            <div class="line mt-2"></div>
-          </div>
-
-          <div>
-            <div>
-              <img
-                src="assets/media/image/Promote.png"
-                alt=""
-                class="w-100 border-radius-5"
-              />
-              <div
-                class="mt-4 mb-5 p-10"
-                style="border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 5px"
-              >
-                <p class="text-center">Bài viết này có hữu ích với bạn?</p>
-                <div class="row-center">
-                  <div class="btn border-0 bg-white">
-                    <img
-                      src="assets/media/icon/check-box.svg"
-                      class="wh-48"
-                      alt=""
-                    />
-                  </div>
-                  <div class="btn border-0 bg-white">
-                    <img
-                      src="assets/media/icon/x-fill.svg"
-                      class="wh-48"
-                      alt=""
-                    />
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>

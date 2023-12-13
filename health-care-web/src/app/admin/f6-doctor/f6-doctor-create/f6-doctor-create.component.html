@@ -93,10 +93,7 @@
           for="training_process"
           class="form-label fw-bold column-center row-between"
         >
-          <span>
-            Quá trình đào tạo:
-            <span class="text-danger">*</span>
-          </span>
+          <span> Quá trình đào tạo: </span>
 
           <button
             type="button"
@@ -146,10 +143,7 @@
               </div>
 
               <div class="row" formArrayName="subtitle">
-                <label class="col-sm-12">
-                  Tiêu đề phụ
-                  <span class="text-danger">*</span>
-                </label>
+                <label class="col-sm-12"> Tiêu đề phụ </label>
                 <div
                   class="col-sm-12"
                   *ngFor="
@@ -177,7 +171,7 @@
           for="prominent"
           class="form-label fw-bold column-center row-between"
         >
-          <span>Điểm nổi bật nhất: <span class="text-danger">*</span></span>
+          <span>Điểm nổi bật nhất:</span>
 
           <button
             type="button"
@@ -223,17 +217,20 @@
                 </div>
               </div>
 
-              <div class="row">
-                <label class="col-sm-12">
-                  Tiêu đề phụ
-                  <span class="text-danger">*</span>
-                </label>
-                <div class="col-sm-12">
+              <div class="row" formArrayName="subtitle">
+                <label class="col-sm-12"> Tiêu đề phụ </label>
+                <div
+                  class="col-sm-12"
+                  *ngFor="
+                    let prominent of getSubTitle('prominent', i).controls;
+                    let indexSub = index
+                  "
+                >
                   <input
                     type="text"
                     class="form-control"
                     placeholder="Nhập tiêu đề phụ"
-                    formControlName="subtitle"
+                    [formControlName]="indexSub"
                     required
                   />
                 </div>
@@ -250,10 +247,7 @@
           for="strengths"
           class="form-label fw-bold column-center row-between"
         >
-          <span>
-            Thế mạnh chuyên môn:
-            <span class="text-danger">*</span>
-          </span>
+          <span> Thế mạnh chuyên môn: </span>
 
           <button
             type="button"
@@ -267,7 +261,7 @@
         <div formArrayName="strengths">
           <div
             class="mb-3"
-            *ngFor="let trainingProcess of strengths.controls; let i = index"
+            *ngFor="let strength of strengths.controls; let i = index"
             [formGroupName]="i"
           >
             <fieldset>
@@ -299,17 +293,20 @@
                 </div>
               </div>
 
-              <div class="row">
-                <label class="col-sm-12">
-                  Tiêu đề phụ
-                  <span class="text-danger">*</span>
-                </label>
-                <div class="col-sm-12">
+              <div class="row" formArrayName="subtitle">
+                <label class="col-sm-12"> Tiêu đề phụ </label>
+                <div
+                  class="col-sm-12"
+                  *ngFor="
+                    let strength of getSubTitle('strengths', i).controls;
+                    let indexSub = index
+                  "
+                >
                   <input
                     type="text"
                     class="form-control"
                     placeholder="Nhập tiêu đề phụ"
-                    formControlName="subtitle"
+                    [formControlName]="indexSub"
                     required
                   />
                 </div>
@@ -324,10 +321,7 @@
           for="work_experience"
           class="form-label fw-bold column-center row-between"
         >
-          <span>
-            Kinh nghiệm làm việc:
-            <span class="text-danger">*</span>
-          </span>
+          <span> Kinh nghiệm làm việc: </span>
 
           <button
             type="button"
@@ -376,17 +370,21 @@
                 </div>
               </div>
 
-              <div class="row">
-                <label class="col-sm-12">
-                  Tiêu đề phụ
-                  <span class="text-danger">*</span>
-                </label>
-                <div class="col-sm-12">
+              <div class="row" formArrayName="subtitle">
+                <label class="col-sm-12"> Tiêu đề phụ </label>
+                <div
+                  class="col-sm-12"
+                  *ngFor="
+                    let work_experience of getSubTitle('work_experience', i)
+                      .controls;
+                    let indexSub = index
+                  "
+                >
                   <input
                     type="text"
                     class="form-control"
                     placeholder="Nhập tiêu đề phụ"
-                    formControlName="subtitle"
+                    [formControlName]="indexSub"
                     required
                   />
                 </div>
@@ -401,7 +399,7 @@
       <button
         class="btn btn-secondary mr-12"
         type="button"
-        routerLink="/admin/general-hospital/service"
+        routerLink="/admin/doctor"
       >
         Huỷ
       </button>

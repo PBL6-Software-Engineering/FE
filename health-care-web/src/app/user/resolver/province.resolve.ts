@@ -5,9 +5,7 @@ import {
   RouterStateSnapshot,
   ActivatedRouteSnapshot,
 } from '@angular/router';
-import { CategoryService } from 'src/app/admin/_services/category.service';
-import { Observable, retry, switchMap } from 'rxjs';
-import { take } from 'lodash';
+import { Observable } from 'rxjs';
 import { CommonService } from 'src/app/core/services/common.service';
 
 @Injectable({

@@ -44,7 +44,7 @@ export class F6DoctorEditComponent implements OnInit {
     this.route.params.subscribe((params) => {
       if (params['id']) {
         this.idDoctor = params['id'];
-        this.api.getDoctorOfHospital(this.idDoctor).subscribe({
+        this.api.getDoctor(this.idDoctor).subscribe({
           next: ({ data }) => {
             this.doctor = data;
             this.patchValue();
@@ -157,11 +157,10 @@ export class F6DoctorEditComponent implements OnInit {
     this.form.reset();
   }
 
-  addField(type: any, obj = { title: '', subtitle: '' }): void {
-    console.log(obj);
+  addField(type: any, obj: any = {}): void {
     const fg = new FormGroup({
       title: new FormControl('', [Validators.required]),
-      subtitle: new FormControl('', [Validators.required]),
+      subtitle: new FormArray([new FormControl('')], [Validators.required]),
     });
     fg.patchValue(obj);
     if (type === 'training_process') {
@@ -232,9 +231,16 @@ export class F6DoctorEditComponent implements OnInit {
     return this.form.get('work_experience') as FormArray;
   }
   get awards_recognition(): FormArray {
-    return this.form.get('work_experience') as FormArray;
+    return this.form.get('awards_recognition') as FormArray;
   }
   get research_work(): FormArray {
-    return this.form.get('work_experience') as FormArray;
+    return this.form.get('research_work') as FormArray;
+  }
+
+  getSubTitle(type: any, index: number) {
+    return this.form
+      .get(`${type}`)
+      ?.get(`${index}`)
+      ?.get('subtitle') as FormArray;
   }
 }

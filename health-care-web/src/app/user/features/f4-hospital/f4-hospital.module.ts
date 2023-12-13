@@ -16,6 +16,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { HospitalListComponent } from './hospital-list/hospital-list.component';
 import { F1HomePageModule } from '../f1-home-page/f1-home-page.module';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { ConfirmBookingComponent } from './confirm-booking/confirm-booking.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     HospitalDoctorComponent,
     BookingHospitalComponent,
     HospitalListComponent,
+    ConfirmBookingComponent,
   ],
   imports: [
     CommonModule,

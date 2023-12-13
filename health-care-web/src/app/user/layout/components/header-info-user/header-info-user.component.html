@@ -3,18 +3,18 @@
     <div class="column-center">
       <img
         [src]="user?.avatar"
-        alt=""
-        class="border-radius-50 wh-64"
+        alt="Ảnh đại diện"
+        class="avatar wh-64"
         onerror="this.src = 'assets/media/image/avatar_user_default.png'"
       />
       <div
-        class="ml-20 cursor-pointer"
+        class="ml-20 cursor-pointer color-primary-hover"
         routerLink="/user/profile"
         (click)="onCloseHeaderInfo()"
         id="manage-account"
       >
         <h6 class="fw-700">{{ user?.name }}</h6>
-        <p class="fs-14 color-sub">
+        <p class="fs-14">
           Xem hồ sơ của tôi
           <img src="assets/media/icon/arrow_right.svg" alt="" />
         </p>
@@ -90,20 +90,32 @@
     </div>
 
     <div class="collapse fs-14" id="collapseExample">
-      <div class="column-center border-bottom cursor-pointer h-48">
+      <div
+        class="column-center border-bottom cursor-pointer h-48"
+        routerLink="/user/subscriptions"
+      >
         <span class="ml-8">Đăng ký bản tin sức khỏe</span>
       </div>
 
-      <div class="column-center border-bottom cursor-pointer h-48">
+      <div
+        class="column-center border-bottom cursor-pointer h-48"
+        routerLink="/user/password"
+      >
         <span class="ml-8">Mật khẩu</span>
       </div>
 
-      <div class="column-center border-bottom cursor-pointer h-48">
+      <div
+        class="column-center border-bottom cursor-pointer h-48"
+        routerLink="/user/disable-account"
+      >
         <span class="ml-8">Vô hiệu hoá tài khoản</span>
       </div>
     </div>
 
-    <div class="column-center border-bottom cursor-pointer h-48">
+    <div
+      class="column-center border-bottom cursor-pointer h-48"
+      routerLink="/user/help"
+    >
       <img src="assets/media/icon/icon-helpCircle.svg" alt="" />
       <span class="ml-8">Trợ giúp</span>
     </div>

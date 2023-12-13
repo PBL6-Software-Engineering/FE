@@ -18,8 +18,8 @@
 
   &:hover,
   &.active {
-    & > .label-item {
-      color: #11b3cf;
+    &>.label-item {
+      color: #2095c4;
     }
   }
 }

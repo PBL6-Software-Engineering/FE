@@ -1,0 +1,56 @@
+<div>
+  <ngx-skeleton-loader
+    count="1"
+    [theme]="{
+      'border-radius': '5px',
+      height: '200px',
+      width: '100%',
+      'animation-duration': '2s'
+    }"
+  >
+  </ngx-skeleton-loader>
+
+  <ngx-skeleton-loader
+    count="1"
+    [theme]="{
+      width: '60%',
+      'border-radius': '0',
+      height: '15px',
+      'margin-bottom': '10px'
+    }"
+  ></ngx-skeleton-loader>
+
+  <ngx-skeleton-loader
+    count="2"
+    [theme]="{
+      width: '100%',
+      'border-radius': '0',
+      height: '15px',
+      'margin-bottom': '10px'
+    }"
+  ></ngx-skeleton-loader>
+
+  <div class="d-flex" *ngIf="isDisplayAuthor">
+    <ngx-skeleton-loader
+      animation="false"
+      appearance="circle"
+      width="80px"
+    ></ngx-skeleton-loader>
+
+    <div class="w-100 pl-20">
+      <ngx-skeleton-loader
+        [theme]="{
+          width: '30%',
+          'border-radius': '0',
+          height: '15px',
+          'margin-bottom': '10px'
+        }"
+      ></ngx-skeleton-loader>
+
+      <ngx-skeleton-loader
+        [theme]="{ width: '80%', 'border-radius': '0', height: '15px' }"
+      >
+      </ngx-skeleton-loader>
+    </div>
+  </div>
+</div>
