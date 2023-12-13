@@ -15,7 +15,7 @@
       <input
         type="text"
         class="form-control"
-        id="name"
+        id="create-name"
         placeholder="Nhập tên danh mục"
         formControlName="name"
         required
@@ -62,7 +62,7 @@
 
       <textarea
         name="description"
-        id="description"
+        id="create-description"
         rows="4"
         placeholder="Nhập mô tả"
         class="form-control"
@@ -90,6 +90,7 @@
         class="btn btn-primary-1 w-150px column-center"
         (click)="focusInput.focus()"
         [disabled]="isSaving"
+        id="create-save"
       >
         <div class="loader" *ngIf="isSaving"></div>
         Lưu

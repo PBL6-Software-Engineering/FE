@@ -12,7 +12,9 @@ export class SignUpHospitalComponent {
   loginForm: FormGroup;
   isShowEmail = false;
   isShowPass = false;
+  isShowPass2 = false;
   isShowConfirm = false;
+  isShowConfirm2 = false;
   isShowName = false;
   isShowPhone = false;
   isShowAddress = false;
@@ -33,8 +35,8 @@ export class SignUpHospitalComponent {
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
-      confirm: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirm: ['', [Validators.required, Validators.minLength(6)]],
       name: ['', [Validators.required]],
       phone: ['', [Validators.required]],
       address: ['', [Validators.required]],
@@ -153,13 +155,19 @@ export class SignUpHospitalComponent {
       ) {
         this.isShowEmail = true;
       }
-      if (this.loginForm.hasError('required', 'password')) {
-        this.isShowPass = true;
+      if (this.loginForm.hasError('minlength', 'password')) {
+        this.isShowPass2 = true;
+      }
+      if (this.loginForm.hasError('minlength', 'confirm')) {
+        this.isShowConfirm2 = true;
       }
       if (this.loginForm.hasError('required', 'confirm')) {
         this.isShowConfirm = true;
       }
       if (this.loginForm.hasError('required', 'address')) {
+        this.isShowAddress = true;
+      }
+      if (this.loginForm.hasError('required', 'code')) {
         this.isShowAddress = true;
       }
       if (this.loginForm.hasError('required', 'phone')) {
@@ -170,6 +178,9 @@ export class SignUpHospitalComponent {
       }
       if (this.loginForm.hasError('required', 'username')) {
         this.isShowUsername = true;
+      }
+      if (this.loginForm.hasError('required', 'password')) {
+        this.isShowPass = true;
       }
     }
   }

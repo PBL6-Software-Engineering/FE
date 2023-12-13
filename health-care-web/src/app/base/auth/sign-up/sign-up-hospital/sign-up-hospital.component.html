@@ -29,6 +29,7 @@
             class="inp"
             type="text"
             placeholder="Tên bệnh viện"
+            id="hospital-name"
             name="name"
             formControlName="name"
           />
@@ -37,6 +38,7 @@
             *ngIf="
               isShowName && nameControl && nameControl.hasError('required')
             "
+            id="hospital-name-w"
           >
             Bạn phải nhập tên.
           </div>
@@ -49,12 +51,14 @@
             placeholder="Email"
             name="email"
             formControlName="email"
+            id="email"
           />
           <div
             class="warning"
             *ngIf="
               isShowEmail && emailControl && emailControl.hasError('required')
             "
+            id="email-w"
           >
             Bạn phải nhập email.
           </div>
@@ -63,6 +67,7 @@
             *ngIf="
               isShowEmail && emailControl && emailControl.hasError('email')
             "
+            id="email-w2"
           >
             Hãy nhập email hợp lệ.
           </div>
@@ -71,16 +76,18 @@
           <i class="fa fa-phone icon" aria-hidden="true"></i>
           <input
             class="inp"
-            type="text"
+            type="number"
             placeholder="Số điện thoại"
             name="phone"
             formControlName="phone"
+            id="phone"
           />
           <div
             class="warning"
             *ngIf="
               isShowPhone && phoneControl && phoneControl.hasError('required')
             "
+            id="phone-w"
           >
             Bạn phải nhập số điện thoại.
           </div>
@@ -97,6 +104,7 @@
             placeholder="Địa chỉ"
             name="address"
             formControlName="address"
+            id="address"
           />
 
           <input
@@ -106,14 +114,17 @@
             placeholder="Mã tỉnh/TP"
             name="code"
             formControlName="code"
+            id="code"
           />
           <div
             class="warning"
             *ngIf="
               isShowAddress &&
-              addressControl &&
-              addressControl.hasError('required')
+              ((addressControl &&
+              addressControl.hasError('required'))||(codeControl &&
+              codeControl.hasError('required')))
             "
+            id="address-w"
           >
             Bạn phải nhập địa chỉ.
           </div>
@@ -130,6 +141,7 @@
             placeholder="Tọa độ x"
             name="xOr"
             formControlName="xOr"
+            id="xOr"
           />
 
           <input
@@ -139,6 +151,7 @@
             placeholder="Tọa độ y"
             name="yOr"
             formControlName="yOr"
+            id="yOr"
           />
           <div
             class="warning"
@@ -146,6 +159,7 @@
               (isShowOr && xOrControl && xOrControl.hasError('required')) ||
               (yOrControl && yOrControl.hasError('required'))
             "
+            id="or-w"
           >
             Bạn phải nhập tọa độ.
           </div>
@@ -160,6 +174,7 @@
             name="description"
             formControlName="description"
             style="height: 100%"
+            id="description"
           ></textarea>
           <div
             class="warning"
@@ -168,6 +183,7 @@
               descriptionControl &&
               descriptionControl.hasError('required')
             "
+            id="description-w"
           >
             Bạn phải nhập mô tả.
           </div>
@@ -184,20 +200,23 @@
             name="infrastructure"
             formControlName="infrastructure"
             (keydown.Enter)="addTag()"
+            id="infrastructure"
           />
           <button
             class="btn btn-outline-secondary"
             type="button"
             (click)="addTag()"
+            id="add"
           >
             Thêm
           </button>
         </div>
 
         <div class="tags">
-          <span *ngFor="let tag of tags" class="tag">
+          <span *ngFor="let tag of tags; let i = index"  class="tag">
             {{ tag }}
             <button
+              [id]='i'
               type="button"
               class="close btn"
               aria-label="Close"
@@ -216,6 +235,7 @@
             placeholder="Tên đăng nhập"
             name="username"
             formControlName="username"
+            id="username"
           />
           <div
             class="warning"
@@ -224,6 +244,7 @@
               usernameControl &&
               usernameControl.hasError('required')
             "
+            id="username-w"
           >
             Bạn phải nhập tên đăng nhập.
           </div>
@@ -240,14 +261,21 @@
             placeholder="Nhập mật khẩu"
             name="password"
             formControlName="password"
+            id="password"
           />
           <div
             class="warning"
             *ngIf="
               isShowPass && passControl && passControl.hasError('required')
             "
+            id="password-w"
           >
             Bạn phải nhập mật khẩu.
+          </div>
+          <div class="warning" *ngIf="
+                        isShowPass2 && passControl && passControl.hasError('minlength')
+                      " id="password-w">
+            Mật khẩu phải dài hơn 6 kí tự.
           </div>
         </div>
         <div class="mb-3">
@@ -263,6 +291,7 @@
             placeholder="Nhập mật khẩu"
             name="confirm"
             formControlName="confirm"
+            id="confirm"
           />
           <div
             class="warning"
@@ -271,18 +300,19 @@
               confirmControl &&
               confirmControl.hasError('required')
             "
+            id="confirm-w"
           >
             Bạn phải xác nhập mật khẩu.
           </div>
         </div>
         <hr />
         <input type="checkbox" id="show" (click)="hideShowPass()" />
-        <label for="show">Hiển thị mật khẩu</label>
+        <label for="show" id="label-show">Hiển thị mật khẩu</label>
       </div>
     </div>
     <!-- <a href="" id="forgot-pass">Forgot password?</a> -->
     <!-- <input type="submit" value="Sign up"> -->
-    <div
+    <button
       class="btn btn-secondary d-flex justify-content-center"
       id="btn-login"
       (click)="signup()"
@@ -296,6 +326,6 @@
         <span class="visually-hidden">Loading...</span>
       </div>
       <p>Đăng kí</p>
-    </div>
+    </button>
   </form>
 </div>

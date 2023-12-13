@@ -35,3 +35,23 @@
 //     }
 //   }
 // }
+// In cypress/support/commands.js
+
+Cypress.Commands.add('login', (username, password) => {
+  cy.session(
+    username,
+    () => {
+      cy.visit('http://localhost:4200/auth/sign-in/admin');
+      cy.get('input[name="username"]').type(username);
+      cy.get('input[name="password"]').type(password);
+      cy.get('#btn-login').click();
+      cy.wait(10000); // Đợi để đảm bảo đăng nhập thành công
+    },
+    {
+      validate: () => {
+        // cy.getCookie('role').should('exist');
+        expect(window.localStorage.getItem('role')).to.exist;
+      },
+    },
+  );
+});
