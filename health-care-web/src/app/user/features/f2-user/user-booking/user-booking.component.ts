@@ -2,6 +2,8 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
+  Renderer2,
+  Sanitizer,
   signal,
 } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
@@ -12,6 +14,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-user-booking',
@@ -19,16 +22,18 @@ import listPlugin from '@fullcalendar/list';
   styleUrls: ['./user-booking.component.scss'],
 })
 export class UserBookingComponent {
+  sanitizedContent: SafeHtml;
   tab = 'waitBooking';
   typeView = 'table';
 
   items: any[] = [];
   itemsWait: any[] = [];
   itemsDone: any[] = [];
-  itemHistory: any[] = [];
+  itemsUnDone: any[] = [];
 
   doneNumber = 0;
   waitNumber = 0;
+  undoneNumber = 0;
 
   isLoading = false;
   isDeleting = false;
@@ -51,11 +56,14 @@ export class UserBookingComponent {
     private spinner: NgxSpinnerService,
     private toastrService: ToastrService,
     private changeDetector: ChangeDetectorRef,
+    private renderer: Renderer2,
+    private sanitizer: DomSanitizer,
   ) {}
 
   ngOnInit(): void {
     this.getWaitBooking();
     this.getDoneBooking();
+    this.getUndoneBooking();
   }
 
   chooseTab(tab: string): void {
@@ -64,6 +72,8 @@ export class UserBookingComponent {
       this.items = this.itemsWait;
     } else if (tab == 'doneBooking') {
       this.items = this.itemsDone;
+    } else if (tab == 'undoneBooking') {
+      this.items = this.itemsUnDone;
     }
     this.patchDataCalendar();
   }
@@ -101,26 +111,57 @@ export class UserBookingComponent {
 
   getDoneBooking(): void {
     // call API here
-    this.workSchedule.getWorkSchedule({ status: 'complete' }).subscribe({
-      next: ({ data }) => {
-        data.data.forEach((el: any) => {
-          el.selected = false;
-          if (el.work_schedule_time.date) {
-            const myDate = new Date(el.work_schedule_time.date);
-            el.day = myDate.getDate();
-            const options = { month: 'long' } as Intl.DateTimeFormatOptions;
-            const month = new Intl.DateTimeFormat('vi', options).format(myDate);
-            el.year = myDate.getFullYear();
-            el.month = month;
-          }
-        });
-        this.itemsDone = data.data;
-        this.doneNumber = this.itemsDone.length;
-      },
-      error: (err) => {
-        console.log('Error', err);
-      },
-    });
+    this.workSchedule
+      .getWorkSchedule({ status: 'complete', is_confirm: '1' })
+      .subscribe({
+        next: ({ data }) => {
+          data.data.forEach((el: any) => {
+            el.selected = false;
+            if (el.work_schedule_time.date) {
+              const myDate = new Date(el.work_schedule_time.date);
+              el.day = myDate.getDate();
+              const options = { month: 'long' } as Intl.DateTimeFormatOptions;
+              const month = new Intl.DateTimeFormat('vi', options).format(
+                myDate,
+              );
+              el.year = myDate.getFullYear();
+              el.month = month;
+            }
+          });
+          this.itemsDone = data.data;
+          this.doneNumber = this.itemsDone.length;
+        },
+        error: (err) => {
+          console.log('Error', err);
+        },
+      });
+  }
+  getUndoneBooking(): void {
+    // call API here
+    this.workSchedule
+      .getWorkSchedule({ status: 'complete', is_confirm: '0' })
+      .subscribe({
+        next: ({ data }) => {
+          data.data.forEach((el: any) => {
+            el.selected = false;
+            if (el.work_schedule_time.date) {
+              const myDate = new Date(el.work_schedule_time.date);
+              el.day = myDate.getDate();
+              const options = { month: 'long' } as Intl.DateTimeFormatOptions;
+              const month = new Intl.DateTimeFormat('vi', options).format(
+                myDate,
+              );
+              el.year = myDate.getFullYear();
+              el.month = month;
+            }
+          });
+          this.itemsUnDone = data.data;
+          this.undoneNumber = this.itemsUnDone.length;
+        },
+        error: (err) => {
+          console.log('Error', err);
+        },
+      });
   }
 
   deleteOne(): void {
@@ -213,5 +254,82 @@ export class UserBookingComponent {
   openEditRating(item: any) {
     this.itemSelected = item;
     this.el.nativeElement.querySelector('#btnOpenModalRating').click();
+  }
+  renderModalContent(item: any) {
+    this.itemSelected = item;
+    const content = this.itemSelected?.work_schedule_content;
+    this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(content);
+
+    const componentElement = this.el.nativeElement.querySelector(
+      '#work_schedule_content',
+    );
+
+    this.renderer.setProperty(
+      componentElement,
+      'innerHTML',
+      this.sanitizedContent,
+    );
+  }
+
+  sortTable(n: number) {
+    var table,
+      rows,
+      switching,
+      i,
+      x,
+      y,
+      shouldSwitch,
+      dir,
+      switchcount = 0;
+    table = document.getElementById('myTable2');
+    if (!table) {
+      console.error('Table element not found!');
+      return;
+    }
+    switching = true;
+    dir = 'asc';
+    while (switching) {
+      switching = false;
+      rows = (table as HTMLTableElement).rows;
+      for (i = 1; i < rows.length - 1; i++) {
+        shouldSwitch = false;
+        x = rows[i].getElementsByTagName('TD')[n];
+        y = rows[i + 1].getElementsByTagName('TD')[n];
+        const dayX = parseInt(x.querySelector('.fs-30')?.textContent ?? '');
+        console.log(x.querySelector('.month')?.textContent ?? '');
+        const monthX = parseInt(
+          x.querySelector('.month')?.textContent?.substring(5) ?? '',
+        );
+
+        const dayY = parseInt(y.querySelector('.fs-30')?.textContent ?? '');
+        const monthY = parseInt(
+          y.querySelector('.month')?.textContent?.substring(5) ?? '',
+        );
+
+        const dateX = `${monthX} ${dayX}`;
+        const dateY = `${monthY} ${dayY}`;
+        if (dir == 'asc') {
+          if (monthX > monthY || (monthX == monthY && dayX > dayY)) {
+            shouldSwitch = true;
+            break;
+          }
+        } else if (dir == 'desc') {
+          if (monthX < monthY || (monthX == monthY && dayX < dayY)) {
+            shouldSwitch = true;
+            break;
+          }
+        }
+      }
+      if (shouldSwitch) {
+        rows[i]?.parentNode?.insertBefore(rows[i + 1], rows[i]);
+        switching = true;
+        switchcount++;
+      } else {
+        if (switchcount == 0 && dir == 'asc') {
+          dir = 'desc';
+          switching = true;
+        }
+      }
+    }
   }
 }

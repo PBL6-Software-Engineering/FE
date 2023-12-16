@@ -120,9 +120,8 @@
             class="warning"
             *ngIf="
               isShowAddress &&
-              ((addressControl &&
-              addressControl.hasError('required'))||(codeControl &&
-              codeControl.hasError('required')))
+              ((addressControl && addressControl.hasError('required')) ||
+                (codeControl && codeControl.hasError('required')))
             "
             id="address-w"
           >
@@ -213,10 +212,10 @@
         </div>
 
         <div class="tags">
-          <span *ngFor="let tag of tags; let i = index"  class="tag">
+          <span *ngFor="let tag of tags; let i = index" class="tag">
             {{ tag }}
             <button
-              [id]='i'
+              [id]="i"
               type="button"
               class="close btn"
               aria-label="Close"
@@ -272,9 +271,13 @@
           >
             Bạn phải nhập mật khẩu.
           </div>
-          <div class="warning" *ngIf="
-                        isShowPass2 && passControl && passControl.hasError('minlength')
-                      " id="password-w">
+          <div
+            class="warning"
+            *ngIf="
+              isShowPass2 && passControl && passControl.hasError('minlength')
+            "
+            id="password-w"
+          >
             Mật khẩu phải dài hơn 6 kí tự.
           </div>
         </div>

@@ -18,10 +18,11 @@ export class UserWorkScheduleService {
     sortlatest = true, // true , false
     start_date = '',
     end_date = '',
+    is_confirm = 'both',
     status = '', // '' OR complete OR upcoming .
   }): Observable<any> {
     return this.http.get<any>(
-      `${linkApi}/${this.model}/user?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortlatest}&is_service=${is_service}&typesort=${typesort}&start_date=${start_date}&end_date=${end_date}&status=${status}`,
+      `${linkApi}/${this.model}/user?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortlatest}&is_service=${is_service}&typesort=${typesort}&start_date=${start_date}&end_date=${end_date}&status=${status}&is_confirm=${is_confirm}`,
     );
   }
 

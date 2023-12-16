@@ -21,6 +21,8 @@
         type="text"
         class="form-control w-320 input-search"
         placeholder="Tìm kiếm bác sĩ, dịch vụ, bệnh viện"
+        [(ngModel)]="textSearch"
+        (keyup.enter)="search()"
       />
     </div>
   </div>
