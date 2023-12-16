@@ -29,6 +29,13 @@
   >
     Hoàn thành ({{ doneNumber }})
   </li>
+  <li
+    class="nav-tab"
+    (click)="chooseTab('undoneBooking')"
+    [class.active]="tab === 'undoneBooking'"
+  >
+    Hoàn thành ({{ undoneNumber }})
+  </li>
   <!-- <li
     class="nav-tab"
     (click)="chooseTab('historyBooking')"
@@ -46,10 +53,14 @@
           <div class="table-responsive">
             <table
               class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3"
+              id="myTable2"
             >
               <thead>
                 <tr>
-                  <th class="text-center">Thời gian</th>
+                  <th class="text-center" id="th-time" (click)="sortTable(0)">
+                    Thời gian
+                    <i class="fa fa-sort-desc ps-2" aria-hidden="true"></i>
+                  </th>
                   <th>Thông tin</th>
 
                   <th class="text-center">
@@ -66,7 +77,7 @@
                 <tr class="inner-box" *ngFor="let item of items; let i = index">
                   <td scope="row" class="text-center fw-bold">
                     <span class="fs-30">{{ item.day }}</span>
-                    <p>{{ item.month }}</p>
+                    <p class="month">{{ item.month }}</p>
                   </td>
 
                   <td>
@@ -134,7 +145,7 @@
                       class="btn btn-sm btn-primary-1 text-white"
                       data-bs-toggle="modal"
                       data-bs-target="#detailModal"
-                      (click)="itemSelected = item"
+                      (click)="renderModalContent(item)"
                     >
                       Xem
                     </button>
@@ -205,10 +216,10 @@
       Lịch hẹn đã hoàn thành của bạn sẽ xuất hiện ở đây
     </div>
   </div>
-  <div *ngIf="tab === 'historyBooking'">
-    <h2 class="fw-700 fs-18 mb-20">Không có lịch hẹn đã hoàn thành</h2>
+  <div *ngIf="tab === 'undoneBooking'">
+    <h2 class="fw-700 fs-18 mb-20">Không có lịch hẹn chưa hoàn thành</h2>
     <div class="color-sub fs-14">
-      Lịch hẹn đã hoàn thành của bạn sẽ xuất hiện ở đây
+      Lịch hẹn chưa hoàn thành của bạn sẽ xuất hiện ở đây
     </div>
   </div>
 </div>
@@ -253,7 +264,7 @@
           <h5 class="fw-700 mb-3">Chi tiết dịch vụ</h5>
           <div [innerHTML]="itemSelected?.service_infor?.prepare_process"></div>
         </div>
-        <div [innerHTML]="itemSelected?.work_schedule_content"></div>
+        <div id="work_schedule_content" [innerHTML]="sanitizedContent"></div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
