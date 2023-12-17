@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class TokenStorageService {
-  private $isLogin = new BehaviorSubject(this.hasToken());
+  private $isLogin = new BehaviorSubject(this.getToken() ? true : false);
   private $user = new BehaviorSubject(
     JSON.parse(localStorage.getItem('user') || '{}'),
   );
@@ -34,10 +34,6 @@ export class TokenStorageService {
     return ['manager', 'hospital', 'doctor', 'supperadmin', 'admin'].includes(
       localStorage.getItem('role') || '',
     );
-  }
-
-  private hasToken(): boolean {
-    return !!localStorage.getItem('token');
   }
 
   saveUser(user: any): void {

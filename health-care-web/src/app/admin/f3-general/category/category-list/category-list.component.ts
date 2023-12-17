@@ -29,6 +29,7 @@ export class CategoryListComponent implements OnInit, OnDestroy {
 
   currentPage = 1;
   totalPage = 0;
+  pageSize = 20;
   totalElements = 0;
   numberElementOfPage = 0;
 
@@ -94,7 +95,7 @@ export class CategoryListComponent implements OnInit, OnDestroy {
       this.api
         .paginate({
           page: isResetPage ? 1 : this.currentPage,
-          paginate: 20,
+          paginate: this.pageSize,
           search: this.textSearch || '',
           sortLatest: true,
         })
@@ -149,23 +150,6 @@ export class CategoryListComponent implements OnInit, OnDestroy {
     this.isSelectAll = false;
   }
 
-  updateCheckedDataSources() {
-    if (this.dataSources.length === 0) {
-      this.isSelectAll = false;
-    } else {
-      // checked item when id exist in map
-      if (this.idsSelected.size > 0) {
-        this.dataSources.forEach((data: any) => {
-          if (this.idsSelected.get(data.id)) {
-            data.checked = true;
-          }
-        });
-      }
-      this.isSelectAll =
-        this.dataSources.findIndex((data: any) => !data.checked) === -1;
-    }
-  }
-
   onChangePage(page: number) {
     this.currentPage = page;
     this.onLoadData();
@@ -187,5 +171,11 @@ export class CategoryListComponent implements OnInit, OnDestroy {
         this.onLoadData();
       }
     }, 1000);
+  }
+
+  onChangePageSize(pageSize: any) {
+    this.pageSize = pageSize;
+    this.currentPage = 1;
+    this.onLoadData();
   }
 }

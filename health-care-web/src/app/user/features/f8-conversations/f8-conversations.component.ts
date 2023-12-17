@@ -20,7 +20,9 @@ export class F8ConversationsComponent implements OnInit {
     private spinnerService: NgxSpinnerService,
   ) {}
   ngOnInit(): void {
-    this.user = JSON.parse(localStorage.getItem('user') || '{id: guest}');
+    this.user = JSON.parse(
+      localStorage.getItem('user') || JSON.stringify({ id: 'guest' }),
+    );
     if (this.user && this.user.id) {
       this.isLoadConversation = true;
       this.spinnerService.show();

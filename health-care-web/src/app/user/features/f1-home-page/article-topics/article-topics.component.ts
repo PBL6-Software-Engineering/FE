@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { forkJoin } from 'rxjs';
+import { BehaviorService } from 'src/app/core/services/behavior.service';
+import { toSlug } from 'src/app/core/services/library.helper';
 import { ArticleService } from 'src/app/user/services/article.service';
 
 @Component({
@@ -19,6 +22,8 @@ export class ArticleTopicsComponent implements OnInit {
   constructor(
     private articleService: ArticleService,
     private spinnerService: NgxSpinnerService,
+    private router: Router,
+    private behaviorService: BehaviorService,
   ) {}
 
   ngOnInit(): void {
@@ -61,6 +66,23 @@ export class ArticleTopicsComponent implements OnInit {
           },
         ];
       });
+    }
+  }
+
+  navigateCategoryDetail(item: any) {
+    if (item && item.category) {
+      const categories = JSON.parse(localStorage.getItem('categories') || '[]');
+      const category = categories.find((c: any) => c.name = item.category);
+      this.behaviorService.setCategory(category);
+      this.router.navigateByUrl(`/danh-muc/${toSlug(category.name)}`);
+    }
+  }
+
+  navigateArticleDetail(article: any) {
+    if (article && article.id_article && article.name_category) {
+      this.router.navigateByUrl(
+        `/bai-viet/${article.id_article}/${toSlug(article.name_category)}`,
+      );
     }
   }
 }

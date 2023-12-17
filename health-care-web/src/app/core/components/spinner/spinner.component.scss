@@ -31,12 +31,38 @@
         font-weight: bold;
         color: #308a9a;
         animation: fadein 3s forwards infinite;
+        text-align: center;
     }
 }
 
 .wrapper-content {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
-    transform: translate(-50%, -70%);
+    transform: translate(-50%, -50%);
+    width: 600px;
+}
+
+.slogan-sm {
+    display: none;
+
+}
+
+@media (max-width: 652px) {
+    .slogan-md {
+        display: none;
+    }
+
+    .slogan-sm {
+        display: block;
+    }
+
+    .page-overlay-wrapper .spinner {
+        width: 180px;
+        height: 120px;
+    }
+
+    #slogan {
+        font-size: 20px;
+    }
 }

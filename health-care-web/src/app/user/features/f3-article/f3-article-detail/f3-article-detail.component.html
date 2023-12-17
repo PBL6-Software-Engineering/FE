@@ -30,6 +30,15 @@
         src="assets/media/icon/ask-question.svg"
         alt=""
       />
+
+      <button
+        class="border-0 bg-white mr-6 mt-20"
+        (click)="speechArticle()"
+        [class.direct-list-desktop-pulse]="isSpeech"
+        [disabled]="!isWorkingSpeech"
+      >
+        <i class="fa fa-microphone fs-26" aria-hidden="true"></i>
+      </button>
     </div>
     <div class="col-11">
       <div class="row">
@@ -57,7 +66,7 @@
 
       <!-- MAIN CONTENT -->
       <div class="row mt-20 mb-100" *ngIf="!isLoading">
-        <div class="col--md-9 col-lg-9" id="content-container">
+        <div class="col-md-9 col-lg-9" id="content-container">
           <button
             type="button"
             style="border: 1px solid rgba(0, 0, 0, 0.3); border-radius: 2rem"
@@ -136,7 +145,7 @@
           </div>
         </div>
         <div
-          class="col--md-3 col-lg-3 d-flex flex-column"
+          class="col-md-3 col-lg-3 d-flex flex-column"
           style="
             border: 1px solid rgba(0, 0, 0, 0.1);
             color: #595959;
@@ -225,7 +234,7 @@
 
       <!-- Skeleton loader -->
       <div class="row mt-20 mb-100" *ngIf="isLoading">
-        <div class="col-9">
+        <div class="col-md-9">
           <div class="item w-100">
             <ngx-skeleton-loader></ngx-skeleton-loader>
             <div>
@@ -275,7 +284,7 @@
         </div>
 
         <div
-          class="col-3-md d-flex flex-column"
+          class="col-md-3 d-flex flex-column"
           style="
             border: 1px solid rgba(0, 0, 0, 0.1);
             color: #595959;

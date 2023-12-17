@@ -263,3 +263,22 @@ fieldset {
     border-color: #2095c4 !important;
     color: white !important;
 }
+
+.direct-list-desktop-pulse {
+    border-radius: 50%;
+    animation: directListDesktopPulse 1.2s infinite;
+}
+
+@keyframes directListDesktopPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 224, 224, 0.6);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(170, 224, 0, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(170, 224, 0, 0);
+    }
+}

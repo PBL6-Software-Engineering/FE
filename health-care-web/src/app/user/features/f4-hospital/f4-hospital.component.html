@@ -2,8 +2,9 @@
   <div class="header">
     <div class="banner">
       <img
-        src="https://cdn-healthcare.hellohealthgroup.com/2023/06/1687490654_6495105ef02194.17483979.jpg"
+        [src]="hospital?.cover_hospital"
         alt="Ảnh bìa bệnh viện"
+        onerror="this.src=`https://cdn-healthcare.hellohealthgroup.com/2023/06/1687490654_6495105ef02194.17483979.jpg`"
       />
     </div>
 
@@ -77,6 +78,11 @@
             [hospital]="hospital"
             [doctors]="doctors"
           ></app-hospital-doctor>
+        </div>
+
+        <div class="my-20">
+          <p class="title mb-4">Vị trí bệnh viện</p>
+          <app-google-map [locations]="hospital?.location"></app-google-map>
         </div>
       </div>
 

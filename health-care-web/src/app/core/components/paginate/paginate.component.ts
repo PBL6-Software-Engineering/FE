@@ -18,10 +18,11 @@ export class PaginateComponent implements OnInit, OnChanges {
   @Input() totalPage: number = 1;
   @Input() totalElements: number = 1;
   @Input() numberElementOfPage: number = 1;
+  @Input() pageSize: number = 20;
   @Output() changePage = new EventEmitter<number>();
+  @Output() changePageSize = new EventEmitter<number>();
 
-  pageSize: number = 20;
-  pageSizeOptions: number[] = [10, 20, 50, 100];
+  pageSizeOptions: number[] = [5, 10, 20, 50, 100];
   arrayNumberPage: number[] = [];
 
   constructor() {}
@@ -89,5 +90,9 @@ export class PaginateComponent implements OnInit, OnChanges {
 
   onChangePage(page: number): void {
     this.changePage.emit(page);
+  }
+
+  onChangePageSize(): void {
+    this.changePageSize.emit(this.pageSize || 20);
   }
 }

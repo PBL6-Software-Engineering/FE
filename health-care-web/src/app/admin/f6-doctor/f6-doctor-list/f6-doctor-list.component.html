@@ -20,14 +20,6 @@
           >
             Thêm
           </button>
-          <!-- <button
-            class="btn btn-danger mr-20"
-            data-bs-toggle="modal"
-            data-bs-target="#deleteManyModal"
-            *ngIf="getListIdSelect().length > 0"
-          >
-            Xoá
-          </button> -->
         </div>
       </div>
 
@@ -144,6 +136,7 @@
     [totalPage]="totalPage"
     [totalElements]="totalElements"
     (changePage)="onChangePage($event)"
+    (changePageSize)="onChangePageSize($event)"
   ></app-paginate>
 </div>
 

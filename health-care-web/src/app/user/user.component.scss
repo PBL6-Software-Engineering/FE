@@ -1,0 +1,23 @@
+.chat-gpt-wrapper {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    border: 1px solid #19C37D;
+    border-radius: 50%;
+    animation: directListDesktopPulse 1.2s infinite;
+    box-shadow: 0 20px 0 0 #3c73f299;
+}
+
+.icon-chat-gpt {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+@media screen and (max-width: 768px) {
+    .download-home-wrapper {
+        padding-left: 100px;
+        padding-top: 30px;
+    }
+}

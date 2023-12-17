@@ -5,7 +5,22 @@
   </div>
   <app-footer></app-footer>
 
-  <div class="position-fixed" style="z-index: 10; right: 0; bottom: 0">
+  <div class="position-fixed" style="z-index: 10; right: 110px; bottom: 0">
     <app-f9-chat></app-f9-chat>
+  </div>
+
+  <div class="chat-gpt-wrapper" (click)="isOpenChatGpt = true">
+    <img src="assets/media/logo/chatgpt.png" alt="Chat" class="icon-chat-gpt" />
+  </div>
+
+  <div
+    class="position-fixed"
+    style="z-index: 10; right: 110px; bottom: 0"
+    *ngIf="isOpenChatGpt"
+  >
+    <app-f10-chat-gpt
+      [isOpenChat]="isOpenChatGpt"
+      (closeChat)="isOpenChatGpt = false"
+    ></app-f10-chat-gpt>
   </div>
 </div>

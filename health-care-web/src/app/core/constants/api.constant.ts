@@ -10,3 +10,5 @@ export const linkSocket =
 // export const linkSocket = 'http://localhost:3000';
 // export const linkApi = 'http://192.168.11.250:8000/api';
 // export const prefixApi = 'http://192.168.11.250:8000';
+
+export const OPENAI_KEY = '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';

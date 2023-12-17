@@ -1,7 +1,7 @@
 <div
   class="py-10 cursor-pointer article-wrapper"
   *ngIf="article?.id_article"
-  routerLink="/bai-viet/{{ article?.id_article }}/{{ article?.name_category }}"
+  (click)="navigateArticleDetail(article)"
 >
   <div class="row">
     <div class="col-4 my-0">

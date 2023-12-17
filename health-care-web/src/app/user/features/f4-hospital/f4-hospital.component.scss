@@ -24,3 +24,22 @@
 .address {
     color: #595959;
 }
+
+.title {
+    display: flex;
+    position: relative;
+    color: #1b3250;
+    font-weight: bold;
+    margin-top: 12px;
+}
+
+.title::before {
+    display: block;
+    content: "";
+    width: 3px;
+    height: 16px;
+    background: #2095c4;
+    position: absolute;
+    top: 4px;
+    left: -8px;
+}

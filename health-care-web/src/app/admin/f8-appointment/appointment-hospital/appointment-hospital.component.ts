@@ -100,7 +100,6 @@ export class AppointmentHospitalComponent implements OnInit {
   }
 
   onChangePage(page: number) {
-    // this.currentPage = page;
     this.filter.page = page;
     this.onLoadData();
   }
@@ -156,5 +155,11 @@ export class AppointmentHospitalComponent implements OnInit {
   openModalShowInfo(item: any): void {
     this.selectedItem = item;
     this.el.nativeElement.querySelector('#btnOpenModalShowInfo').click();
+  }
+
+  onChangePageSize(pageSize: any) {
+    this.currentPage = 1;
+    this.filter.paginate = pageSize;
+    this.onLoadData();
   }
 }

@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { F8ConversationsComponent } from './features/f8-conversations/f8-conversations.component';
 import { F9ChatComponent } from './features/f9-chat/f9-chat.component';
 import { ShareModuleModule } from './share-module/share-module.module';
+import { F10ChatGptComponent } from './features/f10-chat-gpt/f10-chat-gpt.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ShareModuleModule } from './share-module/share-module.module';
     SubHeaderMobileComponent,
     F8ConversationsComponent,
     F9ChatComponent,
+    F10ChatGptComponent,
   ],
   imports: [
     CommonModule,

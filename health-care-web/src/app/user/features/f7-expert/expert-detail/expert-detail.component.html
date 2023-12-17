@@ -11,7 +11,7 @@
           >
             <i routerLink="/" class="fa fa-home fs-16 cursor-pointer"></i>
             <div class="line-vertical ms-2 me-2"></div>
-            <span style="color: #262626">Sức khỏe răng miệng</span>
+            <span style="color: #262626">{{ doctor?.department?.name }}</span>
             <i class="fa fa-angle-right ms-2 me-2" aria-hidden="true"></i>
             <span>{{ doctor?.name }}</span>
           </div>
@@ -19,33 +19,32 @@
       </div>
     </div>
   </div>
-  <div style="background-color: #e3f2ff" class="pt-4">
-    <div class="mt-5 bg-white" style="border-radius: 50px">
+  <div>
+    <div class="banner">
+      <img
+        [src]="doctor?.infor_hospital?.cover_hospital"
+        alt="Ảnh bìa bệnh viện"
+        onerror="this.src=`https://cdn-healthcare.hellohealthgroup.com/2023/06/1687490654_6495105ef02194.17483979.jpg`"
+      />
+    </div>
+
+    <div class="bg-white" style="border-radius: 50px">
       <div class="mb-3">
         <div class="row row-center">
-          <div class="ps-5 d-inline-block col-md-6 border-radius-100">
-            <div class="row">
-              <div class="col-3">
-                <img
-                  class="wh-140 bg-white border-radius-100"
-                  [src]="doctor?.avatar"
-                  onerror="this.src='assets/media/image/avatar_doctor_default.jpg'"
-                  alt="Ảnh bác sĩ"
-                  style="
-                    transform: translateY(-30%);
-                    box-shadow: 2px 4px rgba(0, 0, 0, 0.1);
-                  "
-                />
-              </div>
-              <div class="col-9">
-                <span class="fw-bold fs-24 pt-48">{{ doctor?.name }}</span>
-                <p style="color: rgba(0, 0, 0, 0.7)" class="fs-16">
-                  <span></span> •
-                  <span style="text-decoration: underline">
-                    Bệnh viện Đa khoa Quốc tế Vinmec
-                  </span>
-                </p>
-              </div>
+          <div class="ps-5 col-md-6 d-flex">
+            <img
+              class="wh-140 bg-white avatar"
+              [src]="doctor?.avatar"
+              onerror="this.src='assets/media/image/avatar_doctor_default.jpg'"
+              alt="Ảnh bác sĩ"
+              style="transform: translateY(-30%)"
+            />
+            <div class="column-between flex-column ml-20">
+              <p class="fw-bold fs-18 mt-2">Bác sĩ {{ doctor?.name }}</p>
+              <p class="fs-16 my-2">{{ doctor?.infor_hospital?.name }}</p>
+              <p class="color-sub fs-14">
+                Chuyên khoa {{ doctor?.department?.name }}
+              </p>
             </div>
           </div>
         </div>
@@ -53,37 +52,40 @@
       <div class="row">
         <div class="col-1"></div>
         <div class="col-10">
-          <div style="height: 26px" class="d-flex align-items-center mb-3">
+          <div class="h-26 column-center mb-3">
             <div class="blue-line-vertical me-2"></div>
             <span class="fs-18 fw-700">Hồ sơ chuyên gia</span>
           </div>
           <div>
             <p
               class="fs-16"
-              *ngFor="let prominent of doctor?.infor_extend.prominent"
+              *ngFor="let prominent of doctor?.infor_extend?.prominent"
             >
-              <span>{{ prominent.title }}</span
-              >:{{ prominent.subtitle }}
+              <span>{{ prominent?.title }}</span
+              >:{{ prominent?.subtitle }}
             </p>
           </div>
           <p id="information">
             {{
-              doctor?.infor_extend.information ||
+              doctor?.infor_extend?.information ||
                 "Thông tin bác sĩ chưa cập nhật"
             }}
           </p>
           <h3 class="fs-18 fw-bold mt-3 mb-3">Đề tài nghiên cứu</h3>
 
-          <div *ngFor="let awardsRe of doctor?.infor_extend.awards_recognition">
+          <div
+            *ngFor="let awardsRe of doctor?.infor_extend?.awards_recognition"
+          >
             <p class="mb-3">
               <i class="fa fa-check-square-o" aria-hidden="true"></i>
-              <span class="fs-18 fw-700 mx-3"
-                >Năm {{ awardsRe.subtitle[0] }}</span
-              ><span class="ps-2">{{ awardsRe.title }}</span>
+              <span class="fs-18 fw-700 mx-3">
+                Năm {{ awardsRe?.subtitle[0] }}
+              </span>
+              <span class="ps-2">{{ awardsRe?.title }}</span>
             </p>
           </div>
           <div>
-            <div style="height: 26px" class="d-flex align-items-center mb-3">
+            <div class="column-center h-26 mb-3">
               <div class="blue-line-vertical me-2"></div>
               <span class="fs-18 fw-700">Thông tin xác thực</span>
             </div>
@@ -93,19 +95,18 @@
                 <div
                   class="row"
                   *ngFor="
-                    let trainingPr of doctor?.infor_extend.training_process
+                    let trainingPr of doctor?.infor_extend?.training_process
                   "
                 >
                   <div class="col-1">
                     <i
-                      class="fa fa-circle fs-10"
-                      style="color: #2095c4"
+                      class="fa fa-circle fs-10 color-primary"
                       aria-hidden="true"
                     ></i>
                   </div>
                   <div class="col">
-                    <p>{{ trainingPr.title }}</p>
-                    <p>{{ trainingPr.subtitle[1] }}</p>
+                    <p>{{ trainingPr?.title }}</p>
+                    <p>{{ trainingPr?.subtitle[1] }}</p>
                   </div>
                 </div>
               </div>
@@ -113,28 +114,24 @@
                 <p class="fw-700 mb-2" style="color: #8c8c8c">KINH NGHIỆM</p>
                 <div
                   class="row"
-                  *ngFor="let workEx of doctor?.infor_extend.work_experience"
+                  *ngFor="let workEx of doctor?.infor_extend?.work_experience"
                 >
                   <div class="col-1">
                     <i
-                      class="fa fa-circle fs-10"
-                      style="color: #2095c4"
+                      class="fa fa-circle fs-10 color-primary"
                       aria-hidden="true"
                     ></i>
                   </div>
                   <div class="col">
-                    <p>{{ workEx.title }}</p>
-                    <p>{{ workEx.subtitle }}</p>
+                    <p>{{ workEx?.title }}</p>
+                    <p>{{ workEx?.subtitle }}</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div>
-            <div
-              style="height: 26px"
-              class="d-flex align-items-center mb-3 mt-3"
-            >
+            <div class="column-center mb-3 mt-3 h-26">
               <div class="blue-line-vertical me-2"></div>
               <span class="fs-18 fw-700">Bài viết của chuyên gia</span>
             </div>

@@ -11,7 +11,7 @@
             <h1 class="fs-22 fw-700 m-0">{{ articleObj?.category }}</h1>
             <div
               class="fw-700 ml-20 cursor-pointer"
-              routerLink="/danh-muc/{{ articleObj?.category }}"
+              (click)="navigateCategoryDetail(articleObj)"
               style="color: rgb(32, 149, 196)"
             >
               Xem thêm
@@ -25,9 +25,7 @@
             >
               <app-article-img-left
                 [article]="article"
-                routerLink="/bai-viet/{{ article.id_article }}/{{
-                  article?.name_category
-                }}"
+                (click)="navigateArticleDetail(article)"
               ></app-article-img-left>
             </div>
           </div>

@@ -16,6 +16,7 @@ import { GenderPipe } from './pipes/gender.pipe';
 import { TimeAgoPipe } from './pipes/time-ago.pipe';
 import { NoDataComponent } from './components/no-data/no-data.component';
 import { RatingStarsComponent } from './components/rating-stars/rating-stars.component';
+import { GoogleMapComponent } from './components/google-map/google-map.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { RatingStarsComponent } from './components/rating-stars/rating-stars.com
     TimeAgoPipe,
     NoDataComponent,
     RatingStarsComponent,
+    GoogleMapComponent,
   ],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
   exports: [
@@ -50,6 +52,7 @@ import { RatingStarsComponent } from './components/rating-stars/rating-stars.com
     TimeAgoPipe,
     NoDataComponent,
     RatingStarsComponent,
+    GoogleMapComponent,
   ],
 })
 export class CoreModule {}

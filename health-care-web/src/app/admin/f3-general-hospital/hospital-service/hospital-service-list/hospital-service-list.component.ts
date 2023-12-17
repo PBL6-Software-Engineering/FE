@@ -30,6 +30,7 @@ export class HospitalServiceListComponent implements OnInit, OnDestroy {
 
   currentPage = 1;
   totalPage = 0;
+  pageSize = 20;
   totalElements = 0;
   numberElementOfPage = 0;
 
@@ -45,28 +46,6 @@ export class HospitalServiceListComponent implements OnInit, OnDestroy {
   updateItem: any;
   hospital: any;
 
-  onCheckAllSelected() {
-    this.isSelectAll = !this.isSelectAll;
-    // check or uncheck all items
-    this.dataSources.forEach((item) => {
-      item.checked = this.isSelectAll;
-    });
-  }
-
-  onItemSelected(item: any) {
-    item.checked = !item.checked;
-    this.isSelectAll = this.dataSources.findIndex((t) => !t.checked) === -1;
-  }
-
-  getListIdSelect() {
-    const ids: any[] = [];
-    this.dataSources.forEach((item) => {
-      if (item.checked) {
-        ids.push(item.id_hospital_service);
-      }
-    });
-    return ids;
-  }
 
   constructor(
     private api: ServiceHospitalService,
@@ -102,7 +81,7 @@ export class HospitalServiceListComponent implements OnInit, OnDestroy {
       this.api
         .paginate({
           page: isResetPage ? 1 : this.currentPage,
-          paginate: 20,
+          paginate: this.pageSize,
           search: this.textSearch || '',
           sortLatest: true,
           id_hospital: this.hospital.id,
@@ -143,38 +122,6 @@ export class HospitalServiceListComponent implements OnInit, OnDestroy {
     );
   }
 
-  onDeleteMany() {
-    this.subscription.push(
-      this.api.deleteMany(this.getListIdSelect()).subscribe({
-        next: () => {
-          this.toastr.success('Xoá thành công!');
-          this.onLoadData();
-        },
-        error: (err) => {
-          this.toastr.error('Xoá thất bại!');
-        },
-      }),
-    );
-    this.isSelectAll = false;
-  }
-
-  updateCheckedDataSources() {
-    if (this.dataSources.length === 0) {
-      this.isSelectAll = false;
-    } else {
-      // checked item when id exist in map
-      if (this.idsSelected.size > 0) {
-        this.dataSources.forEach((data: any) => {
-          if (this.idsSelected.get(data.id_hospital_service)) {
-            data.checked = true;
-          }
-        });
-      }
-      this.isSelectAll =
-        this.dataSources.findIndex((data: any) => !data.checked) === -1;
-    }
-  }
-
   onChangePage(page: number) {
     this.currentPage = page;
     this.onLoadData();
@@ -200,5 +147,11 @@ export class HospitalServiceListComponent implements OnInit, OnDestroy {
 
   onErrorImage(event: any): void {
     event.target.src = 'assets/media/icon/icon-userDefault.svg';
+  }
+
+  onChangePageSize(pageSize: any) {
+    this.pageSize = pageSize;
+    this.currentPage = 1;
+    this.onLoadData();
   }
 }
