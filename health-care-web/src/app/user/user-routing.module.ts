@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserComponent } from './user.component';
 import { F1HomePageComponent } from './features/f1-home-page/f1-home-page.component';
+import { F10SearchComponent } from './features/f10-search/f10-search.component';
 const routes: Routes = [
   {
     path: '',
@@ -52,6 +53,13 @@ const routes: Routes = [
         loadChildren: () =>
           import('./features/f7-expert/f7-expert.module').then(
             (m) => m.F7ExpertModule,
+          ),
+      },
+      {
+        path: 'tim-kiem',
+        loadChildren: () =>
+          import('./features/f10-search/f10-search.module').then(
+            (m) => m.F10SearchModule,
           ),
       },
     ],
