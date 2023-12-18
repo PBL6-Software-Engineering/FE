@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ArticleService } from 'src/app/admin/_services/article.service';
 import { HospitalService } from 'src/app/admin/_services/hospital.service';
 import { BehaviorService } from 'src/app/core/services/behavior.service';
-import { toSlug } from 'src/app/core/services/library.helper';
+import { toSlug } from 'src/app/core/libs/library.helper';
 
 @Component({
   selector: 'app-f3-article-list',

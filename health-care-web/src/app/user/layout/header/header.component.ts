@@ -14,7 +14,7 @@ import { HospitalService } from '../../services/hospital.service';
 import { ArticleService } from '../../services/article.service';
 import { SpeechToTextService } from '../../services/speech-to-text.service';
 import { BehaviorService } from 'src/app/core/services/behavior.service';
-import { toSlug } from 'src/app/core/services/library.helper';
+import { toSlug } from 'src/app/core/libs/library.helper';
 
 @Component({
   selector: 'app-header',
@@ -63,7 +63,7 @@ export class HeaderComponent implements OnInit {
     private renderer: Renderer2,
     private speechToTextService: SpeechToTextService,
     private cdr: ChangeDetectorRef,
-    private behaviorService: BehaviorService
+    private behaviorService: BehaviorService,
   ) {
     /**
      * This events get called by all clicks on the page

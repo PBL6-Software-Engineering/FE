@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ExpertService } from '../../../services/expert.service';
 import { ArticleService } from 'src/app/user/services/article.service';
 import { BehaviorService } from 'src/app/core/services/behavior.service';
-import { toSlug } from 'src/app/core/services/library.helper';
+import { toSlug } from 'src/app/core/libs/library.helper';
 
 @Component({
   selector: 'app-category-detail',

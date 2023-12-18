@@ -12,7 +12,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import { AppointmentService } from '../../_services/appointment.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { getStartAndEndDateOfWeek } from 'src/app/core/libs/date';
+import { getStartAndEndDateOfWeek } from 'src/app/core/libs/library.helper';
 
 @Component({
   selector: 'app-appointment-doctor',

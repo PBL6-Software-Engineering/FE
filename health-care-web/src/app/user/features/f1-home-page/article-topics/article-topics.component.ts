@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { forkJoin } from 'rxjs';
 import { BehaviorService } from 'src/app/core/services/behavior.service';
-import { toSlug } from 'src/app/core/services/library.helper';
+import { toSlug } from 'src/app/core/libs/library.helper';
 import { ArticleService } from 'src/app/user/services/article.service';
 
 @Component({
@@ -72,7 +72,7 @@ export class ArticleTopicsComponent implements OnInit {
   navigateCategoryDetail(item: any) {
     if (item && item.category) {
       const categories = JSON.parse(localStorage.getItem('categories') || '[]');
-      const category = categories.find((c: any) => c.name = item.category);
+      const category = categories.find((c: any) => (c.name = item.category));
       this.behaviorService.setCategory(category);
       this.router.navigateByUrl(`/danh-muc/${toSlug(category.name)}`);
     }

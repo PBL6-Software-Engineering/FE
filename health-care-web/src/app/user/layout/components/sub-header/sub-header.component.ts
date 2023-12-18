@@ -1,13 +1,7 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorService } from 'src/app/core/services/behavior.service';
-import { toSlug } from 'src/app/core/services/library.helper';
+import { toSlug } from 'src/app/core/libs/library.helper';
 
 @Component({
   selector: 'app-sub-header',

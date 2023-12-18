@@ -28,7 +28,7 @@ export class ChatService {
     );
   }
 
-sendMessage(msg: any) {
+  sendMessage(msg: any) {
     this.socket.emit('message', msg);
   }
 
