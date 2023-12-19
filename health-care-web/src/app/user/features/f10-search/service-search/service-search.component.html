@@ -1,1 +1,75 @@
-<p>service-search works!</p>
+<!-- <div *ngIf="services && services.length">
+    <div class="card my-30 p-0" *ngFor="let service of services">
+        <div class="card-body p-0">
+            <div class="p-12">
+                <div class="fw-bold">{{ service?.name }}</div>
+                <div class="my-8">
+                    <span style="color: #595959">
+                        <i class="fa fa-money" aria-hidden="true"></i>
+                        Giá tiền:
+                    </span>
+                    <span class="text-success">{{
+                        service?.price_hospital_service | currency: "VND"
+                        }}</span>
+                </div>
+                <div *ngIf="service?.cout_rating > 0">
+                    <span class="fw-bold">Đánh giá:</span> {{ service?.number_rating }}/5
+                    <span class="color-sub">
+                        ({{ service?.cout_rating }} lượt đánh giá)</span>
+                </div>
+            </div>
+            <div class="row-between info-hospital column-center p-12">
+                <div class="column-center">
+                    <img [src]="hospital?.avatar" alt="Ảnh bệnh viện" class="avatar-hospital"
+                        onerror="this.src='assets/media/image/avatar_hospital_default.jpg'" />
+                    <div class="ml-20">
+                        <div class="fw-bold">{{ hospital?.name }}</div>
+                        <div class="fs-12 color-sub">
+                            {{ hospital?.address }}
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <button class="btn btn-primary-1">Đặt lịch hẹn</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="!services || (services && services.length === 0)">
+    <div class="card my-30 p-0" *ngFor="let i of [1, 2, 3, 4, 5]">
+        <div class="card-body p-0">
+            <div class="column-center px-12 py-20">
+                <div class="ml-20 w-100">
+                    <ngx-skeleton-loader [theme]="{ width: '30%', 'border-radius': '0', height: '15px' }">
+                    </ngx-skeleton-loader>
+                    <div>
+                        <ngx-skeleton-loader [theme]="{ width: '50%', 'border-radius': '0', height: '15px' }">
+                        </ngx-skeleton-loader>
+                    </div>
+                    <div class="text-warning">Đang cập nhật</div>
+                </div>
+            </div>
+
+            <div class="row-between info-hospital column-center p-12">
+                <div class="column-center">
+                    <img src="assets/media/image/avatar_hospital_default.jpg" alt="Ảnh bệnh viện"
+                        class="avatar-hospital" />
+                    <div class="ml-20">
+                        <div class="fw-bold">
+                            {{ hospital?.name || "Bệnh viện: Đang cập nhật ..." }}
+                        </div>
+                        <div class="fs-12 color-sub">
+                            {{ hospital?.address || "Địa chỉ: Đang cập nhật ..." }}
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <button class="btn btn-primary-1" disabled>Đặt lịch hẹn</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

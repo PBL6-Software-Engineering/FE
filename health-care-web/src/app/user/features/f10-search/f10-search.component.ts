@@ -16,6 +16,7 @@ export class F10SearchComponent implements OnInit {
   isError = false;
 
   currentPage = 1;
+  
   totalPage = 0;
   totalElements = 0;
   numberElementOfPage = 0;
@@ -58,32 +59,6 @@ export class F10SearchComponent implements OnInit {
         this.toastr.error('Lỗi tải dữ liệu, vui lòng thử lại!');
       },
     });
-    this.api
-      .getArticles({
-        page: this.currentPage,
-        paginate: 15,
-        search: this.textSearch,
-      })
-      .subscribe({
-        next: ({ data }) => {
-          this.dataSources = data.data;
-
-          this.currentPage = data.current_page; // trang hiện tại
-          this.totalPage = data.last_page; // số trang
-          this.totalElements = data.total; // tổng số phần tử trong database
-          this.numberElementOfPage = this.dataSources.length; // số phần tử của 1 trang
-
-          this.isError = false;
-          this.isLoading = false;
-          this.spinner.hide();
-        },
-        error: (err) => {
-          this.isError = true;
-          this.isLoading = false;
-          this.spinner.hide();
-          this.toastr.error('Lỗi tải dữ liệu, vui lòng thử lại!');
-        },
-      });
   }
 
   onChangePage(page: number) {

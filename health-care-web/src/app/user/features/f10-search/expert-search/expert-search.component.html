@@ -1,13 +1,10 @@
-<div class="card mt-30 p-10" *ngFor="let item of dataSources">
+<div class="mt-30 p-10" *ngFor="let item of dataSources">
   <!-- <app-article-img-left [article]="item"></app-article-img-left> -->
   <app-expert-card [expert]="item"></app-expert-card>
 </div>
 
-<app-paginate
-  *ngIf="dataSources && dataSources.length > 0"
-  [currentPage]="currentPage"
-  [numberElementOfPage]="numberElementOfPage"
-  [totalPage]="totalPage"
-  [totalElements]="totalElements"
-  (changePage)="onChangePage($event)"
-></app-paginate>
+<app-paginate *ngIf="dataSources && dataSources.length > 0" [currentPage]="currentPage"
+  [numberElementOfPage]="numberElementOfPage" [totalPage]="totalPage" [totalElements]="totalElements"
+  (changePage)="onChangePage($event)"></app-paginate>
+
+<app-no-data *ngIf="dataSources && dataSources.length === 0 && !isLoading" [keyword]="oldTextSearch"></app-no-data>
