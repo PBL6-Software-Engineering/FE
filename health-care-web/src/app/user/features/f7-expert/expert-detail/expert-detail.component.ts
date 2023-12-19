@@ -28,6 +28,8 @@ export class ExpertDetailComponent implements OnInit {
             this.el.nativeElement.querySelector('#information').innerHTML =
               data.infor_extend.information;
             this.doctor = data;
+
+            console.log('this.doctor', data);
             this.articleService
               .getArticles({
                 page: 1,

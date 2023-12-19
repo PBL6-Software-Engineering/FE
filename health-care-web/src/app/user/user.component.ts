@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./user.component.scss'],
 })
 export class UserComponent implements OnInit {
+  isOpenChatGpt = false;
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { BehaviorService } from 'src/app/core/services/behavior.service';
+import { toSlug } from 'src/app/core/libs/library.helper';
 
 @Component({
   selector: 'app-category-list',
@@ -8,8 +11,18 @@ import { Component, OnInit } from '@angular/core';
 export class CategoryListComponent implements OnInit {
   categories: any[] = [];
   textSearch: string = '';
-  constructor() {}
+  constructor(
+    private router: Router,
+    private behaviorService: BehaviorService,
+  ) {}
   ngOnInit(): void {
     this.categories = JSON.parse(localStorage.getItem('categories') || '[]');
+  }
+
+  navigateCategoryDetail(category: any) {
+    if (category && category.name) {
+      this.behaviorService.setCategory(category);
+      this.router.navigateByUrl(`/danh-muc/${toSlug(category.name)}`);
+    }
   }
 }

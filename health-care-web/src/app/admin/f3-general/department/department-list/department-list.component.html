@@ -21,14 +21,6 @@
           >
             Thêm
           </button>
-          <button
-            class="btn btn-danger mr-20"
-            data-bs-toggle="modal"
-            data-bs-target="#deleteManyModal"
-            *ngIf="getListIdSelect().length > 0"
-          >
-            Xoá
-          </button>
         </div>
       </div>
 
@@ -38,18 +30,6 @@
         >
           <thead>
             <tr>
-              <th>
-                <div
-                  class="form-check form-check-sm form-check-custom form-check-solid"
-                >
-                  <input
-                    [(ngModel)]="isSelectAll"
-                    (click)="onCheckAllSelected()"
-                    class="form-check-input"
-                    type="checkbox"
-                  />
-                </div>
-              </th>
               <th>Tên</th>
               <th class="text-center">Thumbnail</th>
               <th class="text-center">Ngày tạo</th>
@@ -59,20 +39,6 @@
 
           <tbody>
             <tr *ngFor="let item of dataSources">
-              <td>
-                <div
-                  class="form-check form-check-sm form-check-custom form-check-solid"
-                >
-                  <input
-                    [(ngModel)]="item.checked"
-                    (click)="onItemSelected(item)"
-                    class="form-check-input widget-13-check"
-                    type="checkbox"
-                    value="1"
-                  />
-                </div>
-              </td>
-
               <td>
                 <span class="text-hover-primary cursor-pointer">
                   {{ item?.name }}
@@ -149,6 +115,7 @@
     [totalPage]="totalPage"
     [totalElements]="totalElements"
     (changePage)="onChangePage($event)"
+    (changePageSize)="onChangePageSize($event)"
   ></app-paginate>
 </div>
 <!--Delete one modal -->
@@ -183,43 +150,6 @@
           class="btn btn-danger w-150px"
           data-bs-dismiss="modal"
           (click)="onDeleteOne()"
-        >
-          Xóa
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Delete many Modal -->
-<div
-  class="modal fade"
-  id="deleteManyModal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="deleteManyModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <h5 class="text-center my-20 fw-bold">
-        Bạn có thực sự muốn xóa {{ getListIdSelect().length }} thiết bị được
-        chọn?
-      </h5>
-      <div class="text-center mb-20">Quá trình này không thể hoàn tác.</div>
-      <div class="modal-footer justify-content-center">
-        <button
-          type="button"
-          class="btn btn-secondary w-150px mr-10"
-          data-bs-dismiss="modal"
-        >
-          Hủy
-        </button>
-        <button
-          type="button"
-          class="btn btn-danger w-150px"
-          data-bs-dismiss="modal"
-          (click)="onDeleteMany()"
         >
           Xóa
         </button>

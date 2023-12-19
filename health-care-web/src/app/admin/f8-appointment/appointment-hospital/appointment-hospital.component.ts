@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { AppointmentService } from '../../_services/appointment.service';
-import { getStartAndEndDateOfWeek } from 'src/app/core/libs/date';
+import { getStartAndEndDateOfWeek } from 'src/app/core/libs/library.helper';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -100,7 +100,6 @@ export class AppointmentHospitalComponent implements OnInit {
   }
 
   onChangePage(page: number) {
-    // this.currentPage = page;
     this.filter.page = page;
     this.onLoadData();
   }
@@ -156,5 +155,11 @@ export class AppointmentHospitalComponent implements OnInit {
   openModalShowInfo(item: any): void {
     this.selectedItem = item;
     this.el.nativeElement.querySelector('#btnOpenModalShowInfo').click();
+  }
+
+  onChangePageSize(pageSize: any) {
+    this.currentPage = 1;
+    this.filter.paginate = pageSize;
+    this.onLoadData();
   }
 }

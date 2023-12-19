@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   ElementRef,
   HostListener,
@@ -11,6 +12,9 @@ import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { HospitalService } from '../../services/hospital.service';
 import { ArticleService } from '../../services/article.service';
+import { SpeechToTextService } from '../../services/speech-to-text.service';
+import { BehaviorService } from 'src/app/core/services/behavior.service';
+import { toSlug } from 'src/app/core/libs/library.helper';
 
 @Component({
   selector: 'app-header',
@@ -57,6 +61,9 @@ export class HeaderComponent implements OnInit {
     private articleService: ArticleService,
     private hospitalService: HospitalService,
     private renderer: Renderer2,
+    private speechToTextService: SpeechToTextService,
+    private cdr: ChangeDetectorRef,
+    private behaviorService: BehaviorService,
   ) {
     /**
      * This events get called by all clicks on the page
@@ -127,10 +134,6 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  login(): void {
-    this.isLogin = true;
-  }
-
   clickSubMenuBarMobile(): void {
     this.isOpenSubMenuBarMobile = !this.isOpenSubMenuBarMobile;
     this.isOpenSubMenuBar =
@@ -156,6 +159,28 @@ export class HeaderComponent implements OnInit {
   }
 
   searchArticle(): void {
-    this.router.navigate(['/bai-viet/tim-kiem', this.textSearch || '']);
+    this.behaviorService.setSearchText(this.textSearch);
+    this.router.navigate(['/bai-viet/tim-kiem', toSlug(this.textSearch)]);
+  }
+
+  isListening = false;
+  startListening(): void {
+    if (!this.isListening) {
+      this.isListening = true;
+      this.speechToTextService.startListening((text: string) => {
+        this.textSearch = text;
+        this.searchArticle();
+        this.cdr.detectChanges();
+        this.stopListening();
+        this.isListening = false;
+      });
+    } else {
+      this.stopListening();
+      this.isListening = false;
+    }
+  }
+
+  stopListening(): void {
+    this.speechToTextService.stopListening();
   }
 }

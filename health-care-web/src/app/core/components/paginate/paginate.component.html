@@ -1,6 +1,6 @@
 <nav
   aria-label="Page navigation example"
-  class="d-flex flex-wrap justify-content-between py-5 align-items-center mx-20"
+  class="row-between column-center flex-wrap py-5 mx-20"
 >
   <span class="text-muted">
     Hiển thị
@@ -10,6 +10,16 @@
     của {{ totalElements }} phần tử
   </span>
   <ul class="pagination">
+    <select
+      [(ngModel)]="pageSize"
+      (change)="onChangePageSize()"
+      class="form-select form-select-solid form-select-md select-paginate mr-20"
+    >
+      <option [value]="size" *ngFor="let size of pageSizeOptions">
+        {{ size }}
+      </option>
+    </select>
+
     <!-- First page -->
     <li class="page-item" (click)="firstPage()">
       <a class="page-link cursor-pointer" aria-label="First page">

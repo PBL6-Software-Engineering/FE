@@ -10,6 +10,8 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { ExpertService } from '../../../services/expert.service';
 import { ArticleService } from 'src/app/user/services/article.service';
+import { TextToSpeechService } from 'src/app/user/services/text-to-speech.service';
+import { BehaviorService } from 'src/app/core/services/behavior.service';
 declare var $: any;
 @Component({
   selector: 'app-f3-article-detail',
@@ -26,19 +28,23 @@ export class F3ArticleDetailComponent implements AfterViewInit, OnInit {
   doctor: any;
   isLoading = true;
   isError = false;
+  isSpeech = false;
+  isPause = false;
+  isWorkingSpeech = false;
 
   constructor(
     private el: ElementRef,
     private articleService: ArticleService,
     private expertService: ExpertService,
     private route: ActivatedRoute,
+    private textToSpeechService: TextToSpeechService,
+    private behaviorService: BehaviorService
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       if (params['id']) {
         this.id = params['id'];
-        this.name_category = params['name_category'];
         this.isLoading = true;
         this.isError = false;
         this.articleService.findById(this.id).subscribe({
@@ -64,11 +70,18 @@ export class F3ArticleDetailComponent implements AfterViewInit, OnInit {
           },
         });
 
-        if (this.name_category) {
-          this.getArticleByCategory(this.name_category);
-        }
+        this.behaviorService.getCategoryName().subscribe((name: any) => {
+          this.name_category = name;
+          if(this.name_category) {
+            this.getArticleByCategory(this.name_category);
+          }
+        });
       }
     });
+
+    this.textToSpeechService.cancel();
+
+    this.isWorkingSpeech = this.textToSpeechService.checkIsWorkingSpeech();
   }
 
   ngAfterViewInit() {
@@ -93,5 +106,33 @@ export class F3ArticleDetailComponent implements AfterViewInit, OnInit {
           console.log('Error', err);
         },
       });
+  }
+
+  speechArticle() {
+    if(this.isSpeech) {
+      this.textToSpeechService.pause();
+      this.isSpeech = false;
+      this.isPause = true;
+      return;
+    }
+    // nếu chưa đọc và cũng chưa tạm dừng thì khởi tạo nói
+    if (!this.isSpeech && !this.isPause) {
+      this.isSpeech = true;
+      this.isPause = false;
+      this.textToSpeechService.speak(this.article.content, () => {
+        console.log('Speech has ended.');
+        this.isSpeech = false;
+        this.isPause = false;
+      });
+      return;
+    }
+
+    // nếu đang tạm dừng thì resume nó
+    if (!this.isSpeech && this.isPause) {
+      this.isSpeech = true;
+      this.isPause = false;
+      this.textToSpeechService.resume();
+      return;
+    }
   }
 }

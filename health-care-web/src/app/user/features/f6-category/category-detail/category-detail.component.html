@@ -22,31 +22,27 @@
   <div style="background-color: #e3f2ff" class="pt-4">
     <div class="mt-5 bg-white border-radius-5">
       <div>
-        <div class="row d-flex justify-content-center">
-          <div class="ps-5 d-inline-block col-md-7 border-radius-100">
+        <div class="row row-center">
+          <div class="col-md-7">
             <img
-              class="bg-white wh-140 border-radius-100"
+              class="bg-white wh-140 avatar"
               [src]="category?.thumbnail"
-              alt=""
-              style="
-                transform: translateY(-30%);
-                box-shadow: 2px 4px rgba(0, 0, 0, 0.1);
-              "
+              alt="Ảnh danh mục"
+              style="transform: translateY(-30%)"
             />
             <span class="fw-bold pt-48 pl-10 fs-20">{{ nameCategory }}</span>
           </div>
         </div>
-        <!-- <div class="row d-flex justify-content-center">
-          <div class="col-md-7" style="padding: 16px">
-            <p style="border: 1px solid rgba(0, 0, 0, 0.1); padding: 16px">
-              Khoang miệng của chúng ta chứa đầy vi khuẩn và chúng thường vô
-              hại. Việc không chăm sóc răng miệng đúng cách có thể khiến vi
-              khuẩn tăng sinh mất kiểm soát, dẫn đến các bệnh về răng miệng. Hãy
-              tìm hiểu cách cải thiện sức khỏe răng miệng và bảo vệ bản thân
-              chống lại các bệnh khác ngay bây giờ.
+        <div class="row row-center">
+          <div class="col-md-7">
+            <p
+              style="border: 1px solid rgba(0, 0, 0, 0.1)"
+              class="p-16 border-radius-6"
+            >
+              {{ category?.description_category }}
             </p>
           </div>
-        </div> -->
+        </div>
       </div>
       <div class="container pt-3">
         <div>
@@ -56,9 +52,7 @@
               <div class="col-sm-12 col-md-6 border-bottom">
                 <app-article-img-top
                   [article]="articles[0]"
-                  routerLink="/bai-viet/{{ articles[0]?.id_article }}/{{
-                    articles[0]?.name_category
-                  }}"
+                  (click)="navigateArticleDetail(articles[0])"
                 ></app-article-img-top>
               </div>
               <div class="col-sm-12 col-md-6 border-bottom">
@@ -69,9 +63,7 @@
                   >
                     <div class="pb-10">
                       <app-article-img-top-no-content
-                        routerLink="/bai-viet/{{ article?.id_article }}/{{
-                          article?.name_category
-                        }}"
+                        (click)="navigateArticleDetail(articles[i])"
                         [article]="article"
                       ></app-article-img-top-no-content>
                     </div>
@@ -114,7 +106,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-6 mb-4">
             <p class="fw-700 fs-26">Đội ngũ chuyên gia của ELISTER</p>
             <p style="color: rgba(0, 0, 0, 0.6)">
               Đội ngũ cố vấn của Elister gồm các chuyên gia sức khỏe và y bác sĩ
@@ -129,9 +121,9 @@
             </p>
             <div class="mt-3">
               <a routerLink="/chuyen-gia">
-                <p style="color: #2d87f3">
+                <p class="color-primary">
                   <span>Xem thêm các chuyên gia</span>
-                  <i class="ms-2 fa fa-chevron-down" aria-hidden="true"></i>
+                  <i aria-hidden="true" class="fa fa-chevron-right mx-6"></i>
                 </p>
               </a>
             </div>

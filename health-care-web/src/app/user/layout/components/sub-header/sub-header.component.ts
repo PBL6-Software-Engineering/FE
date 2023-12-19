@@ -1,12 +1,7 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorService } from 'src/app/core/services/behavior.service';
+import { toSlug } from 'src/app/core/libs/library.helper';
 
 @Component({
   selector: 'app-sub-header',
@@ -29,7 +24,10 @@ export class SubHeaderComponent implements OnInit {
   @Input() articles: any = [];
   @Input() hospitals: any[] = [];
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private behaviorService: BehaviorService,
+  ) {}
 
   ngOnInit(): void {}
 
@@ -51,7 +49,7 @@ export class SubHeaderComponent implements OnInit {
   }
 
   viewArticle(id: any, name_category: any): void {
-    this.router.navigateByUrl(`/bai-viet/${id}/${name_category}`);
+    this.router.navigateByUrl(`/bai-viet/${id}/${toSlug(name_category)}`);
     this.onCloseSubHeader();
   }
 
@@ -62,11 +60,13 @@ export class SubHeaderComponent implements OnInit {
 
   viewItem(item: any): void {
     if (this.data.tab === 'CATEGORY') {
-      this.router.navigateByUrl(`/danh-muc/${item?.name}`);
+      this.behaviorService.setCategory(item);
+      this.router.navigateByUrl(`/danh-muc/${toSlug(item.name)}`);
     } else if (this.data.tab === 'BOOKING_DOCTOR') {
-      this.router.navigateByUrl(`/chuyen-khoa/${item?.name}`);
+      this.router.navigateByUrl(`/chuyen-khoa/${item.name}`);
     } else if (this.data.tab === 'SOCIAL') {
-      this.router.navigateByUrl(`/danh-muc/${item?.name}`);
+      this.behaviorService.setCategory(item);
+      this.router.navigateByUrl(`/danh-muc/${toSlug(item.name)}`);
     }
     this.onCloseSubHeader();
   }

@@ -4,6 +4,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ArticleService } from 'src/app/admin/_services/article.service';
 import { HospitalService } from 'src/app/admin/_services/hospital.service';
+import { BehaviorService } from 'src/app/core/services/behavior.service';
+import { toSlug } from 'src/app/core/libs/library.helper';
 
 @Component({
   selector: 'app-f3-article-list',
@@ -30,12 +32,13 @@ export class F3ArticleListComponent implements OnInit {
     private toastr: ToastrService,
     private route: ActivatedRoute,
     private router: Router,
+    private behaviorService: BehaviorService,
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      this.oldTextSearch = this.textSearch;
-      this.textSearch = params['textSearch'] || '';
+    this.behaviorService.getSearchText().subscribe((text: any) => {
+      this.oldTextSearch = text;
+      this.textSearch = text;
       this.search();
     });
   }
@@ -79,6 +82,7 @@ export class F3ArticleListComponent implements OnInit {
   }
 
   searchArticle() {
-    this.router.navigate(['/bai-viet/tim-kiem', this.textSearch || '']);
+    this.behaviorService.setSearchText(this.textSearch);
+    this.router.navigate(['/bai-viet/tim-kiem', toSlug(this.textSearch)]);
   }
 }

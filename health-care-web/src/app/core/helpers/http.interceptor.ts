@@ -33,7 +33,7 @@ export class HttpSpinnerInterceptor implements HttpInterceptor {
       tap(
         (event: HttpEvent<any>) => {
           if (event instanceof HttpResponse) {
-            this.spinnerService.requestEnded();
+            // this.spinnerService.requestEnded();
           }
         },
         (error: HttpErrorResponse) => {

@@ -1,7 +1,7 @@
 <div
   class="py-10 cursor-pointer article-wrapper"
   *ngIf="article?.id_article"
-  routerLink="/bai-viet/{{ article?.id_article }}/{{ article?.name_category }}"
+  (click)="navigateArticleDetail(article)"
 >
   <h4 style="color: #fc7419" class="fs-14 fw-700 mt-8">
     {{ article?.name_category }}

@@ -9,11 +9,11 @@ const routes: Routes = [
     component: F3ArticleListComponent,
   },
   {
-    path: 'tim-kiem/:textSearch',
+    path: 'tim-kiem/:slug',
     component: F3ArticleListComponent,
   },
   {
-    path: ':id/:name_category',
+    path: ':id/:slug-name-category',
     component: F3ArticleDetailComponent,
   },
 ];

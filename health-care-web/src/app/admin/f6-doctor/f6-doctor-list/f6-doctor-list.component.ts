@@ -25,6 +25,7 @@ export class F6DoctorListComponent implements OnInit, OnDestroy {
 
   currentPage = 1;
   totalPage = 0;
+  pageSize = 20;
   totalElements = 0;
   numberElementOfPage = 0;
 
@@ -69,7 +70,7 @@ export class F6DoctorListComponent implements OnInit, OnDestroy {
       this.api
         .getDoctors({
           page: isResetPage ? 1 : this.currentPage,
-          paginate: 20,
+          paginate: this.pageSize,
           is_confirm: 1,
           search: this.textSearch || '',
           sortlatest: true,
@@ -139,5 +140,11 @@ export class F6DoctorListComponent implements OnInit, OnDestroy {
 
   onErrorImage(event: any): void {
     event.target.src = 'assets/media/image/avatar_doctor_default.jpg';
+  }
+
+  onChangePageSize(pageSize: any) {
+    this.pageSize = pageSize;
+    this.currentPage = 1;
+    this.onLoadData();
   }
 }

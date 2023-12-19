@@ -4,7 +4,6 @@ import {
   ElementRef,
   OnDestroy,
   OnInit,
-  ViewChild,
 } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
@@ -29,6 +28,7 @@ export class F9ArticleListComponent implements OnInit, OnDestroy {
 
   currentPage = 1;
   totalPage = 0;
+  pageSize = 20;
   totalElements = 0;
   numberElementOfPage = 0;
 
@@ -97,7 +97,7 @@ export class F9ArticleListComponent implements OnInit, OnDestroy {
       this.api
         .getArticles({
           page: isResetPage ? 1 : this.currentPage,
-          paginate: 20,
+          paginate: this.pageSize,
           search: this.textSearch || '',
           sortLatest: true,
           role: this.role,
@@ -242,5 +242,11 @@ export class F9ArticleListComponent implements OnInit, OnDestroy {
           },
         }),
     );
+  }
+
+  onChangePageSize(pageSize: any) {
+    this.pageSize = pageSize;
+    this.currentPage = 1;
+    this.onLoadData();
   }
 }

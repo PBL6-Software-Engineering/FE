@@ -16,18 +16,21 @@
         routerLink="/"
       />
       <div class="position-relative">
-        <img
-          src="assets/media/icon/icon_search.svg"
-          alt="Icon"
-          class="position-absolute-left-8 cursor-pointer"
-        />
         <input
           type="text"
-          class="form-control pl-40 input-search"
+          class="form-control input-search"
           placeholder="Tìm kiếm bài viết"
           [(ngModel)]="textSearch"
           (keyup.enter)="searchArticle()"
         />
+        <button
+          class="border-0 position-absolute wh-30"
+          [class.direct-list-desktop-pulse]="isListening"
+          style="top: 4px; right: 8px; background: transparent"
+          (click)="startListening()"
+        >
+          <i class="fa fa-microphone fs-20 color-sub" aria-hidden="true"></i>
+        </button>
       </div>
     </div>
 
@@ -69,9 +72,9 @@
         <!-- Icon login -->
         <img
           src="assets/media/image/icon-login.png"
-          alt="LOgin"
+          alt="Login"
           class="cursor-pointer d-none icon-login wh-24"
-          (click)="isLogin = true"
+          routerLink="/auth/sign-in"
           *ngIf="!isLogin"
         />
 

@@ -44,7 +44,9 @@ export class F4HospitalComponent implements OnInit {
           });
       }
     });
-    this.user = JSON.parse(localStorage.getItem('user') || '{id: guest}');
+    this.user = JSON.parse(
+      localStorage.getItem('user') || JSON.stringify({id: 'guest'})
+    );
   }
 
   chooseTab(tab: string): void {}

@@ -143,20 +143,6 @@ export class SidebarComponent implements OnInit {
       ],
     },
     {
-      label: 'Quản lý chung',
-      routerLink: undefined,
-      subItems: [
-        {
-          label: 'Chuyên khoa',
-          routerLink: '/admin/general-hospital/department',
-        },
-        {
-          label: 'Dịch vụ',
-          routerLink: '/admin/general-hospital/service',
-        },
-      ],
-    },
-    {
       label: 'Lịch hẹn',
       routerLink: '/admin/appointment/doctor',
     },

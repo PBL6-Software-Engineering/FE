@@ -1,0 +1,107 @@
+.chat-wrapper {
+    &-content {
+        background-color: #fff;
+        border: 1px solid #e6e6e6;
+        width: 400px;
+        height: 500px;
+        font-size: 12px;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+
+        &-header {
+            padding-top: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e6e6e6;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+        }
+    }
+}
+
+.avatar {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.input-chat {
+    height: 40px;
+    border-radius: 0 !important;
+    border: 1px solid #e6e6e6;
+    font-size: 12px;
+
+    &-wrapper {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+}
+
+::-webkit-scrollbar {
+    width: 8px
+}
+
+.display-message {
+    height: 400px;
+    overflow-y: auto;
+}
+
+.message-wrapper {
+    margin: 20px 0;
+}
+
+.message-content {
+    border-bottom: none;
+    display: inline-block;
+    word-break: break-word;
+    max-width: 65% !important;
+    border-radius: 6px;
+    padding: 6px;
+
+    &-admin {
+        background-color: #dcf8c6;
+    }
+
+    &-user {
+        background-color: #edf1f2;
+    }
+}
+
+.icon-sm {
+    stroke-width: 2;
+    height: 1rem;
+    width: 1rem;
+}
+
+/* HTML: <div class="loader"></div> */
+.watting-reply {
+    width: 30px;
+    aspect-ratio: 2;
+    --_g: no-repeat radial-gradient(circle closest-side, #000 90%, #0000);
+    background:
+        var(--_g) 0% 50%,
+        var(--_g) 50% 50%,
+        var(--_g) 100% 50%;
+    background-size: calc(100%/3) 50%;
+    animation: l3 1s infinite linear;
+}
+
+@keyframes l3 {
+    20% {
+        background-position: 0% 0%, 50% 50%, 100% 50%
+    }
+
+    40% {
+        background-position: 0% 100%, 50% 0%, 100% 50%
+    }
+
+    60% {
+        background-position: 0% 50%, 50% 100%, 100% 0%
+    }
+
+    80% {
+        background-position: 0% 50%, 50% 50%, 100% 100%
+    }
+}
