@@ -64,6 +64,11 @@
 
         <div *ngIf="tab === 'info'">
           <app-hospital-info [hospital]="hospital"></app-hospital-info>
+
+          <div class="my-20" *ngIf="hospital?.location">
+            <p class="title mb-4">Vị trí bệnh viện</p>
+            <app-google-map [locations]="hospital?.location"></app-google-map>
+          </div>
         </div>
 
         <div *ngIf="tab === 'service'">
@@ -78,11 +83,6 @@
             [hospital]="hospital"
             [doctors]="doctors"
           ></app-hospital-doctor>
-        </div>
-
-        <div class="my-20">
-          <p class="title mb-4">Vị trí bệnh viện</p>
-          <app-google-map [locations]="hospital?.location"></app-google-map>
         </div>
       </div>
 

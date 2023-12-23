@@ -10,13 +10,9 @@ export class AppointmentService {
   model = 'work-schedule';
   constructor(private http: HttpClient) {}
 
-  getAppointmentDoctor({
-    startDate = '2023-11-06',
-    endDate = '2023-11-12',
-  }): Observable<any> {
-    return this.http.get<any>(
-      `${linkApi}/${this.model}/doctor?startDate=${startDate}&endDate=${endDate}`,
-    );
+  getAppointmentDoctor(query: any): Observable<any> {
+    const queryParams = new HttpParams({ fromObject: query });
+    return this.http.get<any>(`${linkApi}/${this.model}/doctor?${queryParams}`);
   }
 
   getAppointmentHospital(query: any): Observable<any> {

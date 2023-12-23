@@ -45,7 +45,7 @@ export class UpdateProfileHospitalComponent implements OnInit {
       phone: new FormControl('', [Validators.required]),
       address: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
-      location: new FormControl('99, 29', []),
+      location: new FormControl([16.07527968579236, 108.15007925033545], []),
       province_code: new FormControl(null, [Validators.required]),
       avatar: new FormControl(null, []),
       cover_hospital: new FormControl(null, []),

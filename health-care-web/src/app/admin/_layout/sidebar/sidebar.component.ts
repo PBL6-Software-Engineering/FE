@@ -62,14 +62,17 @@ export class SidebarComponent implements OnInit {
     },
     {
       label: 'Báo cáo',
-      routerLink: '/admin/report',
+      routerLink: undefined,
+      subItems: [
+        { label: 'Danh mục', routerLink: '/admin/report/category' },
+        { label: 'Chuyên khoa', routerLink: '/admin/report/department' },
+        { label: 'Bài viết', routerLink: '/admin/report/article' },
+        { label: 'Bệnh viện', routerLink: '/admin/report/hospital' },
+        { label: 'Bác sĩ', routerLink: '/admin/report/doctor' },
+      ],
     },
   ];
   menuItemsHospital: any[] = [
-    {
-      label: 'Bảng thống kê',
-      routerLink: '/admin/dashboard',
-    },
     {
       label: 'Thiết lập tài khoản',
       routerLink: undefined,
@@ -120,14 +123,17 @@ export class SidebarComponent implements OnInit {
     },
     {
       label: 'Báo cáo',
-      routerLink: '/admin/report',
+      routerLink: undefined,
+      subItems: [
+        { label: 'Danh mục', routerLink: '/admin/report/category' },
+        { label: 'Chuyên khoa', routerLink: '/admin/report/department' },
+        { label: 'Bài viết', routerLink: '/admin/report/article' },
+        { label: 'Bệnh viện', routerLink: '/admin/report/hospital' },
+        { label: 'Bác sĩ', routerLink: '/admin/report/doctor' },
+      ],
     },
   ];
   menuItemsDoctor: any[] = [
-    {
-      label: 'Bảng thống kê',
-      routerLink: '/admin/dashboard',
-    },
     {
       label: 'Thiết lập tài khoản',
       routerLink: undefined,
@@ -212,7 +218,7 @@ export class SidebarComponent implements OnInit {
         } else {
           // nếu không có thì chuyển hướng routerLink
           if (isNavigate) {
-            this.router.navigate([menuItem.routerLink]);
+            this.router.navigateByUrl(menuItem.routerLink);
           }
         }
       }

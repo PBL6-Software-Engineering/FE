@@ -6,7 +6,6 @@ import { FormDirective } from './directives/form.directive';
 import { FormControlPipe } from './pipes/form-control.pipe';
 import { PaginateComponent } from './components/paginate/paginate.component';
 import { ConvertToHourAndMinutePipe } from './pipes/convert-to-hour-and-minute.pipe';
-import { CurrencyDirective } from './directives/currency.directive';
 import { AgePipe } from './pipes/age.pipe';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { RouterModule } from '@angular/router';
@@ -25,7 +24,6 @@ import { GoogleMapComponent } from './components/google-map/google-map.component
     FormControlPipe,
     ConvertToHourAndMinutePipe,
     PaginateComponent,
-    CurrencyDirective,
     AgePipe,
     SpinnerComponent,
     ClickOutsideDirective,
@@ -43,7 +41,6 @@ import { GoogleMapComponent } from './components/google-map/google-map.component
     FormControlPipe,
     ConvertToHourAndMinutePipe,
     PaginateComponent,
-    CurrencyDirective,
     AgePipe,
     SpinnerComponent,
     ClickOutsideDirective,

@@ -7,14 +7,14 @@
   <!-- Chọn tab bác sĩ hoặc dịch vụ -->
   <ul class="row-between w-100 border-bottom">
     <li
-      class="nav-tab w-50 text-center fs-12"
+      class="nav-tab w-50 text-center fs-12 m-0"
       (click)="tab = 'doctor'"
       [class.active]="tab === 'doctor'"
     >
       Bác sĩ
     </li>
     <li
-      class="nav-tab w-50 text-center fs-12"
+      class="nav-tab w-50 text-center fs-12 m-0"
       (click)="tab = 'service'"
       [class.active]="tab === 'service'"
     >
@@ -83,7 +83,7 @@
   <div *ngIf="times && times.length && typeTimeWorking === tab">
     <div class="my-12">
       <ul class="row-center w-100 border-bottom mt-12">
-        <li class="nav-tab w-50 text-center fs-12 active w-100">
+        <li class="nav-tab text-center fs-12 active w-100 mr-0">
           Tư vấn trực tiếp
         </li>
       </ul>
@@ -207,67 +207,3 @@
     </ngx-spinner>
   </div>
 </div>
-
-<!-- Xác nhận đặt lịch hẹn -->
-<!-- <div
-  class="modal fade"
-  id="confirmBooking"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="confirmBookingLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title fw-bold">Xác nhận thông tin đặt lịch hẹn?</h5>
-      </div>
-
-      <div class="modal-body">
-        <div *ngIf="tab === 'doctor'">
-          <div>
-            Tên bác sĩ:
-            <span class="text-success">{{ doctor?.name_doctor }}</span>
-          </div>
-          <div>Giá tiền: {{ doctor?.price | currency: "VND" }}</div>
-        </div>
-        <div *ngIf="tab === 'service'">
-          <div>
-            Tên dịch vụ: <span class="text-success">{{ service?.name }}</span>
-          </div>
-          <div>
-            Giá tiền: {{ service?.price_hospital_service | currency: "VND" }}
-          </div>
-        </div>
-
-        <div *ngIf="diviseTime">
-          Thời gian: {{ diviseTime[0] }} - {{ diviseTime[1] }},
-          {{ day?.date }}
-        </div>
-
-        <div class="text-danger" *ngIf="isErrorBooking">
-          Đặt lịch hẹn thất bại. Vui lòng thử lại!
-        </div>
-      </div>
-
-      <div class="modal-footer justify-content-center">
-        <button
-          type="button"
-          class="btn btn-secondary w-150px mr-10"
-          data-bs-dismiss="modal"
-          id="closeModalBooking"
-        >
-          Hủy
-        </button>
-        <button
-          type="button"
-          class="btn btn-primary-1 w-150px column-center"
-          (click)="book()"
-        >
-          <div class="loader" *ngIf="isBooking"></div>
-          Xác nhận
-        </button>
-      </div>
-    </div>
-  </div>
-</div> -->

@@ -6,17 +6,10 @@ import { linkApi } from 'src/app/core/constants/api.constant';
   providedIn: 'root',
 })
 export class ServiceService {
-  model = 'hospital-service/all';
+  model = 'hospital-service';
   constructor(private http: HttpClient) {}
-  getService(
-    search = '',
-    paginate = 6,
-    page = 1,
-    sortlatest = true,
-    sortname = false,
-  ): Observable<any> {
-    return this.http.get<any>(
-      `${linkApi}/${this.model}/?search=${search}&name_department=paginate=${paginate}&page=${page}&sortlatest=${sortlatest}&sortname=${sortname}`,
-    );
+
+  getServiceDetail(id: any): Observable<any> {
+    return this.http.get<any>(`${linkApi}/${this.model}/detail/${id}`);
   }
 }

@@ -55,7 +55,15 @@ export class SignInUserComponent implements OnInit {
             if (data.role === 'user') {
               this.router.navigateByUrl('/');
             } else {
-              this.router.navigateByUrl('/admin');
+              if (data.role === 'admin') {
+                this.router.navigateByUrl(
+                  '/admin/account-setting/update-info/admin',
+                );
+              } else {
+                this.router.navigateByUrl(
+                  `/admin/account-setting/update-info/${data.role}`,
+                );
+              }
             }
           },
           error: (err) => {

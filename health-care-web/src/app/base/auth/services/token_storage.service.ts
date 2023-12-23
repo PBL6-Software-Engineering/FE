@@ -24,6 +24,7 @@ export class TokenStorageService {
     localStorage.removeItem('role');
     localStorage.removeItem('user');
     this.$isLogin.next(false);
+    this.$user.next({});
   }
 
   isLoggedIn(): Observable<boolean> {

@@ -97,6 +97,13 @@ export class AppointmentCalendarComponent implements OnChanges {
       dayMaxEvents: true,
       eventClick: this.handleEventClick.bind(this),
       eventsSet: this.handleEvents.bind(this),
+      views: {
+        timeGridWeek: {
+          type: 'timeGrid',
+          duration: { days: 8 },
+          buttonText: 'Tuần',
+        },
+      },
     });
   }
 

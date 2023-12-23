@@ -10,7 +10,10 @@ const routes: Routes = [
     children: [
       {
         path: 'dashboard',
-        component: F1DashboardComponent,
+        loadChildren: () =>
+          import('./f1-dashboard/f1-dashboard.module').then(
+            (m) => m.F1DashboardModule,
+          ),
       },
       {
         path: 'account-setting',

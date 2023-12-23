@@ -1,0 +1,147 @@
+<div class="wrapper">
+  <h5 class="fw-bold">Đặt lịch ngay</h5>
+  <div class="fs-14 color-26 mb-12">
+    Lựa chọn bác sĩ phù hợp, dịch vụ y tế cần khám và tiến hành đặt lịch ngay.
+  </div>
+
+  <!-- Hiển thị tên bệnh viện -->
+  <div class="my-12 fw-bold">
+    <span>Bệnh viện: </span>
+    <span class="color-primary">{{ service?.name_hospital }}</span>
+  </div>
+
+  <!-- Chọn dịch vụ -->
+  <div>
+    <div class="my-12">
+      <div class="fw-bold mb-12">Dịch vụ: {{ service?.name }}</div>
+    </div>
+  </div>
+
+  <!-- Hiển thị thời gian để chọn lịch -->
+  <div *ngIf="times && times.length">
+    <div class="my-12">
+      <ul class="row-center w-100 border-bottom mt-12">
+        <li class="nav-tab text-center fs-12 active w-100 mr-0">
+          Tư vấn trực tiếp
+        </li>
+      </ul>
+      <div class="mt-12 fs-14 color-26">
+        Vui lòng lựa chọn lịch khám bên dưới
+      </div>
+    </div>
+
+    <p-carousel [value]="times" [numVisible]="2" [numScroll]="2">
+      <ng-template let-time pTemplate="item">
+        <div class="border-1 surface-border border-round m-2 text-center">
+          <div
+            class="mb-1 py-6 day"
+            [class.active]="dayName === time?.name"
+            (click)="chooseTime(time)"
+          >
+            <div class="fs-14">{{ time?.name }}</div>
+            <div class="fs-12 text-success">
+              {{ time?.time?.date | date: "dd/MM" }}
+            </div>
+            <div class="fs-12">{{ time?.time?.space }} chỗ trống</div>
+          </div>
+        </div>
+      </ng-template>
+    </p-carousel>
+
+    <ul class="row-between w-100 border-bottom mt-12">
+      <li
+        class="nav-tab w-50 text-center fs-12"
+        (click)="session = 'morning'"
+        [class.active]="session === 'morning'"
+        *ngIf="day?.morning?.enable"
+      >
+        Sáng
+        <span *ngIf="day?.morning?.divided_times"
+          >({{ day?.morning?.divided_times?.length }})</span
+        >
+      </li>
+      <li
+        class="nav-tab w-50 text-center fs-12"
+        (click)="session = 'afternoon'"
+        [class.active]="session === 'afternoon'"
+        *ngIf="day?.afternoon?.enable"
+      >
+        Chiều
+        <span *ngIf="day?.afternoon?.divided_times"
+          >({{ day?.afternoon?.divided_times?.length }})</span
+        >
+      </li>
+
+      <li
+        class="nav-tab w-50 text-center fs-12"
+        (click)="session = 'night'"
+        [class.active]="session === 'night'"
+        *ngIf="day?.night?.enable"
+      >
+        Tối
+        <span *ngIf="day?.night?.divided_times"
+          >({{ day?.night?.divided_times?.length }})</span
+        >
+      </li>
+    </ul>
+
+    <div
+      *ngIf="
+        day && day[session] && day[session].enable && day[session].divided_times
+      "
+    >
+      <div class="row gx-5">
+        <div
+          class="col-6 mt-3 text-center divise-time"
+          *ngFor="let divise_time of day[session].divided_times"
+          (click)="diviseTime = divise_time"
+        >
+          <div
+            class="fs-14 time p-6 cursor-pointer divise-time"
+            [class.active]="diviseTime === divise_time"
+          >
+            {{ divise_time[0] }} - {{ divise_time[1] }}
+          </div>
+        </div>
+      </div>
+
+      <button
+        class="btn btn-primary-1 w-100 mt-12"
+        [disabled]="!diviseTime"
+        data-bs-toggle="modal"
+        data-bs-target="#confirmBooking"
+        (click)="onConfirmBook()"
+      >
+        Đặt lịch hẹn
+      </button>
+    </div>
+
+    <div
+      class="text-center my-3 text-warning"
+      *ngIf="
+        !(
+          day &&
+          day[session] &&
+          day[session].enable &&
+          day[session].divided_times
+        )
+      "
+    >
+      Không có lịch khám
+    </div>
+  </div>
+
+  <!-- Loading dữ liệu -->
+  <div class="wrapper-spinner" *ngIf="isGetTime">
+    <ngx-spinner
+      bdColor="rgba(0,0,0,0)"
+      size="default"
+      color="#2095c4"
+      type="ball-pulse-sync"
+      [fullScreen]="false"
+      class="ball-pulse-sync"
+    >
+      <p class="color-primary">Đang tải dữ liệu</p>
+    </ngx-spinner>
+  </div>
+</div>
