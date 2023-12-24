@@ -24,6 +24,7 @@ export class SignUpHospitalComponent {
   message: string = '';
   tagInput: string = '';
   tags: string[] = [];
+  step = 1;
 
   constructor(
     private apiService: AuthService,
@@ -137,7 +138,8 @@ export class SignUpHospitalComponent {
         .subscribe({
           next: (response) => {
             this.toastrService.success('Đăng kí thành công');
-            this.router.navigate(['/']);
+            // this.router.navigate(['/']);
+            this.step = 2;
           },
           error: (error) => {
             this.toastrService.error('Đăng kí thất bại');
