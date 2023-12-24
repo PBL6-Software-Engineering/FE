@@ -63,7 +63,7 @@
         </ul>
 
         <div *ngIf="tab === 'info'">
-          <app-hospital-info [hospital]="hospital"></app-hospital-info>
+          <app-hospital-info [hospital]="hospital" [healthInsurances]="healthInsurances"></app-hospital-info>
         </div>
 
         <div *ngIf="tab === 'service'">

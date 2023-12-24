@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChatService } from 'src/app/core/services/chat.service';
 import { HospitalService } from '../../services/hospital.service';
+import { HealthInsuranceHospitalService } from 'src/app/admin/_services/health_insurance_hospital.service';
 
 @Component({
   selector: 'app-f4-hospital',
@@ -16,8 +17,10 @@ export class F4HospitalComponent implements OnInit {
   tab = 'info';
   services: any[] = [];
   doctors: any[] = [];
+  healthInsurances: any[] = [];
   constructor(
     private hospitalService: HospitalService,
+    private healthinsuranceService: HealthInsuranceHospitalService,
     private route: ActivatedRoute,
     private chatService: ChatService,
   ) {}
@@ -42,10 +45,16 @@ export class F4HospitalComponent implements OnInit {
             this.doctors = data;
             console.log(this.doctors);
           });
+        this.healthinsuranceService
+          .getAllHealthInsurance({ id: this.id,page: 1, paginate: 20, search: '' })
+          .subscribe(({ data }) => {
+            this.healthInsurances = data.data;
+            console.log(this.healthInsurances);
+          });
       }
     });
     this.user = JSON.parse(
-      localStorage.getItem('user') || JSON.stringify({id: 'guest'})
+      localStorage.getItem('user') || JSON.stringify({ id: 'guest' }),
     );
   }
 

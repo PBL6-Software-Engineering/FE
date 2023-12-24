@@ -235,6 +235,19 @@
 </div>
 
 <div>
+  <span class="title">Bảo hiểm được chấp thuận</span>
+  <ol *ngIf="checkIsArray(healthInsurances)">
+    <li *ngFor="let item of healthInsurances">
+      {{ item.name }}
+    </li>
+  </ol>
+<!-- 
+  <span *ngIf="!checkIsArray(hospital?.infrastructure)">
+    {{ hospital?.infrastructure }}
+  </span> -->
+</div>
+
+<div>
   <span class="title">Hướng dẫn khám bệnh</span>
   <div class="mt-12">
     • Khi tiến hành đặt lịch khám, quý bệnh nhân sẽ nhận được email xác nhận đặt
