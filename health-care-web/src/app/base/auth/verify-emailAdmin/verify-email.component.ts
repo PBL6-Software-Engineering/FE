@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-verify-email',
@@ -7,20 +9,36 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./verify-email.component.scss'],
 })
 export class VerifyEmailAdminComponent implements OnInit {
-  email: string = '';
+  token = '';
+  isSuccess = false;
+  isVerify = false;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private toastrService: ToastrService,
+    private authService: AuthService,
   ) {}
 
-  goToSignIn() {
-    this.router.navigate(['auth/sign-in/admin']);
-  }
-
   ngOnInit() {
-    this.email = this.route.snapshot.paramMap.get('email') || '';
-    if (this.email == '') {
-      this.router.navigate(['/auth/sign-in/forgot-password']);
-    }
+    this.route.queryParams.subscribe((params) => {
+      if (params.token) {
+        this.token = params.token;
+        this.isVerify = true;
+        this.authService.verifyEmailAdmin(this.token).subscribe({
+          next: (res) => {
+            this.toastrService.success('Xác thực thành công');
+            this.isSuccess = false;
+            this.isVerify = false;
+          },
+          error: (err) => {
+            this.toastrService.error('Xác thực không thành công');
+            this.isSuccess = false;
+            this.isVerify = false;
+          },
+        });
+      } else {
+        this.router.navigate(['auth/sign-in/admin']);
+      }
+    });
   }
 }

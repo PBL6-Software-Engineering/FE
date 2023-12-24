@@ -19,22 +19,6 @@ const routes: Routes = [
         component: SignInAdminComponent,
       },
       {
-        path: 'forgot-password',
-        component: ForgotPasswordComponent,
-      },
-      {
-        path: 'forgot-password-admin',
-        component: ForgotPasswordAdminComponent,
-      },
-      {
-        path: 'verify-email',
-        component: VerifyEmailComponent,
-      },
-      {
-        path: 'verify-email-admin',
-        component: VerifyEmailAdminComponent,
-      },
-      {
         path: '',
         component: SignInUserComponent,
         pathMatch: 'full',

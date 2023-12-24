@@ -12,7 +12,6 @@ import { TokenStorageService } from 'src/app/base/auth/services/token_storage.se
 })
 export class ConfirmBookingServiceComponent implements OnInit {
   @Input() dataBooking: any;
-  @Input() hospital: any;
   @Output() goToStep1 = new EventEmitter<any>();
   isBooking: boolean = false;
   isLogin: boolean = false;

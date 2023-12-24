@@ -83,15 +83,15 @@
           <label for="remember">Ghi nhớ đăng nhập</label>
         </div>
         <div class="col-lg col-md col-sm d-flex flex-row-reverse">
-          <a href="./auth/sign-in/forgot-password" id="forgot-pass"
-            >Quên mật khẩu?</a
-          >
+          <a routerLink="/auth/forgot-password/user" id="forgot-pass">
+            Quên mật khẩu?
+          </a>
         </div>
       </div>
     </div>
 
     <button
-      class="btn btn-secondary d-flex justify-content-center"
+      class="btn btn-secondary row-center"
       id="btn-login"
       type="submit"
       (click)="focusInput.focus()"

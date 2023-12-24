@@ -2,22 +2,24 @@ import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.scss'],
 })
 export class ForgotPasswordAdminComponent {
-  email: string = '';
   forgotPassForm: FormGroup;
   message: string = '';
+  step = 1;
   isShowEmail = false;
+  isSendingEmail = false;
+  isSendingSuccess = false;
+
   constructor(
-    private router: Router,
     private AuthService: AuthService,
-    private el: ElementRef,
     private formBuilder: FormBuilder,
-    private renderer: Renderer2,
+    private toastrService: ToastrService,
   ) {
     this.forgotPassForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -28,41 +30,28 @@ export class ForgotPasswordAdminComponent {
     return this.forgotPassForm.get('email');
   }
 
-  showNotification(message: string) {
-    this.message = message;
-    const notification = this.el.nativeElement.querySelector('#notification');
-    this.renderer.setStyle(notification, 'display', 'block');
-
-    setTimeout(() => {
-      this.renderer.setStyle(notification, 'opacity', '0');
-    }, 2000);
-
-    setTimeout(() => {
-      this.renderer.setStyle(notification, 'display', 'none');
-      this.renderer.setStyle(notification, 'opacity', '1');
-    }, 4000);
-  }
-
   onEmailSubmit() {
     if (this.forgotPassForm.valid) {
-      var loading = this.el.nativeElement.querySelector('#loading');
-      this.renderer.removeClass(loading, 'd-none');
-      var inpEmail = this.el.nativeElement.querySelector('#inp-email');
-      this.AuthService.forgotPassAdmin(inpEmail.value).subscribe(
-        (response) => {
-          this.email = inpEmail.value;
-          this.router.navigate([
-            '/auth/sign-in/verify-email-admin',
-            { email: this.email },
-          ]);
+      this.isSendingEmail = true;
+      this.AuthService.forgotPass(this.forgotPassForm.value.email).subscribe({
+        next: () => {
+          this.isSendingEmail = false;
+          this.isSendingSuccess = true;
+          this.step = 2;
         },
-        (error) => {
-          this.renderer.addClass(loading, 'd-none');
-          this.showNotification(error.error.message);
+        error: (error) => {
+          console.log(error);
+          this.toastrService.error(
+            error.error.message || 'Gửi email xác thực thất bại',
+          );
+          this.isSendingEmail = false;
+          this.isSendingSuccess = false;
+          this.step = 1;
         },
-      );
+      });
     } else {
       this.isShowEmail = true;
+      this.toastrService.warning('Thông tin nhập vào không hợp lệ!');
     }
   }
 }
