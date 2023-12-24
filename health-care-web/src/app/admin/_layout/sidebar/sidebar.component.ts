@@ -11,7 +11,7 @@ import { TokenStorageService } from 'src/app/base/auth/services/token_storage.se
 export class SidebarComponent implements OnInit {
   menuItemsAdmin: any[] = [
     {
-      label: 'Bảng thống kê',
+      label: 'Tổng quan',
       routerLink: '/admin/dashboard',
     },
     {
@@ -44,14 +44,6 @@ export class SidebarComponent implements OnInit {
       label: 'Bệnh viện',
       routerLink: '/admin/hospital',
     },
-    // {
-    //   label: 'Lịch làm việc',
-    //   routerLink: '/admin/working-time',
-    // },
-    // {
-    //   label: 'Lịch hẹn',
-    //   routerLink: '/admin/appointment',
-    // },
     {
       label: 'Bài viết',
       routerLink: '/admin/article',
@@ -64,15 +56,19 @@ export class SidebarComponent implements OnInit {
       label: 'Báo cáo',
       routerLink: undefined,
       subItems: [
-        { label: 'Danh mục', routerLink: '/admin/report/category' },
-        { label: 'Chuyên khoa', routerLink: '/admin/report/department' },
-        { label: 'Bài viết', routerLink: '/admin/report/article' },
-        { label: 'Bệnh viện', routerLink: '/admin/report/hospital' },
-        { label: 'Bác sĩ', routerLink: '/admin/report/doctor' },
+        { label: 'Danh mục', routerLink: '/admin/statistic/category' },
+        { label: 'Chuyên khoa', routerLink: '/admin/statistic/department' },
+        { label: 'Bài viết', routerLink: '/admin/statistic/article' },
+        { label: 'Bệnh viện', routerLink: '/admin/statistic/hospital' },
+        { label: 'Bác sĩ', routerLink: '/admin/statistic/doctor' },
       ],
     },
   ];
   menuItemsHospital: any[] = [
+    {
+      label: 'Tổng quan',
+      routerLink: '/admin/dashboard',
+    },
     {
       label: 'Thiết lập tài khoản',
       routerLink: undefined,
@@ -122,14 +118,15 @@ export class SidebarComponent implements OnInit {
       routerLink: '/admin/chat',
     },
     {
-      label: 'Báo cáo',
+      label: 'Thống kê',
       routerLink: undefined,
       subItems: [
-        { label: 'Danh mục', routerLink: '/admin/report/category' },
-        { label: 'Chuyên khoa', routerLink: '/admin/report/department' },
-        { label: 'Bài viết', routerLink: '/admin/report/article' },
-        { label: 'Bệnh viện', routerLink: '/admin/report/hospital' },
-        { label: 'Bác sĩ', routerLink: '/admin/report/doctor' },
+        { label: 'Danh mục', routerLink: '/admin/statistic/category' },
+        { label: 'Chuyên khoa', routerLink: '/admin/statistic/department' },
+        { label: 'Bài viết', routerLink: '/admin/statistic/article' },
+        { label: 'Bệnh viện', routerLink: '/admin/statistic/hospital' },
+        { label: 'Bác sĩ', routerLink: '/admin/statistic/doctor' },
+        { label: 'Lịch hẹn', routerLink: '/admin/statistic/appointment' },
       ],
     },
   ];

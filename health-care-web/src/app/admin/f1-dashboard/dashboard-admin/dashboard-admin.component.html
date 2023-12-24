@@ -1,0 +1,79 @@
+<!-- Bài viết -->
+<div class="row">
+  <div class="col-md-4">
+    <div class="component p-3">
+      <div class="row-between">
+        <span>Tổng bài viết</span>
+        <span>
+          {{ data?.article?.all || 0 }}
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="component p-3">
+      <div class="row-between">
+        <span> Số bài viết chờ duyệt </span>
+        <span>
+          {{ (data?.article?.all || 0) - (data?.article?.accept || 0) }}
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="component p-3">
+      <div class="row-between">
+        <span> Số bài viết bị ẩn </span>
+        <span>{{
+          (data?.article?.all || 0) - (data?.article?.show || 0)
+        }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Biểu đồ bài viết -->
+<div class="row my-4">
+  <div class="col-md-6">
+    <div class="chart-container">
+      <canvas id="chartArticleAccept">{{ chartArticleAccept }}</canvas>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="chart-container">
+      <canvas id="chartArticleHideShow">{{ chartArticleHideShow }}</canvas>
+    </div>
+  </div>
+</div>
+
+<!-- Tài khoản -->
+<div class="row my-4">
+  <div class="col-md-4">
+    <div class="component p-3">
+      <div class="row-between">
+        <span>Tổng tài khoản</span>
+        <span>
+          {{ data?.user?.all || 0 }}
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="component p-3">
+      <div class="row-between">
+        <span> Hoạt động bình thường </span>
+        <span>
+          {{ data?.user?.accept || 0 }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Biểu đồ tài khoản -->
+<div class="row my-4">
+  <div class="col-md-6">
+    <div class="chart-container">
+      <canvas id="chartUser">{{ chartUser }}</canvas>
+    </div>
+  </div>
+</div>

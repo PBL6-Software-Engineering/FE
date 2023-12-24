@@ -1,0 +1,73 @@
+<div class="mx-4">
+  <div class="fw-bolder fs-5 mb-3 ml-4">Thống kê bài viết nổi bật</div>
+
+  <div class="chart-container">
+    <canvas id="chart">{{ chart }}</canvas>
+  </div>
+
+  <div class="card fw-bold">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table
+          class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3"
+        >
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>Tên</th>
+              <!-- <th class="text-center">Ảnh</th> -->
+              <th class="text-center">Danh mục</th>
+              <th class="text-center">Số lượt tìm kiếm</th>
+              <th class="text-center">Người tạo</th>
+              <th class="text-center">Ngày tạo</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of data; index as i">
+              <td>
+                <span class="text-hover-primary cursor-pointer">
+                  {{ i + 1 }}
+                </span>
+              </td>
+              <td>
+                <span class="text-hover-primary cursor-pointer">
+                  {{ item?.title }}
+                </span>
+              </td>
+
+              <!-- <td class="text-center">
+                <img [src]="item.thumbnail_article" alt="" class="thumbnail" />
+              </td> -->
+
+              <td class="text-center">
+                <span class="text-hover-primary">
+                  {{ item?.name_category }}
+                </span>
+              </td>
+
+              <td class="text-center">
+                <span class="text-hover-primary">
+                  {{ item?.search_number_article }}
+                </span>
+              </td>
+
+
+              <td class="text-center">
+                <span class="text-hover-primary">
+                  {{ item?.name_user }}
+                </span>
+              </td>
+
+              <td class="text-center">
+                <span class="text-hover-primary">
+                  {{ item?.created_at_article | date: "dd/MM/yyyy" }}
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

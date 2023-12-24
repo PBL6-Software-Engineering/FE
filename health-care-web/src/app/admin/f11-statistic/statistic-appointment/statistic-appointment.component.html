@@ -1,0 +1,133 @@
+<div class="mx-4">
+  <div class="fw-bolder fs-5 mb-3 ml-4">Thống kê lịch hẹn</div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="chart-container">
+        <canvas id="chartService">{{ chartService }}</canvas>
+      </div>
+
+      <div class="card fw-bold">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table
+              class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3"
+            >
+              <thead>
+                <tr>
+                  <th>STT</th>
+                  <th>Tên dịch vụ</th>
+                  <th class="text-center">Doanh thu</th>
+                  <th class="text-center">Đánh giá</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let item of dataService; index as i">
+                  <td>
+                    <span class="text-hover-primary cursor-pointer">
+                      {{ i + 1 }}
+                    </span>
+                  </td>
+                  <td>
+                    <span class="text-hover-primary cursor-pointer">
+                      {{ item?.service_name }}
+                    </span>
+                  </td>
+
+                  <td class="text-center">
+                    <span class="text-hover-primary">
+                      {{ item?.total_revenue | currency: "VND" }}
+                    </span>
+                  </td>
+
+                  <td class="text-center">
+                    <span class="text-hover-primary">
+                      {{ item?.average_rating | number: "1.1-1" }}
+                    </span>
+                  </td>
+
+                  <td class="text-center">
+                    <span class="text-hover-primary">
+                      {{ item?.name_user }}
+                    </span>
+                  </td>
+
+                  <td class="text-center">
+                    <span class="text-hover-primary">
+                      {{ item?.created_at_article | date: "dd/MM/yyyy" }}
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="chart-container">
+        <canvas id="chartAdvise">{{ chartAdvise }}</canvas>
+      </div>
+
+      <div class="card fw-bold">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table
+              class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3"
+            >
+              <thead>
+                <tr>
+                  <th>STT</th>
+                  <th>Tên bác sĩ</th>
+                  <th class="text-center">Doanh thu</th>
+                  <th class="text-center">Đánh giá</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let item of dataAdvise; index as i">
+                  <td>
+                    <span class="text-hover-primary cursor-pointer">
+                      {{ i + 1 }}
+                    </span>
+                  </td>
+                  <td>
+                    <span class="text-hover-primary cursor-pointer">
+                      {{ item?.doctor_name }}
+                    </span>
+                  </td>
+
+                  <td class="text-center">
+                    <span class="text-hover-primary">
+                      {{ item?.total_revenue | currency: "VND" }}
+                    </span>
+                  </td>
+
+                  <td class="text-center">
+                    <span class="text-hover-primary">
+                      {{ item?.average_rating | number: "1.1-1" }}
+                    </span>
+                  </td>
+
+                  <td class="text-center">
+                    <span class="text-hover-primary">
+                      {{ item?.name_user }}
+                    </span>
+                  </td>
+
+                  <td class="text-center">
+                    <span class="text-hover-primary">
+                      {{ item?.created_at_article | date: "dd/MM/yyyy" }}
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

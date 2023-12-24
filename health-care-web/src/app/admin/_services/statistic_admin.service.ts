@@ -17,4 +17,25 @@ export class StatisticAdminService {
   getArticleStatistic(): Observable<any> {
     return this.httpClient.get(`${linkApi}/${model}/article`);
   }
+
+  getDashboardOverview(obj: any): Observable<any> {
+    const query = new URLSearchParams(obj).toString();
+    return this.httpClient.get(`${linkApi}/${model}/overview?${query}`);
+  }
+
+  getStatisticByTop(top = 5, type: any): Observable<any> {
+    return this.httpClient.get(
+      `${linkApi}/${model}/top?top=${top}&type=${type}`,
+    );
+  }
+
+  getStatisticAppointmentService(obj: any): Observable<any> {
+    const query = new URLSearchParams(obj).toString();
+    return this.httpClient.get(`${linkApi}/${model}/service-table?${query}`);
+  }
+
+  getStatisticAppointmentAdvise(obj: any): Observable<any> {
+    const query = new URLSearchParams(obj).toString();
+    return this.httpClient.get(`${linkApi}/${model}/advise-table?${query}`);
+  }
 }

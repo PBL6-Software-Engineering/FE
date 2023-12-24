@@ -1,0 +1,7 @@
+<div *ngIf="role === 'hospital'">
+  <app-dashboard-hospital></app-dashboard-hospital>
+</div>
+
+<div *ngIf="role === 'admin' || role === 'superadmin' || role === 'manager'">
+  <app-dashboard-admin></app-dashboard-admin>
+</div>

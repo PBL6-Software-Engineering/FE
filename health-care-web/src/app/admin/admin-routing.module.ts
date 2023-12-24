@@ -82,10 +82,10 @@ const routes: Routes = [
           import('./f10-chat/f10-chat.module').then((m) => m.F10ChatModule),
       },
       {
-        path: 'report',
+        path: 'statistic',
         loadChildren: () =>
-          import('./f11-report/f11-report.module').then(
-            (m) => m.F11ReportModule,
+          import('./f11-statistic/f11-statistic.module').then(
+            (m) => m.F11StatisticModule,
           ),
       },
       {
