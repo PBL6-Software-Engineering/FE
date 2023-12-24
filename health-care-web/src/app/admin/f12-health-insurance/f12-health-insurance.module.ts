@@ -9,7 +9,11 @@ import { HealthInsuranceCreateComponent } from './health-insurance-create/health
 import { HealthInsuranceEditComponent } from './health-insurance-edit/health-insurance-edit.component';
 import { QuillModule } from 'ngx-quill';
 @NgModule({
-  declarations: [F12HealthInsuranceComponent, HealthInsuranceCreateComponent, HealthInsuranceEditComponent],
+  declarations: [
+    F12HealthInsuranceComponent,
+    HealthInsuranceCreateComponent,
+    HealthInsuranceEditComponent,
+  ],
   imports: [
     CommonModule,
     F12HealthInsuranceRoutingModule,
@@ -17,7 +21,7 @@ import { QuillModule } from 'ngx-quill';
     NgxSpinnerModule,
     FormsModule,
     ReactiveFormsModule,
-    QuillModule
+    QuillModule,
   ],
 })
 export class F12HealthInsuranceModule {}

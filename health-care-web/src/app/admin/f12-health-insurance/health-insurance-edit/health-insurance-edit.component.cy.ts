@@ -1,7 +1,7 @@
-import { HealthInsuranceEditComponent } from './health-insurance-edit.component'
+import { HealthInsuranceEditComponent } from './health-insurance-edit.component';
 
 describe('HealthInsuranceEditComponent', () => {
   it('should mount', () => {
-    cy.mount(HealthInsuranceEditComponent)
-  })
-})
+    cy.mount(HealthInsuranceEditComponent);
+  });
+});

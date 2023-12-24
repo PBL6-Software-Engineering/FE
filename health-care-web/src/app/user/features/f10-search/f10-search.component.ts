@@ -16,7 +16,7 @@ export class F10SearchComponent implements OnInit {
   isError = false;
 
   currentPage = 1;
-  
+
   totalPage = 0;
   totalElements = 0;
   numberElementOfPage = 0;

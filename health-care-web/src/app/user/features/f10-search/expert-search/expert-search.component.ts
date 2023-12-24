@@ -11,7 +11,7 @@ import { ExpertService } from 'src/app/user/services/expert.service';
   styleUrls: ['./expert-search.component.css'],
 })
 export class ExpertSearchComponent implements OnInit {
-   @Input() textSearch: string;
+  @Input() textSearch: string;
   dataSources: any[] = [];
   isLoading = false;
   isError = false;
@@ -76,5 +76,4 @@ export class ExpertSearchComponent implements OnInit {
     this.currentPage = page;
     this.search();
   }
-
 }

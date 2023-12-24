@@ -3,8 +3,16 @@
   <app-expert-card [expert]="item"></app-expert-card>
 </div>
 
-<app-paginate *ngIf="dataSources && dataSources.length > 0" [currentPage]="currentPage"
-  [numberElementOfPage]="numberElementOfPage" [totalPage]="totalPage" [totalElements]="totalElements"
-  (changePage)="onChangePage($event)"></app-paginate>
+<app-paginate
+  *ngIf="dataSources && dataSources.length > 0"
+  [currentPage]="currentPage"
+  [numberElementOfPage]="numberElementOfPage"
+  [totalPage]="totalPage"
+  [totalElements]="totalElements"
+  (changePage)="onChangePage($event)"
+></app-paginate>
 
-<app-no-data *ngIf="dataSources && dataSources.length === 0 && !isLoading" [keyword]="oldTextSearch"></app-no-data>
+<app-no-data
+  *ngIf="dataSources && dataSources.length === 0 && !isLoading"
+  [keyword]="oldTextSearch"
+></app-no-data>

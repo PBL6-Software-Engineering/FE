@@ -12,8 +12,8 @@ export class HospitalInfoComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.hospital)
-    console.log(this.healthInsurances)
+    console.log(this.hospital);
+    console.log(this.healthInsurances);
   }
 
   checkIsArray(value: any) {

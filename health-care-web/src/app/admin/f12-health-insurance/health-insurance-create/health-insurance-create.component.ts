@@ -15,7 +15,7 @@ import { HealthInsuranceService } from '../../_services/health_insurance.service
   templateUrl: './health-insurance-create.component.html',
   styleUrls: ['./health-insurance-create.component.css'],
 })
-export class HealthInsuranceCreateComponent implements OnInit{
+export class HealthInsuranceCreateComponent implements OnInit {
   form: FormGroup;
   isSaving = false;
   @Output() reloadData = new EventEmitter();

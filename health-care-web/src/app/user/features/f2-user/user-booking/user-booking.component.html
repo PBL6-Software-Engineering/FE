@@ -1,20 +1,39 @@
 <div class="fw-700 mb-20 row-between">
   <span class="fs-28">Lịch sử đặt chỗ</span>
   <div class="form-check form-switch">
-    <input class="form-check-input cursor-pointer" type="checkbox" role="switch" id="flexSwitchCheckChecked"
-      [checked]="typeView === 'calendar'" (change)="typeView = typeView === 'calendar' ? 'table' : 'calendar'" />
-    <label class="form-check-label" for="flexSwitchCheckChecked">Xem lịch
+    <input
+      class="form-check-input cursor-pointer"
+      type="checkbox"
+      role="switch"
+      id="flexSwitchCheckChecked"
+      [checked]="typeView === 'calendar'"
+      (change)="typeView = typeView === 'calendar' ? 'table' : 'calendar'"
+    />
+    <label class="form-check-label" for="flexSwitchCheckChecked"
+      >Xem lịch
     </label>
   </div>
 </div>
 <ul class="d-flex w-100 border-bottom">
-  <li class="nav-tab" (click)="chooseTab('waitBooking')" [class.active]="tab === 'waitBooking'">
+  <li
+    class="nav-tab"
+    (click)="chooseTab('waitBooking')"
+    [class.active]="tab === 'waitBooking'"
+  >
     Lịch hẹn sắp đến ({{ waitNumber }})
   </li>
-  <li class="nav-tab" (click)="chooseTab('doneBooking')" [class.active]="tab === 'doneBooking'">
+  <li
+    class="nav-tab"
+    (click)="chooseTab('doneBooking')"
+    [class.active]="tab === 'doneBooking'"
+  >
     Hoàn thành ({{ doneNumber }})
   </li>
-  <li class="nav-tab" (click)="chooseTab('undoneBooking')" [class.active]="tab === 'undoneBooking'">
+  <li
+    class="nav-tab"
+    (click)="chooseTab('undoneBooking')"
+    [class.active]="tab === 'undoneBooking'"
+  >
     Chưa hoàn thành ({{ undoneNumber }})
   </li>
   <!-- <li
@@ -32,7 +51,10 @@
       <div class="row">
         <div class="col-lg-12 px-0" *ngIf="typeView === 'table'">
           <div class="table-responsive">
-            <table class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3" id="myTable2">
+            <table
+              class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3"
+              id="myTable2"
+            >
               <thead>
                 <tr>
                   <th class="text-center" id="th-time" (click)="sortTable(0)">
@@ -63,33 +85,53 @@
                       {{ item?.service_name || "Lịch tư vấn" }}
                     </h5>
                     <div class="my-8 fs-14">
-                      <i class="fa fa-user-md fs-16 mr-4" aria-hidden="true"></i>
+                      <i
+                        class="fa fa-user-md fs-16 mr-4"
+                        aria-hidden="true"
+                      ></i>
                       {{ item?.doctor_name || "Đang cập nhật tên bác sĩ" }}
                     </div>
                     <div class="my-8 fs-14">
-                      <i class="fa fa-stethoscope fs-16 mr-4" aria-hidden="true"></i>
+                      <i
+                        class="fa fa-stethoscope fs-16 mr-4"
+                        aria-hidden="true"
+                      ></i>
                       {{ item?.department_name }}
                     </div>
                     <div class="my-8 fs-14">
-                      <i class="fa fa-calendar fs-16 mr-4" aria-hidden="true"></i>
+                      <i
+                        class="fa fa-calendar fs-16 mr-4"
+                        aria-hidden="true"
+                      ></i>
                       {{ item?.work_schedule_time?.interval[0] }} -
                       {{ item?.work_schedule_time?.interval[1] }}
                     </div>
                   </td>
                   <td class="text-center">
-                    <ng-container class="text-center" *ngIf="tab === 'waitBooking'">
+                    <ng-container
+                      class="text-center"
+                      *ngIf="tab === 'waitBooking'"
+                    >
                       <span>{{ item?.hospital_address }}</span>
                     </ng-container>
 
                     <ng-container *ngIf="tab === 'doneBooking'">
                       <ng-container *ngIf="item?.rating">
-                        <app-rating-stars [rating]="item?.rating?.number_rating" [readOnly]="true" [isCanEdit]="true"
-                          (editRating)="openEditRating(item)"></app-rating-stars>
+                        <app-rating-stars
+                          [rating]="item?.rating?.number_rating"
+                          [readOnly]="true"
+                          [isCanEdit]="true"
+                          (editRating)="openEditRating(item)"
+                        ></app-rating-stars>
                       </ng-container>
 
                       <ng-container *ngIf="!item?.rating">
-                        <span class="color-warning-text fs-14 cursor-pointer" data-bs-toggle="modal"
-                          data-bs-target="#ratingModal" (click)="openEditRating(item)">
+                        <span
+                          class="color-warning-text fs-14 cursor-pointer"
+                          data-bs-toggle="modal"
+                          data-bs-target="#ratingModal"
+                          (click)="openEditRating(item)"
+                        >
                           Bấm vào đây để đánh giá
                         </span>
                       </ng-container>
@@ -97,13 +139,25 @@
                   </td>
                   <!-- Button trigger modal -->
                   <td class="text-center">
-                    <button type="button" id="{{ item.id }}" class="btn btn-sm btn-primary-1 text-white"
-                      data-bs-toggle="modal" data-bs-target="#detailModal" (click)="renderModalContent(item)">
+                    <button
+                      type="button"
+                      id="{{ item.id }}"
+                      class="btn btn-sm btn-primary-1 text-white"
+                      data-bs-toggle="modal"
+                      data-bs-target="#detailModal"
+                      (click)="renderModalContent(item)"
+                    >
                       Xem
                     </button>
 
-                    <button type="button" *ngIf="tab === 'waitBooking'" class="btn btn-sm btn-danger ml-12"
-                      data-bs-toggle="modal" data-bs-target="#deleteOne" (click)="itemSelected = item">
+                    <button
+                      type="button"
+                      *ngIf="tab === 'waitBooking'"
+                      class="btn btn-sm btn-danger ml-12"
+                      data-bs-toggle="modal"
+                      data-bs-target="#deleteOne"
+                      (click)="itemSelected = item"
+                    >
                       Hủy
                     </button>
                   </td>
@@ -116,7 +170,10 @@
         <div class="col-lg-12 px-0" *ngIf="typeView === 'calendar'">
           <div class="demo-app" *ngIf="!isLoading">
             <div class="demo-app-main">
-              <full-calendar *ngIf="calendarVisible()" [options]="calendarOptions()">
+              <full-calendar
+                *ngIf="calendarVisible()"
+                [options]="calendarOptions()"
+              >
                 <ng-template #eventContent let-arg>
                   <b>{{ arg.timeText }}</b>
                   <i>{{ arg.event.title }}</i>
@@ -132,7 +189,13 @@
 
 <div *ngIf="isLoading">
   <div class="wrapper-spinner" *ngIf="isLoading">
-    <ngx-spinner bdColor="rgba(0,0,0,0)" size="default" color="#2095c4" type="ball-pulse-sync" [fullScreen]="false">
+    <ngx-spinner
+      bdColor="rgba(0,0,0,0)"
+      size="default"
+      color="#2095c4"
+      type="ball-pulse-sync"
+      [fullScreen]="false"
+    >
       <p class="color-primary">Đang tải dữ liệu</p>
     </ngx-spinner>
   </div>
@@ -162,32 +225,71 @@
 </div>
 
 <!-- Modal detail -->
-<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="detailModal"
+  tabindex="-1"
+  aria-labelledby="detailModalLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5 fw-700 color-primary" id="detailModalLabel">
           {{ itemSelected?.service_name || "Lịch tư vấn" }}
         </h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
         <div id="service-container">
           <span class="title mb-2">Thông tin khách hàng</span>
           <div class="row">
             <div class="col-9">
-              <p><span class="fw-bold">Tên khách hàng:</span> {{itemSelected?.name_patient}}</p>
-              <p><span class="fw-bold">Giới tính:</span> {{itemSelected?.gender_patient==1 ? "Nam" : "Nữ"}}</p>
-              <p><span class="fw-bold">Ngày sinh:</span> {{itemSelected?.date_of_birth_patient}}</p>
-              <p><span class="fw-bold">Email:</span> {{itemSelected?.email_patient}}</p>
-              <p><span class="fw-bold">SDT:</span> {{itemSelected?.phone_patient}}</p>
-              <p><span class="fw-bold">Địa chỉ:</span> {{itemSelected?.address_patient}}</p>
-              <p><span class="fw-bold">Bệnh trạng:</span> {{itemSelected?.health_condition}}</p>
+              <p>
+                <span class="fw-bold">Tên khách hàng:</span>
+                {{ itemSelected?.name_patient }}
+              </p>
+              <p>
+                <span class="fw-bold">Giới tính:</span>
+                {{ itemSelected?.gender_patient == 1 ? "Nam" : "Nữ" }}
+              </p>
+              <p>
+                <span class="fw-bold">Ngày sinh:</span>
+                {{ itemSelected?.date_of_birth_patient }}
+              </p>
+              <p>
+                <span class="fw-bold">Email:</span>
+                {{ itemSelected?.email_patient }}
+              </p>
+              <p>
+                <span class="fw-bold">SDT:</span>
+                {{ itemSelected?.phone_patient }}
+              </p>
+              <p>
+                <span class="fw-bold">Địa chỉ:</span>
+                {{ itemSelected?.address_patient }}
+              </p>
+              <p>
+                <span class="fw-bold">Bệnh trạng:</span>
+                {{ itemSelected?.health_condition }}
+              </p>
             </div>
             <div class="col-3">
               <div class="CardBorder">
-                <img class="avatar-img mb-2" [src]="itemSelected?.user_avatar || 'assets/media/image/avatar_user_default.png'" alt="user_avatar">
-                <p>Bệnh nhân {{itemSelected?.name_patient}}</p>
+                <img
+                  class="avatar-img mb-2"
+                  [src]="
+                    itemSelected?.user_avatar ||
+                    'assets/media/image/avatar_user_default.png'
+                  "
+                  alt="user_avatar"
+                />
+                <p>Bệnh nhân {{ itemSelected?.name_patient }}</p>
               </div>
             </div>
           </div>
@@ -195,35 +297,92 @@
             <span class="title mb-2">Thông tin lịch tư vấn</span>
             <div class="row">
               <div class="col-9">
-                <p><span class="fw-bold">Tên bác sĩ tư vấn:</span> {{itemSelected?.doctor_name}}</p>
-                <p><span class="fw-bold">Email bác sĩ tư vấn:</span> {{itemSelected?.doctor_email}}</p>
-                <p><span class="fw-bold">SDT bác sĩ:</span> {{itemSelected?.doctor_phone}}</p>
-                <p><span class="fw-bold">Chuyên khoa:</span> {{itemSelected?.department_name}}</p>
-                <p><span class="fw-bold">Bệnh viện:</span> {{itemSelected?.hospital_name}}</p>
-                <p><span class="fw-bold">SDT bệnh viện:</span> {{itemSelected?.hospital_phone}}</p>
-                <p><span class="fw-bold">Email bệnh viện:</span> {{itemSelected?.hospital_email}}</p>
-                <p><span class="fw-bold">Địa chỉ bệnh viện:</span> {{itemSelected?.hospital_address}}</p>
+                <p>
+                  <span class="fw-bold">Tên bác sĩ tư vấn:</span>
+                  {{ itemSelected?.doctor_name }}
+                </p>
+                <p>
+                  <span class="fw-bold">Email bác sĩ tư vấn:</span>
+                  {{ itemSelected?.doctor_email }}
+                </p>
+                <p>
+                  <span class="fw-bold">SDT bác sĩ:</span>
+                  {{ itemSelected?.doctor_phone }}
+                </p>
+                <p>
+                  <span class="fw-bold">Chuyên khoa:</span>
+                  {{ itemSelected?.department_name }}
+                </p>
+                <p>
+                  <span class="fw-bold">Bệnh viện:</span>
+                  {{ itemSelected?.hospital_name }}
+                </p>
+                <p>
+                  <span class="fw-bold">SDT bệnh viện:</span>
+                  {{ itemSelected?.hospital_phone }}
+                </p>
+                <p>
+                  <span class="fw-bold">Email bệnh viện:</span>
+                  {{ itemSelected?.hospital_email }}
+                </p>
+                <p>
+                  <span class="fw-bold">Địa chỉ bệnh viện:</span>
+                  {{ itemSelected?.hospital_address }}
+                </p>
               </div>
               <div class="col-3">
                 <div class="CardBorder">
-                  <img class="avatar-img mb-2" [src]="itemSelected?.doctor_avatar || 'assets/media/image/avatar_user_default.png'" alt="doctor_avatar">
-                  <p>Bác sĩ {{itemSelected?.doctor_name}}</p>
+                  <img
+                    class="avatar-img mb-2"
+                    [src]="
+                      itemSelected?.doctor_avatar ||
+                      'assets/media/image/avatar_user_default.png'
+                    "
+                    alt="doctor_avatar"
+                  />
+                  <p>Bác sĩ {{ itemSelected?.doctor_name }}</p>
                 </div>
               </div>
             </div>
           </div>
-          <div  *ngIf="itemSelected?.service_infor">
+          <div *ngIf="itemSelected?.service_infor">
             <span class="title">Thông tin dịch vụ</span>
-            <p><span class="fw-bold">Mô tả:</span> <span [innerHTML]="itemSelected?.service_infor?.about_service"></span></p>
-            <p><span class="fw-bold">Quy trình:</span> <span [innerHTML]="itemSelected?.service_infor?.prepare_process"></span></p>
-            <p><span class="fw-bold">Chi tiết dịch vụ:</span> <span [innerHTML]="itemSelected?.service_infor?.service_details"></span></p>
+            <p>
+              <span class="fw-bold">Mô tả:</span>
+              <span
+                [innerHTML]="itemSelected?.service_infor?.about_service"
+              ></span>
+            </p>
+            <p>
+              <span class="fw-bold">Quy trình:</span>
+              <span
+                [innerHTML]="itemSelected?.service_infor?.prepare_process"
+              ></span>
+            </p>
+            <p>
+              <span class="fw-bold">Chi tiết dịch vụ:</span>
+              <span
+                [innerHTML]="itemSelected?.service_infor?.service_details"
+              ></span>
+            </p>
           </div>
-          
+
           <span class="title mb-2">Thông tin thêm</span>
-          <p><span class="fw-bold">Chi phí:</span> {{itemSelected?.work_schedule_price}}</p>
-          <p><span class="fw-bold">Khoảng thời gian:</span> {{itemSelected?.work_schedule_time.interval[0]}}-{{itemSelected?.work_schedule_time.interval[1]}}</p>
-          <p><span class="fw-bold">Ngày hẹn:</span> {{itemSelected?.work_schedule_time.date | date: "dd/MM/yyyy"}}</p>
-          
+          <p>
+            <span class="fw-bold">Chi phí:</span>
+            {{ itemSelected?.work_schedule_price }}
+          </p>
+          <p>
+            <span class="fw-bold">Khoảng thời gian:</span>
+            {{ itemSelected?.work_schedule_time.interval[0] }}-{{
+              itemSelected?.work_schedule_time.interval[1]
+            }}
+          </p>
+          <p>
+            <span class="fw-bold">Ngày hẹn:</span>
+            {{ itemSelected?.work_schedule_time.date | date: "dd/MM/yyyy" }}
+          </p>
+
           <!-- <h5 *ngIf="itemSelected?.service_infor?.about_service" class="fw-700 mb-3">
             Về dịch vụ
           </h5>
@@ -245,10 +404,18 @@
   <div class="modal-dialog modal-confirm">
     <div class="modal-content">
       <div class="modal-header d-flex flex-column border-0">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
         <div class="icon-box">
-          <i class="fa fa-times mb-3 fw-100 fs-40l border-radius-100 p-30" aria-hidden="true"
-            style="border: 4px solid rgb(233, 69, 69); color: rgb(233, 69, 69)"></i>
+          <i
+            class="fa fa-times mb-3 fw-100 fs-40l border-radius-100 p-30"
+            aria-hidden="true"
+            style="border: 4px solid rgb(233, 69, 69); color: rgb(233, 69, 69)"
+          ></i>
         </div>
         <h4 class="modal-title w-100 text-center">
           Bạn có chắc chắn muốn hủy?
@@ -261,10 +428,19 @@
         </p>
       </div>
       <div class="modal-footer row-center border-0">
-        <button id="btnCloseModalDelete" type="button" class="btn btn-secondary opacity-7" data-bs-dismiss="modal">
+        <button
+          id="btnCloseModalDelete"
+          type="button"
+          class="btn btn-secondary opacity-7"
+          data-bs-dismiss="modal"
+        >
           Huỷ
         </button>
-        <button type="button" class="btn btn-danger column-center" (click)="deleteOne()">
+        <button
+          type="button"
+          class="btn btn-danger column-center"
+          (click)="deleteOne()"
+        >
           <div class="loader" *ngIf="isDeleting"></div>
           Xác nhận
         </button>
@@ -273,23 +449,43 @@
   </div>
 </div>
 
-<button hidden data-bs-toggle="modal" data-bs-target="#modalShowInfo" id="btnOpenModalShowInfo"></button>
+<button
+  hidden
+  data-bs-toggle="modal"
+  data-bs-target="#modalShowInfo"
+  id="btnOpenModalShowInfo"
+></button>
 
-<div class="modal fade" id="modalShowInfo" tabindex="-1" role="dialog" aria-labelledby="modalShowInfoLabel"
-  aria-hidden="true">
+<div
+  class="modal fade"
+  id="modalShowInfo"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="modalShowInfoLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog" role="document">
     <div class="modal-content p-30">
       <div class="modal-header row-center position-relative">
         <h5 class="modal-title color-primary">
           Xem thông tin chi tiết lịch hẹn
         </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
         <div class="row">
           <div class="col-2">
-            <img [src]="itemSelected?.user_avatar" alt="" class="avatar wh-80"
-              onerror="this.src='assets/media/image/avatar_user_default.png'" />
+            <img
+              [src]="itemSelected?.user_avatar"
+              alt=""
+              class="avatar wh-80"
+              onerror="this.src='assets/media/image/avatar_user_default.png'"
+            />
           </div>
           <div class="col-10">
             <table class="fs-16">
@@ -328,10 +524,24 @@
 </div>
 
 <!-- trigger rating  -->
-<button data-bs-toggle="modal" data-bs-target="#ratingModal" id="btnOpenModalRating" hidden></button>
+<button
+  data-bs-toggle="modal"
+  data-bs-target="#ratingModal"
+  id="btnOpenModalRating"
+  hidden
+></button>
 <!-- Modal rating -->
-<div class="modal fade" id="ratingModal" tabindex="-1" aria-labelledby="ratingModalLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="ratingModal"
+  tabindex="-1"
+  aria-labelledby="ratingModalLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog">
-    <app-user-rating [workSchedule]="itemSelected" (onRatingSuccess)="updateRating($event)"></app-user-rating>
+    <app-user-rating
+      [workSchedule]="itemSelected"
+      (onRatingSuccess)="updateRating($event)"
+    ></app-user-rating>
   </div>
 </div>

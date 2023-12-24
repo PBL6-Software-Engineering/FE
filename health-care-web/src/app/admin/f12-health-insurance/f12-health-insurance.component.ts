@@ -21,7 +21,7 @@ export class F12HealthInsuranceComponent implements OnInit, OnDestroy {
   currentPage = 1;
   totalElements = 0;
   numberElementOfPage = 0;
-  pageSize=10;
+  pageSize = 10;
 
   isSelectAll = false;
   idsSelected: Map<any, boolean> = new Map();

@@ -6,19 +6,11 @@ import { SignInAdminComponent } from './sign-in-admin/sign-in-admin.component';
 import { SignInUserComponent } from './sign-in-user/sign-in-user.component';
 import { SignInComponent } from './sign-in.component';
 import { FormsModule } from '@angular/forms';
-import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
-import { ForgotPasswordAdminComponent } from '../forgot-password-Admin/forgot-password.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from 'src/app/core/core.module';
 
 @NgModule({
-  declarations: [
-    SignInAdminComponent,
-    SignInUserComponent,
-    SignInComponent,
-    ForgotPasswordComponent,
-    ForgotPasswordAdminComponent,
-  ],
+  declarations: [SignInAdminComponent, SignInUserComponent, SignInComponent],
   imports: [
     CommonModule,
     SignInRoutingModule,

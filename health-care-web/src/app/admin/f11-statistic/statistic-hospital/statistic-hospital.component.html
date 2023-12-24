@@ -1,0 +1,72 @@
+<div class="mx-4">
+  <div class="fw-bolder fs-5 mb-3 ml-4">Thống kê bệnh viện nổi bật</div>
+
+  <div class="chart-container">
+    <canvas id="chart">{{ chart }}</canvas>
+  </div>
+
+  <div class="card fw-bold">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table
+          class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3"
+        >
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>Tên</th>
+              <th>Email</th>
+              <th>Số điện thoại</th>
+              <th>Địa chỉ</th>
+              <!-- <th class="text-center">Ảnh</th> -->
+              <th class="text-center">Số lượt tìm kiếm</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of data; index as i">
+              <td>
+                <span class="text-hover-primary cursor-pointer">
+                  {{ i + 1 }}
+                </span>
+              </td>
+              <td>
+                <span class="text-hover-primary cursor-pointer">
+                  {{ item?.name }}
+                </span>
+              </td>
+
+              <td>
+                <span class="text-hover-primary cursor-pointer">
+                  {{ item?.email }}
+                </span>
+              </td>
+
+              <td>
+                <span class="text-hover-primary cursor-pointer">
+                  {{ item?.phone }}
+                </span>
+              </td>
+
+              <td>
+                <span class="text-hover-primary cursor-pointer">
+                  {{ item?.address }}
+                </span>
+              </td>
+
+              <!-- <td class="text-center">
+                <img [src]="item.thumbnail_article" alt="" class="thumbnail" />
+              </td> -->
+
+              <td class="text-center">
+                <span class="text-hover-primary">
+                  {{ item?.search_number }}
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

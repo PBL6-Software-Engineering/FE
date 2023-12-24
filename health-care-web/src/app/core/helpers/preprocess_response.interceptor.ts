@@ -125,6 +125,13 @@ function processImageOfArray(array: any[]) {
       item.infor_hospital.cover_hospital =
         prefixApi + '/' + item.infor_hospital.cover_hospital;
     }
+
+    if (
+      item.thumbnail_service &&
+      item.thumbnail_service.indexOf('http') === -1
+    ) {
+      item.thumbnail_service = prefixApi + '/' + item.thumbnail_service;
+    }
   });
 }
 
@@ -191,5 +198,9 @@ function processImageOfObject(item: any) {
   ) {
     item.infor_hospital.cover_hospital =
       prefixApi + '/' + item.infor_hospital.cover_hospital;
+  }
+
+  if (item.thumbnail_service && item.thumbnail_service.indexOf('http') === -1) {
+    item.thumbnail_service = prefixApi + '/' + item.thumbnail_service;
   }
 }

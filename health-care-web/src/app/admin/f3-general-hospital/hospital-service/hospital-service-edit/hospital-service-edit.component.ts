@@ -48,7 +48,7 @@ export class HospitalServiceEditComponent implements OnInit {
       about_service: new FormControl('', [Validators.required]),
       prepare_process: new FormControl('', [Validators.required]),
       service_details: new FormControl('', [Validators.required]),
-      location: new FormControl([26, 29]),
+      location: new FormControl([16.07527968579236, 108.15007925033545]),
     });
   }
 

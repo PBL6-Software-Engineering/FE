@@ -10,7 +10,10 @@ const routes: Routes = [
     children: [
       {
         path: 'dashboard',
-        component: F1DashboardComponent,
+        loadChildren: () =>
+          import('./f1-dashboard/f1-dashboard.module').then(
+            (m) => m.F1DashboardModule,
+          ),
       },
       {
         path: 'account-setting',
@@ -57,9 +60,9 @@ const routes: Routes = [
       {
         path: 'health-insurance-hospital',
         loadChildren: () =>
-          import('./f13-health-insurance-hospital/f13-health-insurance-hospital.module').then(
-            (m) => m.F13HealthInsuranceHospitalModule,
-          ),
+          import(
+            './f13-health-insurance-hospital/f13-health-insurance-hospital.module'
+          ).then((m) => m.F13HealthInsuranceHospitalModule),
       },
       {
         path: 'doctor',
@@ -93,10 +96,10 @@ const routes: Routes = [
           import('./f10-chat/f10-chat.module').then((m) => m.F10ChatModule),
       },
       {
-        path: 'report',
+        path: 'statistic',
         loadChildren: () =>
-          import('./f11-report/f11-report.module').then(
-            (m) => m.F11ReportModule,
+          import('./f11-statistic/f11-statistic.module').then(
+            (m) => m.F11StatisticModule,
           ),
       },
       {

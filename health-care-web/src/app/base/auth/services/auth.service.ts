@@ -10,13 +10,13 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   forgotPass(email: string): Observable<any> {
-    const requestBody = { email: email };
-    return this.http.post(`${linkApi}/user/forgot-pw-sendcode`, requestBody);
+    return this.http.post(`${linkApi}/user/forgot-pw-sendcode`, { email });
   }
+
   forgotPassAdmin(email: string): Observable<any> {
-    const requestBody = { email: email };
-    return this.http.post(`${linkApi}/admin/forgot-pw-sendcode`, requestBody);
+    return this.http.post(`${linkApi}/admin/forgot-pw-sendcode`, { email });
   }
+
   login(email: string, password: string): Observable<any> {
     const requestBody = { email: email, password: password };
     return this.http.post(`${linkApi}/user/login`, requestBody);
@@ -69,5 +69,23 @@ export class AuthService {
       location: location,
     };
     return this.http.post(`${linkApi}/infor-hospital/register`, requestBody);
+  }
+
+  verifyEmailUser(token: string): Observable<any> {
+    const requestBody = { token: token };
+    return this.http.post(`${linkApi}/user/verify-email`, requestBody);
+  }
+
+  verifyEmailAdmin(token: string): Observable<any> {
+    const requestBody = { token: token };
+    return this.http.post(`${linkApi}/admin/verify-email`, requestBody);
+  }
+
+  resetPassUser(obj: any) {
+    return this.http.post(`${linkApi}/user/forgot-update`, obj);
+  }
+
+  resetPassAdmin(obj: any) {
+    return this.http.post(`${linkApi}/admin/forgot-update`, obj);
   }
 }

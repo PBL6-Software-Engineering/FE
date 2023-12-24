@@ -44,7 +44,7 @@ export class F5HospitalListComponent implements OnInit, OnDestroy {
   updateItem: any;
   hospital: any;
   itemSelected: any;
-  
+
   constructor(
     private api: AdminService,
     private toastr: ToastrService,

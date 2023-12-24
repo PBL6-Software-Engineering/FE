@@ -28,7 +28,7 @@ export class F4AccountUserListComponent implements OnInit, OnDestroy {
 
   currentPage = 1;
   totalPage = 0;
-  pageSize = 20;  
+  pageSize = 20;
   totalElements = 0;
   numberElementOfPage = 0;
 

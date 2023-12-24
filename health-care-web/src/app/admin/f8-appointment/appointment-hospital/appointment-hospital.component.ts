@@ -85,6 +85,7 @@ export class AppointmentHospitalComponent implements OnInit {
         this.dataSources = data.data;
         this.appointmentsOfWeek = data.data;
         this.isLoading = false;
+        this.isErrorGetData = false;
         this.spinnerService.hide();
 
         this.currentPage = data.current_page; // trang hiện tại
@@ -94,6 +95,7 @@ export class AppointmentHospitalComponent implements OnInit {
       },
       error: () => {
         this.isLoading = false;
+        this.isErrorGetData = true;
         this.spinnerService.hide();
       },
     });
@@ -150,11 +152,6 @@ export class AppointmentHospitalComponent implements OnInit {
           this.isConfirm = false;
         },
       });
-  }
-
-  openModalShowInfo(item: any): void {
-    this.selectedItem = item;
-    this.el.nativeElement.querySelector('#btnOpenModalShowInfo').click();
   }
 
   onChangePageSize(pageSize: any) {

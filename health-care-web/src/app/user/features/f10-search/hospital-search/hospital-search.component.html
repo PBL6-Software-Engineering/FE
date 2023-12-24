@@ -39,4 +39,7 @@
   (changePage)="onChangePage($event)"
 ></app-paginate>
 
-<app-no-data *ngIf="dataSources && dataSources.length === 0 && !isLoading" [keyword]="oldTextSearch"></app-no-data>
+<app-no-data
+  *ngIf="dataSources && dataSources.length === 0 && !isLoading"
+  [keyword]="oldTextSearch"
+></app-no-data>

@@ -17,7 +17,7 @@ import { HealthInsuranceService } from '../../_services/health_insurance.service
   templateUrl: './health-insurance-edit.component.html',
   styleUrls: ['./health-insurance-edit.component.css'],
 })
-export class HealthInsuranceEditComponent implements OnInit, OnChanges{
+export class HealthInsuranceEditComponent implements OnInit, OnChanges {
   form: FormGroup;
   isSaving = false;
 
@@ -46,21 +46,19 @@ export class HealthInsuranceEditComponent implements OnInit, OnChanges{
   save(): void {
     if (this.form.valid && !this.isSaving) {
       this.isSaving = true;
-      this.api
-        .update(this.item.id, this.form.value)
-        .subscribe({
-          next: (res) => {
-            this.form.reset();
-            this.toastrService.success('Sửa thành công!');
-            this.closeModal.nativeElement.click();
-            this.reloadData.emit();
-            this.isSaving = false;
-          },
-          error: (err) => {
-            this.toastrService.error('Sửa thất bại!');
-            this.isSaving = false;
-          },
-        });
+      this.api.update(this.item.id, this.form.value).subscribe({
+        next: (res) => {
+          this.form.reset();
+          this.toastrService.success('Sửa thành công!');
+          this.closeModal.nativeElement.click();
+          this.reloadData.emit();
+          this.isSaving = false;
+        },
+        error: (err) => {
+          this.toastrService.error('Sửa thất bại!');
+          this.isSaving = false;
+        },
+      });
     } else {
       this.toastrService.error('Vui lòng nhập đầy đủ thông tin');
     }

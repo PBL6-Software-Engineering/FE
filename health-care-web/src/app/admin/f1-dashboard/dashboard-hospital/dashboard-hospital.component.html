@@ -1,0 +1,124 @@
+<!-- Bài viết -->
+<div class="row">
+  <div class="col-md-4">
+    <div class="component p-3">
+      <div class="row-between">
+        <span>Tổng bài viết</span>
+        <span>
+          {{ data?.article?.all || 0 }}
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="component p-3">
+      <div class="row-between">
+        <span> Số bài viết chờ duyệt </span>
+        <span>
+          {{ (data?.article?.all || 0) - (data?.article?.accept || 0) }}
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="component p-3">
+      <div class="row-between">
+        <span> Số bài viết bị ẩn </span>
+        <span>{{
+          (data?.article?.all || 0) - (data?.article?.show || 0)
+        }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Biểu đồ bài viết -->
+<div class="row my-4">
+  <div class="col-md-6">
+    <div class="chart-container">
+      <canvas id="chartArticleAccept">{{ chartArticleAccept }}</canvas>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="chart-container">
+      <canvas id="chartArticleHideShow">{{ chartArticleHideShow }}</canvas>
+    </div>
+  </div>
+</div>
+
+<!-- Lịch hẹn -->
+<div class="row my-4">
+  <div class="col-md-4">
+    <div class="component p-3">
+      <div class="row-between">
+        <span>Tổng lịch hẹn</span>
+        <span>
+          {{ data?.work_schedule?.all || 0 }}
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="component p-3">
+      <div class="row-between">
+        <span> Lịch hẹn chờ xác nhận </span>
+        <span>
+          {{
+            (data?.work_schedule?.all || 0) -
+              (data?.work_schedule?.confirm || 0)
+          }}
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="component p-3">
+      <div class="row-between">
+        <span> Lịch hẹn đã xác nhận </span>
+        <span>{{ data?.work_schedule?.confirm || 0 }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 mt-4">
+    <div class="component p-3">
+      <div class="row-between">
+        <span> Lịch hẹn thành công </span>
+        <span>{{ data?.work_schedule?.confirm_and_complete || 0 }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 mt-4">
+    <div class="component p-3">
+      <div class="row-between">
+        <span> Tổng lịch hẹn tư vấn </span>
+        <span>{{ data?.work_schedule?.advice || 0 }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 mt-4">
+    <div class="component p-3">
+      <div class="row-between">
+        <span> Tổng lịch hẹn dịch vụ </span>
+        <span>{{ data?.work_schedule?.service || 0 }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Biểu đồ lịch hẹn -->
+<div class="row my-4">
+  <div class="col-md-6">
+    <div class="chart-container">
+      <canvas id="chartAppointmentByConfirmed">{{
+        chartAppointmentByConfirmed
+      }}</canvas>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="chart-container">
+      <canvas id="chartAppointmentByType">{{ chartAppointmentByType }}</canvas>
+    </div>
+  </div>
+</div>

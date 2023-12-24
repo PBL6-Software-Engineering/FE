@@ -38,7 +38,7 @@ export class F3ArticleDetailComponent implements AfterViewInit, OnInit {
     private expertService: ExpertService,
     private route: ActivatedRoute,
     private textToSpeechService: TextToSpeechService,
-    private behaviorService: BehaviorService
+    private behaviorService: BehaviorService,
   ) {}
 
   ngOnInit(): void {
@@ -72,7 +72,7 @@ export class F3ArticleDetailComponent implements AfterViewInit, OnInit {
 
         this.behaviorService.getCategoryName().subscribe((name: any) => {
           this.name_category = name;
-          if(this.name_category) {
+          if (this.name_category) {
             this.getArticleByCategory(this.name_category);
           }
         });
@@ -109,7 +109,7 @@ export class F3ArticleDetailComponent implements AfterViewInit, OnInit {
   }
 
   speechArticle() {
-    if(this.isSpeech) {
+    if (this.isSpeech) {
       this.textToSpeechService.pause();
       this.isSpeech = false;
       this.isPause = true;

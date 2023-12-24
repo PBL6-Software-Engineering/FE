@@ -9,9 +9,7 @@ import { QuillModule } from 'ngx-quill';
 import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
-  declarations: [
-    F13HealthInsuranceHospitalComponent,
-  ],
+  declarations: [F13HealthInsuranceHospitalComponent],
   imports: [
     CommonModule,
     F13HealthInsuranceHospitalRoutingModule,

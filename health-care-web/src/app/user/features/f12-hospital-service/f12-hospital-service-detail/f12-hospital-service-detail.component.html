@@ -1,0 +1,113 @@
+<div class="container py-3" *ngIf="step === 1">
+  <!-- breadcrumb -->
+  <div>
+    <div class="pb-3 column-center" style="font-size: 0.875rem; color: #595959">
+      <i routerLink="/" class="fa fa-home fs-16 cursor-pointer"></i>
+      <div class="line-vertical ms-2 me-2"></div>
+      <span style="color: #262626">{{ service?.name_department }}</span>
+      <i class="fa fa-angle-right ms-2 me-2" aria-hidden="true"></i>
+      <span>{{ service?.name }}</span>
+    </div>
+  </div>
+
+  <!-- banner -->
+  <div class="banner">
+    <img
+      [src]="service?.cover_hospital"
+      alt="Ảnh bìa dịch vụ"
+      style="object-fit: contain"
+      onerror="this.src=`https://cdn-healthcare.hellohealthgroup.com/2023/06/1687490654_6495105ef02194.17483979.jpg`"
+    />
+  </div>
+
+  <!-- content -->
+  <div class="bg-white" style="border-radius: 50px">
+    <div class="mb-3">
+      <div class="row row-center">
+        <div class="ps-5 col-md-6 d-flex">
+          <img
+            class="wh-140 bg-white avatar"
+            [src]="service?.thumbnail_service"
+            onerror="this.src='assets/media/image/avatar_doctor_default.jpg'"
+            alt="Ảnh dịch vụ"
+            style="transform: translateY(-30%)"
+          />
+          <div class="column-between flex-column ml-20">
+            <!-- Tên dịch vụ -->
+            <p class="fw-bold fs-18 mt-2">{{ service?.name }}</p>
+            <!-- Giá tiền -->
+            <div class="my-8">
+              <span style="color: #595959">
+                <i class="fa fa-money" aria-hidden="true"></i>
+                Giá tiền:
+              </span>
+              <span class="text-success">
+                {{ service?.price_hospital_service | currency: "VND" }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pb-50" style="line-height: 1.6">
+    <div class="row">
+      <div class="col-8">
+        <!-- Thông tin cơ bản -->
+        <div>
+          <span class="title">Thông tin cơ bản</span>
+          <!-- Bệnh viện và chuyên khoa -->
+          <p class="fs-16 my-1">Bệnh viện: {{ service?.name_hospital }}</p>
+          <p class="fs-16 my-1">Chuyên khoa: {{ service?.name_department }}</p>
+          <p class="fs-16 my-1">
+            Thời gian tư vấn: {{ service?.time_advise_hospital_service }}
+          </p>
+          <p class="fs-16 my-1">
+            Số lượt tìm kiếm: {{ service?.search_number_service || 0 }}
+          </p>
+        </div>
+
+        <!-- Mô tả dịch vụ -->
+        <div *ngIf="service?.infor?.about_service">
+          <span class="title">Mô tả dịch vụ</span>
+          <div [innerHTML]="service?.infor?.about_service"></div>
+        </div>
+
+        <!-- Chi tiết dịch vụ -->
+        <div *ngIf="service?.infor?.service_details">
+          <span class="title">Chi tiết dịch vụ</span>
+          <div [innerHTML]="service?.infor?.service_details"></div>
+        </div>
+
+        <!-- Quá trình chuẩn bị -->
+        <div *ngIf="service?.infor?.prepare_process">
+          <span class="title">Quá trình chuẩn bị</span>
+          <div [innerHTML]="service?.infor?.prepare_process"></div>
+        </div>
+
+        <div class="my-20" *ngIf="service?.infor?.location">
+          <p class="title mb-4">Vị trí bệnh viện</p>
+          <app-google-map
+            [locations]="service?.infor?.location"
+          ></app-google-map>
+        </div>
+      </div>
+
+      <div class="col-4" *ngIf="service">
+        <!-- Đặt lịch hẹn -->
+        <app-booking-service
+          [service]="service"
+          (confirmBooking)="openConfirmBooking($event)"
+        ></app-booking-service>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="step === 2">
+  <app-confirm-booking-service
+    (goToStep1)="step = 1"
+    [dataBooking]="dataBooking"
+  ></app-confirm-booking-service>
+</div>

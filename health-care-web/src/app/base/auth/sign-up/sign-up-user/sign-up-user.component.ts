@@ -15,6 +15,7 @@ export class SignUpUserComponent {
   isShowPass = false;
   isShowConfirm = false;
   isShowName = false;
+  step = 1;
 
   constructor(
     private apiService: AuthService,
@@ -64,7 +65,7 @@ export class SignUpUserComponent {
           next: (response) => {
             // response.token
             this.toastrService.success('Đăng kí thành công');
-            this.router.navigate(['/']);
+            this.step = 2;
           },
           error: (error) => {
             console.error('Đăng kí thất bại:', error);

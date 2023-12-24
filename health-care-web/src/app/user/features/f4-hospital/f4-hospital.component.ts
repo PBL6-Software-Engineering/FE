@@ -46,7 +46,12 @@ export class F4HospitalComponent implements OnInit {
             console.log(this.doctors);
           });
         this.healthinsuranceService
-          .getAllHealthInsurance({ id: this.id,page: 1, paginate: 20, search: '' })
+          .getAllHealthInsurance({
+            id: this.id,
+            page: 1,
+            paginate: 20,
+            search: '',
+          })
           .subscribe(({ data }) => {
             this.healthInsurances = data.data;
             console.log(this.healthInsurances);

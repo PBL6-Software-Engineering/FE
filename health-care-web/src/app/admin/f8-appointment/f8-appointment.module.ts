@@ -11,6 +11,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AppointmentCalendarComponent } from './appointment-calendar/appointment-calendar.component';
 import { ModifyInfoPatientComponent } from './modify-info-patient/modify-info-patient.component';
+import { ViewInfoPatientComponent } from './view-info-patient/view-info-patient.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ModifyInfoPatientComponent } from './modify-info-patient/modify-info-pa
     AppointmentHospitalComponent,
     AppointmentCalendarComponent,
     ModifyInfoPatientComponent,
+    ViewInfoPatientComponent,
   ],
   imports: [
     CommonModule,

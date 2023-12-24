@@ -1,0 +1,14 @@
+.confirm-booking-container {
+  background-color: #e9ffff;
+  border: 1px solid #ddd;
+}
+
+th,
+td {
+  font-size: 16px;
+  padding: 6px 0;
+}
+
+form label {
+  padding: 8px 0;
+}

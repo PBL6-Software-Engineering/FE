@@ -62,6 +62,13 @@ const routes: Routes = [
             (m) => m.F10SearchModule,
           ),
       },
+      {
+        path: 'dich-vu',
+        loadChildren: () =>
+          import(
+            './features/f12-hospital-service/f12-hospital-service.module'
+          ).then((m) => m.F12HospitalServiceModule),
+      },
     ],
   },
 ];

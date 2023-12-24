@@ -1,93 +1,180 @@
-<div class="demo-app" *ngIf="!isLoading">
-  <div class="demo-app-main">
-    <full-calendar *ngIf="calendarVisible()" [options]="calendarOptions()">
-      <ng-template #eventContent let-arg>
-        <b>{{ arg.timeText }}</b>
-        <i>{{ arg.event.title }}</i>
-      </ng-template>
-    </full-calendar>
+<div class="mx-4">
+  <div class="fw-bolder fs-5 mb-3 ml-4 row-between">
+    <span>Quản lý lịch hẹn</span>
+    <div class="form-check form-switch">
+      <input
+        class="form-check-input cursor-pointer"
+        type="checkbox"
+        role="switch"
+        id="flexSwitchCheckChecked"
+        [checked]="type === 'calendar'"
+        (change)="type = type === 'calendar' ? 'table' : 'calendar'"
+      />
+      <label class="form-check-label" for="flexSwitchCheckChecked"
+        >Xem lịch
+      </label>
+    </div>
   </div>
-</div>
 
-<div class="wrapper-spinner" *ngIf="isLoading">
-  <ngx-spinner
-    bdColor="rgba(0,0,0,0)"
-    size="default"
-    color="#2095c4"
-    type="ball-pulse-sync"
-    [fullScreen]="false"
-  >
-    <p class="color-primary">Đang tải dữ liệu</p>
-  </ngx-spinner>
-</div>
+  <div *ngIf="type === 'table'">
+    <div class="card fw-bold">
+      <div class="card-body">
+        <!-- Tìm kiếm -->
+        <div class="row mb-20">
+          <div class="col-sm-8 col-md-4">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Tìm kiếm"
+              [(ngModel)]="filter.search"
+              (keyup.enter)="onLoadData()"
+            />
+          </div>
+          <div class="col-sm-4 col-md-2">
+            <button class="btn btn-primary-1" (click)="onLoadData()">
+              Tìm kiếm
+            </button>
+          </div>
+        </div>
 
-<div class="text-center text-danger" *ngIf="isError">
-  Lỗi không lấy được dữ liệu
-</div>
-
-<button
-  hidden
-  data-bs-toggle="modal"
-  data-bs-target="#modalShowInfo"
-  id="btnOpenModalShowInfo"
-></button>
-
-<div
-  class="modal fade"
-  id="modalShowInfo"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="modalShowInfoLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog" role="document">
-    <div class="modal-content p-30">
-      <div class="modal-header row-center position-relative">
-        <h5 class="modal-title color-primary">
-          Xem thông tin chi tiết lịch hẹn
-        </h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
+        <!-- Filter -->
+        <div class="row fw-normal">
+          <div class="col-sm-2">Loại lịch hẹn</div>
+          <div class="col-sm-2">Trạng thái</div>
+          <div class="col-sm-4">Thời gian</div>
+        </div>
         <div class="row">
-          <div class="col-2">
-            <img [src]="dataClick?.avatar" alt="" class="avatar wh-80" />
+          <div class="col-sm-2">
+            <select
+              class="form-select"
+              [(ngModel)]="filter.is_service"
+              id="is_service"
+            >
+              <option value="">Tất cả</option>
+              <option value="advise">Dịch vụ</option>
+              <option value="advise">Lịch tư vấn</option>
+            </select>
           </div>
-          <div class="col-10">
-            <table class="fs-16">
-              <tr>
-                <th>Họ tên bệnh nhân:</th>
-                <td>{{ dataClick?.name }}</td>
-              </tr>
-              <tr>
-                <th>Ngày sinh:</th>
-                <td>{{ dataClick?.birthday | date: "dd/MM/yyyy" }}</td>
-              </tr>
-              <tr>
-                <th>Địa chỉ:</th>
-                <td>{{ dataClick?.address }}</td>
-              </tr>
-              <tr>
-                <th>Số điện thoại:</th>
-                <td>{{ dataClick?.phone }}</td>
-              </tr>
-              <tr>
-                <th>Email:</th>
-                <td>{{ dataClick?.email }}</td>
-              </tr>
-              <tr *ngIf="dataClick?.service_name">
-                <th>Tên dịch vụ tư vấn:</th>
-                <td>{{ dataClick?.service_name }}</td>
-              </tr>
-            </table>
+          <div class="col-sm-2">
+            <select class="form-select" [(ngModel)]="filter.status" id="status">
+              <option value="">Tất cả</option>
+              <option value="complete">Hoàn thành</option>
+              <option value="upcoming">Sắp đến</option>
+            </select>
           </div>
+          <div class="col-sm-2">
+            <input
+              type="date"
+              [(ngModel)]="filter.start_date"
+              class="form-control"
+            />
+          </div>
+          <div class="col-sm-2">
+            <input
+              type="date"
+              [(ngModel)]="filter.end_date"
+              class="form-control"
+            />
+          </div>
+          <div class="col-sm-2">
+            <button class="btn btn-primary-1" (click)="onLoadData()">
+              Lọc
+            </button>
+          </div>
+        </div>
+
+        <div class="table-responsive mt-4">
+          <table
+            class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3"
+          >
+            <thead>
+              <tr>
+                <th>Tên người hẹn</th>
+                <th class="text-center">Dịch vụ</th>
+                <th class="text-center">Lịch hẹn</th>
+                <th class="text-center">Hành động</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr
+                *ngFor="
+                  let item of dataSources
+                    | filter: ['name_patient'] : filter.search
+                "
+              >
+                <td>
+                  <span class="text-hover-primary cursor-pointer">
+                    {{ item?.name_patient }}
+                  </span>
+                </td>
+
+                <td class="text-center">
+                  <span class="text-hover-primary">
+                    {{ item?.service_name || "Dịch vụ tư vấn" }}
+                  </span>
+                </td>
+
+                <td class="text-center">
+                  <span class="text-hover-primary">
+                    {{ item?.work_schedule_time?.interval[0] }}-{{
+                      item?.work_schedule_time?.interval[1]
+                    }},
+                    {{ item?.work_schedule_time.date | date: "dd/MM/yyyy" }}
+                  </span>
+                </td>
+
+                <!-- Action -->
+                <td>
+                  <div class="row-center">
+                    <!-- View -->
+                    <button
+                      class="btn btn-sm btn-primary ml-6"
+                      routerLink="/admin/appointment/doctor/view-info-patient"
+                      [state]="{ data: item }"
+                    >
+                      <i class="fa fa-info fs-15" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div
+          class="text-center text-danger"
+          *ngIf="dataSources?.length == 0 && isErrorGetData"
+        >
+          Lỗi không lấy được dữ liệu
         </div>
       </div>
     </div>
+
+    <app-paginate
+      *ngIf="dataSources"
+      [currentPage]="currentPage"
+      [numberElementOfPage]="numberElementOfPage"
+      [totalPage]="totalPage"
+      [totalElements]="totalElements"
+      (changePage)="onChangePage($event)"
+      (changePageSize)="onChangePageSize($event)"
+    ></app-paginate>
+  </div>
+
+  <div *ngIf="type === 'calendar'">
+    <app-appointment-calendar [data]="dataSources"></app-appointment-calendar>
+  </div>
+
+  <div class="wrapper-spinner" *ngIf="isLoading">
+    <ngx-spinner
+      bdColor="rgba(0,0,0,0)"
+      size="default"
+      color="#2095c4"
+      type="ball-pulse-sync"
+      [fullScreen]="false"
+    >
+      <p class="color-primary">Đang tải dữ liệu</p>
+    </ngx-spinner>
   </div>
 </div>

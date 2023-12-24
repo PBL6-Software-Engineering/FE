@@ -11,7 +11,7 @@ import { TokenStorageService } from 'src/app/base/auth/services/token_storage.se
 export class SidebarComponent implements OnInit {
   menuItemsAdmin: any[] = [
     {
-      label: 'Bảng thống kê',
+      label: 'Tổng quan',
       routerLink: '/admin/dashboard',
     },
     {
@@ -66,12 +66,19 @@ export class SidebarComponent implements OnInit {
     },
     {
       label: 'Báo cáo',
-      routerLink: '/admin/report',
+      routerLink: undefined,
+      subItems: [
+        { label: 'Danh mục', routerLink: '/admin/statistic/category' },
+        { label: 'Chuyên khoa', routerLink: '/admin/statistic/department' },
+        { label: 'Bài viết', routerLink: '/admin/statistic/article' },
+        { label: 'Bệnh viện', routerLink: '/admin/statistic/hospital' },
+        { label: 'Bác sĩ', routerLink: '/admin/statistic/doctor' },
+      ],
     },
   ];
   menuItemsHospital: any[] = [
     {
-      label: 'Bảng thống kê',
+      label: 'Tổng quan',
       routerLink: '/admin/dashboard',
     },
     {
@@ -102,7 +109,7 @@ export class SidebarComponent implements OnInit {
         },
       ],
     },
-        {
+    {
       label: 'Bảo hiểm',
       routerLink: '/admin/health-insurance-hospital',
     },
@@ -127,15 +134,19 @@ export class SidebarComponent implements OnInit {
       routerLink: '/admin/chat',
     },
     {
-      label: 'Báo cáo',
-      routerLink: '/admin/report',
+      label: 'Thống kê',
+      routerLink: undefined,
+      subItems: [
+        { label: 'Danh mục', routerLink: '/admin/statistic/category' },
+        { label: 'Chuyên khoa', routerLink: '/admin/statistic/department' },
+        { label: 'Bài viết', routerLink: '/admin/statistic/article' },
+        { label: 'Bệnh viện', routerLink: '/admin/statistic/hospital' },
+        { label: 'Bác sĩ', routerLink: '/admin/statistic/doctor' },
+        { label: 'Lịch hẹn', routerLink: '/admin/statistic/appointment' },
+      ],
     },
   ];
   menuItemsDoctor: any[] = [
-    {
-      label: 'Bảng thống kê',
-      routerLink: '/admin/dashboard',
-    },
     {
       label: 'Thiết lập tài khoản',
       routerLink: undefined,
@@ -220,7 +231,7 @@ export class SidebarComponent implements OnInit {
         } else {
           // nếu không có thì chuyển hướng routerLink
           if (isNavigate) {
-            this.router.navigate([menuItem.routerLink]);
+            this.router.navigateByUrl(menuItem.routerLink);
           }
         }
       }
