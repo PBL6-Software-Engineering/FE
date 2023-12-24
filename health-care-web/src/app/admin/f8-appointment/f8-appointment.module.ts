@@ -19,7 +19,7 @@ import { ViewInfoPatientComponent } from './view-info-patient/view-info-patient.
     AppointmentHospitalComponent,
     AppointmentCalendarComponent,
     ModifyInfoPatientComponent,
-    ViewInfoPatientComponent
+    ViewInfoPatientComponent,
   ],
   imports: [
     CommonModule,

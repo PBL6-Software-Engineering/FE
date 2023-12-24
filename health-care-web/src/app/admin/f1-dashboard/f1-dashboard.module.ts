@@ -7,7 +7,11 @@ import { F1DashboardRoutingModule } from './f1-dashboard-routing.nodule';
 import { DashboardArticleComponent } from './dashboard-article/dashboard-article.component';
 
 @NgModule({
-  declarations: [F1DashboardComponent, DashboardAccountComponent, DashboardArticleComponent],
+  declarations: [
+    F1DashboardComponent,
+    DashboardAccountComponent,
+    DashboardArticleComponent,
+  ],
   imports: [CommonModule, NgChartsModule, F1DashboardRoutingModule],
 })
 export class F1DashboardModule {}

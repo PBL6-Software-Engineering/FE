@@ -5,7 +5,7 @@ import { F1DashboardComponent } from './f1-dashboard.component';
 const routes: Routes = [
   {
     path: '',
-    component: F1DashboardComponent
+    component: F1DashboardComponent,
   },
 ];
 

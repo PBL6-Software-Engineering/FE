@@ -1,7 +1,7 @@
-import { ConfirmBookingServiceComponent } from './confirm-booking-service.component'
+import { ConfirmBookingServiceComponent } from './confirm-booking-service.component';
 
 describe('ConfirmBookingServiceComponent', () => {
   it('should mount', () => {
-    cy.mount(ConfirmBookingServiceComponent)
-  })
-})
+    cy.mount(ConfirmBookingServiceComponent);
+  });
+});

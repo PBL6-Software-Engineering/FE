@@ -1,7 +1,7 @@
-import { BookingServiceComponent } from './booking-service.component'
+import { BookingServiceComponent } from './booking-service.component';
 
 describe('BookingServiceComponent', () => {
   it('should mount', () => {
-    cy.mount(BookingServiceComponent)
-  })
-})
+    cy.mount(BookingServiceComponent);
+  });
+});

@@ -1,8 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  OnInit,
-} from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { AppointmentService } from '../../_services/appointment.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { getStartAndEndDateOfWeek } from 'src/app/core/libs/library.helper';

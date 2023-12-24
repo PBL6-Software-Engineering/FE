@@ -46,7 +46,6 @@ export class HospitalServiceListComponent implements OnInit, OnDestroy {
   updateItem: any;
   hospital: any;
 
-
   constructor(
     private api: ServiceHospitalService,
     private router: Router,

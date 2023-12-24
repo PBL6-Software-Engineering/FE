@@ -5,10 +5,7 @@
 //   GoogleLoginProvider,
 // } from '@abacritt/angularx-social-login';
 
-import {
-  Component,
-  OnInit,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   NavigationEnd,
   NavigationStart,

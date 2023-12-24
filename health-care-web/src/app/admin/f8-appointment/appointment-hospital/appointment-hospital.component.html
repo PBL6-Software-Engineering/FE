@@ -230,9 +230,7 @@
   </div>
 
   <div *ngIf="type === 'calendar'">
-    <app-appointment-calendar
-      [data]="dataSources"
-    ></app-appointment-calendar>
+    <app-appointment-calendar [data]="dataSources"></app-appointment-calendar>
   </div>
 
   <div class="wrapper-spinner" *ngIf="isLoading">

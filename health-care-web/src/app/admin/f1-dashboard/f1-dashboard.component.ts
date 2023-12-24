@@ -10,8 +10,7 @@ import { TokenStorageService } from 'src/app/base/auth/services/token_storage.se
 export class F1DashboardComponent implements OnInit {
   role: any;
 
-  constructor(private tokenService: TokenStorageService) {
-  }
+  constructor(private tokenService: TokenStorageService) {}
 
   ngOnInit(): void {
     flatpickr('#dateFilter', {

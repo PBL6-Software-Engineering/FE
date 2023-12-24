@@ -15,6 +15,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class F12HospitalServiceRoutingModule { }
+export class F12HospitalServiceRoutingModule {}

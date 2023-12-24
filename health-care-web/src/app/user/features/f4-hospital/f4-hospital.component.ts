@@ -43,7 +43,7 @@ export class F4HospitalComponent implements OnInit {
       }
     });
     this.user = JSON.parse(
-      localStorage.getItem('user') || JSON.stringify({id: 'guest'})
+      localStorage.getItem('user') || JSON.stringify({ id: 'guest' }),
     );
   }
 

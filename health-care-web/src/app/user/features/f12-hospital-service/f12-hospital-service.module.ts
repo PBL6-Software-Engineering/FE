@@ -11,7 +11,6 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { CarouselModule } from 'primeng/carousel';
 import { TagModule } from 'primeng/tag';
 
-
 @NgModule({
   declarations: [
     F12HospitalServiceDetailComponent,

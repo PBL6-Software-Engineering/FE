@@ -1,7 +1,7 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { linkApi } from "src/app/core/constants/api.constant";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { linkApi } from 'src/app/core/constants/api.constant';
 
 const model = 'statistical';
 @Injectable({

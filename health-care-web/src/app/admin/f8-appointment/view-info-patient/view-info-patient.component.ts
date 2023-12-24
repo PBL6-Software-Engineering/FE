@@ -1,10 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,9 +10,7 @@ export class ViewInfoPatientComponent implements OnInit {
   @Input() selectedItem: any;
   @Output() onLoadData = new EventEmitter<any>();
 
-  constructor(
-    private router: Router,
-  ) {
+  constructor(private router: Router) {
     this.selectedItem =
       this.router.getCurrentNavigation()?.extras.state?.['data'];
 
@@ -27,6 +19,5 @@ export class ViewInfoPatientComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }

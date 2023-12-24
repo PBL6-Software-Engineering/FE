@@ -40,7 +40,7 @@ export class BookingServiceComponent implements OnChanges {
   constructor(
     private bookingService: BookingService,
     private snipperService: NgxSpinnerService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {

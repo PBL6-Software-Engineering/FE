@@ -121,7 +121,7 @@ export class HospitalDepartmentListComponent implements OnInit, OnDestroy {
       }),
     );
   }
-  
+
   onChangePage(page: number) {
     this.currentPage = page;
     this.onLoadData();
