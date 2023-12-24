@@ -51,6 +51,20 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'health-insurance',
+        loadChildren: () =>
+          import('./f12-health-insurance/f12-health-insurance.module').then(
+            (m) => m.F12HealthInsuranceModule,
+          ),
+      },
+      {
+        path: 'health-insurance-hospital',
+        loadChildren: () =>
+          import(
+            './f13-health-insurance-hospital/f13-health-insurance-hospital.module'
+          ).then((m) => m.F13HealthInsuranceHospitalModule),
+      },
+      {
         path: 'doctor',
         loadChildren: () =>
           import('./f6-doctor/f6-doctor.module').then((m) => m.F6DoctorModule),

@@ -2,6 +2,9 @@
   /* background: #f9f9f9 url(../../../../assets/media/image/banner1.jpg) no-repeat center; */
   /* background-image: linear-gradient(120deg, #69edf6 0%, #396cf000 100%), url(../../../../assets/media/image/banner1.jpg) !important; */
   /* min-height: 320px; */
+  /* background-color: #f9f9f9;
+   */
+  background: linear-gradient(to bottom, #64e0e6, #fff);
   background-size: 100% auto;
 }
 

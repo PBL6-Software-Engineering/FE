@@ -1,0 +1,62 @@
+<div class="wrapper">
+  <div class="fw-bolder fs-5 mb-3">Thêm bảo hiểm</div>
+  <form
+    (ngSubmit)="save()"
+    appFocusInvalidInput
+    #focusInput="focusInvalidInput"
+    [formGroup]="form"
+    #f="ngForm"
+  >
+    <div class="mb-3">
+      <label for="name" class="form-label fw-bold">
+        Tên bảo hiểm
+        <span class="text-danger">*</span>:
+      </label>
+      <input
+        type="text"
+        class="form-control"
+        id="create-name"
+        placeholder="Nhập tên bảo hiểm"
+        formControlName="name"
+        required
+      />
+      <app-show-error [control]="form.get('name')"></app-show-error>
+    </div>
+    <div class="mb-3">
+      <label for="content" class="form-label fw-bold mb-2">
+        Mô tả
+        <span class="text-danger">*</span>:
+      </label>
+
+      <quill-editor
+        formControlName="description"
+        placeholder="Mô tả"
+        id="content"
+      ></quill-editor>
+
+      <app-show-error [control]="form.get('description')"></app-show-error>
+    </div>
+
+    <div class="flex-end mt-30">
+      <button
+        type="button"
+        class="btn btn-secondary mr-12"
+        data-bs-dismiss="modal"
+        #closeModal
+        (click)="resetForm()"
+      >
+        Huỷ
+      </button>
+      <button
+        type="submit"
+        class="btn btn-primary-1 w-150px column-center"
+        (click)="focusInput.focus()"
+        [disabled]="isSaving"
+        id="create-save"
+      >
+        <div class="loader" *ngIf="isSaving"></div>
+        Lưu
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,7 +1,7 @@
-import { DashboardHospitalComponent } from './dashboard-hospital.component'
+import { DashboardHospitalComponent } from './dashboard-hospital.component';
 
 describe('DashboardHospitalComponent', () => {
   it('should mount', () => {
-    cy.mount(DashboardHospitalComponent)
-  })
-})
+    cy.mount(DashboardHospitalComponent);
+  });
+});

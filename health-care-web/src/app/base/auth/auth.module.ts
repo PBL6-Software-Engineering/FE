@@ -33,7 +33,7 @@ import { CoreModule } from 'src/app/core/core.module';
     SignUpModule,
     ReactiveFormsModule,
     FormsModule,
-    CoreModule
+    CoreModule,
   ],
 })
 export class AuthModule {}

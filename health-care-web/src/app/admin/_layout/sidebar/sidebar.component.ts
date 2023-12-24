@@ -45,6 +45,18 @@ export class SidebarComponent implements OnInit {
       routerLink: '/admin/hospital',
     },
     {
+      label: 'Bảo hiểm',
+      routerLink: '/admin/health-insurance',
+    },
+    // {
+    //   label: 'Lịch làm việc',
+    //   routerLink: '/admin/working-time',
+    // },
+    // {
+    //   label: 'Lịch hẹn',
+    //   routerLink: '/admin/appointment',
+    // },
+    {
       label: 'Bài viết',
       routerLink: '/admin/article',
     },
@@ -96,6 +108,10 @@ export class SidebarComponent implements OnInit {
           routerLink: '/admin/general-hospital/service',
         },
       ],
+    },
+    {
+      label: 'Bảo hiểm',
+      routerLink: '/admin/health-insurance-hospital',
     },
     {
       label: 'Bác sĩ',
