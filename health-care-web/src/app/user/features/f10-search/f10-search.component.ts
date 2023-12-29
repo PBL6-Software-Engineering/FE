@@ -20,7 +20,7 @@ export class F10SearchComponent implements OnInit {
   totalPage = 0;
   totalElements = 0;
   numberElementOfPage = 0;
-
+  tempTextSearch ='';
   textSearch = '';
   province: any;
   provinces: any[] = [];
@@ -51,7 +51,10 @@ export class F10SearchComponent implements OnInit {
     this.spinner.show();
     this.dataSources = [];
     this.expertApi.getDoctor(this.textSearch).subscribe({
-      next: ({ data }) => {},
+      next: ({ data }) => {
+        this.isLoading = false;
+
+      },
       error: (err) => {
         this.isError = true;
         this.isLoading = false;
@@ -67,6 +70,7 @@ export class F10SearchComponent implements OnInit {
   }
 
   searchAll() {
-    this.router.navigate(['/tim-kiem', this.textSearch || '']);
+    // this.router.navigate(['/tim-kiem', this.textSearch || '']);
+    this.textSearch=this.tempTextSearch;
   }
 }

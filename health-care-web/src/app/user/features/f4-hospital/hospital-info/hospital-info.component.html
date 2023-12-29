@@ -237,7 +237,7 @@
 <div>
   <span class="title">Bảo hiểm được chấp thuận</span>
   <ol *ngIf="checkIsArray(healthInsurances)">
-    <li *ngFor="let item of healthInsurances">
+    <li *ngFor="let item of healthInsurances" class="healthInsurance" data-bs-toggle="modal" data-bs-target="#healthInsurance" (click)="itemSelected=item">
       {{ item.name }}
     </li>
   </ol>
@@ -280,5 +280,24 @@
     <span class="fw-bold">Lưu ý:</span>
     Các bước khám chữa bệnh có thể thay đổi tùy thuộc vào yêu cầu từ phía bác sĩ
     đối với từng trường hợp bệnh khác nhau.
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="healthInsurance" tabindex="-1" aria-labelledby="healthInsuranceLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 fw-bold blueColor" id="exampleModalLabel">{{itemSelected?.name}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="title mb-2 ms-1">Mô tả</div>
+        <div [innerHTML]="itemSelected?.description" class="fw-100"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
 </div>

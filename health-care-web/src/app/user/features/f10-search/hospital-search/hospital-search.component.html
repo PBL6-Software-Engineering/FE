@@ -41,5 +41,5 @@
 
 <app-no-data
   *ngIf="dataSources && dataSources.length === 0 && !isLoading"
-  [keyword]="oldTextSearch"
+  [keyword]="lastTextSearch"
 ></app-no-data>

@@ -2,15 +2,17 @@
     <div class="card my-30 p-0" *ngFor="let service of services">
         <div class="card-body p-0">
             <div class="p-12">
-                <div class="fw-bold">{{ service?.name }}</div>
+                <div class="fw-bold text-color-hover" (click)="viewDetailService(service)">
+                    {{ service?.name }}
+                </div>
                 <div class="my-8">
                     <span style="color: #595959">
                         <i class="fa fa-money" aria-hidden="true"></i>
                         Giá tiền:
                     </span>
-                    <span class="text-success">{{
-                        service?.price_hospital_service | currency: "VND"
-                        }}</span>
+                    <span class="text-success">
+                        {{ service?.price_hospital_service | currency: "VND" }}
+                    </span>
                 </div>
                 <div *ngIf="service?.cout_rating > 0">
                     <span class="fw-bold">Đánh giá:</span> {{ service?.number_rating }}/5
@@ -31,7 +33,9 @@
                 </div>
 
                 <div>
-                    <button class="btn btn-primary-1">Đặt lịch hẹn</button>
+                    <button class="btn btn-primary-1" (click)="viewDetailService(service)">
+                        Xem chi tiết
+                    </button>
                 </div>
             </div>
         </div>
@@ -67,7 +71,7 @@
                 </div>
 
                 <div>
-                    <button class="btn btn-primary-1" disabled>Đặt lịch hẹn</button>
+                    <button class="btn btn-primary-1" disabled>Xem chi tiết</button>
                 </div>
             </div>
         </div>

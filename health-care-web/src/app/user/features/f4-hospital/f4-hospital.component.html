@@ -63,7 +63,7 @@
         </ul>
 
         <div *ngIf="tab === 'info'">
-          <app-hospital-info [hospital]="hospital"></app-hospital-info>
+          <app-hospital-info [healthInsurances]="healthInsurances" [hospital]="hospital"></app-hospital-info>
 
           <div class="my-20" *ngIf="hospital?.location">
             <p class="title mb-4">Vị trí bệnh viện</p>
@@ -105,3 +105,4 @@
     [hospital]="hospital"
   ></app-confirm-booking>
 </div>
+

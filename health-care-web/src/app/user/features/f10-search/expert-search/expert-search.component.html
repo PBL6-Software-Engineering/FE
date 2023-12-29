@@ -10,9 +10,10 @@
   [totalPage]="totalPage"
   [totalElements]="totalElements"
   (changePage)="onChangePage($event)"
+  (changePageSize)="onChangePageSize($event)"
 ></app-paginate>
 
 <app-no-data
   *ngIf="dataSources && dataSources.length === 0 && !isLoading"
-  [keyword]="oldTextSearch"
+  [keyword]="lastTextSearch"
 ></app-no-data>

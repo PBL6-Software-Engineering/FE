@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class HospitalInfoComponent implements OnInit {
   @Input() hospital: any;
   @Input() healthInsurances: any[];
-
+  itemSelected : any;
   constructor() {}
 
   ngOnInit(): void {

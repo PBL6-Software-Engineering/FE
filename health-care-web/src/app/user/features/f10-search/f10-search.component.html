@@ -28,8 +28,8 @@
           type="text"
           class="form-control w-320 input-search"
           placeholder="Tìm kiếm bác sĩ, dịch vụ, bệnh viện"
-          [(ngModel)]="textSearch"
-          (keyup.enter)="search()"
+          [(ngModel)]="tempTextSearch"
+          (keyup.enter)="searchAll()"
         />
       </div>
     </div>
@@ -40,17 +40,17 @@
     <div class="col-sm-9 m-auto">
       <div class="border">
         <h4 class="pt-3 ps-2 color fw-700">Bệnh viện</h4>
-        <app-hospital-search></app-hospital-search>
+        <app-hospital-search [textSearch]="textSearch"></app-hospital-search>
       </div>
       <div class="border">
         <h4 class="pt-3 ps-2 color fw-700">Bác sĩ</h4>
         <app-expert-search [textSearch]="textSearch"></app-expert-search>
       </div>
-      <div class="border">
-        <h4 class="pt-3 ps-2 color fw-700">Dịch vụ</h4>
-        <!-- <app-service-search></app-service-search>-->
-        <app-expert-search></app-expert-search>
-      </div>
+      <!-- <div class="border"> -->
+        <!-- <h4 class="pt-3 ps-2 color fw-700">Dịch vụ</h4> -->
+        <!-- <app-department-search></app-department-search> -->
+        <!-- <app-expert-search></app-expert-search> -->
+      <!-- </div> -->
       <!-- Error data -->
       <div
         class="text-center text-danger mt-30"
