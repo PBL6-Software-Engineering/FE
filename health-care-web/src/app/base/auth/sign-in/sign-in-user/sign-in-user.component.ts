@@ -103,8 +103,8 @@ export class SignInUserComponent implements OnInit {
     this.socialAuthService.authState.subscribe((user) => {
       this.socialUser = user;
       console.log('user', user);
-      if (user.provider === 'GOOGLE') {
-        this.loginWithGoogle(user);
+      if (user.provider === 'GOOGLE' || user.provider === 'FACEBOOK') {
+        this.loginAPI(user);
       }
     });
   }
@@ -112,7 +112,8 @@ export class SignInUserComponent implements OnInit {
   loginWithFacebook(): void {
     this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
-  loginWithGoogle(user: any): void {
+  
+  loginAPI(user: any): void {
     this.apiService
       .loginGoogle({
         id: user.id,
