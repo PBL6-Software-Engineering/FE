@@ -48,22 +48,22 @@ hr {
     opacity: 80%;
 }
 
-label{  
+label {
     padding-left: 10px;
 }
 
-.warning{
-    color:chocolate;
+.warning {
+    color: chocolate;
 }
 
-#btn-login{
+#btn-login {
     color: white;
     background: linear-gradient(to right, #65d1df, #e341f5);
     width: 100%;
     padding-top: 5px;
     padding-bottom: 5px;
-    margin-top:10px;
-    margin-bottom:20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
     border: none;
     border-radius: 10px;
 }
@@ -86,9 +86,9 @@ label{
     padding: 10px;
     opacity: 1;
     transition: opacity 2s ease;
-  }
+}
 
-#or{
+#or {
     font-size: 15px;
     padding-bottom: 10px;
 }
@@ -109,10 +109,22 @@ input[type="submit"]:hover {
     margin-right: 10px;
 }
 
+.icon-fb {
+    margin: 0 12px;
+    border: 1px solid #ccc;
+    padding: 2px 7px;
+    border-radius: 4px;
+    color: #4267B2;
+    /* text-align: center; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 @media screen and (min-height:666px) {
-    
+
     input[type="submit"] {
-        margin-top:30px;
+        margin-top: 30px;
 
     }
 }

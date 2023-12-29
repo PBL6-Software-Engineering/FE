@@ -111,12 +111,13 @@
   <div class="container position-absolute bottom-0 start-0 mb-30" id="footer">
     <p class="text-center" id="or">Hoặc đăng nhập bằng:</p>
     <div id="social-media-container">
-      <img src="assets/media/icon/social-media/facebook1.svg" alt="" />
-      <img src="assets/media/icon/social-media/twitter.svg" alt="" />
-      <img
-        src="assets/media/icon/social-media/google-contained-fill.svg"
-        alt=""
-      />
+      <span (click)="loginWithFacebook()" class="icon-fb">
+        <i class="fa fa-facebook-square fs-18" aria-hidden="true"></i>
+      </span>
+      <asl-google-signin-button
+        type="icon"
+        size="medium"
+      ></asl-google-signin-button>
     </div>
   </div>
 </div>

@@ -9,7 +9,70 @@ import { TokenStorageService } from 'src/app/base/auth/services/token_storage.se
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements OnInit {
-  menuItemsAdmin: any[] = [
+  menuItemsManager: any[] = [
+    {
+      label: 'Tổng quan',
+      routerLink: '/admin/dashboard',
+    },
+    {
+      label: 'Thiết lập tài khoản',
+      routerLink: undefined,
+      subItems: [
+        {
+          label: 'Cập nhật thông tin',
+          routerLink: '/admin/account-setting/update-info/admin',
+        },
+        {
+          label: 'Đổi mật khẩu',
+          routerLink: '/admin/account-setting/update-password',
+        },
+      ],
+    },
+    {
+      label: 'Quản lý chung',
+      routerLink: undefined,
+      subItems: [
+        { label: 'Danh mục', routerLink: '/admin/general/category' },
+        { label: 'Chuyên khoa', routerLink: '/admin/general/department' },
+      ],
+    },
+    {
+      label: 'Quản lý admin',
+      routerLink: '/admin/manage-admin',
+    },
+    {
+      label: 'Tài khoản người dùng',
+      routerLink: '/admin/account-user',
+    },
+    {
+      label: 'Bệnh viện',
+      routerLink: '/admin/hospital',
+    },
+    {
+      label: 'Bảo hiểm',
+      routerLink: '/admin/health-insurance',
+    },
+    {
+      label: 'Bài viết',
+      routerLink: '/admin/article',
+    },
+    {
+      label: 'Hội thoại',
+      routerLink: '/admin/chat',
+    },
+    {
+      label: 'Báo cáo',
+      routerLink: undefined,
+      subItems: [
+        { label: 'Danh mục', routerLink: '/admin/statistic/category' },
+        { label: 'Chuyên khoa', routerLink: '/admin/statistic/department' },
+        { label: 'Bài viết', routerLink: '/admin/statistic/article' },
+        { label: 'Bệnh viện', routerLink: '/admin/statistic/hospital' },
+        { label: 'Bác sĩ', routerLink: '/admin/statistic/doctor' },
+      ],
+    },
+  ];
+  menuItemsSuperAdmin: any[] = [
     {
       label: 'Tổng quan',
       routerLink: '/admin/dashboard',
@@ -56,6 +119,65 @@ export class SidebarComponent implements OnInit {
     //   label: 'Lịch hẹn',
     //   routerLink: '/admin/appointment',
     // },
+    {
+      label: 'Bài viết',
+      routerLink: '/admin/article',
+    },
+    {
+      label: 'Hội thoại',
+      routerLink: '/admin/chat',
+    },
+    {
+      label: 'Báo cáo',
+      routerLink: undefined,
+      subItems: [
+        { label: 'Danh mục', routerLink: '/admin/statistic/category' },
+        { label: 'Chuyên khoa', routerLink: '/admin/statistic/department' },
+        { label: 'Bài viết', routerLink: '/admin/statistic/article' },
+        { label: 'Bệnh viện', routerLink: '/admin/statistic/hospital' },
+        { label: 'Bác sĩ', routerLink: '/admin/statistic/doctor' },
+      ],
+    },
+  ];
+  menuItemsAdmin: any[] = [
+    {
+      label: 'Tổng quan',
+      routerLink: '/admin/dashboard',
+    },
+    {
+      label: 'Thiết lập tài khoản',
+      routerLink: undefined,
+      subItems: [
+        {
+          label: 'Cập nhật thông tin',
+          routerLink: '/admin/account-setting/update-info/admin',
+        },
+        {
+          label: 'Đổi mật khẩu',
+          routerLink: '/admin/account-setting/update-password',
+        },
+      ],
+    },
+    {
+      label: 'Quản lý chung',
+      routerLink: undefined,
+      subItems: [
+        { label: 'Danh mục', routerLink: '/admin/general/category' },
+        { label: 'Chuyên khoa', routerLink: '/admin/general/department' },
+      ],
+    },
+    {
+      label: 'Tài khoản người dùng',
+      routerLink: '/admin/account-user',
+    },
+    {
+      label: 'Bệnh viện',
+      routerLink: '/admin/hospital',
+    },
+    {
+      label: 'Bảo hiểm',
+      routerLink: '/admin/health-insurance',
+    },
     {
       label: 'Bài viết',
       routerLink: '/admin/article',
@@ -178,6 +300,7 @@ export class SidebarComponent implements OnInit {
       routerLink: '/admin/report',
     },
   ];
+
   menuItems: any[] = [];
   constructor(
     private router: Router,
@@ -187,12 +310,27 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
     const role = this.tokenStorageService.getRole();
-    if (role && role.toString() === 'manager') {
-      this.menuItems = this.menuItemsAdmin;
-    } else if (role && role.toString() === 'hospital') {
-      this.menuItems = this.menuItemsHospital;
-    } else if (role && role.toString() === 'doctor') {
-      this.menuItems = this.menuItemsDoctor;
+    if (!role) {
+      this.router.navigateByUrl('/');
+      return;
+    }
+
+    switch (role) {
+      case 'manager':
+        this.menuItems = this.menuItemsManager;
+        break;
+      case 'superadmin':
+        this.menuItems = this.menuItemsSuperAdmin;
+        break;
+      case 'admin':
+        this.menuItems = this.menuItemsAdmin;
+        break;
+      case 'hospital':
+        this.menuItems = this.menuItemsHospital;
+        break;
+      case 'doctor':
+        this.menuItems = this.menuItemsDoctor;
+        break;
     }
 
     const url = this.router.url;
@@ -265,6 +403,7 @@ export class SidebarComponent implements OnInit {
       }
     }
   }
+
   logout() {
     this.tokenStorageService.removeToken();
     this.router.navigateByUrl('/');
