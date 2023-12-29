@@ -102,16 +102,46 @@ export class SignInUserComponent implements OnInit {
   ngOnInit() {
     this.socialAuthService.authState.subscribe((user) => {
       this.socialUser = user;
-      console.log('user', user);
+      if (user.provider === 'GOOGLE') {
+        this.loginWithGoogle(user);
+      }
     });
   }
 
   loginWithFacebook(): void {
     this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
-  loginWithGoogle(): void {
-    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  loginWithGoogle(user: any): void {
+    this.apiService
+      .loginGoogle({
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        avatar: user.photoUrl,
+      })
+      .subscribe({
+        next: ({ data }) => {
+          this.tokenStorageService.saveToken(data.access_token, data.role);
+          this.tokenStorageService.saveUser(data);
+          this.toastrService.success('Đăng nhập thành công');
+          if (data.role === 'user') {
+            this.router.navigateByUrl('/');
+          } else {
+            if (data.role === 'hospital') {
+              this.router.navigateByUrl('/admin/dashboard');
+            } else {
+              this.router.navigateByUrl(
+                `/admin/account-setting/update-info/${data.role}`,
+              );
+            }
+          }
+        },
+        error: (err) => {
+          this.toastrService.error('Đăng nhập thất bại');
+        },
+      });
   }
+
   signOut(): void {
     this.socialAuthService.signOut();
   }

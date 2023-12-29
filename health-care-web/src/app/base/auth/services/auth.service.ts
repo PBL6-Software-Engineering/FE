@@ -88,4 +88,8 @@ export class AuthService {
   resetPassAdmin(obj: any) {
     return this.http.post(`${linkApi}/admin/forgot-update`, obj);
   }
+
+  loginGoogle(obj: any): Observable<any> {
+    return this.http.post(`${linkApi}/infor-user/login-google`, obj);
+  }
 }
