@@ -1,0 +1,58 @@
+<div class="wrapper">
+  <div class="fw-bolder fs-5 mb-3">Sửa quyền</div>
+  <form
+    (ngSubmit)="save()"
+    appFocusInvalidInput
+    #focusInput="focusInvalidInput"
+    [formGroup]="form"
+    #f="ngForm"
+  >
+    <div class="mb-3">
+      <span class="form-label fw-bold"> Tên: </span>
+      <span>{{ item?.name }}</span>
+    </div>
+
+    <div class="mb-3">
+      <span class="form-label fw-bold"> Email: </span>
+      <span>{{ item?.email }}</span>
+    </div>
+
+    <div>
+      <label for="role" class="form-label fw-bold">
+        Quyền <span class="text-danger">*</span>:
+      </label>
+
+      <select
+        class="form-select"
+        aria-label="Default select example"
+        formControlName="role"
+        id="role"
+      >
+        <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+      </select>
+
+      <app-show-error [control]="form.get('role')"></app-show-error>
+    </div>
+
+    <div class="flex-end mt-30">
+      <button
+        type="button"
+        class="btn btn-secondary mr-12"
+        data-bs-dismiss="modal"
+        #closeModal
+        (click)="resetForm()"
+      >
+        Huỷ
+      </button>
+      <button
+        type="submit"
+        class="btn btn-primary-1 w-150px column-center"
+        (click)="focusInput.focus()"
+        [disabled]="isSaving"
+      >
+        <div class="loader" *ngIf="isSaving"></div>
+        Lưu
+      </button>
+    </div>
+  </form>
+</div>

@@ -84,4 +84,29 @@ export class AdminService {
       return new Observable<any>();
     }
   }
+
+  getAllAdmin({
+    search = '',
+    page = 1,
+    paginate = 20,
+    role = '',
+    sortlatest = true,
+    typesort = 'new',
+  }): Observable<any> {
+    return this.http.get<any>(
+      `${linkApi}/${this.model}/all-admin?search=${search}&page=${page}&paginate=${paginate}&role=${role}&sortlatest=${sortlatest}&typesort=${typesort}`,
+    );
+  }
+
+  deleteAdmin(id: any): Observable<any> {
+    return this.http.delete<any>(`${linkApi}/${this.model}/${id}`);
+  }
+
+  addAdmin(obj: any): Observable<any> {
+    return this.http.post<any>(`${linkApi}/${this.model}/add-admin`, obj);
+  }
+
+  editRoleAdmin(id: any, obj: any): Observable<any> {
+    return this.http.patch<any>(`${linkApi}/${this.model}/${id}`, obj);
+  }
 }

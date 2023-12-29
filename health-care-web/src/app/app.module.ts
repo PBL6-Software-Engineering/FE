@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,7 +21,15 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { NgProgressModule } from 'ngx-progressbar';
 import { NgProgressHttpModule } from 'ngx-progressbar/http';
-import { linkSocket } from './core/constants/api.constant';
+import { linkSocket, GOOGLE_ID } from './core/constants/api.constant';
+
+import {
+  GoogleLoginProvider,
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+  GoogleSigninButtonModule,
+  FacebookLoginProvider,
+} from '@abacritt/angularx-social-login';
 
 const config: SocketIoConfig = {
   url: linkSocket,
@@ -53,11 +61,34 @@ const config: SocketIoConfig = {
     }),
     NgProgressHttpModule,
     SocketIoModule.forRoot(config),
+    SocialLoginModule,
+    GoogleSigninButtonModule,
   ],
   providers: [
     authInterceptorProviders,
     spinnerInterceptorProviders,
     preprocessResponseProviders,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('1058739175311564'),
+          },
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(GOOGLE_ID, {
+              oneTapEnabled: false, // <===== default is true
+            }),
+          },
+        ],
+        onError: (err) => {
+          console.error(err);
+        },
+      } as SocialAuthServiceConfig,
+    },
   ],
   bootstrap: [AppComponent],
 })

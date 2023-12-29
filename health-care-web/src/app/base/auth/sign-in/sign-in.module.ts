@@ -8,6 +8,10 @@ import { SignInComponent } from './sign-in.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from 'src/app/core/core.module';
+import {
+  GoogleSigninButtonModule,
+  SocialLoginModule,
+} from '@abacritt/angularx-social-login';
 
 @NgModule({
   declarations: [SignInAdminComponent, SignInUserComponent, SignInComponent],
@@ -17,6 +21,7 @@ import { CoreModule } from 'src/app/core/core.module';
     FormsModule,
     ReactiveFormsModule,
     CoreModule,
+    GoogleSigninButtonModule,
   ],
 })
 export class SignInModule {}

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { F1DashboardComponent } from './f1-dashboard/f1-dashboard.component';
+import { F4ManageAdminComponent } from './f4-manage-admin/f4-manage-admin.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,13 @@ const routes: Routes = [
         loadChildren: () =>
           import('./f4-account-user/f4-account-user.module').then(
             (m) => m.F4AccountUserModule,
+          ),
+      },
+      {
+        path: 'manage-admin',
+        loadChildren: () =>
+          import('./f4-manage-admin/f4-manage-admin.module').then(
+            (m) => m.F4ManageAdminModule,
           ),
       },
       {
