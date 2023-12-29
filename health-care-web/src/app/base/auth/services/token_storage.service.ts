@@ -32,7 +32,7 @@ export class TokenStorageService {
   }
 
   isAdmin(): any {
-    return ['manager', 'hospital', 'doctor', 'supperadmin', 'admin'].includes(
+    return ['manager', 'hospital', 'doctor', 'superadmin', 'admin'].includes(
       localStorage.getItem('role') || '',
     );
   }
