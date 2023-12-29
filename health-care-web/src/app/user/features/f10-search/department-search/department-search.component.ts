@@ -1,16 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { ArticleService } from 'src/app/admin/_services/article.service';
-import { ExpertService } from 'src/app/user/services/expert.service';
-
+import { CommonService } from 'src/app/core/services/common.service';
+import { DepartmentService } from 'src/app/user/services/department.service';
 @Component({
-  selector: 'app-service-search',
-  templateUrl: './service-search.component.html',
-  styleUrls: ['./service-search.component.css'],
+  selector: 'app-department-search',
+  templateUrl: './department-search.component.html',
+  styleUrls: ['./department-search.component.css'],
 })
-export class ServiceSearchComponent implements OnInit {
+export class DepartmentSearchComponent implements OnInit {
   @Input() textSearch: string;
   dataSources: any[] = [];
   isLoading = false;
@@ -27,19 +25,16 @@ export class ServiceSearchComponent implements OnInit {
   oldTextSearch = '';
   isSearching = false;
 
+  departments: any[] = [];
   constructor(
-    private api: ArticleService,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private expertApi: ExpertService,
+    private departmentApi: DepartmentService,
   ) {}
 
   ngOnInit(): void {
+    this.oldTextSearch = this.textSearch;
     this.search();
-    this.provinces = JSON.parse(localStorage.getItem('provinces') || '[]');
-    
   }
 
   search() {
@@ -47,10 +42,10 @@ export class ServiceSearchComponent implements OnInit {
     this.isLoading = true;
     this.spinner.show();
     this.dataSources = [];
-    this.expertApi.getDoctor(this.textSearch).subscribe({
+    this.departmentApi.getDepartments(this.textSearch).subscribe({
       next: ({ data }) => {
         this.dataSources = data.data;
-
+        console.log(data.data)
         this.currentPage = data.current_page; // trang hiện tại
         this.totalPage = data.last_page; // số trang
         this.totalElements = data.total; // tổng số phần tử trong database

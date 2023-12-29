@@ -13,6 +13,8 @@ import { FormsModule } from '@angular/forms';
 import { ShareModuleModule } from '../../share-module/share-module.module';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ExpertCardComponent } from './expert-search/expert-card/expert-card.component';
+import { DepartmentSearchComponent } from './department-search/department-search.component';
+import { DepartmentCardComponent } from './department-search/department-card/department-card.component';
 @NgModule({
   declarations: [
     HospitalSearchComponent,
@@ -20,6 +22,8 @@ import { ExpertCardComponent } from './expert-search/expert-card/expert-card.com
     ServiceSearchComponent,
     F10SearchComponent,
     ExpertCardComponent,
+    DepartmentSearchComponent,
+    DepartmentCardComponent,
   ],
   imports: [
     CommonModule,

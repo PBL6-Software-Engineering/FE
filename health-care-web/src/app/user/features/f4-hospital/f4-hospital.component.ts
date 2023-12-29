@@ -54,7 +54,7 @@ export class F4HospitalComponent implements OnInit {
           })
           .subscribe(({ data }) => {
             this.healthInsurances = data.data;
-            console.log(this.healthInsurances);
+            console.log('healthInsurance',this.healthInsurances);
           });
       }
     });
