@@ -1,10 +1,3 @@
-// import {
-//   SocialAuthService,
-//   FacebookLoginProvider,
-//   SocialUser,
-//   GoogleLoginProvider,
-// } from '@abacritt/angularx-social-login';
-
 import { Component, OnInit } from '@angular/core';
 import {
   NavigationEnd,
@@ -21,20 +14,9 @@ import {
 })
 export class AppComponent implements OnInit {
   title = 'health-care-web';
-
-  // socialUser!: SocialUser;
-  isLoggedin?: boolean = undefined;
-
   isLoader: boolean;
 
-  constructor(
-    private router: Router,
-    // private socialAuthService: SocialAuthService,
-  ) {}
-
-  // ngOnInit() {
-  //   this.routerEvents();
-  // }
+  constructor(private router: Router) {}
 
   routerEvents() {
     this.router.events.subscribe((event: any) => {
@@ -53,20 +35,5 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.routerEvents();
-
-    // this.socialAuthService.authState.subscribe((user) => {
-    //   this.socialUser = user;
-    //   this.isLoggedin = user != null;
-    // });
   }
-
-  // loginWithFacebook(): void {
-  //   this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
-  // }
-  // loginWithGoogle(): void {
-  //   this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
-  // }
-  // signOut(): void {
-  //   this.socialAuthService.signOut();
-  // }
 }

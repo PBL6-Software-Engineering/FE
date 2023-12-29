@@ -5,6 +5,12 @@ import { Router } from '@angular/router';
 
 import { ToastrService } from 'ngx-toastr';
 import { TokenStorageService } from '../../services/token_storage.service';
+import {
+  SocialAuthService,
+  FacebookLoginProvider,
+  SocialUser,
+  GoogleLoginProvider,
+} from '@abacritt/angularx-social-login';
 
 @Component({
   selector: 'app-sign-in-user',
@@ -17,6 +23,9 @@ export class SignInUserComponent implements OnInit {
   isShowPass = false;
   responseData: any;
   message: string = '';
+
+  socialUser!: SocialUser;
+
   constructor(
     private apiService: AuthService,
     private formBuilder: FormBuilder,
@@ -25,6 +34,7 @@ export class SignInUserComponent implements OnInit {
     private router: Router,
     private toastrService: ToastrService,
     private tokenStorageService: TokenStorageService,
+    private socialAuthService: SocialAuthService,
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -89,5 +99,19 @@ export class SignInUserComponent implements OnInit {
     }
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.socialAuthService.authState.subscribe((user) => {
+      this.socialUser = user;
+    });
+  }
+
+  loginWithFacebook(): void {
+    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+  loginWithGoogle(): void {
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
+  signOut(): void {
+    this.socialAuthService.signOut();
+  }
 }
