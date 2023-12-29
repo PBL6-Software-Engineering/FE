@@ -75,7 +75,9 @@ const config: SocketIoConfig = {
         providers: [
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('1058739175311564'),
+            provider: new FacebookLoginProvider('1058739175311564', {
+              oneTapEnabled: false, // <===== default is true
+            }),
           },
           {
             id: GoogleLoginProvider.PROVIDER_ID,
