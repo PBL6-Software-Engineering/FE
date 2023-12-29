@@ -27,7 +27,7 @@ export class VerifyEmailAdminComponent implements OnInit {
         this.authService.verifyEmailAdmin(this.token).subscribe({
           next: (res) => {
             this.toastrService.success('Xác thực thành công');
-            this.isSuccess = false;
+            this.isSuccess = true;
             this.isVerify = false;
           },
           error: (err) => {
