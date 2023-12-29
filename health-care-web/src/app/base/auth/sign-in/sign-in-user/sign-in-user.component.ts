@@ -105,9 +105,10 @@ export class SignInUserComponent implements OnInit {
       console.log('user', user);
       if (user.provider === 'GOOGLE') {
         this.loginGoogle(user);
-      } else if (user.provider === 'FACEBOOK') {
-        this.loginFacebook(user);
-      }
+      } 
+      // else if (user.provider === 'FACEBOOK') {
+      //   this.loginFacebook(user);
+      // }
     });
   }
 
