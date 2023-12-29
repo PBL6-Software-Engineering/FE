@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { prefixApi } from 'src/app/core/constants/api.constant';
 import { ServiceService } from 'src/app/user/services/service.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class F12HospitalServiceDetailComponent implements OnInit {
   serviceId: any;
   step = 1;
   dataBooking: any;
+  ratings = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -26,6 +28,18 @@ export class F12HospitalServiceDetailComponent implements OnInit {
           next: ({ data }) => {
             this.service = data;
             console.log('this.service', this.service);
+            this.ratings = this.service.ratings.data;
+            for (let rating of this.ratings) {
+              rating.avatar_user = prefixApi + '/' + rating.avatar_user;
+              rating.number_ratings = [];
+              for (let i = 0; i < rating.number_rating; i++) {
+                rating.number_ratings.push(1);
+              }
+
+              for (let i = rating.number_rating; i < 5; i++) {
+                rating.number_ratings.push(0);
+              }
+            }
           },
           error: (err) => {
             console.log(err);
