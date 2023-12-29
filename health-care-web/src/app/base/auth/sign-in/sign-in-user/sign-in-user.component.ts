@@ -56,9 +56,7 @@ export class SignInUserComponent implements OnInit {
               this.router.navigateByUrl('/');
             } else {
               if (data.role === 'hospital') {
-                this.router.navigateByUrl(
-                  '/admin/dashboard',
-                );
+                this.router.navigateByUrl('/admin/dashboard');
               } else {
                 this.router.navigateByUrl(
                   `/admin/account-setting/update-info/${data.role}`,

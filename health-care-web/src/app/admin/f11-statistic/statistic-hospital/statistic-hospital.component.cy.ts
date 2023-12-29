@@ -1,7 +1,7 @@
-import { StatisticHospitalComponent } from './statistic-hospital.component'
+import { StatisticHospitalComponent } from './statistic-hospital.component';
 
 describe('StatisticHospitalComponent', () => {
   it('should mount', () => {
-    cy.mount(StatisticHospitalComponent)
-  })
-})
+    cy.mount(StatisticHospitalComponent);
+  });
+});

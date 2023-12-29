@@ -1,54 +1,55 @@
+<div class="row">
+  <div class="banner-home text-center">
+    <div
+      class="container py-30 d-flex flex-column justify-content-around h-320"
+    >
+      <div class="fw-700 fs-30 banner__title-info">
+        Bệnh viện - Bác sĩ - Dịch vụ y tế: Đặt hẹn khám ngay
+      </div>
+      <div class="fw-600 fs-16 banner__sub-info">
+        Tìm các bác sĩ, phòng khám và bệnh viện tốt nhất ở thành phố gần bạn
+        nhất.
+      </div>
+      <div class="wrapper-input-search gap-5">
+        <ng-select
+          [(ngModel)]="province"
+          class="w-200 input-search"
+          placeholder="Chọn tỉnh, thành phố"
+        >
+          <ng-option
+            *ngFor="let province of provinces"
+            [value]="province?.name"
+          >
+            {{ province.name }}
+          </ng-option>
+        </ng-select>
+
+        <input
+          type="text"
+          class="form-control w-320 input-search"
+          placeholder="Tìm kiếm bác sĩ, dịch vụ, bệnh viện"
+          [(ngModel)]="textSearch"
+          (keyup.enter)="search()"
+        />
+      </div>
+    </div>
+  </div>
+</div>
 <div class="py-30 container">
   <div class="row">
     <div class="col-sm-9 m-auto">
-      <div class="row">
-        <div class="banner-home text-center">
-          <div
-            class="container py-30 d-flex flex-column justify-content-around h-320"
-          >
-            <div class="fw-700 fs-30 banner__title-info">
-              Bệnh viện - Bác sĩ - Dịch vụ y tế: Đặt hẹn khám ngay
-            </div>
-            <div class="fw-600 fs-16 banner__sub-info">
-              Tìm các bác sĩ, phòng khám và bệnh viện tốt nhất ở thành phố gần
-              bạn nhất.
-            </div>
-            <div class="wrapper-input-search gap-5">
-              <ng-select
-                [(ngModel)]="province"
-                class="w-200 input-search"
-                placeholder="Chọn tỉnh, thành phố"
-              >
-                <ng-option
-                  *ngFor="let province of provinces"
-                  [value]="province?.name"
-                >
-                  {{ province.name }}
-                </ng-option>
-              </ng-select>
-
-              <input
-                type="text"
-                class="form-control w-320 input-search"
-                placeholder="Tìm kiếm bác sĩ, dịch vụ, bệnh viện"
-                [(ngModel)]="textSearch"
-                (keyup.enter)="search()"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
       <div class="border">
-        <h4 class="pt-3 ps-2 color fw-700">Bác sĩ</h4>
-        <app-expert-search></app-expert-search>
-      </div>
-      <div class="border">
-        <h4 class="pt-3 ps-2 color fw-700">Dịch vụ</h4>
+        <h4 class="pt-3 ps-2 color fw-700">Bệnh viện</h4>
         <app-hospital-search></app-hospital-search>
       </div>
       <div class="border">
-        <h4 class="pt-3 ps-2 color fw-700">Bệnh viện</h4>
-        <app-service-search></app-service-search>
+        <h4 class="pt-3 ps-2 color fw-700">Bác sĩ</h4>
+        <app-expert-search [textSearch]="textSearch"></app-expert-search>
+      </div>
+      <div class="border">
+        <h4 class="pt-3 ps-2 color fw-700">Dịch vụ</h4>
+        <!-- <app-service-search></app-service-search>-->
+        <app-expert-search></app-expert-search>
       </div>
       <!-- Error data -->
       <div
@@ -99,9 +100,4 @@
       </div>
     </div>
   </div>
-
-  <app-no-data
-    *ngIf="dataSources && dataSources.length === 0 && !isLoading"
-    [keyword]="oldTextSearch"
-  ></app-no-data>
 </div>

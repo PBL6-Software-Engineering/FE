@@ -76,8 +76,4 @@ export class HospitalSearchComponent implements OnInit {
     this.currentPage = page;
     this.search();
   }
-
-  searchHospital() {
-    this.router.navigate(['/benh-vien/tim-kiem', this.textSearch || '']);
-  }
 }

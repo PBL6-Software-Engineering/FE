@@ -7,10 +7,14 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class HospitalInfoComponent implements OnInit {
   @Input() hospital: any;
+  @Input() healthInsurances: any[];
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.hospital);
+    console.log(this.healthInsurances);
+  }
 
   checkIsArray(value: any) {
     if (Array.isArray(value)) {

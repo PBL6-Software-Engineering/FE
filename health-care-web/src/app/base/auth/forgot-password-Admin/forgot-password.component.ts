@@ -33,7 +33,9 @@ export class ForgotPasswordAdminComponent {
   onEmailSubmit() {
     if (this.forgotPassForm.valid) {
       this.isSendingEmail = true;
-      this.AuthService.forgotPassAdmin(this.forgotPassForm.value.email).subscribe({
+      this.AuthService.forgotPassAdmin(
+        this.forgotPassForm.value.email,
+      ).subscribe({
         next: () => {
           this.isSendingEmail = false;
           this.isSendingSuccess = true;

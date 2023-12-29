@@ -34,7 +34,7 @@
     (click)="chooseTab('undoneBooking')"
     [class.active]="tab === 'undoneBooking'"
   >
-    Hoàn thành ({{ undoneNumber }})
+    Chưa hoàn thành ({{ undoneNumber }})
   </li>
   <!-- <li
     class="nav-tab"
@@ -247,24 +247,148 @@
       </div>
       <div class="modal-body">
         <div id="service-container">
-          <h5
-            *ngIf="itemSelected?.service_infor?.about_service"
-            class="fw-700 mb-3"
-          >
+          <span class="title mb-2">Thông tin khách hàng</span>
+          <div class="row">
+            <div class="col-9">
+              <p>
+                <span class="fw-bold">Tên khách hàng:</span>
+                {{ itemSelected?.name_patient }}
+              </p>
+              <p>
+                <span class="fw-bold">Giới tính:</span>
+                {{ itemSelected?.gender_patient == 1 ? "Nam" : "Nữ" }}
+              </p>
+              <p>
+                <span class="fw-bold">Ngày sinh:</span>
+                {{ itemSelected?.date_of_birth_patient }}
+              </p>
+              <p>
+                <span class="fw-bold">Email:</span>
+                {{ itemSelected?.email_patient }}
+              </p>
+              <p>
+                <span class="fw-bold">SDT:</span>
+                {{ itemSelected?.phone_patient }}
+              </p>
+              <p>
+                <span class="fw-bold">Địa chỉ:</span>
+                {{ itemSelected?.address_patient }}
+              </p>
+              <p>
+                <span class="fw-bold">Bệnh trạng:</span>
+                {{ itemSelected?.health_condition }}
+              </p>
+            </div>
+            <div class="col-3">
+              <div class="CardBorder">
+                <img
+                  class="avatar-img mb-2"
+                  [src]="
+                    itemSelected?.user_avatar ||
+                    'assets/media/image/avatar_user_default.png'
+                  "
+                  alt="user_avatar"
+                />
+                <p>Bệnh nhân {{ itemSelected?.name_patient }}</p>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="!itemSelected?.service_infor">
+            <span class="title mb-2">Thông tin lịch tư vấn</span>
+            <div class="row">
+              <div class="col-9">
+                <p>
+                  <span class="fw-bold">Tên bác sĩ tư vấn:</span>
+                  {{ itemSelected?.doctor_name }}
+                </p>
+                <p>
+                  <span class="fw-bold">Email bác sĩ tư vấn:</span>
+                  {{ itemSelected?.doctor_email }}
+                </p>
+                <p>
+                  <span class="fw-bold">SDT bác sĩ:</span>
+                  {{ itemSelected?.doctor_phone }}
+                </p>
+                <p>
+                  <span class="fw-bold">Chuyên khoa:</span>
+                  {{ itemSelected?.department_name }}
+                </p>
+                <p>
+                  <span class="fw-bold">Bệnh viện:</span>
+                  {{ itemSelected?.hospital_name }}
+                </p>
+                <p>
+                  <span class="fw-bold">SDT bệnh viện:</span>
+                  {{ itemSelected?.hospital_phone }}
+                </p>
+                <p>
+                  <span class="fw-bold">Email bệnh viện:</span>
+                  {{ itemSelected?.hospital_email }}
+                </p>
+                <p>
+                  <span class="fw-bold">Địa chỉ bệnh viện:</span>
+                  {{ itemSelected?.hospital_address }}
+                </p>
+              </div>
+              <div class="col-3">
+                <div class="CardBorder">
+                  <img
+                    class="avatar-img mb-2"
+                    [src]="
+                      itemSelected?.doctor_avatar ||
+                      'assets/media/image/avatar_user_default.png'
+                    "
+                    alt="doctor_avatar"
+                  />
+                  <p>Bác sĩ {{ itemSelected?.doctor_name }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="itemSelected?.service_infor">
+            <span class="title">Thông tin dịch vụ</span>
+            <p>
+              <span class="fw-bold">Mô tả:</span>
+              <span
+                [innerHTML]="itemSelected?.service_infor?.about_service"
+              ></span>
+            </p>
+            <p>
+              <span class="fw-bold">Quy trình:</span>
+              <span
+                [innerHTML]="itemSelected?.service_infor?.prepare_process"
+              ></span>
+            </p>
+            <p>
+              <span class="fw-bold">Chi tiết dịch vụ:</span>
+              <span
+                [innerHTML]="itemSelected?.service_infor?.service_details"
+              ></span>
+            </p>
+          </div>
+
+          <span class="title mb-2">Thông tin thêm</span>
+          <p>
+            <span class="fw-bold">Chi phí:</span>
+            {{ itemSelected?.work_schedule_price }}
+          </p>
+          <p>
+            <span class="fw-bold">Khoảng thời gian:</span>
+            {{ itemSelected?.work_schedule_time.interval[0] }}-{{
+              itemSelected?.work_schedule_time.interval[1]
+            }}
+          </p>
+          <p>
+            <span class="fw-bold">Ngày hẹn:</span>
+            {{ itemSelected?.work_schedule_time.date | date: "dd/MM/yyyy" }}
+          </p>
+
+          <!-- <h5 *ngIf="itemSelected?.service_infor?.about_service" class="fw-700 mb-3">
             Về dịch vụ
           </h5>
-          <div [innerHTML]="itemSelected?.service_infor?.about_service"></div>
-          <h5
-            *ngIf="itemSelected?.service_infor?.prepare_process"
-            class="fw-700 mb-3"
-          >
-            Quy trình
-          </h5>
-          <div [innerHTML]="itemSelected?.service_infor?.prepare_process"></div>
-          <h5 class="fw-700 mb-3">Chi tiết dịch vụ</h5>
-          <div [innerHTML]="itemSelected?.service_infor?.prepare_process"></div>
+          -->
         </div>
-        <div id="work_schedule_content" [innerHTML]="sanitizedContent"></div>
+        <!-- <div id="work_schedule_content" [innerHTML]="sanitizedContent"></div> -->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">

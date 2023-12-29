@@ -16,7 +16,7 @@ import { StatisticAppointmentComponent } from './statistic-appointment/statistic
     StatisticArticleComponent,
     StatisticHospitalComponent,
     StatisticDoctorComponent,
-    StatisticAppointmentComponent
+    StatisticAppointmentComponent,
   ],
   imports: [CommonModule, F11StatisticRoutingModule],
 })

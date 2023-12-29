@@ -10,11 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from 'src/app/core/core.module';
 
 @NgModule({
-  declarations: [
-    SignInAdminComponent,
-    SignInUserComponent,
-    SignInComponent,
-  ],
+  declarations: [SignInAdminComponent, SignInUserComponent, SignInComponent],
   imports: [
     CommonModule,
     SignInRoutingModule,
