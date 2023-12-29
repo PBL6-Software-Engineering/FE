@@ -102,6 +102,7 @@ export class SignInUserComponent implements OnInit {
   ngOnInit() {
     this.socialAuthService.authState.subscribe((user) => {
       this.socialUser = user;
+      console.log('user', user);
     });
   }
 
