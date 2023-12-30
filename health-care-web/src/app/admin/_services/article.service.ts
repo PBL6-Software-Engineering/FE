@@ -17,7 +17,7 @@ export class ArticleService {
     sortLatest = true,
     role = '',
   }): Observable<any> {
-    if (['manager', 'admin', 'supperadmin'].includes(role)) {
+    if (['manager', 'admin', 'superadmin'].includes(role)) {
       return this.http.get<any>(
         `${linkApi}/${this.model}/admin?search=${search}&page=${page}&paginate=${paginate}&sortlatest=${sortLatest}`,
       );
