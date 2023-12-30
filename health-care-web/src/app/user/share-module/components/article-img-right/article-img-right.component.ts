@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { toSlug } from 'src/app/core/libs/library.helper';
 
@@ -7,7 +7,7 @@ import { toSlug } from 'src/app/core/libs/library.helper';
   templateUrl: './article-img-right.component.html',
   styleUrls: ['./article-img-right.component.scss'],
 })
-export class ArticleImgRightComponent {
+export class ArticleImgRightComponent implements OnInit {
   @Input() article: any = {};
 
   constructor(private router: Router) {}

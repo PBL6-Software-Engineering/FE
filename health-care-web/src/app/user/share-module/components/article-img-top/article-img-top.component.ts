@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { toSlug } from 'src/app/core/libs/library.helper';
 
@@ -7,11 +7,13 @@ import { toSlug } from 'src/app/core/libs/library.helper';
   templateUrl: './article-img-top.component.html',
   styleUrls: ['./article-img-top.component.scss'],
 })
-export class ArticleImgTopComponent {
+export class ArticleImgTopComponent implements OnInit {
   @Input() article: any = {};
 
   constructor(private router: Router) {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.article);
+  }
 
   navigateArticleDetail(article: any) {
     if (article && article.id_article && article.name_category) {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../../_services/admin.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { TokenStorageService } from 'src/app/base/auth/services/token_storage.service';
 import { Router } from '@angular/router';
@@ -45,11 +45,10 @@ export class UpdateProfileHospitalComponent implements OnInit {
       phone: new FormControl('', [Validators.required]),
       address: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
-      location: new FormControl([16.07527968579236, 108.15007925033545], []),
       province_code: new FormControl(null, [Validators.required]),
       avatar: new FormControl(null, []),
       cover_hospital: new FormControl(null, []),
-      infrastructure: new FormControl('', []),
+      infrastructure: new FormArray([], []),
     });
     this.adminService.getProfile().subscribe({
       next: ({ data }) => {
@@ -70,14 +69,12 @@ export class UpdateProfileHospitalComponent implements OnInit {
   save() {
     if (this.form.valid && !this.isSaving) {
       const obj = Object.assign({}, this.form.value);
+      obj.location = [16.07527968579236, 108.15007925033545];
       if (!this.isChangeFileAvatar) {
         delete obj.avatar;
       }
       if (!this.isChangeFileCover) {
         delete obj.cover_hospital;
-      }
-      if (typeof obj.infrastructure === 'string') {
-        obj.infrastructure = obj.infrastructure.split(',');
       }
       this.isSaving = true;
       this.adminService.updateProfile(obj).subscribe({
@@ -123,6 +120,43 @@ export class UpdateProfileHospitalComponent implements OnInit {
   }
 
   patchValue() {
-    this.form.patchValue(this.hospital);
+    const hospital = Object.assign({}, this.hospital);
+    const { infrastructure } = hospital;
+    delete hospital.infrastructure;
+
+    this.form.patchValue(hospital);
+
+    if (infrastructure && infrastructure.length) {
+      infrastructure.forEach((element: any) => {
+        this.addField('infrastructure', element);
+      });
+    } else {
+      this.addField('infrastructure');
+    }
+  }
+
+  get infrastructure(): FormArray {
+    return this.form.get('infrastructure') as FormArray;
+  }
+
+  addField(type: any, text: any = ''): void {
+    const fg = new FormControl(text, []);
+    if (type === 'infrastructure') {
+      this.infrastructure.push(fg);
+    }
+  }
+
+  removeField(type: any, index: any): void {
+    if (type === 'infrastructure') {
+      const arrayRemove = this.infrastructure.controls.filter(
+        (item: any, i: any) => i !== index,
+      );
+      this.form.setControl('infrastructure', new FormArray([]));
+      if (arrayRemove && arrayRemove.length > -1) {
+        arrayRemove.forEach((element: any) => {
+          this.infrastructure?.push(element);
+        });
+      }
+    }
   }
 }

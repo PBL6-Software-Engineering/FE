@@ -100,8 +100,10 @@
         >
           <img [src]="hospital.avatar" class="card-img-top" alt="Image" />
           <div class="card-body">
-            <h5 class="card-title fs-16 fw-700">{{ hospital.name }}</h5>
-            <p class="card-text fs-14">{{ hospital.description }}</p>
+            <h5 class="card-title fs-16 fw-700 preview-content-1">
+              {{ hospital.name }}
+            </h5>
+            <p class="card-text fs-14">{{ hospital.preview_description }}</p>
             <p class="column-center mt-12 color-primary">
               Xem thêm
               <i aria-hidden="true" class="fa fa-chevron-right mx-6"></i>

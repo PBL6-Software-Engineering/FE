@@ -57,8 +57,13 @@ export class AdminService {
     const role = this.tokenService.getRole();
     const formData = new FormData();
     for (const key of Object.keys(obj)) {
-      formData.append(key, obj[key]);
+      if (['location', 'infrastructure'].includes(key)) {
+        formData.append(key, JSON.stringify(obj[key]));
+      } else {
+        formData.append(key, obj[key]);
+      }
     }
+
     if (['manager', 'admin', 'superadmin'].includes(role)) {
       return this.http.post<any>(`${linkApi}/${this.model}/update`, formData);
     } else if (role === 'hospital') {

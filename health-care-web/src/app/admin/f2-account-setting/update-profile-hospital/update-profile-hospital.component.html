@@ -181,15 +181,13 @@
           Mô tả:
           <span class="text-danger">*</span>
         </label>
-        <textarea
-          type="text"
-          class="form-control"
-          id="description"
-          placeholder="Mô tả"
+
+        <quill-editor
           formControlName="description"
-          required
-          rows="5"
-        ></textarea>
+          placeholder="Thông tin mô tả bệnh viện"
+          id="description"
+        ></quill-editor>
+
         <app-show-error [control]="form.get('description')"></app-show-error>
       </div>
 
@@ -198,18 +196,41 @@
           Cơ sở vật chất:
           <span class="text-danger">*</span>
         </label>
-        <textarea
-          type="text"
-          class="form-control"
-          id="infrastructure"
-          placeholder="Cơ sở vật chất"
-          formControlName="infrastructure"
-          required
-          rows="5"
-        ></textarea>
-        <span class="text-warning">
-          Hướng dẫn: Liệt kê cơ sở vật chất cách nhau bằng dấu ,
-        </span>
+
+        <div formArrayName="infrastructure">
+          <div
+            class="mb-3 d-flex"
+            *ngFor="
+              let infrastructure of infrastructure.controls;
+              let i = index
+            "
+          >
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Nhập cơ sở vật chất"
+              [formControlName]="i"
+              required
+            />
+
+            <button
+              class="btn btn-danger ms-2"
+              type="button"
+              (click)="removeField('infrastructure', i)"
+            >
+              <i class="fa fa-minus-circle" aria-hidden="true"></i>
+            </button>
+
+            <button
+              class="btn btn-primary-1 ms-2"
+              type="button"
+              (click)="addField('infrastructure')"
+            >
+              <i class="fa fa-plus-circle" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+
         <app-show-error [control]="form.get('infrastructure')"></app-show-error>
       </div>
     </div>

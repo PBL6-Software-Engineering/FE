@@ -117,6 +117,10 @@ function processImageOfArray(array: any[]) {
       item.preview_content = item.content.replace(/<[^>]*>/g, ' ');
     }
 
+    if (item.description) {
+      item.preview_description = item.description.replace(/<[^>]*>/g, ' ');
+    }
+
     if (
       item.infor_hospital &&
       item.infor_hospital.cover_hospital &&
@@ -189,6 +193,10 @@ function processImageOfObject(item: any) {
   }
   if (item.content) {
     item.preview_content = item.content.replace(/<[^>]*>/g, ' ');
+  }
+
+  if (item.description) {
+    item.preview_description = item.description.replace(/<[^>]*>/g, ' ');
   }
 
   if (

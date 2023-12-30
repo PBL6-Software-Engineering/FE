@@ -1,4 +1,10 @@
-import { Component, Input } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { toSlug } from 'src/app/core/libs/library.helper';
 
@@ -7,10 +13,13 @@ import { toSlug } from 'src/app/core/libs/library.helper';
   templateUrl: './article-img-top-no-content.component.html',
   styleUrls: ['./article-img-top-no-content.component.scss'],
 })
-export class ArticleImgTopNoContentComponent {
+export class ArticleImgTopNoContentComponent implements OnInit, OnChanges {
   @Input() article: any = {};
 
   constructor(private router: Router) {}
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(this.article);
+  }
   ngOnInit(): void {}
 
   navigateArticleDetail(article: any) {

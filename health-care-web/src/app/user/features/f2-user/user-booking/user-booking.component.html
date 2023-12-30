@@ -260,7 +260,7 @@
               </p>
               <p>
                 <span class="fw-bold">Ngày sinh:</span>
-                {{ itemSelected?.date_of_birth_patient }}
+                {{ itemSelected?.date_of_birth_patient | date: "dd/MM/yyyy" }}
               </p>
               <p>
                 <span class="fw-bold">Email:</span>
@@ -353,13 +353,13 @@
                 [innerHTML]="itemSelected?.service_infor?.about_service"
               ></span>
             </p>
-            <p>
+            <p class="my-3">
               <span class="fw-bold">Quy trình:</span>
               <span
                 [innerHTML]="itemSelected?.service_infor?.prepare_process"
               ></span>
             </p>
-            <p>
+            <p class="my-3">
               <span class="fw-bold">Chi tiết dịch vụ:</span>
               <span
                 [innerHTML]="itemSelected?.service_infor?.service_details"
@@ -369,19 +369,24 @@
 
           <span class="title mb-2">Thông tin thêm</span>
           <p>
-            <span class="fw-bold">Chi phí:</span>
-            {{ itemSelected?.work_schedule_price }}
+            <span class="fw-bold">Chi phí: </span>
+            <span class="text-success fw-bold ml-4">{{
+              itemSelected?.work_schedule_price | currency: "VND"
+            }}</span>
           </p>
           <p>
-            <span class="fw-bold">Khoảng thời gian:</span>
-            {{ itemSelected?.work_schedule_time.interval[0] }}-{{
-              itemSelected?.work_schedule_time.interval[1]
-            }}
+            <span class="fw-bold">Thời gian khám:</span>
+            <span class="text-primary fw-bold">
+              {{ itemSelected?.work_schedule_time.interval[0] }}-{{
+                itemSelected?.work_schedule_time.interval[1]
+              }},
+              {{ itemSelected?.work_schedule_time.date | date: "dd/MM/yyyy" }}
+            </span>
           </p>
-          <p>
+          <!-- <p>
             <span class="fw-bold">Ngày hẹn:</span>
             {{ itemSelected?.work_schedule_time.date | date: "dd/MM/yyyy" }}
-          </p>
+          </p> -->
 
           <!-- <h5 *ngIf="itemSelected?.service_infor?.about_service" class="fw-700 mb-3">
             Về dịch vụ

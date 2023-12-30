@@ -9,6 +9,7 @@ import { UpdateProfileHospitalComponent } from './update-profile-hospital/update
 import { UpdateProfileDoctorComponent } from './update-profile-doctor/update-profile-doctor.component';
 import { UpdateProfileAdminComponent } from './update-profile-admin/update-profile-admin.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
+    QuillModule,
   ],
 })
 export class F2AccountSettingModule {}
