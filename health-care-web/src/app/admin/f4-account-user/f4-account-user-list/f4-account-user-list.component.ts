@@ -73,7 +73,7 @@ export class F4AccountUserListComponent implements OnInit, OnDestroy {
           paginate: this.pageSize,
           search: this.textSearch || '',
           sortlatest: true,
-          role: 'doctor',
+          role: 'user',
           is_accept: 'both',
         })
         .subscribe({
