@@ -1,5 +1,10 @@
-export const linkApi = 'https://vanmanh.azurewebsites.net/api';
-export const prefixApi = 'https://vanmanh.azurewebsites.net';
+// export const linkApi = 'https://vanmanh.azurewebsites.net/api';
+// export const prefixApi = 'https://vanmanh.azurewebsites.net';
+
+export const linkApi =
+  'https://e8ca-2405-4802-95f0-5061-acaa-1fa1-5c3b-927a.ngrok-free.app/api';
+export const prefixApi =
+  'https://e8ca-2405-4802-95f0-5061-acaa-1fa1-5c3b-927a.ngrok-free.app';
 
 export const linkApiChat =
   'https://backend-chat-socket-production.up.railway.app/api/v1';
