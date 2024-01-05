@@ -2,8 +2,6 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
-  Renderer2,
-  Sanitizer,
   signal,
 } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
@@ -14,7 +12,6 @@ import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-user-booking',
@@ -22,7 +19,6 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   styleUrls: ['./user-booking.component.scss'],
 })
 export class UserBookingComponent {
-  sanitizedContent: SafeHtml;
   tab = 'waitBooking';
   typeView = 'table';
 
@@ -56,8 +52,6 @@ export class UserBookingComponent {
     private spinner: NgxSpinnerService,
     private toastrService: ToastrService,
     private changeDetector: ChangeDetectorRef,
-    private renderer: Renderer2,
-    private sanitizer: DomSanitizer,
   ) {}
 
   ngOnInit(): void {
@@ -186,29 +180,22 @@ export class UserBookingComponent {
 
   patchDataCalendar(): void {
     const eventData = this.items.map((appointment) => {
-      return {
-        id: appointment.id,
-        title: appointment.user_name,
-        user_name: appointment.user_name,
-        user_address: appointment.user_address,
-        user_email: appointment.user_email,
-        user_phone: appointment.user_phone,
-        user_avatar: appointment.user_avatar,
-        user_date_of_birth: appointment.user_date_of_birth,
-        service_name: appointment.service_name,
-        start: new Date(
-          appointment.work_schedule_time.date +
-            'T' +
-            appointment.work_schedule_time.interval[0] +
-            ':00',
-        ),
-        end: new Date(
-          appointment.work_schedule_time.date +
-            'T' +
-            appointment.work_schedule_time.interval[1] +
-            ':00',
-        ),
-      };
+      const obj = { ...appointment };
+      obj.title = appointment.user_name;
+      obj.start = new Date(
+        appointment.work_schedule_time.date +
+          'T' +
+          appointment.work_schedule_time.interval[0] +
+          ':00',
+      );
+      obj.end = new Date(
+        appointment.work_schedule_time.date +
+          'T' +
+          appointment.work_schedule_time.interval[1] +
+          ':00',
+      );
+
+      return obj;
     });
     this.calendarOptions = signal<CalendarOptions>({
       locale: 'vi',
@@ -239,7 +226,7 @@ export class UserBookingComponent {
 
   handleEventClick(clickInfo: EventClickArg) {
     this.itemSelected = clickInfo.event.extendedProps;
-    this.el.nativeElement.querySelector('#btnOpenModalShowInfo').click();
+    this.el.nativeElement.querySelector('#btnOpenDetailModal').click();
   }
 
   handleEvents(events: EventApi[]) {
@@ -257,22 +244,10 @@ export class UserBookingComponent {
   }
   renderModalContent(item: any) {
     this.itemSelected = item;
-    const content = this.itemSelected?.work_schedule_content;
-    this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(content);
-
-    const componentElement = this.el.nativeElement.querySelector(
-      '#work_schedule_content',
-    );
-
-    this.renderer.setProperty(
-      componentElement,
-      'innerHTML',
-      this.sanitizedContent,
-    );
   }
 
   sortTable(n: number) {
-    var table,
+    let table,
       rows,
       switching,
       i,
@@ -296,7 +271,6 @@ export class UserBookingComponent {
         x = rows[i].getElementsByTagName('TD')[n];
         y = rows[i + 1].getElementsByTagName('TD')[n];
         const dayX = parseInt(x.querySelector('.fs-30')?.textContent ?? '');
-        console.log(x.querySelector('.month')?.textContent ?? '');
         const monthX = parseInt(
           x.querySelector('.month')?.textContent?.substring(5) ?? '',
         );

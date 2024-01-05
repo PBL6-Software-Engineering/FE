@@ -118,7 +118,6 @@ export class BookingServiceComponent implements OnChanges {
     }
     this.times = timesOrder;
 
-    console.log(this.times);
     this.cdr.detectChanges();
   }
 

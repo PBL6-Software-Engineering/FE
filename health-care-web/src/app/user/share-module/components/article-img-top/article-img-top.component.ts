@@ -12,7 +12,6 @@ export class ArticleImgTopComponent implements OnInit {
 
   constructor(private router: Router) {}
   ngOnInit(): void {
-    console.log(this.article);
   }
 
   navigateArticleDetail(article: any) {

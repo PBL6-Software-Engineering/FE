@@ -42,7 +42,6 @@ export class ForgotPasswordAdminComponent {
           this.step = 2;
         },
         error: (error) => {
-          console.log(error);
           this.toastrService.error(
             error.error.message || 'Gửi email xác thực thất bại',
           );

@@ -54,7 +54,6 @@ export class SignInAdminComponent implements OnInit {
           error: (error) => {
             this.renderer.addClass(loading, 'd-none');
             this.toastrService.error('Đăng nhập thất bại');
-            console.log(error);
           },
         });
     }

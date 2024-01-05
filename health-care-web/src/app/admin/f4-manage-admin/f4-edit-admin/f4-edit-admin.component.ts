@@ -41,7 +41,6 @@ export class F4EditAdminComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (this.item && this.item.id) {
       this.form.patchValue(this.item);
-      console.log('item', this.item);
     }
   }
 

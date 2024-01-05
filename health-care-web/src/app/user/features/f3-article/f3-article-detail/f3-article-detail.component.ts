@@ -120,7 +120,6 @@ export class F3ArticleDetailComponent implements AfterViewInit, OnInit {
       this.isSpeech = true;
       this.isPause = false;
       this.textToSpeechService.speak(this.article.content, () => {
-        console.log('Speech has ended.');
         this.isSpeech = false;
         this.isPause = false;
       });

@@ -27,7 +27,6 @@ export class F12HospitalServiceDetailComponent implements OnInit {
         this.api.getServiceDetail(this.serviceId).subscribe({
           next: ({ data }) => {
             this.service = data;
-            console.log('this.service', this.service);
             this.ratings = this.service.ratings.data;
             for (let rating of this.ratings) {
               rating.avatar_user = prefixApi + '/' + rating.avatar_user;
@@ -130,6 +129,5 @@ export class F12HospitalServiceDetailComponent implements OnInit {
   openConfirmBooking(data: any): void {
     this.step = 2;
     this.dataBooking = data;
-    console.log('this.data', this.dataBooking);
   }
 }

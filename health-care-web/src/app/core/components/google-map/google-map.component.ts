@@ -30,7 +30,6 @@ export class GoogleMapComponent implements OnChanges {
       this.map = new google.maps.Map(this.googleMap.nativeElement, mapOptions);
     } else {
       this.mapInitializer();
-      console.log('Không tồn tại vị trí bệnh viện');
     }
   }
 

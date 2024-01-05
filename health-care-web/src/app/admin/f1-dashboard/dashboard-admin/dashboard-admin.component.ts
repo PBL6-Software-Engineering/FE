@@ -18,7 +18,6 @@ export class DashboardAdminComponent implements OnInit {
   constructor(private statisticService: StatisticAdminService) {}
 
   ngOnInit(): void {
-    console.log('DashboardHospitalComponent');
     const currentYear = new Date().getFullYear();
     flatpickr('#dateFilter', {
       allowInput: true,

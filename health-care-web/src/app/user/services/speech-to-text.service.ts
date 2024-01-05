@@ -17,7 +17,6 @@ export class SpeechToTextService {
     this.recognition.onresult = (event: any) => {
       this.zone.runOutsideAngular(() => {
         const transcript = event.results[0][0].transcript;
-        console.log('transcript', transcript);
         callback(transcript);
       });
     };

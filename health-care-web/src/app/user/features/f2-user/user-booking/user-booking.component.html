@@ -98,7 +98,15 @@
                       ></i>
                       {{ item?.department_name }}
                     </div>
-                    <div class="my-8 fs-14">
+                    <div
+                      class="my-8 fs-14"
+                      *ngIf="
+                        itemSelected &&
+                        itemSelected.work_schedule_time &&
+                        itemSelected.work_schedule_time.interval &&
+                        itemSelected.work_schedule_time.date
+                      "
+                    >
                       <i
                         class="fa fa-calendar fs-16 mr-4"
                         aria-hidden="true"
@@ -225,6 +233,12 @@
 </div>
 
 <!-- Modal detail -->
+<button
+  hidden
+  data-bs-toggle="modal"
+  data-bs-target="#detailModal"
+  id="btnOpenDetailModal"
+></button>
 <div
   class="modal fade"
   id="detailModal"
@@ -374,31 +388,33 @@
               itemSelected?.work_schedule_price | currency: "VND"
             }}</span>
           </p>
-          <p>
+          <p class="my-2">
             <span class="fw-bold">Thời gian khám:</span>
-            <span class="text-primary fw-bold">
-              {{ itemSelected?.work_schedule_time.interval[0] }}-{{
-                itemSelected?.work_schedule_time.interval[1]
+            <span
+              class="text-primary fw-bold"
+              *ngIf="
+                itemSelected &&
+                itemSelected.work_schedule_time &&
+                itemSelected.work_schedule_time.interval &&
+                itemSelected.work_schedule_time.date
+              "
+            >
+              {{ itemSelected?.work_schedule_time?.interval[0] }}-{{
+                itemSelected?.work_schedule_time?.interval[1]
               }},
               {{ itemSelected?.work_schedule_time.date | date: "dd/MM/yyyy" }}
             </span>
           </p>
-          <!-- <p>
-            <span class="fw-bold">Ngày hẹn:</span>
-            {{ itemSelected?.work_schedule_time.date | date: "dd/MM/yyyy" }}
-          </p> -->
-
-          <!-- <h5 *ngIf="itemSelected?.service_infor?.about_service" class="fw-700 mb-3">
-            Về dịch vụ
-          </h5>
-          -->
         </div>
-        <!-- <div id="work_schedule_content" [innerHTML]="sanitizedContent"></div> -->
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Đóng
-        </button>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Đóng
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -449,80 +465,6 @@
           <div class="loader" *ngIf="isDeleting"></div>
           Xác nhận
         </button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<button
-  hidden
-  data-bs-toggle="modal"
-  data-bs-target="#modalShowInfo"
-  id="btnOpenModalShowInfo"
-></button>
-
-<div
-  class="modal fade"
-  id="modalShowInfo"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="modalShowInfoLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog" role="document">
-    <div class="modal-content p-30">
-      <div class="modal-header row-center position-relative">
-        <h5 class="modal-title color-primary">
-          Xem thông tin chi tiết lịch hẹn
-        </h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-2">
-            <img
-              [src]="itemSelected?.user_avatar"
-              alt=""
-              class="avatar wh-80"
-              onerror="this.src='assets/media/image/avatar_user_default.png'"
-            />
-          </div>
-          <div class="col-10">
-            <table class="fs-16">
-              <tr>
-                <th>Họ tên bệnh nhân:</th>
-                <td>{{ itemSelected?.user_name }}</td>
-              </tr>
-              <tr>
-                <th>Ngày sinh:</th>
-                <td>
-                  {{ itemSelected?.user_date_of_birth | date: "dd/MM/yyyy" }}
-                </td>
-              </tr>
-              <tr>
-                <th>Địa chỉ:</th>
-                <td>{{ itemSelected?.user_address }}</td>
-              </tr>
-              <tr>
-                <th>Số điện thoại:</th>
-                <td>{{ itemSelected?.user_phone }}</td>
-              </tr>
-              <tr>
-                <th>Email:</th>
-                <td>{{ itemSelected?.user_email }}</td>
-              </tr>
-              <tr>
-                <th>Tên dịch vụ tư vấn:</th>
-                <td>{{ itemSelected?.service_name || "Lịch tư vấn" }}</td>
-              </tr>
-            </table>
-          </div>
-        </div>
       </div>
     </div>
   </div>

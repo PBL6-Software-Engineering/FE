@@ -18,7 +18,6 @@ export class ArticleImgTopNoContentComponent implements OnInit, OnChanges {
 
   constructor(private router: Router) {}
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.article);
   }
   ngOnInit(): void {}
 

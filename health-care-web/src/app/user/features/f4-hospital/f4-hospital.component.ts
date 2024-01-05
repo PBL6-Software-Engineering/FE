@@ -37,13 +37,11 @@ export class F4HospitalComponent implements OnInit {
           .getHospitalService(this.id)
           .subscribe(({ data }) => {
             this.services = data;
-            console.log(this.services);
           });
         this.hospitalService
           .getDoctorsOfHospital(this.id)
           .subscribe(({ data }) => {
             this.doctors = data;
-            console.log(this.doctors);
           });
         this.healthinsuranceService
           .getAllHealthInsurance({
@@ -54,7 +52,6 @@ export class F4HospitalComponent implements OnInit {
           })
           .subscribe(({ data }) => {
             this.healthInsurances = data.data;
-            console.log('healthInsurance',this.healthInsurances);
           });
       }
     });

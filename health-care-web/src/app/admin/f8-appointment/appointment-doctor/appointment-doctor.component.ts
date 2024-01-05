@@ -81,7 +81,6 @@ export class AppointmentDoctorComponent implements OnInit {
     });
     this.appoinrmentService.getAppointmentDoctor(query).subscribe({
       next: ({ data }) => {
-        console.log('data', data);
         this.dataSources = data.data;
         this.appointmentsOfWeek = data.data;
         this.isLoading = false;

@@ -31,7 +31,6 @@ export class ForgotPasswordComponent {
   }
 
   onEmailSubmit() {
-    console.log(this.forgotPassForm.value);
     if (this.forgotPassForm.valid) {
       this.isSendingEmail = true;
       this.AuthService.forgotPass(this.forgotPassForm.value.email).subscribe({
@@ -41,7 +40,6 @@ export class ForgotPasswordComponent {
           this.step = 2;
         },
         error: (error) => {
-          console.log(error);
           this.toastrService.error(
             error.error.message || 'Gửi email xác thực thất bại',
           );

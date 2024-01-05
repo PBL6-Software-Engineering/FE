@@ -73,7 +73,6 @@ export class F13HealthInsuranceHospitalComponent implements OnInit, OnDestroy {
 
   onHealthInsuranceChange(selectedItem: any) {
     this.healthInsurance = selectedItem;
-    console.log(this.healthInsurance);
   }
 
   save(): void {

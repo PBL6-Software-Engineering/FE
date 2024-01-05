@@ -26,16 +26,9 @@ export class AuthInterceptor implements HttpInterceptor {
     const token = this.tokenStorageService.getToken();
     if (token != null) {
       authReq = request.clone({
-        headers: request.headers
-          .set(TOKEN_HEADER_KEY, 'Bearer ' + token)
-          .set('ngrok-skip-browser-warning', 'true'),
-      });
-    } else {
-      authReq = request.clone({
-        headers: request.headers.set('ngrok-skip-browser-warning', 'true'),
+        headers: request.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token),
       });
     }
-
     return next.handle(authReq);
   }
 }

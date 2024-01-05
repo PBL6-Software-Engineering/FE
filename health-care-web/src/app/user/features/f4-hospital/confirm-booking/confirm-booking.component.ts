@@ -85,7 +85,11 @@ export class ConfirmBookingComponent implements OnInit {
       },
       error: (err) => {
         this.isBooking = false;
-        this.toastr.error('Đặt lịch hẹn thất bại!');
+        const message =
+          err && err.error && err.error.message
+            ? err.error.message || 'Đặt lịch hẹn thất bại!'
+            : 'Đặt lịch hẹn thất bại!';
+        this.toastr.error(message);
       },
     });
   }

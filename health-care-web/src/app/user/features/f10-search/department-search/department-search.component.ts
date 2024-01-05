@@ -45,7 +45,6 @@ export class DepartmentSearchComponent implements OnInit {
     this.departmentApi.getDepartments(this.textSearch).subscribe({
       next: ({ data }) => {
         this.dataSources = data.data;
-        console.log(data.data)
         this.currentPage = data.current_page; // trang hiện tại
         this.totalPage = data.last_page; // số trang
         this.totalElements = data.total; // tổng số phần tử trong database

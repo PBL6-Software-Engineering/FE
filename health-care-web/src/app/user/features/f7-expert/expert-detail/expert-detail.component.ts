@@ -29,7 +29,6 @@ export class ExpertDetailComponent implements OnInit {
               data.infor_extend.information;
             this.doctor = data;
 
-            console.log('this.doctor', data);
             this.articleService
               .getArticles({
                 page: 1,
