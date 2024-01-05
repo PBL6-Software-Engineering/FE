@@ -1,6 +1,6 @@
 <div class="card mt-30 p-0" *ngFor="let item of dataSources">
   <div class="card-body p-0 position-relative">
-    <div class="column-center px-12 py-20">
+    <div class="column-center px-12  pt-20 pb-70">
       <img [src]="item?.avatar" alt="Ảnh bệnh viện" class="avatar-hospital" />
       <div class="ml-20">
         <div class="fw-bold">{{ item?.name }}</div>
@@ -14,8 +14,8 @@
           Có thể nhận lịch hẹn: Bác sĩ | Dịch vụ
         </div>
 
-        <div>
-          {{ item?.description }}
+        <div class="preview-content-3">
+          {{ item?.preview_description }}
         </div>
       </div>
     </div>

@@ -72,7 +72,7 @@
 
               <td class="text-center">
                 <img
-                  [src]="item.thumbnail_department"
+                  [src]="item.thumbnail_service || item.thumbnail_department"
                   alt=""
                   class="thumbnail"
                   (error)="onErrorImage($event)"
