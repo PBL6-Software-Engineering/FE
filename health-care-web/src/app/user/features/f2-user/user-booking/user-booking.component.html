@@ -75,7 +75,15 @@
               <tbody>
                 <!-- <div class="d-flex py-20 border-bottom" > -->
                 <tr class="inner-box" *ngFor="let item of items; let i = index">
-                  <td scope="row" class="text-center fw-bold">
+                  <td
+                    scope="row"
+                    class="text-center fw-bold"
+                    [ngClass]="
+                      item?.work_schedule_is_confirm === 1
+                        ? 'text-success'
+                        : 'text-warning'
+                    "
+                  >
                     <span class="fs-30">{{ item.day }}</span>
                     <p class="month">{{ item.month }}</p>
                   </td>
@@ -160,7 +168,10 @@
 
                     <button
                       type="button"
-                      *ngIf="tab === 'waitBooking'"
+                      *ngIf="
+                        tab === 'waitBooking' &&
+                        item?.work_schedule_is_confirm === 0
+                      "
                       class="btn btn-sm btn-danger ml-12"
                       data-bs-toggle="modal"
                       data-bs-target="#deleteOne"
