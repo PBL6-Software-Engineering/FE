@@ -123,6 +123,7 @@ export class F10ChatComponent implements OnInit, AfterViewInit {
 
   selectConversation(conversation: any) {
     this.conversation = conversation;
+    this.getMessages();
   }
 
   onScrollMessages(event: any) {
