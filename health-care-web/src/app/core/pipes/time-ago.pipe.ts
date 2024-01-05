@@ -33,6 +33,6 @@ export class TimeAgoPipe implements PipeTransform {
     if (interval >= 1) {
       return interval + ' phút trước';
     }
-    return Math.floor(seconds) + ' giây trước';
+    return (Math.floor(seconds) || 1) + ' giây trước';
   }
 }

@@ -43,7 +43,12 @@ export class F10ChatComponent implements OnInit, AfterViewInit {
         if (msg.adminId == this.admin?.id && msg.isUserSend) {
           this.messages.push(msg);
           this.conversation.updatedAt = msg.createdAt;
-          this.conversation.lastMessage = msg.message;
+          this.conversations.forEach((el) => {
+            if (el.conversationId == msg.conversationId) {
+              el.lastMessage = msg.message;
+              el.updatedAt = msg.createdAt;
+            }
+          });
           this.totalMessage++;
           this.scrollToBottom();
         }
