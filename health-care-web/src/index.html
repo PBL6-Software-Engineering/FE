@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="google-site-verification" content="_df1CifnNSl2vQ3nf3fMAgHTHXVVT-ytg1WD4Db9Dbc" />
+    <meta
+      name="google-site-verification"
+      content="_df1CifnNSl2vQ3nf3fMAgHTHXVVT-ytg1WD4Db9Dbc"
+    />
     <title>Health Care</title>
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -17,3 +20,29 @@
   </body>
 </html>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcHIDzTj2AqLF84fInKCdBN2CRHo-AsBQ&callback=Function.prototype&libraries=places"></script>
+
+<script>
+  var chatbox = document.getElementById("fb-customer-chat");
+  chatbox.setAttribute("page_id", "61550840782756");
+  chatbox.setAttribute("attribution", "biz_inbox");
+</script>
+
+<script>
+  window.fbAsyncInit = function () {
+    FB.init({
+      appId: "1522568465160385",
+      xfbml: true,
+      version: "v17.0",
+    });
+  };
+
+  (function (d, s, id) {
+    var js,
+      fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  })(document, "script", "facebook-jssdk");
+</script>

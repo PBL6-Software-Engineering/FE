@@ -14,7 +14,7 @@ export const linkSocket =
 // export const linkApi = 'http://192.168.28.250:8000/api';
 // export const prefixApi = 'http://192.168.28.250:8000';
 
-export const OPENAI_KEY = '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';
+export const OPENAI_KEY = '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';
 
 export const GOOGLE_ID =
   '255808396138-caffgiei9rvo2nve4l2206db309bvjbb.apps.googleusercontent.com';
